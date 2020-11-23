@@ -7,16 +7,23 @@ namespace CESI.BS.EasySave.DAL
 
     public class Work
     {
-        public Work(string name, string source, string target, Save save)
+        public Guid Id { get; private set; }
+        public WorkState State { get; set; }
+        public string Name { get; set; }
+        public string Source { get; set; }
+        public string Target { get; set; }
+        public string CurrentFile { get; set; }
+        public uint EligibleFiles { get; private set; }
+        public uint RemainingFiles { get; private set; }
+        public long Progress { get; private set; }
+        public long Size { get; set; }
+        public long RemainingSize
         {
-            this.name = name;
-            this.source = source;
-            this.target = target;
-            this.save = save;
+            get { return RemainingSize; }
+            set
+            {
+                RemainingSize = value;
+                Progress = Size == 0 ? 100 : Convert.ToInt64(100 - (Convert.ToDouble(value) / Convert.ToDouble(Size) * 100));
+            }
         }
-        public string name { get; set; }
-        public string source { get; set; }
-        public string target { get; set; }
-        public Save save { get; set; }
     }
-}
