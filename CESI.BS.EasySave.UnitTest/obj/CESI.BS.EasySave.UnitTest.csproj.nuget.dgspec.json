@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CesiEasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {}
+    "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CesiEasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {
+    "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CesiEasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
         "projectName": "CESI.BS.EasySave.UnitTest",
-        "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CesiEasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
-        "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CesiEasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
+        "projectPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+        "packagesPath": "C:\\Users\\REMI\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\REMI\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -1,78 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.IO;
 
-namespace CESI.BS.EasySave.BS
+namespace LanguageClass
 {
-    public static class Language
+    static class Language
     {
-        public static string askName = "Entrez le nom du nouveau travail : ";
-        public static string askTarget = "Entrez le chemin du répertoire cible : ";
-        public static string askSource = "Entrez le chemin du répertoire source : ";
-        public static string validate = "O";
-        public static string dismiss = "N";
-        public static string askSaveType = "Choisissez le type de sauvegarde : ";
-        static string mainMenu = "Bienvenue sur EasySave ! Choisissez une option ci-dessous \n" +
-            "1) Afficher les travaux \n" +
-            "2) Creer un travail \n" +
-            "3) Modifier un travail \n" +
-            "4) Supprimer un travail \n" +
-            "5) Changer la langue \n";
-        static string noWorks = "Il n'y a aucun travail pour le moment. Voulez-vous en créer un? (O/N)";
-        static string getWorks = "Voici les différents Travaux : ";
-        static string differential = "Differentielle";
-        static string full = "Complete";
-        internal static string getDifferentialName()
-        {
-            return differential;
-        }
-        internal static string getFullName()
-        {
-            return full;
-        }
-        public static string getValidate()
-        {
-            return validate;
-        }
+        // 1 = French, 2 = English
+        private static string chosenLanguage = "fr";
 
-        internal static string getAskName()
-        {
-            return askName;
-        }
+        private static readonly string dataFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
+        private static readonly string dataFileName = "translation.xml";
 
-        public static string getDismiss()
-        {
-            return dismiss;
-        }
+        private static readonly string regexFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
+        private static readonly string regexFileName = "LangRegex.conf";
 
-        internal static string getAskTarget()
-        {
-            return askTarget;
-        }
+        private static string requestedString;
+
+        private static Regex groupRegex;
+        private static readonly String groupRegexP1 = @"<dataGroup>\s+(";
+        private static readonly String groupRegexP2 = @".+)\s+<\/dataGroup>";
+
+        private static Regex langRegex;
+        private static readonly String langRegexP1 = @"<";
+        private static readonly String langRegexP2 = @">(.+)<\/(fr)>";
+
+        private static Match match;
 
 
-
-        internal static string getAskSaveType()
+        public static void SetChosenLanguage(string newLanguage)
         {
-            return askSaveType;
+            chosenLanguage = newLanguage;
         }
 
-        internal static string getAskSource()
+        public static string GetrequestedString(int stringID)
         {
-            return askSource;
+            ExtractStringByID(stringID);
+            return RequestedString;
+        }
+        private static void ExtractStringByID(int stringID)
+        {
+            System.IO.StreamReader file = new System.IO.StreamReader(RegexFilePath + RegexFileName); ;
+            groupRegex = new Regex(GroupRegexP1 + stringID + GroupRegexP2);
+            langRegex = new Regex(LangRegexP1 + ChosenLanguage + LangRegexP2);
+            File.ReadAllText(DataFilePath + DataFileName);
+            match = groupRegex.Match(RequestedString);
+            string temp = match.Groups[0].Value;
+
+            while (file.ReadLine() != null)
+            {
+                match = langRegex.Match(file.ReadLine());
+                if (match.Groups[0].Value != null)
+                {
+                    SetRequestedString(match.Groups[1].Value);
+                }
+            }
+
         }
 
-        public static string getMainMenu()
-        {
-            return mainMenu;
-        }
-        public static string getGetWork()
-        {
-            return getWorks;
-        }
-        public static string getNoWorks()
-        {
-            return noWorks;
-        }
+        private static string ChosenLanguage => chosenLanguage;
+
+        private static string DataFilePath => dataFilePath;
+        private static string DataFileName => dataFileName;
+
+        private static string RegexFilePath => regexFilePath;
+        private static string RegexFileName => regexFileName;
+
+        private static void SetRequestedString(string newString) => requestedString = newString;
+
+        private static string RequestedString => requestedString;
+
+        private static string GroupRegexP1 => groupRegexP1;
+        private static string GroupRegexP2 => groupRegexP2;
+
+        private static string LangRegexP1 => langRegexP1;
+        private static string LangRegexP2 => langRegexP2;
+
+        
     }
 }
