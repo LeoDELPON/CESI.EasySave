@@ -12,6 +12,7 @@ namespace CESI.BS.EasySave.BS
         {
             typeSave.Add(new Differential());
             typeSave.Add(new Full());
+            Console.WriteLine("test pour le webhook");
         }
 
 
