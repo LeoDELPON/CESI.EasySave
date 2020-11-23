@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Console_EasySave
+namespace CESI.BS.EasySave.BS
 {
     public static class Language
     {

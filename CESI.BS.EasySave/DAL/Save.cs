@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EasySave.Business.DAL
+namespace CESI.BS.EasySave.DAL
 {
     abstract class Save
     {

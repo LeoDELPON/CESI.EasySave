@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using EasySave.Business.DAL;
+using CESI.BS.EasySave.DAL;
 using System.Text;
 
-namespace EasySave.View.Interface
+namespace CesiEasySave.View.Interface
 {
     interface IEasySaveView
     {

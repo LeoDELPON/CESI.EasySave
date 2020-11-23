@@ -1,9 +1,9 @@
-﻿using EasySave.Business.DAL;
+﻿using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EasySave.Business.BS
+namespace CESI.BS.EasySave.BS
 {
     public class Full : Save
     {

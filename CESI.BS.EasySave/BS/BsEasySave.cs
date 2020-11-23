@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EasySave.Business.DAL;
+using CESI.BS.EasySave.DAL;
 
-namespace EasySave.Business.BS
+namespace CESI.BS.EasySave.BS
 {
     public class Model
     {

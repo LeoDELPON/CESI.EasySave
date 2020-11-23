@@ -1,11 +1,12 @@
 ﻿using System;
-using EasySave.View.Interface;
 using System.Collections.Generic;
 using System.Text;
+using CesiEasySave.View.Interface;
+using CESI.BS.EasySave.BS;
 
-namespace EasySave.View
+namespace CesiEasySave.View
 {
-    class ViewConsole : IEasySaveView
+    class EasySaveView : IEasySaveView
     {
 
         public string printMainMenu()
