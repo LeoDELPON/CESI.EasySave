@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\REMI\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {}
+    "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\REMI\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {
+    "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\REMI\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
         "projectName": "CESI.BS.EasySave.UnitTest",
-        "projectPath": "C:\\Users\\REMI\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+        "projectPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
         "packagesPath": "C:\\Users\\REMI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\REMI\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
+        "outputPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\REMI\\AppData\\Roaming\\NuGet\\NuGet.Config",

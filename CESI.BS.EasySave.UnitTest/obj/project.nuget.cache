@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AtBXowOlKdBJsGN+lcLfkihX0IYS1VtPChZbMGRjEqrVSBYZRYuwYY/ihTN1NFyU1uXoBz6otvYthSWkgSEBAg==",
+  "dgSpecHash": "QHhyuk1xfM0OiEelSyMfnhFFxV2B/eIeSH+9vmUpsnj1OUKMXueNfzuj3rXF0xcs2NcubFV1Q6FZG4+rbeqksg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\REMI\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+  "projectFilePath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\REMI\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",
     "C:\\Users\\REMI\\.nuget\\packages\\microsoft.codecoverage\\16.7.1\\microsoft.codecoverage.16.7.1.nupkg.sha512",
