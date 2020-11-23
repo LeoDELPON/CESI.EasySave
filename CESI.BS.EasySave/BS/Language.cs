@@ -8,76 +8,49 @@ namespace LanguageClass
 {
     static class Language
     {
-        // 1 = French, 2 = English
+        //Default language applied
         private static string chosenLanguage = "fr";
 
+        //data file containing translation for the software
         private static readonly string dataFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
         private static readonly string dataFileName = "translation.xml";
 
-        private static readonly string regexFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
-        private static readonly string regexFileName = "LangRegex.conf";
+        //Both parts of the regex used to parse String
+        private static readonly String regexModifier = @"(?s)";
+        private static readonly String regexP1 = @"+<.+";
+        private static readonly String regexP2 = @">(.+?)<\/.{2}>";
 
-        private static string requestedString;
+        //instantiation of the regular expression
+        private static Regex regex;
 
-        private static Regex groupRegex;
-        private static readonly String groupRegexP1 = @"<dataGroup>\s+(";
-        private static readonly String groupRegexP2 = @".+)\s+<\/dataGroup>";
-
-        private static Regex langRegex;
-        private static readonly String langRegexP1 = @"<";
-        private static readonly String langRegexP2 = @">(.+)<\/(fr)>";
-
-        private static Match match;
-
-
+        //Can be called to choose and change language
         public static void SetChosenLanguage(string newLanguage)
         {
             chosenLanguage = newLanguage;
         }
 
-        public static string GetrequestedString(int stringID)
+        //Can be called to get required string to print on view | act as interface for "ExtractStringByID"
+        public static string GetRequestedString(int stringID)
         {
-            ExtractStringByID(stringID);
-            return RequestedString;
-        }
-        private static void ExtractStringByID(int stringID)
-        {
-            System.IO.StreamReader file = new System.IO.StreamReader(RegexFilePath + RegexFileName); ;
-            groupRegex = new Regex(GroupRegexP1 + stringID + GroupRegexP2);
-            langRegex = new Regex(LangRegexP1 + ChosenLanguage + LangRegexP2);
-            File.ReadAllText(DataFilePath + DataFileName);
-            match = groupRegex.Match(RequestedString);
-            string temp = match.Groups[0].Value;
-
-            while (file.ReadLine() != null)
-            {
-                match = langRegex.Match(file.ReadLine());
-                if (match.Groups[0].Value != null)
-                {
-                    SetRequestedString(match.Groups[1].Value);
-                }
-            }
-
+            return ExtractStringByID(stringID);
         }
 
+        //Core function for "GetRequestedString to work, it apply regex to whole file and return wanted value
+        private static string ExtractStringByID(int stringID)
+        {
+            regex = new Regex(RegexModifier + stringID + RegexP1 + chosenLanguage + RegexP2);
+            Match match = regex.Match(File.ReadAllText(DataFilePath + DataFileName));
+            return match.Groups[1].Value;
+        }
+
+        //Property of all class variables
         private static string ChosenLanguage => chosenLanguage;
 
         private static string DataFilePath => dataFilePath;
         private static string DataFileName => dataFileName;
 
-        private static string RegexFilePath => regexFilePath;
-        private static string RegexFileName => regexFileName;
-
-        private static void SetRequestedString(string newString) => requestedString = newString;
-
-        private static string RequestedString => requestedString;
-
-        private static string GroupRegexP1 => groupRegexP1;
-        private static string GroupRegexP2 => groupRegexP2;
-
-        private static string LangRegexP1 => langRegexP1;
-        private static string LangRegexP2 => langRegexP2;
-
-        
+        private static string RegexModifier => regexModifier;
+        private static string RegexP1 => regexP1;
+        private static string RegexP2 => regexP2;
     }
 }
