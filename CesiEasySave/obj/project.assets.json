@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\REMI\\.nuget\\packages\\": {}
+    "C:\\Users\\delpo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+      "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
       "projectName": "CesiEasySave",
-      "projectPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
-      "packagesPath": "C:\\Users\\REMI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CesiEasySave\\obj\\",
+      "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+      "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\REMI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +53,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             }
           }
         }

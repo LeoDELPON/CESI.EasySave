@@ -15,3 +15,9 @@ C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CesiEasySave\CesiEasySave\obj\
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CesiEasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.dll
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CesiEasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.pdb
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CesiEasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.genruntimeconfig.cache
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.csprojAssemblyReference.cache
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.AssemblyInfoInputs.cache
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.AssemblyInfo.cs
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.csproj.CoreCompileInputs.cache
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.dll
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.pdb
