@@ -5,10 +5,10 @@ using CESI.BS.EasySave.DAL;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class Model
+    public class BsEasySave
     {
         public List<Save> typeSave { get; set; }
-        public Model()
+        public BsEasySave()
         {
             typeSave.Add(new Differential());
             typeSave.Add(new Full());

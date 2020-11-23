@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CESI.BS.EasySave.BS;
+using CesiEasySave.View;
+using CesiEasySave.View.Interface;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,13 +9,13 @@ namespace CesiEasySave.Controller
 {
     public class Controller
     {
-        View view;
-        Model model;
+        IEasySaveView view;
+        BsEasySave model;
         int LimitWork = 5;
         public Controller()
         {
-            view = new ViewConsole();
-            model = new Model();
+            view = new EasySaveView();
+            model = new BsEasySave();
             programLoop();
         }
 
