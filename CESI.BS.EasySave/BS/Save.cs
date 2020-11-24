@@ -18,14 +18,16 @@ namespace CESI.BS.EasySave.BS
         public static int STOP_SAVE = 3;
         public Save()
         {
-            propertiesWork = new Dictionary<WorkProperties, object>();
-            propertiesWork.Add(WorkProperties.Duration, 0);
-            propertiesWork.Add(WorkProperties.Date, null);
-            propertiesWork.Add(WorkProperties.CurrentFile, "notSet");
-            propertiesWork.Add(WorkProperties.EligibleFiles, 0);
-            propertiesWork.Add(WorkProperties.RemainingFiles, 0);
-            propertiesWork.Add(WorkProperties.RemainingSize, 0);
-            propertiesWork.Add(WorkProperties.Size, 0);
+            propertiesWork = new Dictionary<WorkProperties, object>
+            {
+                { WorkProperties.Duration, 0 },
+                { WorkProperties.Date, null },
+                { WorkProperties.CurrentFile, "notSet" },
+                { WorkProperties.EligibleFiles, 0 },
+                { WorkProperties.RemainingFiles, 0 },
+                { WorkProperties.RemainingSize, 0 },
+                { WorkProperties.Size, 0 }
+            };
         }
 
 

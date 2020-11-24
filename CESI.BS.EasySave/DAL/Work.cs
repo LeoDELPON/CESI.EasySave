@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CESI.BS.EasySave.BS;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,6 +8,8 @@ namespace CESI.BS.EasySave.DAL
 
     public class Work
     {
+        private Save saveType;
+        private long remainingSize;
         public Guid Id { get; private set; }
         public WorkState State { get; set; }
         public string Name { get; set; }
@@ -25,5 +28,10 @@ namespace CESI.BS.EasySave.DAL
                 RemainingSize = value;
                 Progress = Size == 0 ? 100 : Convert.ToInt64(100 - (Convert.ToDouble(value) / Convert.ToDouble(Size) * 100));
             }
+        }
+        public double Duration { get; set; }
+        public string SaveType
+        {
+            get { return saveType.TypeSave.ToString(); }
         }
     }
