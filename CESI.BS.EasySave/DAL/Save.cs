@@ -4,10 +4,10 @@ using System.Text;
 
 namespace CESI.BS.EasySave.DAL
 {
-    abstract class Save
+    public abstract class Save
     {
         public string name;
-        public abstract void perform();
-        public abstract string getName();
+        public abstract void Perform();
+        public abstract string GetName();
     }
 }

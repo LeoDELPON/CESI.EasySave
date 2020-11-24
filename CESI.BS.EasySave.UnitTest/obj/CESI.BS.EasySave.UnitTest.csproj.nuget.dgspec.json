@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {}
+    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {
+    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
         "projectName": "CESI.BS.EasySave.UnitTest",
-        "projectPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
-        "packagesPath": "C:\\Users\\remib\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
+        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+        "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
+        "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\remib\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -70,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

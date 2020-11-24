@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static Console_EasySave.Language;
+using CesiEasySave.View.Interface;
+using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.DAL;
+using LanguageClass;
 
-namespace Console_EasySave
+namespace CesiEasySave.View
 {
-    class ViewConsole : View
+    class EasySaveViewConsole : IEasySaveView
     {
+
         public void Clear()
         {
             Console.Clear();
         }
-        
-        public string PrintMainMenu() {
+
+        public string PrintMainMenu()
+        {
             Console.WriteLine(Language.GetMainMenu());
-          
+
             return Console.ReadLine();
         }
         public string PrintWorks(List<Work> works)
         {
             Console.WriteLine(Language.GetGetWork());
             int i = 0;
-            foreach (Work work in works){
+            foreach (Work work in works)
+            {
                 Console.WriteLine(i + ") " + work.name);
                 i++;
             }
@@ -77,7 +83,7 @@ namespace Console_EasySave
 
         public bool ConfirmDelete(string name)
         {
-            Console.WriteLine(Language.GetConfirmDelete() );
+            Console.WriteLine(Language.GetConfirmDelete());
             Console.WriteLine(name);
             return (Console.ReadLine().ToUpper().Equals(Language.GetValidate()));
         }
@@ -86,16 +92,14 @@ namespace Console_EasySave
         {
             int i = 0;
             Console.WriteLine(Language.GetAskLanguage());
-            foreach(languageFileData language in Language.GetAllLanguages())
+            foreach (Language.languageFileData language in Language.GetAllLanguages())
             {
                 Console.WriteLine(i + ") " + language.name);
                 i++;
             }
             return Console.ReadLine();
         }
+
+
     }
 }
-
-   
-
-
