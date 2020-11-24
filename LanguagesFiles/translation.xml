@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<dataGroup>
+  		<id>1</id>
+		<fr>Bienvenue sur EasySave ! Choisissez une option ci-dessous</fr>
+		<en>Welcome on EasySave ! Choose an option:</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>2</id>
+		<fr>1) Afficher les travaux</fr>
+		<en>Show works</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>3</id>
+		<fr>2) Creer un travail</fr>
+		<en>Create new work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>4</id>
+		<fr>3) Modifier un travail</fr>
+		<en>Modify work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>5</id>
+		<fr>4) Supprimer un travail</fr>
+		<en>Delete work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>6</id>
+		<fr>5) Changer la langue</fr>
+		<en>Change language</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>7</id>
+		<fr>Il n'y a aucun travail pour le moment. Voulez-vous en créer un? (Oui/Non)</fr>
+		<en>there is no existing work. Do you want to create one ? (Yes/No)</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>8</id>
+		<fr>Oui</fr>
+		<en>Yes</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>9</id>
+		<fr>Non</fr>
+		<en>No</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>10</id>
+		<fr>Entrez le nom du nouveau travail :</fr>
+		<en>Write new workName</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>11</id>
+		<fr>Entrez le chemin du répertoire source :</fr>
+		<en>Write source path</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>12</id>
+		<fr>Entrez le chemin du répertoire cible :</fr>
+		<en>Write target path</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>13</id>
+		<fr>Voici les différents Travaux :</fr>
+		<en>Here are the existing work :</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>14</id>
+		<fr>Choisissez le type de sauvegarde :</fr>
+		<en>Choose save mode</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>15</id>
+		<fr>Differentielle</fr>
+		<en>Diferential</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>16</id>
+		<fr>Complete</fr>
+		<en>Full</en>
+	</dataGroup>
+</list>
