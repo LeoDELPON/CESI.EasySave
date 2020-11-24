@@ -38,6 +38,22 @@ namespace CESI.BS.EasySave.BS
             return files;
         }
 
+        protected void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            FolderBuilder.CreateFolder(target.FullName);
+            foreach (FileInfo file in source.GetFiles())
+            {
+                file.CopyTo(Path.Combine(target.FullName, file.Name), true);
+            }
+
+            foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir =
+                    target.CreateSubdirectory(directorySourceSubDir.Name);
+                CopyAll(directorySourceSubDir, nextTargetSubDir);
+            }
+        }
+
         protected string GetExtension(string path)
         {
             string[] pathFile = path.Split('.');
