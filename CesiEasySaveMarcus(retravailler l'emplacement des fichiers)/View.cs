@@ -16,7 +16,7 @@ namespace Console_EasySave
         public string WichWorkField();
         public string AskStr();
         public bool ConfirmDelete(string name);
-        public string AskLanguage();
+        public string AskLanguage(); 
     }
         
         

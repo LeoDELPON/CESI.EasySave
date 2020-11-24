@@ -9,6 +9,8 @@ namespace Console_EasySave
         View view;
         Model model;
         int LimitWork = 5;
+
+        //Declaration of a structure to facilitate the passage of data
         public struct WorkVar
         {
            public string name;
@@ -73,6 +75,8 @@ namespace Console_EasySave
 
 
         }
+        
+        //When the user change the language
         private void ChangeLanguage()
         {
             if (Language.GetAllLanguages().Count > 0)
@@ -87,6 +91,8 @@ namespace Console_EasySave
            
                 
         }
+
+        //Delete select Work
         private void DeleteWork()
         {
             string selectedWork;
@@ -109,6 +115,7 @@ namespace Console_EasySave
             
         }
 
+        //Print select Works
         private string PrintWorks()
         {
             int strReturnInt;
