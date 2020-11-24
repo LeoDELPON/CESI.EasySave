@@ -29,6 +29,8 @@ namespace CesiEasySave.Controller
 
         private void ProgramLoop()
         {
+
+
             string answerMainMenu;
             do
             {
@@ -165,7 +167,23 @@ namespace CesiEasySave.Controller
             WorkVar workvar = AskDataWork();
             if (model.GetWorks().Count < 5)
             {
-                model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave]); // add a work
+                try
+                {
+                    model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave]); // add a work
+                    Console.WriteLine("[+] Work succesfull add.");
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine("[-] ", error.Message);
+                    Console.WriteLine("[-] ", error.StackTrace);
+                    var inner = error.InnerException;
+
+                    while(inner != null)
+                    {
+                        Console.WriteLine("[-] ", inner.StackTrace);
+                        inner = inner.InnerException;
+                    }
+                }
             }
             else
             {
@@ -191,13 +209,29 @@ namespace CesiEasySave.Controller
                         {
                             if (fieldChosen == 4)
                             {
-                                int newSaveType = int.Parse(view.AskSaveType(model.typeSave));
-                                model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
+                                try
+                                {
+                                    int newSaveType = int.Parse(view.AskSaveType(model.typeSave));
+                                    model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
+                                }
+                                catch (Exception error)
+                                {
+                                    Console.WriteLine("[-] " + error.Message);
+                                    Console.WriteLine("[-] " + error.StackTrace);
+                                }
                             }
                             else
                             {
-                                string newField = view.AskStr();
-                                model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
+                                try
+                                {
+                                    string newField = view.AskStr();
+                                    model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
+                                }
+                                catch (Exception error)
+                                {
+                                    Console.WriteLine(error.Message);
+                                    Console.WriteLine(error.StackTrace);
+                                }
                             }
                         }
                         //start save work
