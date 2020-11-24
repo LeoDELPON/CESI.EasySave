@@ -1,4 +1,5 @@
 ﻿using CESI.BS.EasySave.DAL;
+using LanguageClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,14 +8,14 @@ namespace CESI.BS.EasySave.BS
 {
     public class Full : Save
     {
-        public override void perform()
+        public override void Perform()
         {
             throw new NotImplementedException();
         }
         override
-     public string getName()
+     public string GetName()
         {
-            return Language.getFullName();
+            return Language.GetFullName();
         }
     }
 

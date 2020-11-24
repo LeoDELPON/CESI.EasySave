@@ -1,10 +1,50 @@
-
 *.cache
-CESI.BS.EasySave.UnitTest/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.UnitTest.assets.cache
-CESI.BS.EasySave.UnitTest/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.UnitTest.csprojAssemblyReference.cache
-CESI.BS.EasySave/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.assets.cache
-CESI.BS.EasySave/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.csprojAssemblyReference.cache
-CESI.CesiEasySave.IntegrationTest/obj/Debug/netcoreapp3.1/CESI.CesiEasySave.IntegrationTest.assets.cache
-CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.assets.cache
-CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.csprojAssemblyReference.cache
-*.cache
+.vs/CesiEasySave/v16/.suo
+CESI.BS.EasySave.UnitTest/obj/CESI.BS.EasySave.UnitTest.csproj.nuget.dgspec.json
+CESI.BS.EasySave.UnitTest/obj/CESI.BS.EasySave.UnitTest.csproj.nuget.g.props
+CESI.BS.EasySave.UnitTest/obj/project.assets.json
+CESI.BS.EasySave/obj/CESI.BS.EasySave.csproj.nuget.dgspec.json
+CESI.BS.EasySave/obj/CESI.BS.EasySave.csproj.nuget.g.props
+CESI.BS.EasySave/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.exe
+CESI.BS.EasySave/obj/project.assets.json
+CESI.CesiEasySave.IntegrationTest/obj/CESI.CesiEasySave.IntegrationTest.csproj.nuget.dgspec.json
+CESI.CesiEasySave.IntegrationTest/obj/CESI.CesiEasySave.IntegrationTest.csproj.nuget.g.props
+CESI.CesiEasySave.IntegrationTest/obj/project.assets.json
+CesiEasySave/obj/CesiEasySave.csproj.nuget.dgspec.json
+CesiEasySave/obj/CesiEasySave.csproj.nuget.g.props
+CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.exe
+CesiEasySave/obj/project.assets.json
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/project.assets.json
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Debug/netcoreapp3.1/Console EasySave.pdb
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Debug/netcoreapp3.1/Console EasySave.genruntimeconfig.cache
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Debug/netcoreapp3.1/Console EasySave.exe
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Debug/netcoreapp3.1/Console EasySave.dll
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Debug/netcoreapp3.1/Console EasySave.csproj.FileListAbsolute.txt
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Console EasySave.csproj.nuget.g.props
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/obj/Console EasySave.csproj.nuget.dgspec.json
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/bin/Debug/netcoreapp3.1/Console EasySave.runtimeconfig.dev.json
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/bin/Debug/netcoreapp3.1/Console EasySave.pdb
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/bin/Debug/netcoreapp3.1/Console EasySave.exe
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/bin/Debug/netcoreapp3.1/Console EasySave.dll
+CesiEasySaveMarcus(retravailler l'emplacement des fichiers)/.vs/Console EasySave/v16/.suo
+CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.csproj.FileListAbsolute.txt
+CESI.BS.EasySave/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.csproj.FileListAbsolute.txt
+.vs/CesiEasySave/v16/.suo
+.vs/CesiEasySave/v15/.suo
+.vs/CesiEasySave/v15/.suo
+.vs/CesiEasySave/v16/.suo
+.vs/CesiEasySave/v16/.suo
+.vs/CesiEasySave/v15/.suo
+.vs/CesiEasySave/v16/.suo
+CESI.BS.EasySave.UnitTest/obj/CESI.BS.EasySave.UnitTest.csproj.nuget.dgspec.json
+CESI.BS.EasySave.UnitTest/obj/CESI.BS.EasySave.UnitTest.csproj.nuget.g.props
+CESI.BS.EasySave.UnitTest/obj/project.assets.json
+CESI.BS.EasySave/obj/CESI.BS.EasySave.csproj.nuget.dgspec.json
+CESI.BS.EasySave/obj/CESI.BS.EasySave.csproj.nuget.g.props
+CESI.BS.EasySave/obj/project.assets.json
+CESI.CesiEasySave.IntegrationTest/obj/CESI.CesiEasySave.IntegrationTest.csproj.nuget.dgspec.json
+CESI.CesiEasySave.IntegrationTest/obj/CESI.CesiEasySave.IntegrationTest.csproj.nuget.g.props
+CESI.CesiEasySave.IntegrationTest/obj/project.assets.json
+CesiEasySave/obj/CesiEasySave.csproj.nuget.dgspec.json
+CesiEasySave/obj/CesiEasySave.csproj.nuget.g.props
+CesiEasySave/obj/project.assets.json
