@@ -49,3 +49,5 @@ CesiEasySave/obj/CesiEasySave.csproj.nuget.dgspec.json
 CesiEasySave/obj/CesiEasySave.csproj.nuget.g.props
 CesiEasySave/obj/project.assets.json
 *.cache
+.vs/CesiEasySave/v16/.suo
+CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.assets.cache
