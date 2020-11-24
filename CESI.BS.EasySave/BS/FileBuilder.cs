@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace CESI.BS.EasySave
+namespace CESI.BS.EasySave.BS
 {
     internal static class FileBuilder
     {
