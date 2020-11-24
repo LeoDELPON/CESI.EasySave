@@ -23,6 +23,13 @@ namespace CESI.BS.EasySave.BS
             propertiesWork.Add(WorkProperties.Size, 0);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary> Making a method that will be overrided by other classes </summary>
+        ///
+        /// <remarks>   Leo , 24/11/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         public abstract void SaveProcess(string sourceDirectory, 
             string destinationDirectory, 
             string directoryName
