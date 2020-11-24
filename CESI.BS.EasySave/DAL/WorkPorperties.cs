@@ -8,7 +8,7 @@ namespace CESI.BS.EasySave.DAL
     {
         Name,
         Source,
-        SaveType,
+        TypeSave,
         Target,
         Date,
         Duration,
@@ -17,6 +17,5 @@ namespace CESI.BS.EasySave.DAL
         RemainingFiles,
         Size,
         RemainingSize,
-        EncryptionTime,
     }
 }
