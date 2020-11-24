@@ -7,8 +7,8 @@
 	</dataGroup>
 	<dataGroup>
   		<id>2</id>
-		<fr>1) Afficher les travaux</fr>
-		<en>1) Show works</en>
+		<fr>1) Executer un travail</fr>
+		<en>1) Execute a work</en>
 	</dataGroup>
 	<dataGroup>
   		<id>3</id>
@@ -32,18 +32,18 @@
 	</dataGroup>
 	<dataGroup>
   		<id>7</id>
-		<fr>Il n'y a aucun travail pour le moment. Voulez-vous en créer un? (Oui/Non)</fr>
-		<en>there is no existing work. Do you want to create one ? (Yes/No)</en>
+		<fr>Il n'y a aucun travail pour le moment. Voulez-vous en créer un? (O/N)</fr>
+		<en>there is no existing work. Do you want to create one ? (Y/N)</en>
 	</dataGroup>
 	<dataGroup>
   		<id>8</id>
-		<fr>Oui</fr>
-		<en>Yes</en>
+		<fr>O</fr>
+		<en>Y</en>
 	</dataGroup>
 	<dataGroup>
   		<id>9</id>
-		<fr>Non</fr>
-		<en>No</en>
+		<fr>N</fr>
+		<en>N</en>
 	</dataGroup>
 	<dataGroup>
   		<id>10</id>
@@ -120,8 +120,8 @@
   </dataGroup>
   <dataGroup>
     <id>24</id>
-    <fr>Voulez-vous réellement supprimer ce travail ? (Oui/Non)</fr>
-    <en>Do you really want to delete this work ? (Yes/No)</en>
+    <fr>Voulez-vous réellement supprimer ce travail ? (O/N)</fr>
+    <en>Do you really want to delete this work ? (Y/N)</en>
   </dataGroup>
   <dataGroup>
     <id>25</id>
