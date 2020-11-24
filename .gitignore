@@ -48,3 +48,4 @@ CESI.CesiEasySave.IntegrationTest/obj/project.assets.json
 CesiEasySave/obj/CesiEasySave.csproj.nuget.dgspec.json
 CesiEasySave/obj/CesiEasySave.csproj.nuget.g.props
 CesiEasySave/obj/project.assets.json
+*.cache
