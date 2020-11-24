@@ -15,7 +15,7 @@ namespace CESI.BS.EasySave.BS
         override
      public string GetName()
         {
-            return Language.GetFullName();
+            return Language.GetRequestedString(16); //getFullName
         }
     }
 

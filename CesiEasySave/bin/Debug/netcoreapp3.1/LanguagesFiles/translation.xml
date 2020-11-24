@@ -8,27 +8,27 @@
 	<dataGroup>
   		<id>2</id>
 		<fr>1) Afficher les travaux</fr>
-		<en>Show works</en>
+		<en>1) Show works</en>
 	</dataGroup>
 	<dataGroup>
   		<id>3</id>
 		<fr>2) Creer un travail</fr>
-		<en>Create new work</en>
+		<en>2) Create new work</en>
 	</dataGroup>
 	<dataGroup>
   		<id>4</id>
 		<fr>3) Modifier un travail</fr>
-		<en>Modify work</en>
+		<en>3) Modify work</en>
 	</dataGroup>
 	<dataGroup>
   		<id>5</id>
 		<fr>4) Supprimer un travail</fr>
-		<en>Delete work</en>
+		<en>4) Delete work</en>
 	</dataGroup>
 	<dataGroup>
   		<id>6</id>
 		<fr>5) Changer la langue</fr>
-		<en>Change language</en>
+		<en>5) Change language</en>
 	</dataGroup>
 	<dataGroup>
   		<id>7</id>
@@ -54,13 +54,12 @@
 	<dataGroup>
   		<id>11</id>
 		<fr>Entrez le chemin du répertoire source :</fr>
-		<en>Write source path</en>
-		
+		<en>Enter source path</en>		
 	</dataGroup>
 	<dataGroup>
   		<id>12</id>
 		<fr>Entrez le chemin du répertoire cible :</fr>
-		<en>Write target path</en>
+		<en>Enter target path</en>
 		
 	</dataGroup>
 	<dataGroup>
@@ -84,4 +83,49 @@
 		<fr>Complete</fr>
 		<en>Full</en>
 	</dataGroup>
+  <dataGroup>
+    <id>17</id>
+    <fr>Quitter</fr>
+    <en>Quit</en>
+  </dataGroup>
+  <dataGroup>
+    <id>18</id>
+    <fr>Quel champ voulez-vous modifier ?</fr>
+    <en>Wich field do you want to change ?</en>
+  </dataGroup>
+  <dataGroup>
+    <id>19</id>
+    <fr>1) nom</fr>
+    <en>1) name</en>
+  </dataGroup>
+  <dataGroup>
+    <id>20</id>
+    <fr>2) source</fr>
+    <en>2) source</en>
+  </dataGroup>
+  <dataGroup>
+    <id>21</id>
+    <fr>3) cible</fr>
+    <en>3) target</en>
+  </dataGroup>
+  <dataGroup>
+    <id>22</id>
+    <fr>4) type de sauvegarde</fr>
+    <en>4) save type</en>
+  </dataGroup>
+  <dataGroup>
+    <id>23</id>
+    <fr>Entrez le champ :</fr>
+    <en>Enter the field :</en>
+  </dataGroup>
+  <dataGroup>
+    <id>24</id>
+    <fr>Voulez-vous réellement supprimer ce travail ? (Oui/Non)</fr>
+    <en>Do you really want to delete this work ? (Yes/No)</en>
+  </dataGroup>
+  <dataGroup>
+    <id>25</id>
+    <fr>Selectionnez la langue :</fr>
+    <en>Select the language :</en>
+  </dataGroup>
 </list>
