@@ -18,24 +18,76 @@ namespace CesiEasySave.View
 
         public string PrintMainMenu()
         {
-            Console.WriteLine(Language.GetMainMenu());
+            try
+            {
+                Console.WriteLine(Language.GetMainMenu());
+                Console.WriteLine("[+] Success GetMainMenu()");
+            }
+            catch (Exception error)
+            {
+
+                Console.WriteLine("[-] ", error.Message);
+                Console.WriteLine("[-] ", error.StackTrace);
+                var inner = error.InnerException;
+
+                while (inner != null)
+                {
+                    Console.WriteLine("[-] ", inner.StackTrace);
+                    inner = inner.InnerException;
+                }
+            }
 
             return Console.ReadLine();
+
+
         }
         public string PrintWorks(List<Work> works)
         {
-            Console.WriteLine(Language.GetGetWork());
-            int i = 0;
-            foreach (Work work in works)
+            try
             {
-                Console.WriteLine(i + ") " + work.name);
-                i++;
+                Console.WriteLine(Language.GetGetWork());
+                int i = 0;
+                foreach (Work work in works)
+                {
+                    Console.WriteLine(i + ") " + work.name);
+                    i++;
+                }
+                Console.WriteLine("[+] Success GetGetWork()");
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("[-] ", error.Message);
+                Console.WriteLine("[-] ", error.StackTrace);
+                var inner = error.InnerException;
+
+                while (inner != null)
+                {
+                    Console.WriteLine("[-] ", inner.StackTrace);
+                    inner = inner.InnerException;
+                }
             }
             return Console.ReadLine();
         }
         public string PrintNoWork()
         {
-            Console.WriteLine(Language.GetNoWorks());
+            try
+            {
+                Console.WriteLine(Language.GetNoWorks());
+                Console.WriteLine("[+] Success GetNoWorks()");
+
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("[-] ", error.Message);
+                Console.WriteLine("[-] ", error.StackTrace);
+                var inner = error.InnerException;
+
+                while (inner != null)
+                {
+                    Console.WriteLine("[-] ", inner.StackTrace);
+                    inner = inner.InnerException;
+                }
+            }
             return Console.ReadLine();
         }
 

@@ -216,8 +216,15 @@ namespace CesiEasySave.Controller
                                 }
                                 catch (Exception error)
                                 {
-                                    Console.WriteLine("[-] " + error.Message);
-                                    Console.WriteLine("[-] " + error.StackTrace);
+                                    Console.WriteLine("[-] ", error.Message);
+                                    Console.WriteLine("[-] ", error.StackTrace);
+                                    var inner = error.InnerException;
+
+                                    while (inner != null)
+                                    {
+                                        Console.WriteLine("[-] ", inner.StackTrace);
+                                        inner = inner.InnerException;
+                                    }
                                 }
                             }
                             else
@@ -229,8 +236,15 @@ namespace CesiEasySave.Controller
                                 }
                                 catch (Exception error)
                                 {
-                                    Console.WriteLine(error.Message);
-                                    Console.WriteLine(error.StackTrace);
+                                    Console.WriteLine("[-] ", error.Message);
+                                    Console.WriteLine("[-] ", error.StackTrace);
+                                    var inner = error.InnerException;
+
+                                    while (inner != null)
+                                    {
+                                        Console.WriteLine("[-] ", inner.StackTrace);
+                                        inner = inner.InnerException;
+                                    }
                                 }
                             }
                         }
