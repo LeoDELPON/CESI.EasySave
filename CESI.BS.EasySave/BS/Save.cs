@@ -23,6 +23,13 @@ namespace CESI.BS.EasySave.BS
             propertiesWork.Add(WorkProperties.Size, 0);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary> Making a method that will be overrided by other classes </summary>
+        ///
+        /// <remarks>   Leo , 24/11/2020. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         public abstract void SaveProcess(string sourceDirectory, 
             string destinationDirectory, 
             string directoryName
@@ -36,22 +43,6 @@ namespace CESI.BS.EasySave.BS
                 SearchOption.AllDirectories
                 );
             return files;
-        }
-
-        protected void CopyAll(DirectoryInfo source, DirectoryInfo target)
-        {
-            FolderBuilder.CreateFolder(target.FullName);
-            foreach (FileInfo file in source.GetFiles())
-            {
-                file.CopyTo(Path.Combine(target.FullName, file.Name), true);
-            }
-
-            foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
-            {
-                DirectoryInfo nextTargetSubDir =
-                    target.CreateSubdirectory(directorySourceSubDir.Name);
-                CopyAll(directorySourceSubDir, nextTargetSubDir);
-            }
         }
 
         protected string GetExtension(string path)
