@@ -8,9 +8,13 @@ namespace CESI.BS.EasySave.BS
 {
     internal abstract class Save
     {
-
+        public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
 
+        public static int SUCCESS_OPERATION = 0;
+        public static int ERROR_OPERATION = 1;
+        public static int PENDING = 2;
+        public static int STOP_SAVE = 3;
         public Save()
         {
             propertiesWork = new Dictionary<WorkProperties, object>();
@@ -31,8 +35,7 @@ namespace CESI.BS.EasySave.BS
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
         public abstract void SaveProcess(string sourceDirectory, 
-            string destinationDirectory, 
-            string directoryName
+            string destinationDirectory
             );
 
         protected string[] GetFilesFromFolder(string path)
