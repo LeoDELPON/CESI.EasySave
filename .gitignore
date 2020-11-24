@@ -1,0 +1,10 @@
+
+*.cache
+CESI.BS.EasySave.UnitTest/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.UnitTest.assets.cache
+CESI.BS.EasySave.UnitTest/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.UnitTest.csprojAssemblyReference.cache
+CESI.BS.EasySave/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.assets.cache
+CESI.BS.EasySave/obj/Debug/netcoreapp3.1/CESI.BS.EasySave.csprojAssemblyReference.cache
+CESI.CesiEasySave.IntegrationTest/obj/Debug/netcoreapp3.1/CESI.CesiEasySave.IntegrationTest.assets.cache
+CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.assets.cache
+CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.csprojAssemblyReference.cache
+*.cache
