@@ -1,21 +1,21 @@
-﻿using CESI.BS.EasySave.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
-        public override void perform()
+        public Full()
         {
-            throw new NotImplementedException();
+
         }
-        override
-     public string getName()
+
+        public override void SaveProcess(string sourceD, string destD, string dirName)
         {
-            return Language.getFullName();
+            var dirSource = new DirectoryInfo(sourceD);
+            var dirDestination = new DirectoryInfo(destD);
         }
     }
-
 }

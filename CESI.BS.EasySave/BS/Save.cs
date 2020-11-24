@@ -23,19 +23,10 @@ namespace CESI.BS.EasySave.BS
             propertiesWork.Add(WorkProperties.Size, 0);
         }
 
-
-        public abstract int SaveFile(string sourceFile, string target);
-
-
-        protected void CreateFolder()
-        {
-
-        }
-
-        protected void CreateFile()
-        {
-
-        }
+        public abstract void SaveProcess(string sourceDirectory, 
+            string destinationDirectory, 
+            string directoryName
+            );
 
         protected string[] GetFilesFromFolder(string path)
         {

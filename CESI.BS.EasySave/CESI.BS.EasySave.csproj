@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="BS\Interface\" />
+    <Folder Include="BS\Services\" />
   </ItemGroup>
 
 </Project>
