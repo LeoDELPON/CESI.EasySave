@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security;
 using System.Text;
 
@@ -9,28 +10,46 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
+        public List<long> dirSize = new List<long>();
         public Full() : base()
         {
             TypeSave = SaveType.FULL;
         }
         
-        public override void SaveProcess(string sourceD, string destD)
+        public override int SaveProcess(string sourceD, string destD)
         {
             int returnInfo = SUCCESS_OPERATION;
-            propertiesWork[WorkProperties.Date] = DateTime.Now;
+            DateTime durationStart = DateTime.Now;
+            propertiesWork[WorkProperties.Date] = durationStart;
+
+            if (!Directory.Exists(sourceD))
+                throw new DirectoryNotFoundException(
+                    "[-] Source directory has not been found: " + sourceD);
 
             var dirSource = new DirectoryInfo(sourceD);
             var dirDestination = new DirectoryInfo(destD);
-            CopyAll(dirSource, dirDestination);
+            bool status = CopyAll(dirSource, dirDestination);
+            propertiesWork[WorkProperties.Size] = dirSize.Sum();
+            if (!status)
+            {
+                propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+                returnInfo = ERROR_OPERATION;
+            }
+
+            propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+            return returnInfo;
         }
 
-        private static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        private bool CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
-            FolderBuilder.CreateFolder(target.FullName);
+            if(!FolderBuilder.CheckFolder(target.ToString()))
+                FolderBuilder.CreateFolder(target.FullName);
             try
             {
                 foreach (FileInfo file in source.GetFiles())
                 {
+                    Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
+                    dirSize.Add(file.Length);
                     file.CopyTo(Path.Combine(target.FullName, file.Name), true);
                 }
 
@@ -40,10 +59,13 @@ namespace CESI.BS.EasySave.BS
                         target.CreateSubdirectory(directorySourceSubDir.Name);
                     CopyAll(directorySourceSubDir, nextTargetSubDir);
                 }
+                
+                return true;
             } catch(SecurityException e)
             {
                 Console.WriteLine("[-] While tryin to copy a file from source to destination," +
                     "an error occured because of the right access : {0}", e);
+                return false;
             }
         }
     }

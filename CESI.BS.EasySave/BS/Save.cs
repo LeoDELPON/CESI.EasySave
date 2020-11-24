@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security;
 using System.Text;
 
 namespace CESI.BS.EasySave.BS
@@ -13,7 +14,7 @@ namespace CESI.BS.EasySave.BS
 
         public static int SUCCESS_OPERATION = 0;
         public static int ERROR_OPERATION = 1;
-        public static int PENDING = 2;
+        public static int IN_PROGRESS = 2;
         public static int STOP_SAVE = 3;
         public Save()
         {
@@ -34,7 +35,7 @@ namespace CESI.BS.EasySave.BS
         /// <remarks>   Leo , 24/11/2020. </remarks>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
-        public abstract void SaveProcess(string sourceDirectory, 
+        public abstract int SaveProcess(string sourceDirectory, 
             string destinationDirectory
             );
 
