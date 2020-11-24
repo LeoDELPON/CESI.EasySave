@@ -12,7 +12,7 @@ namespace CesiEasySave.Controller
     {
         IEasySaveView view;
         CESI.BS.EasySave.BS.BSEasySave model;
-        int LimitWork = 5;
+        int limitWork = 5;
         public struct WorkVar
         {
             public string name;
@@ -84,7 +84,20 @@ namespace CesiEasySave.Controller
             if (Language.GetAllLanguages().Count > 0)
             {
                 string languageSelected = view.AskLanguage();
-                Language.ChangeLanguage(int.Parse(languageSelected));
+
+                if (languageSelected.Length > 0)
+                {
+                    char charSelected = languageSelected[0];
+                    if (int.TryParse(charSelected.ToString(), out int intSelected))
+                    {
+                        if (intSelected >= 0 && intSelected < Language.GetAllLanguages().Count)
+                        {
+                            Language.SetChosenLanguage(Language.GetAllLanguages()[intSelected]);
+                        }
+                    }
+                }
+
+                
             }
             else
             {
@@ -121,7 +134,7 @@ namespace CesiEasySave.Controller
             int strReturnInt;
             if (model.GetWorks().Count == 0)
             {
-                if (view.PrintNoWork().ToUpper().Equals(Language.GetValidate()))
+                if (view.PrintNoWork().ToUpper().Equals(Language.GetRequestedString(8)))
                 {
                     CreateWork();
                 }
@@ -165,7 +178,7 @@ namespace CesiEasySave.Controller
         private void CreateWork()
         {
             WorkVar workvar = AskDataWork();
-            if (model.GetWorks().Count < 5)
+            if (model.GetWorks().Count < limitWork)
             {
                 try
                 {

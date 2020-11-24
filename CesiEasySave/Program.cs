@@ -6,6 +6,8 @@ namespace CesiEasySave
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine(Environment.CurrentDirectory);
             new CesiEasySave.Controller.Controller();
 
         }
