@@ -21,11 +21,6 @@ namespace LanguageClass
           private static readonly string dataFilePath = Environment.CurrentDirectory + @"\LanguagesFiles\";
           private static readonly string dataFileName = "translation.xml";
 
-          //Both parts of the regex used to parse String
-          private static readonly String regexModifier = @"(?s)";
-          private static readonly String regexP1 = @"<.+?";
-          private static readonly String regexP2 = @">(.*?)<\/.{2}>";
-
           //instantiation of the regular expression
           private static Regex regex;
 
@@ -48,7 +43,7 @@ namespace LanguageClass
           //Core function for "GetRequestedString to work, it apply regex to whole file and return wanted value
           private static string ExtractStringByID(int stringID)
           {
-              regex = new Regex(RegexModifier + stringID + RegexP1 + chosenLanguage + RegexP2);
+              regex = new Regex(@"(?s)" + stringID + @"<.+?" + chosenLanguage + @">(.*?)<\/.{2}>");
               Match match = regex.Match(File.ReadAllText(DataFilePath + DataFileName));
               return match.Groups[1].Value;
           }
@@ -58,11 +53,5 @@ namespace LanguageClass
 
           private static string DataFilePath => dataFilePath;
           private static string DataFileName => dataFileName;
-
-          private static string RegexModifier => regexModifier;
-          private static string RegexP1 => regexP1;
-          private static string RegexP2 => regexP2;
-
-      
     }
 }
