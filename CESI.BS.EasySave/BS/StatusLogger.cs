@@ -15,7 +15,6 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateStatusLog(Dictionary<WorkProperties, string> dictionary)
         {
-        
             System.IO.File.WriteAllText(@"C:\Users\REMI\source\repos\LanguageClass\vendor\", LogInfoString + @"> " + dictionary[WorkProperties.Date] + " | "
                                                                                                                    + dictionary[WorkProperties.Name] + " | "
                                                                                                                    + dictionary[WorkProperties.State] + " | "
