@@ -33,13 +33,13 @@ namespace CESI.BS.EasySave.BS
             switch (field)
             {
                 case 1:
-                    work.name = newField;
+                    work.Name = newField;
                     break;
                 case 2:
-                    work.source = newField;
+                    work.Source = newField;
                     break;
                 case 3:
-                    work.target = newField;
+                    work.Target = newField;
                     break;
                 default:
                     break;
@@ -49,7 +49,7 @@ namespace CESI.BS.EasySave.BS
         {
             if (field == 4)
             {
-                work.save = typeSave[typeSaveChoosen];
+                work._saveType = typeSave[typeSaveChoosen];
             }
 
         }

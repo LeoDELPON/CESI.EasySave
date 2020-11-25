@@ -13,23 +13,26 @@ namespace CESI.BS.EasySave.BS
         private string diffBackupFolder { get; set; }
         //must be relavtive
         private string commonPath { get; set; }
+       
 
 
-        public override int SaveProcess(string sourceDirectory, string destinationDirectory)
+
+        public override int SaveProcess(string sourceFolder,
+            string targetFolder)
         {
-            throw new NotImplementedException();
-        }
+            fullBackupPath = targetFolder + @"\fullBackup\";
+            if (!FolderBuilder.CheckFolder(fullBackupPath))
+            {
+                FolderBuilder.CreateFolder(fullBackupPath);
+            }
 
-        public override void SaveProcess(string folderToSave,
-            string diffBackupFolder, string fullBackupPath)
-        {
 
             /////////////////////////////////////////////////////////////////////////////
             //réaranger les path en fonction de l'implémentation sinn normalement c'est ok
             /////////////////////////////////////////////////////////////////////////////
             this.commonPath = "C:\\Users\\Kylian\\Desktop";
-            this.folderToSave = folderToSave;
-            this.diffBackupFolder = diffBackupFolder;
+            this.folderToSave = sourceFolder;
+            this.diffBackupFolder = targetFolder;
             this.fullBackupPath = fullBackupPath;
             string[] allActualFiles = Directory.GetFiles(this.commonPath + this.folderToSave, "*.*", SearchOption.AllDirectories);
             //string[] allBackupFiles = Directory.GetFiles(Path.Combine(this.fullBackupPath , this.folderToSave), "*.*", SearchOption.AllDirectories);
@@ -55,12 +58,30 @@ namespace CESI.BS.EasySave.BS
                     }
                     File.Copy(file, Path.GetFullPath(this.commonPath + this.diffBackupFolder + GetRelativePath(actualFile.ToString(), this.commonPath + this.folderToSave)), true);
                 }
-
-        override
-        public string getName()
-        {
-            return Language.getDifferentialName();
+            }
+            return 0;
         }
 
+        public static string GetRelativePath(string fullPath, string basePath)
+        {
+            // Require trailing backslash for path
+            if (!basePath.EndsWith(@"\"))
+                basePath += @"\";
+
+            Uri baseUri = new Uri(basePath);
+            Uri fullUri = new Uri(fullPath);
+
+            Uri relativeUri = baseUri.MakeRelativeUri(fullUri);
+
+            // Uri's use forward slashes so convert back to backward slashes
+            return relativeUri.ToString().Replace("/", @"\");
+
+        }
+
+        public override string GetName()
+        {
+            return Language.GetRequestedString(15);
+        }
     }
 }
+

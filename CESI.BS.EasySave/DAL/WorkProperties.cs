@@ -19,5 +19,6 @@ namespace CESI.BS.EasySave.DAL
         RemainingFiles,
         Size,
         RemainingSize,
+        EncryptionTime,
     }
 }

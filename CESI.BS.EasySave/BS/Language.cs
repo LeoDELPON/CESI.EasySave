@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.IO;
 
-namespace LanguageClass
+namespace CESI.BS.EasySave.BS
 {
     public static class Language
     {
@@ -23,10 +23,11 @@ namespace LanguageClass
           {
               chosenLanguage = newLanguage;
           }
+          public static List<string> languages = new List<string>() { "fr", "en" };
           public static List<string> GetAllLanguages() 
-        {
-           return languages;
-        }
+          {
+               return languages;
+          }
 
           //Can be called to get required string to print on view | act as interface for "ExtractStringByID"
           public static string GetRequestedString(int stringID)

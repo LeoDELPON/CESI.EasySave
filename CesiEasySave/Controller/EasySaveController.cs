@@ -1,7 +1,6 @@
 ﻿using CESI.BS.EasySave.BS;
 using CesiEasySave.View;
 using CesiEasySave.View.Interface;
-using LanguageClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,7 +47,7 @@ namespace CesiEasySave.Controller
                             {
                                 if (intID > -1 && intID < model.GetWorks().Count)
                                 {
-                                    model.GetWorks()[intID].save.Perform();//start the save
+                                    model.GetWorks()[intID].Perform();//start the save
                                 }
 
                             }
@@ -121,7 +120,7 @@ namespace CesiEasySave.Controller
             foreach (char work in selectedWork)
             {
                 if (int.Parse(work.ToString()) >= 0 && int.Parse(work.ToString()) < model.GetWorks().Count)
-                    if (view.ConfirmDelete(model.GetWorks()[int.Parse(work.ToString())].name))
+                    if (view.ConfirmDelete(model.GetWorks()[int.Parse(work.ToString())].Name))
                     {
                         model.DeleteWork(selectedWorkInt);
                     }
@@ -149,7 +148,7 @@ namespace CesiEasySave.Controller
                 {
                     GetPerfectString(out strReturn, out outOfBoundWorks);
 
-                } while (!int.TryParse(strReturn, out int intStrReturn) || !outOfBoundWorks);
+                } while (!int.TryParse(strReturn, out strReturnInt) || !outOfBoundWorks);
                 return strReturn;
 
                 /*

@@ -1,5 +1,5 @@
 ﻿using CESI.BS.EasySave.DAL;
-using LanguageClass;
+using CESI.BS.EasySave.BS;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +17,7 @@ namespace CESI.BS.EasySave.BS
             TypeSave = SaveType.FULL;
         }
         
+
         public override int SaveProcess(string sourceD, string destD)
         {
             int returnInfo = SUCCESS_OPERATION;
@@ -68,6 +69,10 @@ namespace CESI.BS.EasySave.BS
                     "an error occured because of the right access : {0}", e);
                 return false;
             }
+        }
+        public override string GetName()
+        {
+            return Language.GetRequestedString(16);
         }
     }
 }

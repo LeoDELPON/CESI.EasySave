@@ -4,7 +4,7 @@ using System.Text;
 using CesiEasySave.View.Interface;
 using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.DAL;
-using LanguageClass;
+
 
 namespace CesiEasySave.View
 {
@@ -55,7 +55,7 @@ namespace CesiEasySave.View
                 int i = 0;
                 foreach (Work work in works)
                 {
-                    Console.WriteLine(i + ") " + work.name);
+                    Console.WriteLine(i + ") " + work.Name);
                     i++;
                 }
                 Console.WriteLine("[+] Success GetGetWork()");

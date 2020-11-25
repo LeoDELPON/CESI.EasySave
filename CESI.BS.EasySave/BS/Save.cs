@@ -5,9 +5,10 @@ using System.IO;
 using System.Security;
 using System.Text;
 
+
 namespace CESI.BS.EasySave.BS
 {
-    internal abstract class Save
+    public abstract class Save
     {
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
@@ -41,9 +42,6 @@ namespace CESI.BS.EasySave.BS
         public abstract int SaveProcess(string sourceDirectory, 
             string destinationDirectory
             );
-        public abstract void SaveProcess(string folderToSave,
-            string diffBackupFolder, string fullBackupPath
-            );
 
         protected string[] GetFilesFromFolder(string path)
         {
@@ -60,6 +58,9 @@ namespace CESI.BS.EasySave.BS
             string[] pathFile = path.Split('.');
             return pathFile[pathFile.Length - 1];
         }
+        public abstract string GetName();
+
+      
         
     }
 }

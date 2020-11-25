@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.BS;
+
 using System.Text;
 
 namespace CesiEasySave.View.Interface

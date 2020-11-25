@@ -1,5 +1,4 @@
 ﻿using CESI.BS.EasySave;
-using LanguageClass;
 using System;
 namespace CesiEasySave
 {

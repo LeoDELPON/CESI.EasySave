@@ -9,8 +9,9 @@ namespace CESI.BS.EasySave.DAL
 
     public class Work
     {
-        private Save _saveType;
+        public Save _saveType { get; set; }
         private long remainingSize;
+
 
         public Guid Id { get; private set; }
         public WorkState State { get; set; }
@@ -63,6 +64,10 @@ namespace CESI.BS.EasySave.DAL
 
 
 
+        }
+        public void Perform()
+        {
+            _saveType.SaveProcess(Source, Target);
         }
 
         public void CompleteWorkProperties(Dictionary<WorkProperties, object> properties)

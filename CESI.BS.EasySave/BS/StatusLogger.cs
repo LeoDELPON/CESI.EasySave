@@ -18,7 +18,7 @@ namespace CESI.BS.EasySave.BS
         
             System.IO.File.WriteAllText(@"C:\Users\REMI\source\repos\LanguageClass\vendor\", LogInfoString + @"> " + dictionary[WorkProperties.Date] + " | "
                                                                                                                    + dictionary[WorkProperties.Name] + " | "
-                                                                                                                   + dictionary[WorkState.Status] + " | "
+                                                                                                                   + dictionary[WorkProperties.State] + " | "
                                                                                                                    + dictionary[WorkProperties.EligibleFiles] + " | "
                                                                                                                    + dictionary[WorkProperties.Size] + " | "
                                                                                                                    + dictionary[WorkProperties.Progress] + " | "
