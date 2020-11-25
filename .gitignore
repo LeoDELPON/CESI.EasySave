@@ -51,3 +51,4 @@ CesiEasySave/obj/project.assets.json
 *.cache
 .vs/CesiEasySave/v16/.suo
 CesiEasySave/obj/Debug/netcoreapp3.1/CesiEasySave.assets.cache
+*.cache
