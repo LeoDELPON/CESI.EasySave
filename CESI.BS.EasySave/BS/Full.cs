@@ -9,14 +9,27 @@ using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal class Full : Save
+    internal class Full : Save, IObservable<DataHandler>, IDisposable 
+
+
     {
         public List<long> dirSize = new List<long>();
+        public List<IObserver<DataHandler>> oberver;
+
         public Full() : base()
         {
+            obsevers =  new List<IObserver<observer>>();
+                
+
             TypeSave = SaveType.FULL;
+
         }
-        
+
+        public void Dispose()
+        {
+            if (!(observer == null)) observers.Remove(observer);
+        }
+
 
         public override int SaveProcess(string sourceD, string destD)
         {
