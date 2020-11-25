@@ -37,6 +37,9 @@ namespace CESI.BS.EasySave.BS
         public abstract void SaveProcess(string sourceDirectory, 
             string destinationDirectory
             );
+        public abstract void SaveProcess(string folderToSave,
+            string diffBackupFolder, string fullBackupPath
+            );
 
         protected string[] GetFilesFromFolder(string path)
         {
