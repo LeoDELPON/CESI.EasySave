@@ -183,7 +183,10 @@ namespace CesiEasySave.Controller
             WorkVar workvar = new WorkVar();
             int savetype;
             workvar.name = view.AskName();
-            workvar.source = view.AskSource();
+           // do
+            //{
+                workvar.source = view.AskSource();
+            //} while (FolderBuilder.);
             workvar.target = view.AskTarget();
             string strSave = "";
 
