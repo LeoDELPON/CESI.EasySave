@@ -14,7 +14,7 @@ namespace CESI.BS.EasySave.BS
         private string commonPath { get; set; }
 
 
-        public override void SaveProcess(string sourceDirectory, string destinationDirectory)
+        public override int SaveProcess(string sourceDirectory, string destinationDirectory)
         {
             throw new NotImplementedException();
         }
