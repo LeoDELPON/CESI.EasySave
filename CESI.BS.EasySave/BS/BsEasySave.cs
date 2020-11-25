@@ -12,8 +12,8 @@ namespace CESI.BS.EasySave.BS
         public BSEasySave()
         {
 
-            typeSave.Add(new Differential());
-            typeSave.Add(new Full());
+            typeSave.Add(new WorkFactory().CreateSaveObject("Differential"));
+            typeSave.Add(new WorkFactory().CreateSaveObject("Full"));
         }
 
 
