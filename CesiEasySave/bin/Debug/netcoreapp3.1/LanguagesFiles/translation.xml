@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<dataGroup>
+  		<id>1</id>
+		<fr>Bienvenue sur EasySave ! Choisissez une option ci-dessous</fr>
+		<en>Welcome on EasySave ! Choose an option:</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>2</id>
+		<fr>1) Executer un travail</fr>
+		<en>1) Execute a work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>3</id>
+		<fr>2) Creer un travail</fr>
+		<en>2) Create new work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>4</id>
+		<fr>3) Modifier un travail</fr>
+		<en>3) Modify work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>5</id>
+		<fr>4) Supprimer un travail</fr>
+		<en>4) Delete work</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>6</id>
+		<fr>5) Changer la langue</fr>
+		<en>5) Change language</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>7</id>
+		<fr>Il n'y a aucun travail pour le moment. Voulez-vous en créer un? (O/N)</fr>
+		<en>there is no existing work. Do you want to create one ? (Y/N)</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>8</id>
+		<fr>O</fr>
+		<en>Y</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>9</id>
+		<fr>N</fr>
+		<en>N</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>10</id>
+		<fr>Entrez le nom du nouveau travail :</fr>
+		<en>Write new workName</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>11</id>
+		<fr>Entrez le chemin du répertoire source :</fr>
+		<en>Enter source path</en>		
+	</dataGroup>
+	<dataGroup>
+  		<id>12</id>
+		<fr>Entrez le chemin du répertoire cible :</fr>
+		<en>Enter target path</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>13</id>
+		<fr>Voici les différents Travaux :</fr>
+		<en>Here are the existing work :</en>
+		
+	</dataGroup>
+	<dataGroup>
+  		<id>14</id>
+		<fr>Choisissez le type de sauvegarde :</fr>
+		<en>Choose save mode</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>15</id>
+		<fr>Differentielle</fr>
+		<en>Differential</en>
+	</dataGroup>
+	<dataGroup>
+  		<id>16</id>
+		<fr>Complete</fr>
+		<en>Full</en>
+	</dataGroup>
+  <dataGroup>
+    <id>17</id>
+    <fr>Quitter</fr>
+    <en>Quit</en>
+  </dataGroup>
+  <dataGroup>
+    <id>18</id>
+    <fr>Quel champ voulez-vous modifier ?</fr>
+    <en>Wich field do you want to change ?</en>
+  </dataGroup>
+  <dataGroup>
+    <id>19</id>
+    <fr>1) nom</fr>
+    <en>1) name</en>
+  </dataGroup>
+  <dataGroup>
+    <id>20</id>
+    <fr>2) source</fr>
+    <en>2) source</en>
+  </dataGroup>
+  <dataGroup>
+    <id>21</id>
+    <fr>3) cible</fr>
+    <en>3) target</en>
+  </dataGroup>
+  <dataGroup>
+    <id>22</id>
+    <fr>4) type de sauvegarde</fr>
+    <en>4) save type</en>
+  </dataGroup>
+  <dataGroup>
+    <id>23</id>
+    <fr>Entrez le champ :</fr>
+    <en>Enter the field :</en>
+  </dataGroup>
+  <dataGroup>
+    <id>24</id>
+    <fr>Voulez-vous réellement supprimer ce travail ? (O/N)</fr>
+    <en>Do you really want to delete this work ? (Y/N)</en>
+  </dataGroup>
+  <dataGroup>
+    <id>25</id>
+    <fr>Selectionnez la langue :</fr>
+    <en>Select the language :</en>
+  </dataGroup>
+<dataGroup>
+    <id>26</id>
+    <fr>Trop de travaux ! (5 max)</fr>
+    <en>Too much works ! (5 max)</en>
+  </dataGroup>
+</list>

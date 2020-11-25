@@ -6,78 +6,52 @@ using System.IO;
 
 namespace LanguageClass
 {
-    static class Language
+    public static class Language
     {
-        // 1 = French, 2 = English
-        private static string chosenLanguage = "fr";
+          public struct languageFileData
+          {
+              public string name;
+              public string path;
+          }
+          private static List<string> languages = new List<string>() {"fr", "en"};// could be cool if languages were separated in several files
+           //Default language applied
+          private static string chosenLanguage = "fr";
 
-        private static readonly string dataFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
-        private static readonly string dataFileName = "translation.xml";
+          //data file containing translation for the software
+          private static readonly string dataFilePath = Environment.CurrentDirectory + @"\LanguagesFiles\";
+          private static readonly string dataFileName = "translation.xml";
 
-        private static readonly string regexFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
-        private static readonly string regexFileName = "LangRegex.conf";
+          //instantiation of the regular expression
+          private static Regex regex;
 
-        private static string requestedString;
-
-        private static Regex groupRegex;
-        private static readonly String groupRegexP1 = @"<dataGroup>\s+(";
-        private static readonly String groupRegexP2 = @".+)\s+<\/dataGroup>";
-
-        private static Regex langRegex;
-        private static readonly String langRegexP1 = @"<";
-        private static readonly String langRegexP2 = @">(.+)<\/(fr)>";
-
-        private static Match match;
-
-
-        public static void SetChosenLanguage(string newLanguage)
+          //Can be called to choose and change language
+          public static void SetChosenLanguage(string newLanguage)
+          {
+              chosenLanguage = newLanguage;
+          }
+          public static List<string> GetAllLanguages() 
         {
-            chosenLanguage = newLanguage;
+           return languages;
         }
 
-        public static string GetrequestedString(int stringID)
-        {
-            ExtractStringByID(stringID);
-            return RequestedString;
-        }
-        private static void ExtractStringByID(int stringID)
-        {
-            System.IO.StreamReader file = new System.IO.StreamReader(RegexFilePath + RegexFileName); ;
-            groupRegex = new Regex(GroupRegexP1 + stringID + GroupRegexP2);
-            langRegex = new Regex(LangRegexP1 + ChosenLanguage + LangRegexP2);
-            File.ReadAllText(DataFilePath + DataFileName);
-            match = groupRegex.Match(RequestedString);
-            string temp = match.Groups[0].Value;
+          //Can be called to get required string to print on view | act as interface for "ExtractStringByID"
+          public static string GetRequestedString(int stringID)
+          {
+              return ExtractStringByID(stringID);
+          }
 
-            while (file.ReadLine() != null)
-            {
-                match = langRegex.Match(file.ReadLine());
-                if (match.Groups[0].Value != null)
-                {
-                    SetRequestedString(match.Groups[1].Value);
-                }
-            }
+          //Core function for "GetRequestedString to work, it apply regex to whole file and return wanted value
+          private static string ExtractStringByID(int stringID)
+          {
+              regex = new Regex(@"(?s)" + stringID + @"<.+?" + chosenLanguage + @">(.*?)<\/.{2}>");
+              Match match = regex.Match(File.ReadAllText(DataFilePath + DataFileName));
+              return match.Groups[1].Value;
+          }
 
-        }
+          //Property of all class variables
+          private static string ChosenLanguage => chosenLanguage;
 
-        private static string ChosenLanguage => chosenLanguage;
-
-        private static string DataFilePath => dataFilePath;
-        private static string DataFileName => dataFileName;
-
-        private static string RegexFilePath => regexFilePath;
-        private static string RegexFileName => regexFileName;
-
-        private static void SetRequestedString(string newString) => requestedString = newString;
-
-        private static string RequestedString => requestedString;
-
-        private static string GroupRegexP1 => groupRegexP1;
-        private static string GroupRegexP2 => groupRegexP2;
-
-        private static string LangRegexP1 => langRegexP1;
-        private static string LangRegexP2 => langRegexP2;
-
-        
+          private static string DataFilePath => dataFilePath;
+          private static string DataFileName => dataFileName;
     }
 }

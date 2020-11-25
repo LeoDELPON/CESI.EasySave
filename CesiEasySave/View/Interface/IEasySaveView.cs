@@ -5,17 +5,21 @@ using System.Text;
 
 namespace CesiEasySave.View.Interface
 {
-    interface IEasySaveView
+    public interface IEasySaveView
     {
-        public string printMainMenu();
-        public string printWorks(List<Work> works);
-        public string printNoWork();
-        string askName();
-        string askTarget();
-        string askSource();
-        string askSaveType(List<Save> typeSave);
-
+        public string PrintMainMenu();
+        public string PrintWorks(List<Work> works);
+        public string PrintNoWork();
+        public string AskName();
+        public string AskTarget();
+        public string AskSource();
+        public string AskSaveType(List<Save> typeSave);
+        public string WichWorkField();
+        public string AskStr();
+        public bool ConfirmDelete(string name);
+        public string AskLanguage();
+        public void TooMuchWorks();
     }
-
+} 
 
         
