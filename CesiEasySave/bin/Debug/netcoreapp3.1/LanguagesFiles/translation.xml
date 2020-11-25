@@ -76,7 +76,7 @@
 	<dataGroup>
   		<id>15</id>
 		<fr>Differentielle</fr>
-		<en>Diferential</en>
+		<en>Differential</en>
 	</dataGroup>
 	<dataGroup>
   		<id>16</id>
@@ -127,5 +127,10 @@
     <id>25</id>
     <fr>Selectionnez la langue :</fr>
     <en>Select the language :</en>
+  </dataGroup>
+<dataGroup>
+    <id>26</id>
+    <fr>Trop de travaux ! (5 max)</fr>
+    <en>Too much works ! (5 max)</en>
   </dataGroup>
 </list>

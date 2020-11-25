@@ -110,6 +110,9 @@ namespace CesiEasySave.View
             return Console.ReadLine();
         }
 
-
+        public void TooMuchWorks()
+        {
+            Console.WriteLine(Language.GetRequestedString(26));
+        }
     }
 }

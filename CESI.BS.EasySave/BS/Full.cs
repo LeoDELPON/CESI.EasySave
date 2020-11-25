@@ -8,9 +8,10 @@ namespace CESI.BS.EasySave.BS
 {
     public class Full : Save
     {
-        public override void Perform()
+        override
+        public void Perform()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Sauvegarde Complete");
         }
         override
      public string GetName()

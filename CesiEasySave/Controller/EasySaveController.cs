@@ -142,6 +142,25 @@ namespace CesiEasySave.Controller
             else
             {
                 string strReturn;
+                bool outOfBoundWorks;
+                do
+                {
+
+                    outOfBoundWorks = true;
+                    strReturn = view.PrintWorks(model.GetWorks());
+                    foreach (char ch in strReturn)
+                    {
+                        if (int.Parse(ch.ToString()) < 0 || int.Parse(ch.ToString()) > model.GetWorks().Count)
+                        {
+                            outOfBoundWorks = false;
+                        }
+                    }
+
+                } while (!int.TryParse(strReturn, out int intStrReturn) || !outOfBoundWorks);
+                return strReturn;
+
+                /*
+                string strReturn;
                 do
                 {
                     do
@@ -150,6 +169,7 @@ namespace CesiEasySave.Controller
                     } while (!int.TryParse(strReturn, out strReturnInt));
                 } while (strReturnInt < 0 || strReturnInt >= model.GetWorks().Count);
                 return strReturn;
+            }*/
             }
         }
         public WorkVar AskDataWork()
@@ -175,13 +195,15 @@ namespace CesiEasySave.Controller
         }
         private void CreateWork()
         {
-            WorkVar workvar = AskDataWork();
+           
             if (model.GetWorks().Count < limitWork)
             {
+                WorkVar workvar = AskDataWork();
                 model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave]); // add a work
             }
             else
             {
+                view.TooMuchWorks();
                 //too much works saved
             }
         }
