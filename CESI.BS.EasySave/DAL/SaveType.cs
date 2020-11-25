@@ -6,7 +6,6 @@ namespace CESI.BS.EasySave.DAL
 {
     public enum SaveType
     {
-        
         DIFFERENTIAL,
         FULL
     }
@@ -22,7 +21,7 @@ namespace CESI.BS.EasySave.DAL
                     saveT = "differential";
                     break;
                 case SaveType.FULL:
-                    saveT = "mirror";
+                    saveT = "full";
                     break;
                 default:
                     saveT = "differential";
@@ -39,7 +38,7 @@ namespace CESI.BS.EasySave.DAL
                 case "differential":
                     saveT = SaveType.DIFFERENTIAL;
                     break;
-                case "mirror":
+                case "full":
                     saveT = SaveType.FULL;
                     break;
                 default:
