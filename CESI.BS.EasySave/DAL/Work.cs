@@ -1,14 +1,13 @@
 ﻿using CESI.BS.EasySave.BS;
-using CESI.BS.EasySave.BS.Interface;
 using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CESI.BS.EasySave.BS
+namespace CESI.BS.EasySave.DAL
 {
 
-    public class Work : IWork
+    public class Work
     {
         private Save _saveType;
         private long remainingSize;
@@ -53,5 +52,6 @@ namespace CESI.BS.EasySave.BS
             Size = 0;
             RemainingSize = 0;
         }
+
     }
 }

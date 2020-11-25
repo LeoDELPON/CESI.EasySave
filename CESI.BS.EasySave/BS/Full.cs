@@ -26,8 +26,8 @@ namespace CESI.BS.EasySave.BS
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceD);
 
-            var dirSource = new DirectoryInfo(sourceD);
-            var dirDestination = new DirectoryInfo(destD);
+            DirectoryInfo dirSource = new DirectoryInfo(sourceD);
+            DirectoryInfo dirDestination = new DirectoryInfo(destD);
             bool status = CopyAll(dirSource, dirDestination);
             propertiesWork[WorkProperties.Size] = dirSize.Sum();
             if (!status)
