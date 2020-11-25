@@ -61,9 +61,6 @@ namespace CESI.BS.EasySave.DAL
             RemainingFiles = Convert.ToUInt32(properties[WorkProperties.RemainingFiles]);
             Size = Convert.ToUInt32(properties[WorkProperties.Size]);
             RemainingSize = Convert.ToUInt32(properties[WorkProperties.RemainingSize]);
-
-
-
         }
         public void Perform()
         {
