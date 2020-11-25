@@ -145,16 +145,7 @@ namespace CesiEasySave.Controller
                 bool outOfBoundWorks;
                 do
                 {
-
-                    outOfBoundWorks = true;
-                    strReturn = view.PrintWorks(model.GetWorks());
-                    foreach (char ch in strReturn)
-                    {
-                        if (int.Parse(ch.ToString()) < 0 || int.Parse(ch.ToString()) > model.GetWorks().Count)
-                        {
-                            outOfBoundWorks = false;
-                        }
-                    }
+                    GetPerfectString(out strReturn, out outOfBoundWorks);
 
                 } while (!int.TryParse(strReturn, out int intStrReturn) || !outOfBoundWorks);
                 return strReturn;
@@ -172,6 +163,20 @@ namespace CesiEasySave.Controller
             }*/
             }
         }
+
+        private void GetPerfectString(out string strReturn, out bool outOfBoundWorks)
+        {
+            outOfBoundWorks = true;
+            strReturn = view.PrintWorks(model.GetWorks());
+            foreach (char ch in strReturn)
+            {
+                if (int.Parse(ch.ToString()) < 0 || int.Parse(ch.ToString()) > model.GetWorks().Count)
+                {
+                    outOfBoundWorks = false;
+                }
+            }
+        }
+
         public WorkVar AskDataWork()
         {
             WorkVar workvar = new WorkVar();
