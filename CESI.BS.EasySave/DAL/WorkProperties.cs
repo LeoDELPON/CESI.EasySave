@@ -8,15 +8,16 @@ namespace CESI.BS.EasySave.DAL
     {
         Name,
         Source,
-        SaveType,
+        TypeSave,
         Target,
         Date,
+        State,
+        Progress,
         Duration,
         CurrentFile,
         EligibleFiles,
         RemainingFiles,
         Size,
         RemainingSize,
-        EncryptionTime,
     }
 }

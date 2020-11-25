@@ -12,7 +12,7 @@ namespace CESI.BS.EasySave.BS
         {
             if (Directory.Exists(requestedPath))
             {
-                Console.WriteLine("That path exists already.");
+                Console.WriteLine("[-] The folder already exist");
                 return;
             }
             Directory.CreateDirectory(requestedPath);
@@ -23,11 +23,12 @@ namespace CESI.BS.EasySave.BS
         {
             if (Directory.Exists(requestedPath) != true)
             {
-                Console.WriteLine("That path doesn't exists.");
+                Console.WriteLine("[-] That path doesn't exists.");
                 return;
             }
             Directory.Delete(requestedPath);
         }
+
 
         //Allow user to check if a specified folder already exist
         internal static bool CheckFolder(string requestedPath)

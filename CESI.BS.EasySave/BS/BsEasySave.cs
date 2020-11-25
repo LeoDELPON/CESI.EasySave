@@ -59,5 +59,6 @@ namespace CESI.BS.EasySave.BS
             works.Remove(works[idWork]);
         }
 
+
     }
 }
