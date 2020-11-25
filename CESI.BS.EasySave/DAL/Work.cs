@@ -53,5 +53,21 @@ namespace CESI.BS.EasySave.DAL
             RemainingSize = 0;
         }
 
+        public void UpdateWorkProperties(Dictionary<WorkProperties, object> properties)
+        {
+            CurrentFile = Convert.ToString(properties[WorkProperties.CurrentFile]);
+            EligibleFiles = Convert.ToUInt32(properties[WorkProperties.EligibleFiles]);
+            RemainingFiles = Convert.ToUInt32(properties[WorkProperties.RemainingFiles]);
+            Size = Convert.ToUInt32(properties[WorkProperties.Size]);
+            RemainingSize = Convert.ToUInt32(properties[WorkProperties.RemainingSize]);
+
+
+
+        }
+
+        public void CompleteWorkProperties(Dictionary<WorkProperties, object> properties)
+        {
+
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace CESI.BS.EasySave.BS
             return returnInfo;
         }
 
-        private bool CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             if(!FolderBuilder.CheckFolder(target.ToString()))
                 FolderBuilder.CreateFolder(target.FullName);
