@@ -21,3 +21,9 @@ C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.csproj.CoreCompileInputs.cache
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.dll
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.pdb
+C:\Users\REMI\source\repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.csprojAssemblyReference.cache
+C:\Users\REMI\source\repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.AssemblyInfoInputs.cache
+C:\Users\REMI\source\repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.AssemblyInfo.cs
+C:\Users\REMI\source\repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.csproj.CoreCompileInputs.cache
+C:\Users\REMI\source\repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.dll
+C:\Users\REMI\source\repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.pdb

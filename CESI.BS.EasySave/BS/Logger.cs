@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using CESI.BS.EasySave.DAL;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -11,16 +12,21 @@ namespace CESI.BS.EasySave.BS
         private static readonly string logFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
         private static readonly string logFileExtension = @".log";
         private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("d") + LogFileExtension;
-        private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime";
+        private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime" + "\n\n";
 
-        internal static void GenerateLog(string date, string workName, string sourcePath, string targetPath, int fileSize, int elapsedTime) 
+        internal static void GenerateLog(Dictionary<WorkProperties, string> dictionary) 
         {
             if (!File.Exists(LogFullName))
             {
-                System.IO.File.WriteAllText(@"C:\Users\Public\TestFolder\WriteText.txt", LogInfoString);
+                System.IO.File.WriteAllText(@"C:\Users\REMI\source\repos\LanguageClass\vendor\", LogInfoString);
             }
             using System.IO.StreamWriter file = new System.IO.StreamWriter(LogFullName);
-            file.WriteLine(@"> " + date + " | " + workName + " | " + sourcePath + " | " + targetPath + " | " + fileSize + " bytes | " + elapsedTime + " ms" + "\n\n");
+            file.WriteLine(@"> " + dictionary[WorkProperties.Date] + " | "
+                                 + dictionary[WorkProperties.Name] + " | "
+                                 + dictionary[WorkProperties.Source] + " | "
+                                 + dictionary[WorkProperties.Target] + " | "
+                                 + dictionary[WorkProperties.Size] + " bytes | "
+                                 + dictionary[WorkProperties.EncryptionTime] + " ms" + "\n\n");
         }
         private static string LogFilePath => logFilePath;
         private static string LogFileExtension => logFileExtension;
