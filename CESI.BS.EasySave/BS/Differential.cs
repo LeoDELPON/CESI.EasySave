@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class Differential : Save
+    internal class Differential : Save
     {
         override
              public void Perform()

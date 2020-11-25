@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class Full : Save
+    internal class Full : Save
     {
         override
         public void Perform()
