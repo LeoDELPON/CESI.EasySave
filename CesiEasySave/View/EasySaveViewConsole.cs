@@ -18,54 +18,100 @@ namespace CesiEasySave.View
 
         public string PrintMainMenu()
         {
-            Console.WriteLine(Language.GetRequestedString(1));// printMenu
-            Console.WriteLine(Language.GetRequestedString(2));// printMenuChoice1
-            Console.WriteLine(Language.GetRequestedString(3));// printMenuChoice2
-            Console.WriteLine(Language.GetRequestedString(4));// printMenuChoice3
-            Console.WriteLine(Language.GetRequestedString(5));// printMenuChoice4
-            Console.WriteLine(Language.GetRequestedString(6));// printMenuChoice5
-            Console.WriteLine(Language.GetRequestedString(17));// printMenuChoice6
+            try
+            {
+                Console.WriteLine(Language.GetMainMenu());
+                Console.WriteLine("[+] Success GetMainMenu()");
+            }
+            catch (Exception error)
+            {
+
+                Console.WriteLine("[-] ", error.Message);
+                Console.WriteLine("[-] ", error.StackTrace);
+                var inner = error.InnerException;
+
+                while (inner != null)
+                {
+                    Console.WriteLine("[-] ", inner.StackTrace);
+                    inner = inner.InnerException;
+                }
+            }
 
             return Console.ReadLine();
+
+
         }
         public string PrintWorks(List<Work> works)
         {
-            Console.WriteLine(Language.GetRequestedString(13));//getSavedWork
-            int i = 0;
-            foreach (Work work in works)
+            try
             {
-                Console.WriteLine(i + ") " + work.name);
-                i++;
+                Console.WriteLine(Language.GetGetWork());
+                int i = 0;
+                foreach (Work work in works)
+                {
+                    Console.WriteLine(i + ") " + work.name);
+                    i++;
+                }
+                Console.WriteLine("[+] Success GetGetWork()");
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("[-] ", error.Message);
+                Console.WriteLine("[-] ", error.StackTrace);
+                var inner = error.InnerException;
+
+                while (inner != null)
+                {
+                    Console.WriteLine("[-] ", inner.StackTrace);
+                    inner = inner.InnerException;
+                }
             }
             return Console.ReadLine();
         }
         public string PrintNoWork()
         {
-            Console.WriteLine(Language.GetRequestedString(7));//print there is no work for now
+            try
+            {
+                Console.WriteLine(Language.GetNoWorks());
+                Console.WriteLine("[+] Success GetNoWorks()");
+
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("[-] ", error.Message);
+                Console.WriteLine("[-] ", error.StackTrace);
+                var inner = error.InnerException;
+
+                while (inner != null)
+                {
+                    Console.WriteLine("[-] ", inner.StackTrace);
+                    inner = inner.InnerException;
+                }
+            }
             return Console.ReadLine();
         }
 
         public string AskName()
         {
-            Console.WriteLine(Language.GetRequestedString(10));//print askName
+            Console.WriteLine(Language.GetAskName());
             return Console.ReadLine();
         }
 
         public string AskTarget()
         {
-            Console.WriteLine(Language.GetRequestedString(12));//print askTarget
+            Console.WriteLine(Language.GetAskTarget());
             return Console.ReadLine();
         }
 
         public string AskSource()
         {
-            Console.WriteLine(Language.GetRequestedString(11));//print askSource
+            Console.WriteLine(Language.GetAskSource());
             return Console.ReadLine();
         }
 
         public string AskSaveType(List<Save> typeSave)
         {
-            Console.WriteLine(Language.GetRequestedString(14));//print askSaveType
+            Console.WriteLine(Language.GetAskSaveType());
             int i = 0;
             foreach (Save save in typeSave)
             {
@@ -77,34 +123,30 @@ namespace CesiEasySave.View
 
         public string WichWorkField() // we could do something in case we change the name/numbers of parametters in work
         {
-            Console.WriteLine(Language.GetRequestedString(18));
-            Console.WriteLine(Language.GetRequestedString(19));
-            Console.WriteLine(Language.GetRequestedString(20));
-            Console.WriteLine(Language.GetRequestedString(21));
-            Console.WriteLine(Language.GetRequestedString(22));
+            Console.WriteLine(Language.GetWichWorkField());
             return Console.ReadLine();
         }
 
         public string AskStr()
         {
-            Console.WriteLine(Language.GetRequestedString(23)); //askStr (ask a string entrie)
+            Console.WriteLine(Language.GetAskStr());
             return Console.ReadLine();
         }
 
         public bool ConfirmDelete(string name)
         {
-            Console.WriteLine(Language.GetRequestedString(24));
+            Console.WriteLine(Language.GetConfirmDelete());
             Console.WriteLine(name);
-            return (Console.ReadLine().ToUpper().Equals(Language.GetRequestedString(9)));
+            return (Console.ReadLine().ToUpper().Equals(Language.GetValidate()));
         }
 
         public string AskLanguage()
         {
             int i = 0;
-            Console.WriteLine(Language.GetRequestedString(25));
-            foreach (string language in Language.GetAllLanguages())
+            Console.WriteLine(Language.GetAskLanguage());
+            foreach (Language.languageFileData language in Language.GetAllLanguages())
             {
-                Console.WriteLine(i + ") " + language);
+                Console.WriteLine(i + ") " + language.name);
                 i++;
             }
             return Console.ReadLine();

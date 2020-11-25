@@ -24,3 +24,16 @@ D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.genruntimeconfig.cache
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.exe
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.deps.json
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.runtimeconfig.json
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.runtimeconfig.dev.json
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.csprojAssemblyReference.cache
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.AssemblyInfoInputs.cache
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.AssemblyInfo.cs
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.csproj.CoreCompileInputs.cache
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+C:\Users\remib\Documents\GitHub\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.genruntimeconfig.cache
