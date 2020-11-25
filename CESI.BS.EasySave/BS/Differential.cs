@@ -21,10 +21,6 @@ namespace CESI.BS.EasySave.BS
             string targetFolder)
         {
             fullBackupPath = targetFolder + @"\fullBackup\";
-            if (!FolderBuilder.CheckFolder(targetFolder))
-            {
-                FolderBuilder.CreateFolder(targetFolder);
-            }
             if (!FolderBuilder.CheckFolder(fullBackupPath))
             {
                 FolderBuilder.CreateFolder(fullBackupPath);
@@ -34,29 +30,33 @@ namespace CESI.BS.EasySave.BS
             /////////////////////////////////////////////////////////////////////////////
             //réaranger les path en fonction de l'implémentation sinn normalement c'est ok
             /////////////////////////////////////////////////////////////////////////////
+            this.commonPath = "C:\\Users\\Kylian\\Desktop";
             this.folderToSave = sourceFolder;
             this.diffBackupFolder = targetFolder;
             this.fullBackupPath = fullBackupPath;
-            string[] allActualFiles = Directory.GetFiles( this.folderToSave, "*.*", SearchOption.AllDirectories);
-          
+            string[] allActualFiles = Directory.GetFiles(this.commonPath + this.folderToSave, "*.*", SearchOption.AllDirectories);
+            //string[] allBackupFiles = Directory.GetFiles(Path.Combine(this.fullBackupPath , this.folderToSave), "*.*", SearchOption.AllDirectories);
             foreach (var file in allActualFiles)
             {
                 FileInfo actualFile = new FileInfo(file);
-  
+                //Console.WriteLine(actualFile);
                 string actualFileDirectory = actualFile.DirectoryName;
 
-            
-                FileInfo backupFile = new FileInfo(Path.GetFullPath( this.fullBackupPath + GetRelativePath(actualFile.ToString(),  this.folderToSave)));
+                //Console.WriteLine(Path.GetFullPath(this.commonPath + this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.commonPath + this.folderToSave)));
+                FileInfo backupFile = new FileInfo(Path.GetFullPath(this.commonPath + this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.commonPath + this.folderToSave)));
                 Console.WriteLine(backupFile);
                 if (!backupFile.Exists || backupFile.Length != actualFile.Length)
                 {
-                   
-                    if (!Directory.Exists(Path.GetFullPath( this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.folderToSave))))
+                    Console.WriteLine("jevaisla");
+                    //Console.WriteLine(actualFileDirectory);
+                    //Console.WriteLine(GetRelativePath(actualFileDirectory, this.commonPath + this.folderToSave));
+                    //Console.WriteLine(Path.GetFullPath(this.commonPath + this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.commonPath + this.folderToSave)));
+                    if (!Directory.Exists(Path.GetFullPath(this.commonPath + this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.commonPath + this.folderToSave))))
                     {
 
-                        Directory.CreateDirectory(Path.GetFullPath(this.diffBackupFolder + GetRelativePath(actualFileDirectory,this.folderToSave)));
+                        Directory.CreateDirectory(Path.GetFullPath(this.commonPath + this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.commonPath + this.folderToSave)));
                     }
-                    File.Copy(file, Path.GetFullPath( this.diffBackupFolder + GetRelativePath(actualFile.ToString(),  this.folderToSave)), true);
+                    File.Copy(file, Path.GetFullPath(this.commonPath + this.diffBackupFolder + GetRelativePath(actualFile.ToString(), this.commonPath + this.folderToSave)), true);
                 }
             }
             return 0;
