@@ -20,7 +20,13 @@ namespace CesiEasySave.View
         {
             try
             {
-                Console.WriteLine(Language.GetMainMenu());
+                Console.WriteLine(Language.GetRequestedString(1));// printMenu
+                Console.WriteLine(Language.GetRequestedString(2));// printMenuChoice1
+                Console.WriteLine(Language.GetRequestedString(3));// printMenuChoice2
+                Console.WriteLine(Language.GetRequestedString(4));// printMenuChoice3
+                Console.WriteLine(Language.GetRequestedString(5));// printMenuChoice4
+                Console.WriteLine(Language.GetRequestedString(6));// printMenuChoice5
+                Console.WriteLine(Language.GetRequestedString(17));// printMenuChoice6
                 Console.WriteLine("[+] Success GetMainMenu()");
             }
             catch (Exception error)
@@ -45,7 +51,7 @@ namespace CesiEasySave.View
         {
             try
             {
-                Console.WriteLine(Language.GetGetWork());
+                Console.WriteLine(Language.GetRequestedString(13));//getSavedWork
                 int i = 0;
                 foreach (Work work in works)
                 {
@@ -72,7 +78,7 @@ namespace CesiEasySave.View
         {
             try
             {
-                Console.WriteLine(Language.GetNoWorks());
+                Console.WriteLine(Language.GetRequestedString(7));//print there is no work for now
                 Console.WriteLine("[+] Success GetNoWorks()");
 
             }
@@ -93,25 +99,25 @@ namespace CesiEasySave.View
 
         public string AskName()
         {
-            Console.WriteLine(Language.GetAskName());
+            Console.WriteLine(Language.GetRequestedString(10));//print askName
             return Console.ReadLine();
         }
 
         public string AskTarget()
         {
-            Console.WriteLine(Language.GetAskTarget());
+            Console.WriteLine(Language.GetRequestedString(12));//print askTarget
             return Console.ReadLine();
         }
 
         public string AskSource()
         {
-            Console.WriteLine(Language.GetAskSource());
+            Console.WriteLine(Language.GetRequestedString(11));//print askSource
             return Console.ReadLine();
         }
 
         public string AskSaveType(List<Save> typeSave)
         {
-            Console.WriteLine(Language.GetAskSaveType());
+            Console.WriteLine(Language.GetRequestedString(14));//print askSaveType
             int i = 0;
             foreach (Save save in typeSave)
             {
@@ -123,30 +129,34 @@ namespace CesiEasySave.View
 
         public string WichWorkField() // we could do something in case we change the name/numbers of parametters in work
         {
-            Console.WriteLine(Language.GetWichWorkField());
+            Console.WriteLine(Language.GetRequestedString(18));//choose field to modify (name, source, target, or savetype)
+            Console.WriteLine(Language.GetRequestedString(19));
+            Console.WriteLine(Language.GetRequestedString(20));
+            Console.WriteLine(Language.GetRequestedString(21));
+            Console.WriteLine(Language.GetRequestedString(22));
             return Console.ReadLine();
         }
 
         public string AskStr()
         {
-            Console.WriteLine(Language.GetAskStr());
+            Console.WriteLine(Language.GetRequestedString(23));
             return Console.ReadLine();
         }
 
         public bool ConfirmDelete(string name)
         {
-            Console.WriteLine(Language.GetConfirmDelete());
+            Console.WriteLine(Language.GetRequestedString(24));
             Console.WriteLine(name);
-            return (Console.ReadLine().ToUpper().Equals(Language.GetValidate()));
+            return (Console.ReadLine().ToUpper().Equals(Language.GetRequestedString(9)));
         }
 
         public string AskLanguage()
         {
             int i = 0;
-            Console.WriteLine(Language.GetAskLanguage());
-            foreach (Language.languageFileData language in Language.GetAllLanguages())
+            Console.WriteLine(Language.GetRequestedString(25));
+            foreach (string language in Language.GetAllLanguages())
             {
-                Console.WriteLine(i + ") " + language.name);
+                Console.WriteLine(i + ") " + language);
                 i++;
             }
             return Console.ReadLine();
