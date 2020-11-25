@@ -1,4 +1,5 @@
 ﻿using CESI.BS.EasySave;
+using LanguageClass;
 using System;
 namespace CesiEasySave
 {
@@ -7,7 +8,7 @@ namespace CesiEasySave
         static void Main(string[] args)
         {
 
-            Console.WriteLine(Environment.CurrentDirectory);
+            
             new CesiEasySave.Controller.Controller();
 
         }

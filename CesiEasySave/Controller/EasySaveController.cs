@@ -144,6 +144,16 @@ namespace CesiEasySave.Controller
             else
             {
                 string strReturn;
+                bool outOfBoundWorks;
+                do
+                {
+                    GetPerfectString(out strReturn, out outOfBoundWorks);
+
+                } while (!int.TryParse(strReturn, out int intStrReturn) || !outOfBoundWorks);
+                return strReturn;
+
+                /*
+                string strReturn;
                 do
                 {
                     do
@@ -152,8 +162,23 @@ namespace CesiEasySave.Controller
                     } while (!int.TryParse(strReturn, out strReturnInt));
                 } while (strReturnInt < 0 || strReturnInt >= model.GetWorks().Count);
                 return strReturn;
+            }*/
             }
         }
+
+        private void GetPerfectString(out string strReturn, out bool outOfBoundWorks)
+        {
+            outOfBoundWorks = true;
+            strReturn = view.PrintWorks(model.GetWorks());
+            foreach (char ch in strReturn)
+            {
+                if (int.Parse(ch.ToString()) < 0 || int.Parse(ch.ToString()) > model.GetWorks().Count)
+                {
+                    outOfBoundWorks = false;
+                }
+            }
+        }
+
         public WorkVar AskDataWork()
         {
             WorkVar workvar = new WorkVar();
@@ -177,12 +202,13 @@ namespace CesiEasySave.Controller
         }
         private void CreateWork()
         {
-            WorkVar workvar = AskDataWork();
+           
             if (model.GetWorks().Count < limitWork)
             {
                 try
                 {
-                    model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave]); // add a work
+                WorkVar workvar = AskDataWork();
+                model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave]); // add a work
                     Console.WriteLine("[+] Work succesfull add.");
                 }
                 catch (Exception error)
@@ -197,9 +223,11 @@ namespace CesiEasySave.Controller
                         inner = inner.InnerException;
                     }
                 }
+
             }
             else
             {
+                view.TooMuchWorks();
                 //too much works saved
             }
         }
