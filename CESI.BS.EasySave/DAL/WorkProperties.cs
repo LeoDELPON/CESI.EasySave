@@ -11,6 +11,8 @@ namespace CESI.BS.EasySave.DAL
         TypeSave,
         Target,
         Date,
+        State,
+        Progress,
         Duration,
         CurrentFile,
         EligibleFiles,

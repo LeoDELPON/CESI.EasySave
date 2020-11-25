@@ -23,6 +23,7 @@ namespace CESI.BS.EasySave.BS
                 { WorkProperties.Duration, 0 },
                 { WorkProperties.Date, null },
                 { WorkProperties.CurrentFile, "notSet" },
+                { WorkProperties.Progress, 0 },
                 { WorkProperties.EligibleFiles, 0 },
                 { WorkProperties.RemainingFiles, 0 },
                 { WorkProperties.RemainingSize, 0 },
