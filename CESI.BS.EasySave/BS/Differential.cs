@@ -11,56 +11,78 @@ namespace CESI.BS.EasySave.BS
         private string fullBackupPath { get; set; }
         private string folderToSave { get; set; }
         private string diffBackupFolder { get; set; }
-        //must be relavtive
         private string commonPath { get; set; }
-       
+
 
 
 
         public override int SaveProcess(string sourceFolder,
             string targetFolder)
+
         {
-            fullBackupPath = targetFolder + @"\fullBackup\";
-            if (!FolderBuilder.CheckFolder(fullBackupPath))
+            int returnInfo = SUCCESS_OPERATION;
+            try
             {
-                FolderBuilder.CreateFolder(fullBackupPath);
-            }
+                
+                fullBackupPath = targetFolder + @"\fullBackup\";
+
+                DateTime durationStart = DateTime.Now;
+                propertiesWork[WorkProperties.Date] = durationStart;
 
 
-            /////////////////////////////////////////////////////////////////////////////
-            //réaranger les path en fonction de l'implémentation sinn normalement c'est ok
-            /////////////////////////////////////////////////////////////////////////////
-            
-            this.folderToSave = sourceFolder;
-            this.diffBackupFolder = targetFolder;
-            this.fullBackupPath = fullBackupPath;
-            string[] allActualFiles = Directory.GetFiles( this.folderToSave, "*.*", SearchOption.AllDirectories);
-            //string[] allBackupFiles = Directory.GetFiles(Path.Combine(this.fullBackupPath , this.folderToSave), "*.*", SearchOption.AllDirectories);
-            foreach (var file in allActualFiles)
-            {
-                FileInfo actualFile = new FileInfo(file);
-                //Console.WriteLine(actualFile);
-                string actualFileDirectory = actualFile.DirectoryName;
-
-                //Console.WriteLine(Path.GetFullPath(this.commonPath + this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.commonPath + this.folderToSave)));
-                FileInfo backupFile = new FileInfo(Path.GetFullPath( this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.folderToSave)));
-                Console.WriteLine(backupFile);
-                if (!backupFile.Exists || backupFile.Length != actualFile.Length)
+                //If Folder doesnt exist, create it.
+                if (!FolderBuilder.CheckFolder(fullBackupPath))
                 {
-                    Console.WriteLine("jevaisla");
-                    //Console.WriteLine(actualFileDirectory);
-                    //Console.WriteLine(GetRelativePath(actualFileDirectory, this.commonPath + this.folderToSave));
-                    //Console.WriteLine(Path.GetFullPath(this.commonPath + this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.commonPath + this.folderToSave)));
-                    if (!Directory.Exists(Path.GetFullPath(this.diffBackupFolder + GetRelativePath(actualFileDirectory,  this.folderToSave))))
-                    {
-
-                        Directory.CreateDirectory(Path.GetFullPath( this.diffBackupFolder + GetRelativePath(actualFileDirectory,  this.folderToSave)));
-                    }
-                    File.Copy(file, Path.GetFullPath( this.diffBackupFolder + GetRelativePath(actualFile.ToString(), this.folderToSave)), true);
+                    FolderBuilder.CreateFolder(fullBackupPath);
                 }
+
+
+               
+
+                this.folderToSave = sourceFolder;
+                this.diffBackupFolder = targetFolder;
+                this.fullBackupPath = fullBackupPath;
+
+
+                string[] allActualFiles = Directory.GetFiles(this.folderToSave, "*.*", SearchOption.AllDirectories);
+                
+                foreach (var file in allActualFiles)
+                {
+                    FileInfo actualFile = new FileInfo(file);                    
+                    string actualFileDirectory = actualFile.DirectoryName;                   
+                    FileInfo backupFile = new FileInfo(Path.GetFullPath(this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.folderToSave)));
+                    
+                    if (!backupFile.Exists || backupFile.Length != actualFile.Length)
+                    {
+                        
+                        string backupFolderWithRelativePath = Path.GetFullPath(this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.folderToSave));
+                        
+                        if (!Directory.Exists(backupFolderWithRelativePath))
+                        {
+
+                            Directory.CreateDirectory(backupFolderWithRelativePath);
+                        }
+                        File.Copy(file, backupFolderWithRelativePath, true);
+                    }
+                }
+
+                propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+                propertiesWork[WorkProperties.Size] = GetDirectorySize(this.diffBackupFolder);
+                
+                return returnInfo;
+
             }
-            return 0;
+            catch(Exception e)
+            {
+                returnInfo = ERROR_OPERATION;
+                propertiesWork[WorkProperties.Duration] = -1;
+                return returnInfo;
+            }
+
+
         }
+        
+
 
         public static string GetRelativePath(string fullPath, string basePath)
         {
@@ -78,10 +100,30 @@ namespace CESI.BS.EasySave.BS
 
         }
 
+
+        
+
         public override string GetName()
         {
-            return Language.GetRequestedString(15);
+            return Language.GetRequestedString(15);            
+        }
+
+
+
+
+
+        static long GetDirectorySize(string p){ 
+            
+            string[] a = Directory.GetFiles(p, "*.*");
+            long b = 0;
+            foreach (string name in a)
+            {               
+                FileInfo info = new FileInfo(name);
+                b += info.Length;
+            }            
+            return b;
         }
     }
 }
+
 

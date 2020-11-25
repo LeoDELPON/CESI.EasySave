@@ -31,10 +31,10 @@ namespace CESI.BS.EasySave.BS
             DirectoryInfo dirSource = new DirectoryInfo(sourceD);
             DirectoryInfo dirDestination = new DirectoryInfo(destD);
             bool status = CopyAll(dirSource, dirDestination);
-            propertiesWork[WorkProperties.Size] = dirSize.Sum();
+            propertiesWork[WorkProperties.Size] = dirSize.Sum(); dirSize.Sum();
             if (!status)
             {
-                propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+                propertiesWork[WorkProperties.Duration] = -1;
                 returnInfo = ERROR_OPERATION;
                 return returnInfo;
             }
