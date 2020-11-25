@@ -36,6 +36,7 @@ namespace CESI.BS.EasySave.BS
             {
                 propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
                 returnInfo = ERROR_OPERATION;
+                return returnInfo;
             }
 
             propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CESI.BS.EasySave.BS.Factory;
 using CESI.BS.EasySave.DAL;
 
 namespace CESI.BS.EasySave.BS
@@ -24,9 +25,16 @@ namespace CESI.BS.EasySave.BS
         {
             return works;
         }
-        public void AddWork(string name, string source, string target, Save save)
+        public void AddWork(string name, string source, string target, string save)
         {
-            works.Add(new Work(name, source, target, save));
+            Dictionary<WorkProperties, string> propertiesWork = new Dictionary<WorkProperties, string>
+            {
+                [WorkProperties.Name] = name,
+                [WorkProperties.Source] = source,
+                [WorkProperties.Target] = target,
+                [WorkProperties.TypeSave] = save
+            };
+            works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
         }
         public void ModifyWork(Work work, int field, string newField)
         {

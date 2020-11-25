@@ -26,7 +26,7 @@ namespace CESI.BS.EasySave.BS
                                  + dictionary[WorkProperties.Source] + " | "
                                  + dictionary[WorkProperties.Target] + " | "
                                  + dictionary[WorkProperties.Size] + " bytes | "
-                                 + dictionary[WorkProperties.EncryptionTime] + " ms" + "\n\n");
+                                 + dictionary[WorkProperties.Duration] + " ms" + "\n\n");
         }
         private static string LogFilePath => logFilePath;
         private static string LogFileExtension => logFileExtension;
