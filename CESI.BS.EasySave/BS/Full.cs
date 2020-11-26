@@ -48,9 +48,9 @@ namespace CESI.BS.EasySave.BS
             {
                 FolderBuilder.CreateFolder(target.FullName);
             }            
-                fullSaveDirectory = new DirectoryInfo(target.ToString());
+            fullSaveDirectory = new DirectoryInfo(target.ToString());
             fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves"); 
-      //      fullSaveDirectory  = new DirectoryInfo(target.ToString()+ source.FullName.);
+            fullSaveDirectory  = new DirectoryInfo(target.ToString()+"\\"+source.Name+"\\FullSaves");
        //  fullSaveDirectory.CreateSubdirectory("FullSaves");
             
            

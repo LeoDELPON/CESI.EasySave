@@ -1,4 +1,4 @@
 The log are writen following this pattern:
 > date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
 
-> 12:00:00 | caca | Not Running | 3 | 19215267 | 0 | 2 | 0 | emma | test
+> 12:00:00 | coucou | Not Running | 6 | 112281 | 0 | 5 | 0 | lines | go
