@@ -24,7 +24,7 @@ namespace CESI.BS.EasySave.BS
                                                                                                                    + dictionary[WorkProperties.RemainingFiles] + " | "
                                                                                                                    + dictionary[WorkProperties.RemainingSize] + " | "
                                                                                                                    + dictionary[WorkProperties.Source] + " | "
-                                                                                                                   + dictionary[WorkProperties.Target] + " | ");
+                                                                                                                   + dictionary[WorkProperties.Target]);
         }
 
         private static string LogFilePath => logFilePath;
