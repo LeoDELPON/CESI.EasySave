@@ -60,7 +60,6 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.State] = "Not Running";
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
-            throw new NotImplementedException();
         }
 
         public void OnNext(object remainingFiles, object remainingSize)
@@ -69,7 +68,6 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.RemainingFiles] = remainingFiles;
             ComputeProgress(remainingSize);
             StatusLogger.GenerateStatusLog(Dictionary);
-            throw new NotImplementedException();
         }
     }
 }

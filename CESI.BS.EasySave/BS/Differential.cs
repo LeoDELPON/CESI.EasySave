@@ -41,8 +41,8 @@ namespace CESI.BS.EasySave.BS
             BackupPath = targetFolder + @"\" + directoryToSaveName;
             FolderToSave = sourceFolder;
 
-            try
-            {
+        /*    try
+            {*/
                 //test if save folder exist
                 if (!FolderBuilder.CheckFolder(BackupPath))
                 {                    
@@ -104,14 +104,14 @@ namespace CESI.BS.EasySave.BS
                 propertiesWork[WorkProperties.Size] = GetDirectorySize(DiffBackupPath);
                 return returnInfo;
 
-            }
+            }/*
             catch(Exception e)
             {
                 returnInfo = ERROR_OPERATION;
                 Console.WriteLine("[-] An error occured while trying to save : {0}", e);
                 handler.OnStop(false);
                 return returnInfo;
-            }
+            }*/
 
 
         }

@@ -15,6 +15,10 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateStatusLog(Dictionary<WorkProperties, object> dictionary)
         {
+            if (!FolderBuilder.CheckFolder(LogFilePath))
+            {
+                FolderBuilder.CreateFolder(LogFilePath);
+            }
             System.IO.File.WriteAllText(LogFullName, LogInfoString + @"> " + dictionary[WorkProperties.Date] + " | "
                                                                                                                    + dictionary[WorkProperties.Name] + " | "
                                                                                                                    + dictionary[WorkProperties.State] + " | "
