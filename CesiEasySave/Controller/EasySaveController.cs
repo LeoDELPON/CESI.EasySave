@@ -18,9 +18,17 @@ namespace CesiEasySave.Controller
         {
             view = new EasySaveViewConsole();
             model = new BSEasySave();
+            FetchSavesConfs();
             ProgramLoop();
         }
-
+        private void FetchSavesConfs()
+        {
+            List<WorkVar> works = GetSavedWorks();
+            foreach (WorkVar work in works)
+            {
+                model.AddWork(work.name, work.source, work.target, model.typeSave[work.typeSave].idTypeSave);
+            }
+        }
         private void ProgramLoop()
         {
 
@@ -217,7 +225,7 @@ namespace CesiEasySave.Controller
                 WorkVar workvar = AskDataWork();
                  
                 model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
-                    //SaveWork(workvar);
+                    SaveWork(workvar);
                     Console.WriteLine("[+] Work succesfull add.");
 
                 }

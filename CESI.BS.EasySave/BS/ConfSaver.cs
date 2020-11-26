@@ -36,7 +36,8 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             }
             if (!File.Exists(savePath + workvar.name + extension))
             {
-                File.Create(savePath + workvar.name + extension);
+               FileStream sr =  File.Create(savePath + workvar.name + extension);
+                sr.Close();
             }
         }
         private static void MakeSurePathExist()
