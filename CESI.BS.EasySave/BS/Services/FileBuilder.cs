@@ -8,19 +8,15 @@ namespace CESI.BS.EasySave.BS
     internal static class FileBuilder
     {
 
-        internal static void GenerateFile(string sourceDir, string backupDir, string fileName)
-
+        internal static void GenerateFile(FileInfo file, DirectoryInfo dirDestination)
         {
             try
             {
-                // Will not overwrite if the destination file already exists.
-                File.Copy(Path.Combine(sourceDir, fileName), Path.Combine(backupDir, fileName));
+                file.CopyTo(Path.Combine(dirDestination.FullName, file.Name), true);
             }
-
-            // Catch exception if the file was already copied.
-            catch (IOException copyError)
+            catch (UnauthorizedAccessException error)
             {
-                Console.WriteLine(copyError.Message);
+                Console.WriteLine("[-] The file may have been tried to be moved in another disk : {0}", error); ;
             }
         }     
 

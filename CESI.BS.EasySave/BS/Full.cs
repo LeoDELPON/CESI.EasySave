@@ -9,42 +9,13 @@ using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal class Full : Save, IObservable<Dictionary<WorkProperties, object>>
+    internal class Full : Save
     {
         public List<long> dirSize = new List<long>();
-        public List<IObserver<Dictionary<WorkProperties, object>>> observers;
-
+        public DirectoryInfo fullSaveDirectory;
         public Full() : base()
         {
-            observers =  new List<IObserver<Dictionary<WorkProperties, object>>>();
             TypeSave = SaveType.FULL;
-        }
-
-
-        public IDisposable Subscribe(IObserver<Dictionary<WorkProperties, object>> observer)
-        {
-            if (!observers.Contains(observer))
-                observers.Add(observer);
-            return new Unsubscriber(observers, observer);
-        }
-
-
-        private class Unsubscriber : IDisposable
-        {
-            private List<IObserver<Dictionary<WorkProperties, object>>> _observers;
-            private IObserver<Dictionary<WorkProperties, object>> _observer;
-
-            public Unsubscriber(List<IObserver<Dictionary<WorkProperties, object>>> observers, IObserver<Dictionary<WorkProperties, object>> observer)
-            {
-                this._observers = observers;
-                this._observer = observer;
-            }
-
-            public void Dispose()
-            {
-                if (_observer != null && _observers.Contains(_observer))
-                    _observers.Remove(_observer);
-            }
         }
 
         public override int SaveProcess(string sourceD, string destD)
@@ -68,25 +39,23 @@ namespace CESI.BS.EasySave.BS
             }
 
             propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
-            observers.ForEach(l => l.OnNext((Dictionary<WorkProperties, object>)propertiesWork[WorkProperties.Duration]));
-            observers.ForEach(r => r.OnCompleted());
             return returnInfo;
         }
 
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             if (!FolderBuilder.CheckFolder(target.ToString()))
+            {
                 FolderBuilder.CreateFolder(target.FullName);
-
+                fullSaveDirectory = new DirectoryInfo(target.ToString());
+                fullSaveDirectory.CreateSubdirectory(source.FullName).CreateSubdirectory("FullSaves");
+            }
+                
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
-            observers.ForEach(o => o.OnNext((Dictionary<WorkProperties, object>)propertiesWork[WorkProperties.EligibleFiles]));
 
             long folderSize = GetFolderSize(source.ToString());
             propertiesWork[WorkProperties.Size] = folderSize;
-            observers.ForEach(p => p.OnNext((Dictionary<WorkProperties, object>)propertiesWork[WorkProperties.Size]));
-
-            //Instantiate DataHandler;
 
             try
             {
@@ -94,16 +63,14 @@ namespace CESI.BS.EasySave.BS
                 {
                     Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
                     dirSize.Add(file.Length);
-                    file.CopyTo(Path.Combine(target.FullName, file.Name), true);
-                    observers.ForEach(o => o.OnNext((Dictionary<WorkProperties, object>)propertiesWork[WorkProperties.RemainingFiles]));
+                    file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                     propertiesWork[WorkProperties.RemainingSize] = folderSize - file.Length;
-                    observers.ForEach(q => q.OnNext((Dictionary<WorkProperties, object>)propertiesWork[WorkProperties.RemainingSize]));
                 }
 
                 foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir =
-                        target.CreateSubdirectory(directorySourceSubDir.Name);
+                        fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     CopyAll(directorySourceSubDir, nextTargetSubDir);
                 }
