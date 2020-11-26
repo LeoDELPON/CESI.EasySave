@@ -21,6 +21,11 @@ namespace CESI.BS.EasySave.BS
 
         {
             int returnInfo = SUCCESS_OPERATION;
+
+            bool exists = System.IO.Directory.Exists(tar);
+
+            if (!exists)
+                System.IO.Directory.CreateDirectory(Server.MapPath(subPath));
             try
             {
                 
