@@ -8,6 +8,6 @@ namespace CESI.BS.EasySave.BS.Factory
     internal abstract class Factory
     {
         public abstract Work CreateWorkObject(Dictionary<WorkProperties, string> properties);
-        public abstract Save CreateSaveObject(string _saveType);
+        public abstract Save CreateSaveObject(string _saveType, string prop);
     }
 }

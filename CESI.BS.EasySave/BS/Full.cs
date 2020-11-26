@@ -13,9 +13,12 @@ namespace CESI.BS.EasySave.BS
     {
         public List<long> dirSize = new List<long>();
         public DirectoryInfo fullSaveDirectory;
-        public Full() : base()
+        public DataHandler handler;
+        public string workName;
+        public Full(string props) : base()
         {
             TypeSave = SaveType.FULL;
+            workName = props;
         }
 
         public override int SaveProcess(string sourceD, string destD)
@@ -37,7 +40,6 @@ namespace CESI.BS.EasySave.BS
                 returnInfo = ERROR_OPERATION;
                 return returnInfo;
             }
-
             propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
             return returnInfo;
         }
@@ -50,13 +52,12 @@ namespace CESI.BS.EasySave.BS
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
                 fullSaveDirectory.CreateSubdirectory(source.FullName).CreateSubdirectory("FullSaves");
             }
-                
+           
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
-
             long folderSize = GetFolderSize(source.ToString());
             propertiesWork[WorkProperties.Size] = folderSize;
-
+            handler = new DataHandler(fileNumber, folderSize, workName, source.Name, target.Name);
             try
             {
                 foreach (FileInfo file in source.GetFiles())
@@ -74,7 +75,6 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     CopyAll(directorySourceSubDir, nextTargetSubDir);
                 }
-                
                 return true;
             } catch(SecurityException e)
             {
