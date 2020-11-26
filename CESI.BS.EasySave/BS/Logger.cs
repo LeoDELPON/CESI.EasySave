@@ -11,7 +11,7 @@ namespace CESI.BS.EasySave.BS
 
         private static readonly string logFilePath = Environment.CurrentDirectory + @"log\";
         private static readonly string logFileExtension = @".log";
-        private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("dd_mm_yyyy") + LogFileExtension;
+        private static readonly string logFullName = LogFilePath + DateTime.Now.ToString("dd_mm_yyyy") + LogFileExtension;
         private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime" + "\n\n";
 
         internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary) 
