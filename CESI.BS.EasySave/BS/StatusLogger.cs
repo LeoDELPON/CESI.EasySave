@@ -13,7 +13,7 @@ namespace CESI.BS.EasySave.BS
         private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("d") + LogFileExtension;
         private static readonly string logInfoString = "The log are writen following this pattern:\n> date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath" + "\n\n";
 
-        internal static void GenerateStatusLog(Dictionary<WorkProperties, string> dictionary)
+        internal static void GenerateStatusLog(Dictionary<WorkProperties, object> dictionary)
         {
             System.IO.File.WriteAllText(@"C:\Users\REMI\source\repos\LanguageClass\vendor\", LogInfoString + @"> " + dictionary[WorkProperties.Date] + " | "
                                                                                                                    + dictionary[WorkProperties.Name] + " | "

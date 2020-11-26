@@ -8,7 +8,7 @@ namespace CESI.BS.EasySave.BS
 {
     internal sealed class DataHandler
     {
-        private Dictionary<WorkProperties, string> dictionary = new Dictionary<WorkProperties, string>();
+        private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
         private static long Size { get; set; }
         private static int Files { get; set; }
         private static string Name { get; set; }
@@ -26,8 +26,8 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.Name] = name;
             dictionary[WorkProperties.Source] = source;
             dictionary[WorkProperties.Target] = target;
-            dictionary[WorkProperties.Size] = Convert.ToString(size);
-            dictionary[WorkProperties.EligibleFiles] = Convert.ToString(files);
+            dictionary[WorkProperties.Size] = size;
+            dictionary[WorkProperties.EligibleFiles] = files;
             dictionary[WorkProperties.State] = "Running";
 
         }
