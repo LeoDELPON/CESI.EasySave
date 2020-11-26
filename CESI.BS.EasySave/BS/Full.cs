@@ -45,8 +45,15 @@ namespace CESI.BS.EasySave.BS
 
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
-            if(!FolderBuilder.CheckFolder(target.ToString()))
-                FolderBuilder.CreateFolder(target.FullName);
+            if (!FolderBuilder.CheckFolder(target.ToString()))
+            {
+
+                FolderBuilder.CreateFolder(target.FullName);                
+                target.CreateSubdirectory("FullSave");
+                target.CreateSubdirectory("Diff");
+
+            }
+                
             try
             {
                 foreach (FileInfo file in source.GetFiles())

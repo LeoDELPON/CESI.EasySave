@@ -12,6 +12,7 @@ namespace CESI.BS.EasySave.BS
         private string folderToSave { get; set; }
         private string diffBackupFolder { get; set; }
         private string commonPath { get; set; }
+        private string backupPath { get; set; }
 
 
 
@@ -22,31 +23,57 @@ namespace CESI.BS.EasySave.BS
         {
             int returnInfo = SUCCESS_OPERATION;
 
-            bool exists = System.IO.Directory.Exists(tar);
+            if (!Directory.Exists(sourceFolder))
+                throw new DirectoryNotFoundException(
+                    "[-] Source directory has not been found: " + sourceFolder);
 
-            if (!exists)
-                System.IO.Directory.CreateDirectory(Server.MapPath(subPath));
+            string directoryToSaveName = Path.GetDirectoryName(sourceFolder);
+            this.fullBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "FullSaves";
+            this.diffBackupFolder = targetFolder + @"\" + directoryToSaveName + @"\" + "DiffSaves";
+            this.backupPath = targetFolder + @"\" + directoryToSaveName;
+            this.folderToSave = sourceFolder;
+
             try
             {
-                
-                fullBackupPath = targetFolder + @"\fullBackup\";
+                //test if save folder exist
+                if (!FolderBuilder.CheckFolder(this.backupPath))
+
+                {                    
+
+                    FolderBuilder.CreateFolder(targetFolder);
+                    FolderBuilder.CreateFolder(this.fullBackupPath);
+                    FolderBuilder.CreateFolder(this.diffBackupFolder);
+
+                    Console.WriteLine("Attention : Il n'y a pas de FullSave encore crée, nous allons donc en faire une");
+
+                    this.diffBackupFolder = this.fullBackupPath;
+                    
+
+
+                }
 
                 DateTime durationStart = DateTime.Now;
                 propertiesWork[WorkProperties.Date] = durationStart;
+                this.diffBackupFolder = this.diffBackupFolder + "\\" + DateTime.Now; 
+                FolderBuilder.CreateFolder(this.diffBackupFolder);
+                
 
 
-                //If Folder doesnt exist, create it.
-                if (!FolderBuilder.CheckFolder(fullBackupPath))
-                {
-                    FolderBuilder.CreateFolder(fullBackupPath);
-                }
+
+
+
+
+
+                
+
+
+                
 
 
                
 
-                this.folderToSave = sourceFolder;
-                this.diffBackupFolder = targetFolder;
-                this.fullBackupPath = fullBackupPath;
+                
+                
 
 
                 string[] allActualFiles = Directory.GetFiles(this.folderToSave, "*.*", SearchOption.AllDirectories);
@@ -86,14 +113,14 @@ namespace CESI.BS.EasySave.BS
 
 
         }
-        
+
 
 
         public static string GetRelativePath(string fullPath, string basePath)
         {
             // Require trailing backslash for path
-            if (!basePath.EndsWith(@"\"))
-                basePath += @"\";
+            if (!basePath.EndsWith("\\"))
+                basePath += "\\";
 
             Uri baseUri = new Uri(basePath);
             Uri fullUri = new Uri(fullPath);
@@ -101,32 +128,36 @@ namespace CESI.BS.EasySave.BS
             Uri relativeUri = baseUri.MakeRelativeUri(fullUri);
 
             // Uri's use forward slashes so convert back to backward slashes
-            return relativeUri.ToString().Replace("/", @"\");
+            return relativeUri.ToString().Replace("/", "\\");
 
         }
 
+    
 
-        
+
+
 
         public override string GetName()
-        {
+         {
             return Language.GetRequestedString(15);            
+         }
+
+
+
+
+
+    public long GetDirectorySize(string p) {
+
+        string[] a = Directory.GetFiles(p, "*.*");
+        long b = 0;
+        foreach (string name in a)
+        {
+            FileInfo info = new FileInfo(name);
+            b += info.Length;
         }
+        return b;
 
-
-
-
-
-        static long GetDirectorySize(string p){ 
-            
-            string[] a = Directory.GetFiles(p, "*.*");
-            long b = 0;
-            foreach (string name in a)
-            {               
-                FileInfo info = new FileInfo(name);
-                b += info.Length;
-            }            
-            return b;
+    
         }
     }
 }
