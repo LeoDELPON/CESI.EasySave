@@ -26,7 +26,7 @@ namespace CESI.BS.EasySave.BS
         {
             Size = size;
             Files = files;
-            dictionary[WorkProperties.Date] = DateTime.Today.ToString("hh:mm:ss");
+            dictionary[WorkProperties.Date] = DateTime.Now.ToString("HH:mm:ss");
             dictionary[WorkProperties.Name] = name;
             dictionary[WorkProperties.Source] = source;
             dictionary[WorkProperties.Target] = target;

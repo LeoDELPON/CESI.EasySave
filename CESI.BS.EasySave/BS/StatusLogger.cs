@@ -10,7 +10,7 @@ namespace CESI.BS.EasySave.BS
     {
         private static readonly string logFilePath = Environment.CurrentDirectory + @"\statusLog\";
         private static readonly string logFileExtension = @".status";
-        private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("dd_mm_yyyy") + LogFileExtension;
+        private static readonly string logFullName = LogFilePath + "status" + LogFileExtension;
         private static readonly string logInfoString = "The log are writen following this pattern:\n> date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath" + "\n\n";
 
         internal static void GenerateStatusLog(Dictionary<WorkProperties, object> dictionary)
@@ -20,15 +20,15 @@ namespace CESI.BS.EasySave.BS
                 FolderBuilder.CreateFolder(LogFilePath);
             }
             System.IO.File.WriteAllText(LogFullName, LogInfoString + @"> " + dictionary[WorkProperties.Date] + " | "
-                                                                                                                   + dictionary[WorkProperties.Name] + " | "
-                                                                                                                   + dictionary[WorkProperties.State] + " | "
-                                                                                                                   + dictionary[WorkProperties.EligibleFiles] + " | "
-                                                                                                                   + dictionary[WorkProperties.Size] + " | "
-                                                                                                                   + dictionary[WorkProperties.Progress] + " | "
-                                                                                                                   + dictionary[WorkProperties.RemainingFiles] + " | "
-                                                                                                                   + dictionary[WorkProperties.RemainingSize] + " | "
-                                                                                                                   + dictionary[WorkProperties.Source] + " | "
-                                                                                                                   + dictionary[WorkProperties.Target]);
+                                                                           + dictionary[WorkProperties.Name] + " | "
+                                                                           + dictionary[WorkProperties.State] + " | "
+                                                                           + dictionary[WorkProperties.EligibleFiles] + " | "
+                                                                           + dictionary[WorkProperties.Size] + " | "
+                                                                           + dictionary[WorkProperties.Progress] + " | "
+                                                                           + dictionary[WorkProperties.RemainingFiles] + " | "
+                                                                           + dictionary[WorkProperties.RemainingSize] + " | "
+                                                                           + dictionary[WorkProperties.Source] + " | "
+                                                                           + dictionary[WorkProperties.Target]);
         }
 
         private static string LogFilePath => logFilePath;

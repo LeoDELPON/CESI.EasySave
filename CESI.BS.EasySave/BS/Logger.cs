@@ -9,9 +9,9 @@ namespace CESI.BS.EasySave.BS
     internal static class Logger
     {
 
-        private static readonly string logFilePath = Environment.CurrentDirectory + @"log\";
+        private static readonly string logFilePath = Environment.CurrentDirectory + @"\log\";
         private static readonly string logFileExtension = @".log";
-        private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("dd_mm_yyyy") + LogFileExtension;
+        private static readonly string logFullName = LogFilePath + DateTime.Now.ToString("dd_MM_yyyy") + LogFileExtension;
         private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime" + "\n\n";
 
         internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary) 
@@ -24,13 +24,14 @@ namespace CESI.BS.EasySave.BS
             {
                 System.IO.File.WriteAllText(LogFullName, LogInfoString);
             }
-            using System.IO.StreamWriter file = new System.IO.StreamWriter(LogFullName);
+            StreamWriter file = File.AppendText(LogFullName);
             file.WriteLine(@"> " + dictionary[WorkProperties.Date] + " | "
                                  + dictionary[WorkProperties.Name] + " | "
                                  + dictionary[WorkProperties.Source] + " | "
                                  + dictionary[WorkProperties.Target] + " | "
                                  + dictionary[WorkProperties.Size] + " bytes | "
                                  + dictionary[WorkProperties.Duration] + " ms" + "\n\n");
+            file.Close();
         }
         private static string LogFilePath => logFilePath;
         private static string LogFileExtension => logFileExtension;
