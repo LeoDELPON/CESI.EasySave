@@ -4,21 +4,16 @@ using CesiEasySave.View.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
 
 namespace CesiEasySave.Controller
 {
-    public class Controller
+    public class Controller 
     {
         IEasySaveView view;
         CESI.BS.EasySave.BS.BSEasySave model;
         int limitWork = 5;
-        public struct WorkVar
-        {
-            public string name;
-            public string source;
-            public string target;
-            public int typeSave;
-        }
+        
         public Controller()
         {
             view = new EasySaveViewConsole();
@@ -49,7 +44,6 @@ namespace CesiEasySave.Controller
                                 {
                                     if (FolderBuilder.CheckFolder(model.GetWorks()[intID].Source))
                                     {
-                                        Console.WriteLine("GROS CACA QUI PUE" + model.GetWorks()[intID]._saveType.GetNameTypeWork());
                                         model.GetWorks()[intID].Perform();//start the save
                                     }
                                     else
@@ -223,7 +217,9 @@ namespace CesiEasySave.Controller
                 WorkVar workvar = AskDataWork();
                  
                 model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
+                    //SaveWork(workvar);
                     Console.WriteLine("[+] Work succesfull add.");
+
                 }
                 catch (Exception error)
                 {

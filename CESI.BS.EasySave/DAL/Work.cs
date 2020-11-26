@@ -3,6 +3,7 @@ using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace CESI.BS.EasySave.DAL
 {
@@ -11,7 +12,7 @@ namespace CESI.BS.EasySave.DAL
     {
         public Save _saveType { get; set; }
         private long remainingSize;
-
+        private string filepath = Environment.CurrentDirectory + @"\savesConf\";
 
         public Guid Id { get; private set; }
         public WorkState State { get; set; }
@@ -52,6 +53,8 @@ namespace CESI.BS.EasySave.DAL
             Progress = 0;
             Size = 0;
             RemainingSize = 0;
+
+            
         }
 
         public void UpdateWorkProperties(Dictionary<WorkProperties, object> properties)

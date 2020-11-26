@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "wzmRjnfLWTNSdoiJaGMwGdSo/q7Jzq0y5zn6ICwhpAsDCsTovNx7NwGuX7x5Dg+dAqGR1eEku/kclRpEJydeOw==",
+  "dgSpecHash": "Ak8Sk9L6OvYXGKsUzA30NU65j5uo8Tw5J9di7Yqke2somYvxlpD7FwxqE97GYEF4O3Ci4I9qnevc2tqAyCPuEQ==",
   "success": true,
   "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.runtime\\4.3.1\\system.runtime.4.3.1.nupkg.sha512"
+  ],
   "logs": []
 }
