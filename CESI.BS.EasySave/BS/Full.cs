@@ -11,7 +11,6 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
-        public List<long> dirSize = new List<long>();
         public DirectoryInfo fullSaveDirectory;
         public DataHandler handler;
         public string workName;
@@ -24,8 +23,6 @@ namespace CESI.BS.EasySave.BS
         public override int SaveProcess(string sourceD, string destD)
         {
             int returnInfo = SUCCESS_OPERATION;
-            DateTime durationStart = DateTime.Now;
-            //propertiesWork[WorkProperties.Date] = durationStart;
             if (!Directory.Exists(sourceD))
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceD);
@@ -35,12 +32,11 @@ namespace CESI.BS.EasySave.BS
             bool status = CopyAll(dirSource, dirDestination);
             if (!status)
             {
-                propertiesWork[WorkProperties.Duration] = -1;
-
+                handler.OnError();
                 returnInfo = ERROR_OPERATION;
                 return returnInfo;
             }
-            propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+            handler.OnCompleted();
             return returnInfo;
         }
 
@@ -63,16 +59,16 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
-                    dirSize.Add(file.Length);
                     file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
+                    propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize - file.Length;
+                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
 
                 foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir =
                         fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
-                    propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     CopyAll(directorySourceSubDir, nextTargetSubDir);
                 }
                 return true;
