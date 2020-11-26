@@ -50,6 +50,8 @@ namespace CESI.BS.EasySave.BS
             }            
             fullSaveDirectory = new DirectoryInfo(target.ToString());
             fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves"); 
+            fullSaveDirectory  = new DirectoryInfo(target.ToString()+"\\"+source.Name+"\\FullSaves");
+       //  fullSaveDirectory.CreateSubdirectory("FullSaves");
             
            
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
