@@ -24,7 +24,7 @@ namespace CESI.BS.EasySave.BS
             {
                 System.IO.File.WriteAllText(LogFullName, LogInfoString);
             }
-            using System.IO.StreamWriter file = new System.IO.StreamWriter(LogFullName);
+            StreamWriter file = File.AppendText(LogFullName);
             file.WriteLine(@"> " + dictionary[WorkProperties.Date] + " | "
                                  + dictionary[WorkProperties.Name] + " | "
                                  + dictionary[WorkProperties.Source] + " | "
