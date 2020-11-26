@@ -130,7 +130,7 @@ namespace CesiEasySave.Controller
             foreach (char work in selectedWork)
             {
                 if (int.Parse(work.ToString()) >= 0 && int.Parse(work.ToString()) < model.GetWorks().Count)
-                    if (view.ConfirmDelete(model.GetWorks()[int.Parse(work.ToString())].Name))
+                    if (!view.ConfirmDelete(model.GetWorks()[int.Parse(work.ToString())].Name))
                     {
                         model.DeleteWork(selectedWorkInt);
                     }

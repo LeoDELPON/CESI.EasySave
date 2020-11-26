@@ -78,7 +78,6 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                     strFieldChoosen = "<name>";
                     strFieldChoosenEnd = "<\\name>";
                     break;
-
             }
             string text = File.ReadAllText(savePath + nameExt);
             Match mtch = Regex.Match(text, strFieldChoosen + ".+?"+ strFieldChoosenEnd);
