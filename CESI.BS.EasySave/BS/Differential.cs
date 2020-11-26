@@ -26,12 +26,8 @@ namespace CESI.BS.EasySave.BS
         }
 
 
-        public override int SaveProcess(string sourceFolder,
-            string targetFolder)
-
+        public override int SaveProcess(string sourceFolder, string targetFolder)
         {
-
-            //try { 
             int returnInfo = SUCCESS_OPERATION;
             if (!Directory.Exists(sourceFolder))
                 throw new DirectoryNotFoundException(
@@ -43,7 +39,7 @@ namespace CESI.BS.EasySave.BS
             BackupPath = targetFolder + @"\" + directoryToSaveName;
             FolderToSave = sourceFolder;
             try
-            { 
+            {
                 if (!FolderBuilder.CheckFolder(BackupPath))
                 {
                     FolderBuilder.CreateFolder(targetFolder);
@@ -83,7 +79,6 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, FolderToSave);
-                    Console.WriteLine("Voici le backupfolder : {0}", backupFolderWithRelativePath);
                     if (!Directory.Exists(backupFolderWithRelativePath))
                     {
                         Directory.CreateDirectory(backupFolderWithRelativePath);
@@ -91,12 +86,12 @@ namespace CESI.BS.EasySave.BS
                     try
                     {
                         file.CopyTo(Path.Combine(backupFolderWithRelativePath, file.Name), true);
-                    } catch(Exception e)
+                        Console.WriteLine("[+] Copying {0}", file);
+                    }
+                    catch (Exception e)
                     {
                         Console.WriteLine("[-] An Error has occured while trying to copy Files : {0}", e);
                     }
-
-
                     i++;
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
                     folderSize = folderSize - file.Length;
@@ -116,26 +111,7 @@ namespace CESI.BS.EasySave.BS
                 handler.OnStop(false);
                 return returnInfo;
             }
-
         }
-
-        public static string GetRelativePath(string fullPath, string basePath)
-        {
-            // Require trailing backslash for path
-            if (!basePath.EndsWith("\\"))
-                basePath += "\\";
-
-            Uri baseUri = new Uri(basePath);
-            Uri fullUri = new Uri(fullPath);
-
-            Uri relativeUri = baseUri.MakeRelativeUri(fullUri);
-
-            // Uri's use forward slashes so convert back to backward slashes
-            return relativeUri.ToString().Replace("/", "\\");
-
-        }
-
-       
 
         public long GetDirectorySize(string p)
         {

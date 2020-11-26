@@ -1,4 +1,4 @@
 The log are writen following this pattern:
 > date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
 
-> 12:00:00 | leodelpon | Not Running | 175 | 22729652 | 0 | 0 | 0 | humboldt-app | C:\DataDest\humboldt-app\FullSaves\26_11_2020
+> 12:00:00 | TestFull | Not Running | 2 | 2450 | 0 | 1 | 0 | tinder_swap | tinder_swap
