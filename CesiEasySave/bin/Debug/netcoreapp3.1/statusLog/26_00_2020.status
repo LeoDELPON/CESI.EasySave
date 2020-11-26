@@ -1,0 +1,4 @@
+The log are writen following this pattern:
+> date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
+
+> 12:00:00 | er | Not Running | 6 | 112281 | 0 | 5 | 0 | lines | test
