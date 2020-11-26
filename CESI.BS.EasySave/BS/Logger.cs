@@ -16,6 +16,10 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary) 
         {
+            if (!FolderBuilder.CheckFolder(LogFilePath))
+            {
+                FolderBuilder.CreateFolder(LogFilePath);
+            }
             if (!File.Exists(LogFullName))
             {
                 System.IO.File.WriteAllText(LogFullName, LogInfoString);
