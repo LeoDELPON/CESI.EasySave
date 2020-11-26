@@ -17,7 +17,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         }
         public static FileStream file;
         public static string savePath = Environment.CurrentDirectory + @"\saveConf\";
-        public static string extention = ".xml";
+        public static string extension = ".xml";
         
         public static void SaveWork(WorkVar workvar)
         {
@@ -34,9 +34,9 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             {
                 FolderBuilder.CreateFolder(savePath);
             }
-            if (!File.Exists(savePath + workvar.name + extention))
+            if (!File.Exists(savePath + workvar.name + extension))
             {
-                File.Create(savePath + workvar.name + extention);
+                File.Create(savePath + workvar.name + extension);
             }
         }
         private static void MakeSurePathExist()
@@ -48,7 +48,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         }
         public static void ModifyFile(string name, int fieldChosen, string newString)
         {
-            string nameExt = name + extention;
+            string nameExt = name + extension;
             if (!File.Exists(savePath + nameExt))
             {
                 return;
@@ -95,32 +95,28 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             string[] files = Directory.GetFiles(savePath);
             List<WorkVar> listWorkVar = new List<WorkVar>();
             StreamReader sr;
-            string s = "";
             foreach (string fileStr in files)
             {
                 WorkVar workvar = new WorkVar();
                 sr  = File.OpenText(fileStr);
-                while ((s = sr.ReadLine()) != null){
-                    switch (s)
+                while ((sr.ReadLine()) != null){
+                    switch (sr.ReadLine())
                     {
                         case "<name>":
-                            s = sr.ReadLine();
-                            workvar.name = s;
+                            
+                            workvar.name = sr.ReadLine();
                             break;
                         case "<source>":
-                            s = sr.ReadLine();
-                            workvar.source = s;
+                            workvar.source = sr.ReadLine();
                             break;
                         case "<target>":
-                            s = sr.ReadLine();
-                            workvar.target = s;
+                            workvar.target = sr.ReadLine();
                             break;
                         case "<typeSave>":
-                            s = sr.ReadLine();
-                            workvar.typeSave = int.Parse(s);
+                            workvar.typeSave = int.Parse(sr.ReadLine());
                             break;
                         default:
-                            Console.WriteLine(s);
+                            Console.WriteLine(sr.ReadLine());
                             break;
                     }
 
@@ -133,7 +129,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         }
         private static void WriteFile(WorkVar workvar, byte[] header)
         {
-            file = File.OpenWrite(savePath + workvar.name + extention);
+            file = File.OpenWrite(savePath + workvar.name + extension);
 
             file.Write(header);
             file.Write(new UTF8Encoding(true).GetBytes("<name>" + Environment.NewLine));

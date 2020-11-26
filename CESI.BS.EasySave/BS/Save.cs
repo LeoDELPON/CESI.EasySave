@@ -64,8 +64,8 @@ namespace CESI.BS.EasySave.BS
 
       
         
-        public abstract string GetName();
-        public void createSaveFolder();
+      
+      
       
         protected long GetFolderSize(string path)
         {
@@ -76,7 +76,7 @@ namespace CESI.BS.EasySave.BS
                 FileInfo info = new FileInfo(f);
                 size += info.Length;
             }
-            return size;sssaaaaqqqqffffffe
+            return size;
         }
     }
 }

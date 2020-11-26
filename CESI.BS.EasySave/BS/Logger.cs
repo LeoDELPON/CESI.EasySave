@@ -9,16 +9,16 @@ namespace CESI.BS.EasySave.BS
     internal static class Logger
     {
 
-        private static readonly string logFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
+        private static readonly string logFilePath = Environment.CurrentDirectory + @"log\";
         private static readonly string logFileExtension = @".log";
-        private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("d") + LogFileExtension;
+        private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("dd_mm_yyyy") + LogFileExtension;
         private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime" + "\n\n";
 
         internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary) 
         {
             if (!File.Exists(LogFullName))
             {
-                System.IO.File.WriteAllText(@"C:\Users\REMI\source\repos\LanguageClass\vendor\", LogInfoString);
+                System.IO.File.WriteAllText(LogFullName, LogInfoString);
             }
             using System.IO.StreamWriter file = new System.IO.StreamWriter(LogFullName);
             file.WriteLine(@"> " + dictionary[WorkProperties.Date] + " | "
