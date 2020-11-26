@@ -1,0 +1,94 @@
+html {
+    body {
+        .modal-content {
+            .modal-body-title {
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            .form-label {
+                letter-spacing: 1px;
+                font-weight: bold;
+                opacity: 0.6;
+            }
+            .button-contact-modal {
+                border-radius: 22px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                opacity: 0.4;
+                transition: opacity 0.5s linear;
+            }
+            .button-contact-modal-active {
+                opacity: 1;
+                border-radius: 22px;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+
+            .alert-notif-success {
+                display: none;
+            }
+
+            .alert-notif-success-shown {
+                display: block;
+                margin-bottom: 0;
+                margin-top: 3%;
+                font-size: 0.8rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:1600px) {
+    html {
+        body {
+            .modal-content {
+                input, textarea {
+                    font-size:0.8rem;
+                }
+                .modal-body-title {
+                    font-weight: bold;
+                    font-size:1.2rem;
+                    letter-spacing: 1px;
+                }
+                .form-label {
+                    font-size:0.8rem;
+                    letter-spacing: 1px;
+                    font-weight: bold;
+                    opacity: 0.6;
+                }
+                .button-contact-modal {
+                    border-radius: 22px;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                    font-size:0.8rem;
+                    opacity: 0.4;
+                    transition: opacity 0.5s linear;
+                }
+                .button-contact-modal-active {
+                    opacity: 1;
+                    font-size:0.8rem;
+                    border-radius: 22px;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+    
+                .alert-notif-success {
+                    display: none;
+                }
+    
+                .alert-notif-success-shown {
+                    display: block;
+                    margin-bottom: 0;
+                    margin-top: 3%;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+    
+}

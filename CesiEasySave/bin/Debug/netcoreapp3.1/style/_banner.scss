@@ -1,0 +1,90 @@
+html {
+    body {
+        .image-banner-container-fluid {
+            background: radial-gradient(
+                ellipse at center,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.45) 100%
+            );
+            .image-banner-resize {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .content-banner-container-fluid {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            margin-top: 15%;
+            .content-banner-container {
+                display: flex;
+                width: 17%;
+                flex-direction: column;
+                .content-banner-title {
+                    color: black;
+                    text-align: center;
+                    letter-spacing: 1px;
+                    font-weight: 900;
+                }
+                .content-banner-subtitle {
+                    font-weight: 900;
+                    color: black;
+                    padding-left: 4%;
+                    opacity: 0.6;
+                    letter-spacing: 1px;
+                }
+                .content-banner-button {
+                    border-radius: 20px 20px 20px 20px;
+                    font-weight: bold;
+                    align-self: center;
+                    width: 60%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    html {
+        body {
+            .image-banner-container-fluid {
+                background: radial-gradient(
+                    ellipse at center,
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(0, 0, 0, 0.45) 100%
+                );
+                .image-banner-resize {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .content-banner-container-fluid {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                margin-top: 15%;
+                .content-banner-container {
+                    text-align: center;
+                    .content-banner-title {
+                        color: black;
+                        font-size: 1.4rem;
+                        letter-spacing: 1px;
+                        font-weight: 900;
+                    }
+                    .content-banner-subtitle {
+                        font-size: 1rem;
+                        font-weight: 900;
+                        color: black;
+                        opacity: 0.6;
+                        letter-spacing: 1px;
+                    }
+                    .content-banner-button {
+                        font-size: 0.8rem;
+                        border-radius: 20px 20px 20px 20px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}

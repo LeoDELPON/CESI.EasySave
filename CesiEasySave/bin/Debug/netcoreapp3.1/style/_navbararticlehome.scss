@@ -1,0 +1,64 @@
+html {
+    body {
+        .navbar-article-container {
+            padding: 1%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 102;
+            box-shadow: 10px 10px 14px 1px rgba(00, 00, 00, 0.2);
+            .row {
+                width: 100%;
+                .navbar-brand {
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+                .navbar-article-col {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    .navbar-article-content {
+                        margin-right: 0% !important;
+                        a {
+                            width: 110px;
+                            text-align: center;
+                            font-size: 0.8rem;
+                            padding-right: 0;
+                            padding-left: 0;
+                            letter-spacing: 1px;
+                            font-weight: bold;
+                            transition-duration: 0.5s;
+                            &:nth-child(1):hover {
+                                color: #845ec2;
+                            }
+                            &:nth-child(2):hover {
+                                color: #d65db1;
+                            }
+                            &:nth-child(3):hover {
+                                color: #ff9671;
+                            }
+                            &:nth-child(4):hover {
+                                color: #ffc75f;
+                            }
+                        }
+                    }
+                }
+                .navbar-article-search-col {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    .navbar-article-searchbar {
+                        border-radius: 45px;
+                        border-color: transparent;
+                    }
+                    button {
+                        border-radius: 45px;
+                        letter-spacing: 1px;
+                        font-weight: bold;
+                        transition-duration: 0.5s;
+                    }
+                }
+            }
+        }
+    }
+}

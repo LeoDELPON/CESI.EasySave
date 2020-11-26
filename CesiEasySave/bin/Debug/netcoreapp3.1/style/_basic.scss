@@ -1,0 +1,15 @@
+html {
+    @include no-padding-margin;
+    body {
+        @include setting-to-zero;
+        font-family: 'Montserrat', sans-serif;
+        a {
+            @include anchor-changes;
+        }
+        ul, li {
+            @include li-without-dot;
+        }
+        
+    }
+}
+

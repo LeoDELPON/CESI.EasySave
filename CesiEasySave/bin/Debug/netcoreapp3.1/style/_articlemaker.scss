@@ -1,0 +1,320 @@
+html {
+    body {
+        .article-home-page-maker-bg {
+            .article-home-page-maker-title-container-fluid {
+                padding: 8% 3% 0% 3%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                .article-home-page-maker-title {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    h2 {
+                        font-weight: bold;
+                        font-size: 1.5rem;
+                        letter-spacing: 1px;
+                    }
+                    h3 {
+                        font-weight: bold;
+                        opacity: 0.5;
+                        font-size: 1rem;
+                        letter-spacing: 1px;
+                    }
+                }
+            }
+            .article-home-page-maker-datas-container-fluid {
+                padding: 1% 3% 0% 3%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                margin-top: 2%;
+                justify-content: flex-start;
+                .article-home-page-maker-datas-wrapper {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+                    .article-home-page-maker-data-row {
+                        padding-top: 1%;
+                        padding-bottom: 1%;
+                        background-color: #3f4448;
+                        width: 100%;
+                        h3 {
+                            padding-left: 15px;
+                            color: white;
+                            letter-spacing: 1px;
+                        }
+                        .article-home-page-maker-datas-button-col {
+                            display: flex;
+                            flex-direction: row-reverse;
+                            button {
+                                font-size: 0.8rem;
+                                margin-right: 5%;
+                                border-radius: 22px;
+                                font-weight: bold;
+                                letter-spacing: 1px;
+                            }
+                        }
+                    }
+                    .article-home-page-maker-data-content-row {
+                        .col {
+                            border-style: solid;
+                            border-color: #3f4448;
+                            h3 {
+                                text-align: center;
+                                font-size: 1.2rem;
+                                font-weight: bold;
+                                opacity: 0.6;
+                                letter-spacing: 1px;
+                                margin-top: 3%;
+                            }
+                            .article-home-page-maker-data-input,
+                            ._2iA8p44d0WZ-WqRBGcAuEV {
+                                width: 90%;
+                                margin: 5%;
+                            }
+                        }
+                    }
+                }
+            }
+            .article-home-page-maker-container-fluid {
+                padding: 3% 3% 0% 3%;
+                width: 100%;
+                height: calc(100vh - 3.75rem);
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 5%;
+                .wrapper-card {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+                    .mardown-editor-container-fluid {
+                        width: 100%;
+                        background-color: white;
+                        .markdown-editor-row-section {
+                            padding-top: 1%;
+                            padding-bottom: 1%;
+                            background-color: #3f4448;
+                            .markdown-editor-col-section-title {
+                                color: white;
+                                font-weight: bold;
+                                letter-spacing: 1px;
+                            }
+                            .markdown-editor-col-section-button {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-end;
+                                .markdown-editor-button-clear {
+                                    font-weight: bold;
+                                    font-size: 0.8rem;
+                                    letter-spacing: 1px;
+                                    border-radius: 22px;
+                                }
+                            }
+                        }
+                        textarea {
+                            border-color: transparent;
+                            color: var(--primary-text-color);
+                            background-color: white;
+                            transition: background-color var(--color-transition);
+                            font-size: 1rem;
+                            font-weight: 400;
+                            padding-top: 1%;
+                            font-family: var(--source-code-font);
+                            width: 100%;
+                            resize: none;
+                            height: 91%;
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .gutter {
+                        height: 100% !important;
+                        width: 10px !important;
+                        cursor: col-resize;
+                        background-color: #444857;
+                    }
+
+                    .markdown-renderer-container-fluid {
+                        width: 100%;
+                        background-color: white;
+                        .markdown-renderer-row-section {
+                            padding-top: 1%;
+                            padding-bottom: 1%;
+                            background-color: #3f4448;
+                            .markdown-renderer-col-section-title {
+                                padding-left: 15px;
+                                color: white;
+                                font-weight: bold;
+                                letter-spacing: 1px;
+                            }
+                            .markdown-renderer-col-section-button {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-end;
+                                padding-right: 15px;
+                                .markdown-renderer-button-publish {
+                                    margin-right: 2%;
+                                    font-weight: bold;
+                                    font-size: 0.8rem;
+                                    letter-spacing: 1px;
+                                    border-radius: 22px;
+                                }
+                                .markdown-renderer-button-full-screen {
+                                    margin-right: 2%;
+                                    font-weight: bold;
+                                    font-size: 0.8rem;
+                                    letter-spacing: 1px;
+                                    border-radius: 22px;
+                                }
+                            }
+                        }
+                        .markdown-renderer-row-content {
+                            height: 100%;
+                            .fullscreen {
+                                width: 100%;
+                                margin-top: 1%;
+                                max-height: 91%;
+                                .html-div {
+                                    background-color: white;
+                                    transition: background-color
+                                        var(--color-transition);
+                                    overflow-y: scroll;
+                                    max-height: 100%;
+                                }
+                                //HTML Styling for preview
+                                .html-div {
+                                    p {
+                                        margin: 0;
+                                        padding: 1%;
+                                        text-align: justify;
+                                    }
+                                    a {
+                                        text-align: justify;
+                                        font-weight: bold;
+                                        color: black;
+                                        transition-duration: 0.3s;
+                                        &:hover {
+                                            color: #c1564c;
+                                        }
+                                    }
+                                    hr {
+                                        margin-left: 3%;
+                                        width: 88%;
+                                        height: 0.1rem;
+                                        padding: 0 3% 0 3%;
+                                        background-color: #222222;
+                                        transition: background-color
+                                            var(--color-transition);
+                                    }
+                                    pre {
+                                        background-color: #9898a773;
+                                        line-height: 1.45;
+                                        overflow: auto;
+                                        border-radius: 2px;
+                                        font-size: 0.9em;
+                                        padding: 0 3% 0 3%;
+                                        width: 95%;
+                                        margin-left: 3%;
+                                        overflow: auto;
+                                        margin-top: 0;
+                                        margin-bottom: 1rem;
+                                    }
+                                    :not(pre) > code {
+                                        font-size: 85%;
+                                        border-radius: 0.3em;
+                                        padding: 0.2em 0.4em;
+                                        margin: 0;
+                                        transition: color
+                                            var(--color-transition);
+                                        transition: background-color
+                                            var(--color-transition);
+                                    }
+
+                                    li + li {
+                                        margin-top: 0.25em;
+                                    }
+                                    blockquote {
+                                        padding: 3% 3%;
+                                        margin: 0 0 20px;
+                                        font-size: 17.5px;
+                                        border-left: 5px solid
+                                            rgba(105, 102, 102, 0.466);
+                                    }
+                                    img {
+                                        max-width: 100%;
+                                    }
+                                    h1 {
+                                        font-weight: bold;
+                                        letter-spacing: 1px;
+                                    }
+                                    h2 {
+                                        font-weight: bold;
+                                        letter-spacing: 1px;
+                                    }
+                                    h3 {
+                                        font-weight: bold;
+                                        letter-spacing: 1px;
+                                    }
+                                    h4 {
+                                        font-weight: bold;
+                                        letter-spacing: 1px;
+                                    }
+                                    h5 {
+                                        font-weight: bold;
+                                        letter-spacing: 1px;
+                                    }
+                                    h6 {
+                                        font-weight: bold;
+                                        letter-spacing: 1px;
+                                    }
+                                    table {
+                                        justify-content: center;
+                                        border-collapse: collapse;
+                                        margin: 1.5rem 0.5rem;
+                                    }
+
+                                    th,
+                                    td {
+                                        border: 0.17rem solid black;
+                                        transition: border-color
+                                            var(--color-transition);
+                                        text-align: left;
+                                        text-align: center;
+                                        padding: 0.5rem 1.25rem;
+                                    }
+
+                                    tr:nth-child(even) {
+                                        background-color: var(
+                                            --alternate-table-color
+                                        );
+                                        transition: background-color
+                                            var(--color-transition);
+                                    }
+
+                                    th {
+                                        background-color: #ffc107;
+                                        transition: background-color #ffc107;
+                                        color: black;
+                                    }
+                                    summary:focus {
+                                        outline: none;
+                                    }
+                                }
+                                .preview-fullscreen {
+                                    background-color: white;
+                                    padding: 1rem;
+                                    margin-top: 0;
+                                    height: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

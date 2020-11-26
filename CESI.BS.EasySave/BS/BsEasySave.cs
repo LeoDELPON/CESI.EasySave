@@ -16,8 +16,6 @@ namespace CESI.BS.EasySave.BS
             typeSave.Add(new WorkFactory().CreateSaveObject("ful",""));
         }
 
-
-
         public List<Work> works = new List<Work>();
         // à remplire de tous les enfants de save
 

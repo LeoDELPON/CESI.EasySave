@@ -38,7 +38,15 @@ namespace CESI.BS.EasySave.BS
         private void ComputeProgress(object remainingSize)
         {
             long sizeProperty = (long)Dictionary[WorkProperties.Size];
-            Dictionary[WorkProperties.Progress] = ((long)remainingSize * 100) / sizeProperty;
+            if (sizeProperty != 0)
+            {
+                Dictionary[WorkProperties.Progress] = ((long)remainingSize * 100) / sizeProperty;
+            }
+            else
+            {
+                Dictionary[WorkProperties.Progress] = "Too little size. Can't compute progress";
+            }
+
         }
 
         private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler());

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -45,11 +46,8 @@ namespace CESI.BS.EasySave.BS
                     FolderBuilder.CreateFolder(targetFolder);
                     FolderBuilder.CreateFolder(FullBackupPath);
                     FolderBuilder.CreateFolder(DiffBackupPath);
-
                     Console.WriteLine("[+] Warning, Full Save not created, Full Save in creating");
-
                     DiffBackupPath = FullBackupPath;
-
                 }
                 DateTime durationStart = DateTime.Now;
 
@@ -67,7 +65,7 @@ namespace CESI.BS.EasySave.BS
                 FileCompare fileCompared = new FileCompare();
 
                 var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, fileCompared);
-            
+
                 propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
                 long folderSize = getSizeOfDiff(queryGetDifferenceFile);
                 propertiesWork[WorkProperties.Size] = folderSize;
@@ -75,18 +73,19 @@ namespace CESI.BS.EasySave.BS
                 handler = DataHandler.Instance;
                 handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, WorkName, directoryToSaveName, DiffBackupPath);
                 int i = 0;
-
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, FolderToSave);
-                    if (!Directory.Exists(backupFolderWithRelativePath))
-                    {
-                        Directory.CreateDirectory(backupFolderWithRelativePath);
-                    }
+                    string pathTest = file.DirectoryName;
+                    pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);
                     try
                     {
-                        file.CopyTo(Path.Combine(backupFolderWithRelativePath, file.Name), true);
-                        Console.WriteLine("[+] Copying {0}", file);
+                        if (!FolderBuilder.CheckFolder(pathTest))
+                        {
+                            FolderBuilder.CreateFolder(pathTest);
+                        }
+                        file.CopyTo(Path.Combine(pathTest, file.Name), true);
+                        Console.WriteLine("[+] Copying {0}", file.FullName);
                     }
                     catch (Exception e)
                     {
@@ -100,7 +99,6 @@ namespace CESI.BS.EasySave.BS
                 }
 
                 handler.OnStop(true);
-                propertiesWork[WorkProperties.Size] = GetDirectorySize(DiffBackupPath);
                 return returnInfo;
 
             }

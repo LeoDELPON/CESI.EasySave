@@ -1,0 +1,81 @@
+html {
+    body {
+        .sign-up-link {
+            margin-top:2%;
+            p {
+                color: white;
+                letter-spacing: 1px;
+                opacity: 0.6;
+                a {
+                    color: white;
+                    letter-spacing: 1px;
+                    font-weight: bold;
+                    opacity: 0.4;
+                    transition-duration: 0.3s;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .forgot-link {
+            margin-top:7%;
+            a {
+                color: white;
+                letter-spacing: 1px;
+                opacity: 0.4;
+                font-weight: bold;
+                transition-duration: 0.3s;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:1600px) {
+    html {
+        body {
+            .sign-up-link {
+                padding-left:11%;
+                margin-top:2%;
+                p {
+                    color: white;
+                    letter-spacing: 1px;
+                    opacity: 0.6;
+                    font-size: 0.9rem;
+                    a {
+                        font-size:0.9rem;
+                        color: white;
+                        letter-spacing: 1px;
+                        font-weight: bold;
+                        opacity: 0.4;
+                        transition-duration: 0.3s;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+    
+            .forgot-link {
+                padding-left:11%;
+                margin-top:7%;
+                a {
+                    font-size:0.9rem;
+                    color: white;
+                    letter-spacing: 1px;
+                    opacity: 0.4;
+                    font-weight: bold;
+                    transition-duration: 0.3s;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
