@@ -271,8 +271,9 @@ namespace CesiEasySave.Controller
                                 try
                                 {
                                     int newSaveType = int.Parse(view.AskSaveType(model.typeSave));
-                                    model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
                                     ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newSaveType.ToString());
+                                    model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
+                                    
 
                                 }
                                 catch (Exception error)
@@ -293,8 +294,9 @@ namespace CesiEasySave.Controller
                                 try
                                 {
                                     string newField = view.AskStr();
-                                    model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
                                     ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newField);
+                                    model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
+                                    
                                 }
                                 catch (Exception error)
                                 {

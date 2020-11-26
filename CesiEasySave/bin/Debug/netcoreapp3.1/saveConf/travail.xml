@@ -1,0 +1,13 @@
+<? xml version = "1.0" encoding = "UTF-8" ?>
+<name>
+travail
+<\name>
+<source>
+D:\dessins\emma
+<\source>
+<target>
+D:\testsave\go
+<\target>
+<typeSave>
+1
+<\typeSave>

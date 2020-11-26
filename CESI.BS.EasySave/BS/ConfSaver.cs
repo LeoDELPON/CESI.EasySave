@@ -53,6 +53,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             string nameExt = name + extention;
             if (!File.Exists(savePath + nameExt))
             {
+               
                 return;
             }
             string strFieldChoosen ;
@@ -81,13 +82,21 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                     break;
 
             }
-            string text = File.ReadAllText(savePath + nameExt);
-            Match mtch = Regex.Match(text, strFieldChoosen + ".+?"+ strFieldChoosenEnd);
-            if (mtch.Success)
-            {
 
-                text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd + Environment.NewLine);
+            //  regex = new Regex(@"(?s)" + stringID + @"<.+?" + chosenLanguage + @">(.*?)<\/.{2}>");
+            //Match match = regex.Match(File.ReadAllText(DataFilePath + DataFileName));
+            string text = File.ReadAllText(savePath + nameExt);
+            Regex regex = new Regex(strFieldChoosen + "\n.+?\n" + strFieldChoosenEnd);
+            Match match = regex.Match(text);         
+            if (match.Success)
+            {
+                Console.WriteLine("mtch success " + match.Value + "\n" + text);
+                text.Replace(match.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd + Environment.NewLine);
                 File.WriteAllText(savePath + nameExt, text);
+            }
+            else
+            {
+            //    Console.WriteLine("mtch fail " );
             }
         }
 
