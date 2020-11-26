@@ -76,13 +76,16 @@ namespace CESI.BS.EasySave.BS
                 
 
 
-                string[] allActualFiles = Directory.GetFiles(this.folderToSave, "*.*", SearchOption.AllDirectories);
-                
+                string[] allActualFiles = GetFilesFromFolder(this.folderToSave);
+                propertiesWork[WorkProperties.EligibleFiles] = allActualFiles.Length;
+                int i = 0;
+
                 foreach (var file in allActualFiles)
                 {
                     FileInfo actualFile = new FileInfo(file);                    
                     string actualFileDirectory = actualFile.DirectoryName;                   
                     FileInfo backupFile = new FileInfo(Path.GetFullPath(this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.folderToSave)));
+
                     
                     if (!backupFile.Exists || backupFile.Length != actualFile.Length)
                     {
@@ -95,7 +98,10 @@ namespace CESI.BS.EasySave.BS
                             Directory.CreateDirectory(backupFolderWithRelativePath);
                         }
                         File.Copy(file, backupFolderWithRelativePath, true);
+
                     }
+                    i++;
+                    propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
                 }
 
                 propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
