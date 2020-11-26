@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\delpo\\.nuget\\packages\\": {}
+    "C:\\Users\\Kylian\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+      "projectUniqueName": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
       "projectName": "CesiEasySave",
-      "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
-      "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\obj\\",
+      "projectPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+      "packagesPath": "C:\\Users\\Kylian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CesiEasySave\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kylian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -51,10 +51,9 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             }
           }
         }
@@ -67,7 +66,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -83,7 +81,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -17,6 +17,7 @@ namespace CESI.BS.EasySave.BS
         public static int ERROR_OPERATION = 1;
         public static int IN_PROGRESS = 2;
         public static int STOP_SAVE = 3;
+        public static int NO_FULL_SAVE = 4;
         public Save()
         {
             propertiesWork = new Dictionary<WorkProperties, object>
@@ -59,7 +60,7 @@ namespace CESI.BS.EasySave.BS
             return pathFile[pathFile.Length - 1];
         }
         public abstract string GetName();
-
+        public void createSaveFolder();
       
         protected long GetFolderSize(string path)
         {
