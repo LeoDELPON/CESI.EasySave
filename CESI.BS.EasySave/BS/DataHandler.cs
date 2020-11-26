@@ -8,15 +8,15 @@ namespace CESI.BS.EasySave.BS
 {
     internal sealed class DataHandler
     {
-        private Dictionary<WorkProperties, string> dictionary = new Dictionary<WorkProperties, string>;
+        private Dictionary<WorkProperties, string> dictionary = new Dictionary<WorkProperties, string>();
         private static long Size { get; set; }
         private static int Files { get; set; }
         private static string Name { get; set; }
         private static string Source { get; set; }
         private static string Target { get; set; }
 
-        private Stopwatch stopwatch;
-        private DataHandler(long size , int files, string name, string source, string target)
+        private readonly Stopwatch stopwatch;
+        private DataHandler(int files, long size, string name, string source, string target)
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -32,31 +32,38 @@ namespace CESI.BS.EasySave.BS
 
         }
 
-        private void ComputeProgress(int remainingSize)
+        private void ComputeProgress(long remainingSize)
         {
-            Dictionary[WorkProperties.Progress] = Convert.ToString((remainingSize * 100) / Convert.ToInt32(Dictionary[WorkProperties.Size]));
+            Dictionary[WorkProperties.Progress] = Convert.ToString((remainingSize * 100) / long.Parse(Dictionary[WorkProperties.Size]));
         }
 
-        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler(Size, Files, Name, Source, Target));
+        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler(Files, Size, Name, Source, Target));
         public static DataHandler Instance { get { return lazy.Value; } }
 
         public Dictionary<WorkProperties, string> Dictionary { get => dictionary; set => dictionary = value; }
 
-        public void OnCompleted()
+        public void OnStop(bool noError)
         {
             stopwatch.Stop();
-            dictionary[WorkProperties.Duration] = Convert.ToString(stopwatch.ElapsedMilliseconds);//besoin de leo pour bypass la definition
-            dictionary[WorkProperties.State] = "Not Running";//possiblement changer l'enum
+            if (noError)
+            {
+                dictionary[WorkProperties.Duration] = Convert.ToString(stopwatch.ElapsedMilliseconds);
+            }
+            else
+            {
+                dictionary[WorkProperties.Duration] = "-1";
+            }
+            dictionary[WorkProperties.State] = "Not Running";
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
             throw new NotImplementedException();
         }
 
-        public void OnNext(Save value)
+        public void OnNext(int remainingFiles, long remainingSize)
         {
-            dictionary[WorkProperties.RemainingSize] = Convert.ToString(value.remainingSize);
-            dictionary[WorkProperties.RemainingFiles] = Convert.ToString(value.remainingFiles);
-            ComputeProgress(value.remainingSize);
+            dictionary[WorkProperties.RemainingSize] = Convert.ToString(remainingSize);
+            dictionary[WorkProperties.RemainingFiles] = Convert.ToString(remainingFiles);
+            ComputeProgress(remainingSize);
             StatusLogger.GenerateStatusLog(Dictionary);
             throw new NotImplementedException();
         }
