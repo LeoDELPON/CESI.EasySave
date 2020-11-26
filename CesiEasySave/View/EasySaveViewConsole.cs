@@ -147,7 +147,7 @@ namespace CesiEasySave.View
         {
             Console.WriteLine(Language.GetRequestedString(24));
             Console.WriteLine(name);
-            return (Console.ReadLine().ToUpper().Equals(Language.GetRequestedString(9)));
+            return Console.ReadLine().ToUpper().Equals(Language.GetRequestedString(9));
         }
 
         public string AskLanguage()

@@ -67,7 +67,7 @@ namespace CESI.BS.EasySave.BS
                 FileCompare fileCompared = new FileCompare();
 
                 var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, fileCompared);
-
+            
                 propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
                 long folderSize = getSizeOfDiff(queryGetDifferenceFile);
                 propertiesWork[WorkProperties.Size] = folderSize;
