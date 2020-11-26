@@ -217,8 +217,8 @@ namespace CesiEasySave.Controller
                 WorkVar workvar = AskDataWork();
                  
                 model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
-                    //SaveWork(workvar);
-                    Console.WriteLine("[+] Work succesfull add.");
+                SaveWork(workvar);
+                Console.WriteLine("[+] Work succesfull add.");
 
                 }
                 catch (Exception error)

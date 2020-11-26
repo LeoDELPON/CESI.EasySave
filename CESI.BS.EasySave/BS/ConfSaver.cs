@@ -36,7 +36,9 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             }
             if (!File.Exists(savePath + workvar.name + extention))
             {
-                File.Create(savePath + workvar.name + extention);
+                File.CreateText(savePath + workvar.name + extention);
+                
+
             }
         }
         private static void MakeSurePathExist()
@@ -85,7 +87,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             {
 
                 text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd + Environment.NewLine);
-                File.WriteAllText("test.txt", text);
+                File.WriteAllText(savePath + nameExt, text);
             }
         }
 
@@ -133,8 +135,16 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         }
         private static void WriteFile(WorkVar workvar, byte[] header)
         {
-            file = File.OpenWrite(savePath + workvar.name + extention);
 
+            try
+            {
+                file = File.OpenWrite(savePath + workvar.name + extention);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("impossible d'ouvrir le fichier \n"+e.Message);
+            
+            }
             file.Write(header);
             file.Write(new UTF8Encoding(true).GetBytes("<name>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.name + Environment.NewLine));
