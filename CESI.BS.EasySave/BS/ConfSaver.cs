@@ -23,7 +23,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         {
             byte[] header = new UTF8Encoding(true).GetBytes("<? xml version = \"1.0\" encoding = \"UTF-8\" ?>" + Environment.NewLine);
 
-            MakeSurePathExist(workvar);
+            MakeSurePathExist();
             WriteFile(workvar, header);
 
         }
@@ -36,8 +36,8 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             }
             if (!File.Exists(savePath + workvar.name + extention))
             {
-                File.CreateText(savePath + workvar.name + extention);
-                
+                FileStream sr = File.Create(savePath + workvar.name + extention);
+                sr.Close();               
 
             }
         }
@@ -122,15 +122,15 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                             workvar.typeSave = int.Parse(s);
                             break;
                         default:
-                            Console.WriteLine(s);
                             break;
                     }
 
                 }
                 listWorkVar.Add(workvar);
-                
-            }
+                sr.Close();
 
+            }
+            
             return listWorkVar;
         }
         private static void WriteFile(WorkVar workvar, byte[] header)
@@ -138,7 +138,9 @@ namespace CESI.BS.EasySave.BS.ConfSaver
 
             try
             {
-                file = File.OpenWrite(savePath + workvar.name + extention);
+                
+                file = File.Create(savePath + workvar.name + extention);
+                
             }
             catch (Exception e)
             {

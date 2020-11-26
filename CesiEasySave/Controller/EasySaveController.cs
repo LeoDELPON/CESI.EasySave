@@ -18,9 +18,17 @@ namespace CesiEasySave.Controller
         {
             view = new EasySaveViewConsole();
             model = new BSEasySave();
+            FetchSavesConfs();
             ProgramLoop();
         }
-
+        private void FetchSavesConfs()
+        {
+            List<WorkVar> works = GetSavedWorks();
+            foreach (WorkVar work in works)
+            {
+                model.AddWork(work.name, work.source, work.target, model.typeSave[work.typeSave].idTypeSave);
+            }
+        }
         private void ProgramLoop()
         {
 
@@ -264,6 +272,8 @@ namespace CesiEasySave.Controller
                                 {
                                     int newSaveType = int.Parse(view.AskSaveType(model.typeSave));
                                     model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
+                                    ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newSaveType.ToString());
+
                                 }
                                 catch (Exception error)
                                 {
@@ -284,6 +294,7 @@ namespace CesiEasySave.Controller
                                 {
                                     string newField = view.AskStr();
                                     model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
+                                    ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newField);
                                 }
                                 catch (Exception error)
                                 {
@@ -298,6 +309,7 @@ namespace CesiEasySave.Controller
                                     }
                                 }
                             }
+                            
                         }
                         //start save work
                     }
