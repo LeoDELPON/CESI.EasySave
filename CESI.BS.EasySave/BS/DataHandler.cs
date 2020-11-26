@@ -16,10 +16,14 @@ namespace CESI.BS.EasySave.BS
         private static string Target { get; set; }
 
         private readonly Stopwatch stopwatch;
-        private DataHandler(int files, long size, string name, string source, string target)
+        private DataHandler()
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
+        }
+
+        public void Init(int files, long size, string name, string source, string target)
+        {
             Size = size;
             Files = files;
             dictionary[WorkProperties.Date] = DateTime.Today.ToString("hh:mm:ss");
@@ -29,18 +33,18 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.Size] = size;
             dictionary[WorkProperties.EligibleFiles] = files;
             dictionary[WorkProperties.State] = "Running";
-
         }
 
-        private void ComputeProgress(long remainingSize)
+        private void ComputeProgress(object remainingSize)
         {
-            Dictionary[WorkProperties.Progress] = Convert.ToString((remainingSize * 100) / long.Parse(Dictionary[WorkProperties.Size]));
+            long sizeProperty = (long)Dictionary[WorkProperties.Size];
+            Dictionary[WorkProperties.Progress] = ((long)remainingSize * 100) / sizeProperty;
         }
 
-        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler(Files, Size, Name, Source, Target));
+        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler());
         public static DataHandler Instance { get { return lazy.Value; } }
 
-        public Dictionary<WorkProperties, string> Dictionary { get => dictionary; set => dictionary = value; }
+        public Dictionary<WorkProperties, object> Dictionary { get => dictionary; set => dictionary = value; }
 
         public void OnStop(bool noError)
         {
@@ -59,10 +63,10 @@ namespace CESI.BS.EasySave.BS
             throw new NotImplementedException();
         }
 
-        public void OnNext(int remainingFiles, long remainingSize)
+        public void OnNext(object remainingFiles, object remainingSize)
         {
-            dictionary[WorkProperties.RemainingSize] = Convert.ToString(remainingSize);
-            dictionary[WorkProperties.RemainingFiles] = Convert.ToString(remainingFiles);
+            dictionary[WorkProperties.RemainingSize] = remainingSize;
+            dictionary[WorkProperties.RemainingFiles] = remainingFiles;
             ComputeProgress(remainingSize);
             StatusLogger.GenerateStatusLog(Dictionary);
             throw new NotImplementedException();

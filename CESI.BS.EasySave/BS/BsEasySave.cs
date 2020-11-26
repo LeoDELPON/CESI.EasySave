@@ -11,9 +11,8 @@ namespace CESI.BS.EasySave.BS
         public List<Save> typeSave { get; set; } = new List<Save>();
         public BSEasySave()
         {
-
-            typeSave.Add(new WorkFactory().CreateSaveObject("Differential"));
-            typeSave.Add(new WorkFactory().CreateSaveObject("Full"));
+            typeSave.Add(new WorkFactory().CreateSaveObject("Differential", ""));
+            typeSave.Add(new WorkFactory().CreateSaveObject("Full", ""));
         }
 
 

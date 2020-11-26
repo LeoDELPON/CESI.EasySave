@@ -53,7 +53,8 @@ namespace CESI.BS.EasySave.BS
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
             long folderSize = GetFolderSize(source.ToString());
             propertiesWork[WorkProperties.Size] = folderSize;
-            handler = new DataHandler(fileNumber, folderSize, workName, source.Name, target.Name);
+            handler = DataHandler.Instance;
+            handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
             try
             {
                 foreach (FileInfo file in source.GetFiles())
