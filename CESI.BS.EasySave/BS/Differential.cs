@@ -9,6 +9,7 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Differential : Save
     {
+       
         private string FullBackupPath { get; set; }
         private string FolderToSave { get; set; }
         private string DiffBackupPath { get; set; }
@@ -19,6 +20,7 @@ namespace CESI.BS.EasySave.BS
 
         public Differential(string props)
         {
+            idTypeSave  = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
             WorkName = props;
         }
@@ -130,23 +132,21 @@ namespace CESI.BS.EasySave.BS
 
         }
 
-        public override string GetName()
-         {
-            return Language.GetRequestedString(15);            
-         }
+       
 
-    public long GetDirectorySize(string p) {
-
-        string[] a = Directory.GetFiles(p, "*.*");
-        long b = 0;
-        foreach (string name in a)
+        public long GetDirectorySize(string p)
         {
-            FileInfo info = new FileInfo(name);
-            b += info.Length;
-        }
-        return b;
 
-    
+            string[] a = Directory.GetFiles(p, "*.*");
+            long b = 0;
+            foreach (string name in a)
+            {
+                FileInfo info = new FileInfo(name);
+                b += info.Length;
+            }
+            return b;
+
+
         }
 
         private IEnumerable<FileInfo> GetFilesFromFolderBis(DirectoryInfo dir)
@@ -167,6 +167,11 @@ namespace CESI.BS.EasySave.BS
                 size += file.Length;
             }
             return size;
+        }
+
+        public override string GetNameTypeWork()
+        {
+            return Language.GetRequestedString(15);
         }
     }
 }

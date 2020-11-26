@@ -11,12 +11,14 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
+       
         public DirectoryInfo fullSaveDirectory;
         public DataHandler handler;
         public string workName;
         public Full(string props) : base()
         {
-            TypeSave = SaveType.FULL;
+        idTypeSave ="ful";
+        TypeSave = SaveType.FULL;
             workName = props;
         }
 
@@ -45,9 +47,12 @@ namespace CESI.BS.EasySave.BS
             if (!FolderBuilder.CheckFolder(target.ToString()))
             {
                 FolderBuilder.CreateFolder(target.FullName);
+            }            
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
-                fullSaveDirectory.CreateSubdirectory(source.FullName).CreateSubdirectory("FullSaves");
-            }
+            fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves"); 
+      //      fullSaveDirectory  = new DirectoryInfo(target.ToString()+ source.FullName.);
+       //  fullSaveDirectory.CreateSubdirectory("FullSaves");
+            
            
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;

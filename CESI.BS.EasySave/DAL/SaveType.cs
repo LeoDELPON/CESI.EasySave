@@ -24,6 +24,7 @@ namespace CESI.BS.EasySave.DAL
                     saveT = "ful";
                     break;
                 default:
+                    Console.WriteLine("defaut");
                     saveT = "dif";
                     break;
             }
@@ -42,6 +43,7 @@ namespace CESI.BS.EasySave.DAL
                     saveT = SaveType.FULL;
                     break;
                 default:
+                    Console.WriteLine("defaut");
                     saveT = SaveType.DIFFERENTIAL;
                     break;
             }
