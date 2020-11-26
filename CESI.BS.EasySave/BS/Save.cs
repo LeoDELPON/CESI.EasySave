@@ -61,6 +61,16 @@ namespace CESI.BS.EasySave.BS
         public abstract string GetName();
 
       
-        
+        protected long GetFolderSize(string path)
+        {
+            long size = 0;
+            string[] files = GetFilesFromFolder(path);
+            foreach(string f in files)
+            {
+                FileInfo info = new FileInfo(f);
+                size += info.Length;
+            }
+            return size;
+        }
     }
 }
