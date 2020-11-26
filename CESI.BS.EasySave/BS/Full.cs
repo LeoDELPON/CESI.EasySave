@@ -32,11 +32,11 @@ namespace CESI.BS.EasySave.BS
             bool status = CopyAll(dirSource, dirDestination);
             if (!status)
             {
-                handler.OnError();
+                handler.OnStop(false);
                 returnInfo = ERROR_OPERATION;
                 return returnInfo;
             }
-            handler.OnCompleted();
+            handler.OnStop(true);
             return returnInfo;
         }
 
