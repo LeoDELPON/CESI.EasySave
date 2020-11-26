@@ -30,47 +30,47 @@ namespace CESI.BS.EasySave.BS
             string targetFolder)
 
         {
+
+            //try { 
             int returnInfo = SUCCESS_OPERATION;
             if (!Directory.Exists(sourceFolder))
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceFolder);
 
-            string directoryToSaveName = Path.GetDirectoryName(sourceFolder);
+            string directoryToSaveName = new DirectoryInfo(sourceFolder).Name;
             FullBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "FullSaves";
             DiffBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "DiffSaves";
             BackupPath = targetFolder + @"\" + directoryToSaveName;
             FolderToSave = sourceFolder;
-
-        /*    try
-            {*/
-                //test if save folder exist
+            try
+            { 
                 if (!FolderBuilder.CheckFolder(BackupPath))
-                {                    
+                {
                     FolderBuilder.CreateFolder(targetFolder);
                     FolderBuilder.CreateFolder(FullBackupPath);
                     FolderBuilder.CreateFolder(DiffBackupPath);
 
-                    Console.WriteLine("Attention : Il n'y a pas de FullSave encore crée, nous allons donc en faire une");
+                    Console.WriteLine("[+] Warning, Full Save not created, Full Save in creating");
 
                     DiffBackupPath = FullBackupPath;
 
                 }
                 DateTime durationStart = DateTime.Now;
+
                 propertiesWork[WorkProperties.Date] = durationStart;
-                DiffBackupPath = DiffBackupPath + "\\" + DateTime.Now; 
+                DiffBackupPath = DiffBackupPath + "\\" + durationStart.ToString("dd_MM_yyyy");
                 FolderBuilder.CreateFolder(DiffBackupPath);
 
 
                 DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
                 DirectoryInfo directoryFullSave = new DirectoryInfo(FullBackupPath);
 
-                IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(directorySource);
-                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(directoryFullSave);
+                IEnumerable<FileInfo> listFileSource = GetFilesFromFolderBis(directorySource);
+                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolderBis(directoryFullSave);
 
                 FileCompare fileCompared = new FileCompare();
 
                 var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, fileCompared);
-
 
                 propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
                 long folderSize = getSizeOfDiff(queryGetDifferenceFile);
@@ -80,19 +80,23 @@ namespace CESI.BS.EasySave.BS
                 handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, WorkName, directoryToSaveName, DiffBackupPath);
                 int i = 0;
 
-                foreach (var file in queryGetDifferenceFile)
-                {                             
-                  
-                    string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath + GetRelativePath(file.ToString(), FolderToSave));
-                        
+                foreach (FileInfo file in queryGetDifferenceFile)
+                {
+                    string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, FolderToSave);
+                    Console.WriteLine("Voici le backupfolder : {0}", backupFolderWithRelativePath);
                     if (!Directory.Exists(backupFolderWithRelativePath))
                     {
-
                         Directory.CreateDirectory(backupFolderWithRelativePath);
                     }
-                    File.Copy(file.ToString(), backupFolderWithRelativePath, true);
+                    try
+                    {
+                        file.CopyTo(Path.Combine(backupFolderWithRelativePath, file.Name), true);
+                    } catch(Exception e)
+                    {
+                        Console.WriteLine("[-] An Error has occured while trying to copy Files : {0}", e);
+                    }
 
-                    
+
                     i++;
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
                     folderSize = folderSize - file.Length;
@@ -104,15 +108,14 @@ namespace CESI.BS.EasySave.BS
                 propertiesWork[WorkProperties.Size] = GetDirectorySize(DiffBackupPath);
                 return returnInfo;
 
-            }/*
-            catch(Exception e)
+            }
+            catch (Exception e)
             {
                 returnInfo = ERROR_OPERATION;
                 Console.WriteLine("[-] An error occured while trying to save : {0}", e);
                 handler.OnStop(false);
                 return returnInfo;
-            }*/
-
+            }
 
         }
 
@@ -149,7 +152,7 @@ namespace CESI.BS.EasySave.BS
 
         }
 
-        private IEnumerable<FileInfo> GetFilesFromFolder(DirectoryInfo dir)
+        private IEnumerable<FileInfo> GetFilesFromFolderBis(DirectoryInfo dir)
         {
             IEnumerable<FileInfo> files = dir.GetFiles(
                 "*.*",
