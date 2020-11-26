@@ -1,3 +1,6 @@
 All log are writen following this pattern:
 > date | workName | sourcePath | targetPath | fileSize | elapsedTime
 
+> 21:18:41 | coucou | ori | ori | 37261 bytes | 20231 ms
+
+
