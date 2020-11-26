@@ -1,12 +1,12 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-DifferentielleTest
+diff
 <\name>
 <source>
-C:\Users\delpo\Documents\Projets\humboldt-app
+D:\after fx projects
 <\source>
 <target>
-C:\DataDest
+D:\testsave\diff
 <\target>
 <typeSave>
 0

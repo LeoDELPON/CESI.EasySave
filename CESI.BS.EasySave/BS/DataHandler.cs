@@ -56,7 +56,7 @@ namespace CESI.BS.EasySave.BS
 
         public void OnStop(bool noError)
         {
-            stopwatch.Stop();
+            stopwatch.Stop();           
             if (noError)
             {
                 dictionary[WorkProperties.Duration] = Convert.ToString(stopwatch.ElapsedMilliseconds);
@@ -66,6 +66,9 @@ namespace CESI.BS.EasySave.BS
                 dictionary[WorkProperties.Duration] = "-1";
             }
             dictionary[WorkProperties.State] = "Not Running";
+            dictionary[WorkProperties.RemainingSize] = "Error";
+            dictionary[WorkProperties.RemainingFiles] = "Error";
+            dictionary[WorkProperties.Progress] = "Error";
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
         }
