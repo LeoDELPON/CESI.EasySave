@@ -9,7 +9,7 @@ namespace CESI.BS.EasySave.BS
     internal static class Logger
     {
 
-        private static readonly string logFilePath = @"C:\Users\REMI\source\repos\LanguageClass\vendor\";
+        private static readonly string logFilePath = Environment.CurrentDirectory + @"log\";
         private static readonly string logFileExtension = @".log";
         private static readonly string logFullName = LogFilePath + DateTime.Today.ToString("d") + LogFileExtension;
         private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime" + "\n\n";

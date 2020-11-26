@@ -64,8 +64,8 @@ namespace CESI.BS.EasySave.BS
                 DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
                 DirectoryInfo directoryFullSave = new DirectoryInfo(FullBackupPath);
 
-                IEnumerable<FileInfo> listFileSource = GetFilesFromFolderBis(directorySource);
-                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolderBis(directoryFullSave);
+                IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(directorySource);
+                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(directoryFullSave);
 
                 FileCompare fileCompared = new FileCompare();
 
@@ -149,7 +149,7 @@ namespace CESI.BS.EasySave.BS
 
         }
 
-        private IEnumerable<FileInfo> GetFilesFromFolderBis(DirectoryInfo dir)
+        private IEnumerable<FileInfo> GetFilesFromFolder(DirectoryInfo dir)
         {
             IEnumerable<FileInfo> files = dir.GetFiles(
                 "*.*",
