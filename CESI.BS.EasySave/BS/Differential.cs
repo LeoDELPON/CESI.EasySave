@@ -13,8 +13,14 @@ namespace CESI.BS.EasySave.BS
         private string diffBackupFolder { get; set; }
         private string commonPath { get; set; }
         private string backupPath { get; set; }
+        private string workName { get; set; }
+        private DataHandler handler;
 
-
+        public Differential(string props)
+        {
+            TypeSave = SaveType.DIFFERENTIAL;
+            workName = props;
+        }
 
 
         public override int SaveProcess(string sourceFolder,
@@ -22,7 +28,6 @@ namespace CESI.BS.EasySave.BS
 
         {
             int returnInfo = SUCCESS_OPERATION;
-
             if (!Directory.Exists(sourceFolder))
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceFolder);
@@ -37,9 +42,7 @@ namespace CESI.BS.EasySave.BS
             {
                 //test if save folder exist
                 if (!FolderBuilder.CheckFolder(this.backupPath))
-
                 {                    
-
                     FolderBuilder.CreateFolder(targetFolder);
                     FolderBuilder.CreateFolder(this.fullBackupPath);
                     FolderBuilder.CreateFolder(this.diffBackupFolder);
@@ -47,37 +50,19 @@ namespace CESI.BS.EasySave.BS
                     Console.WriteLine("Attention : Il n'y a pas de FullSave encore crée, nous allons donc en faire une");
 
                     this.diffBackupFolder = this.fullBackupPath;
-                    
-
 
                 }
-
                 DateTime durationStart = DateTime.Now;
                 propertiesWork[WorkProperties.Date] = durationStart;
                 this.diffBackupFolder = this.diffBackupFolder + "\\" + DateTime.Now; 
                 FolderBuilder.CreateFolder(this.diffBackupFolder);
-                
-
-
-
-
-
-
-
-                
-
-
-                
-
-
-               
-
-                
-                
-
 
                 string[] allActualFiles = GetFilesFromFolder(this.folderToSave);
                 propertiesWork[WorkProperties.EligibleFiles] = allActualFiles.Length;
+                long folderSize = GetFolderSize(sourceFolder);
+                propertiesWork[WorkProperties.Size] = folderSize;
+                handler = DataHandler.Instance;
+                handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, workName, directoryToSaveName, this.diffBackupFolder);
                 int i = 0;
 
                 foreach (var file in allActualFiles)
@@ -85,8 +70,6 @@ namespace CESI.BS.EasySave.BS
                     FileInfo actualFile = new FileInfo(file);                    
                     string actualFileDirectory = actualFile.DirectoryName;                   
                     FileInfo backupFile = new FileInfo(Path.GetFullPath(this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.folderToSave)));
-
-                    
                     if (!backupFile.Exists || backupFile.Length != actualFile.Length)
                     {
                         
@@ -102,25 +85,24 @@ namespace CESI.BS.EasySave.BS
                     }
                     i++;
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
+                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles],);
                 }
 
-                propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+                handler.OnStop(true);
                 propertiesWork[WorkProperties.Size] = GetDirectorySize(this.diffBackupFolder);
-                
                 return returnInfo;
 
             }
             catch(Exception e)
             {
                 returnInfo = ERROR_OPERATION;
-                propertiesWork[WorkProperties.Duration] = -1;
+                Console.WriteLine("[-] An error occured while trying to save : {0}", e);
+                handler.OnStop(false);
                 return returnInfo;
             }
 
 
         }
-
-
 
         public static string GetRelativePath(string fullPath, string basePath)
         {
@@ -138,19 +120,10 @@ namespace CESI.BS.EasySave.BS
 
         }
 
-    
-
-
-
-
         public override string GetName()
          {
             return Language.GetRequestedString(15);            
          }
-
-
-
-
 
     public long GetDirectorySize(string p) {
 
