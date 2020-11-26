@@ -18,13 +18,13 @@ namespace CESI.BS.EasySave.DAL
             switch (saveType)
             {
                 case SaveType.DIFFERENTIAL:
-                    saveT = "Differential";
+                    saveT = "dif";
                     break;
                 case SaveType.FULL:
-                    saveT = "Full";
+                    saveT = "ful";
                     break;
                 default:
-                    saveT = "Differential";
+                    saveT = "dif";
                     break;
             }
             return saveT;
@@ -35,10 +35,10 @@ namespace CESI.BS.EasySave.DAL
             SaveType saveT;
             switch (saveType)
             {
-                case "Differential":
+                case "dif":
                     saveT = SaveType.DIFFERENTIAL;
                     break;
-                case "Full":
+                case "ful":
                     saveT = SaveType.FULL;
                     break;
                 default:

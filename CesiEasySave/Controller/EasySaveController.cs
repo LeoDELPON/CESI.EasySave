@@ -47,7 +47,15 @@ namespace CesiEasySave.Controller
                             {
                                 if (intID > -1 && intID < model.GetWorks().Count)
                                 {
-                                    model.GetWorks()[intID].Perform();//start the save
+                                    if (FolderBuilder.CheckFolder(model.GetWorks()[intID].Source))
+                                    {
+                                        Console.WriteLine("GROS CACA QUI PUE" + model.GetWorks()[intID]._saveType.GetNameTypeWork());
+                                        model.GetWorks()[intID].Perform();//start the save
+                                    }
+                                    else
+                                    {
+                                        view.unreachablePath();
+                                    }
                                 }
 
                             }
@@ -151,17 +159,7 @@ namespace CesiEasySave.Controller
                 } while (!int.TryParse(strReturn, out strReturnInt) || !outOfBoundWorks);
                 return strReturn;
 
-                /*
-                string strReturn;
-                do
-                {
-                    do
-                    {
-                        strReturn = view.PrintWorks(model.GetWorks());
-                    } while (!int.TryParse(strReturn, out strReturnInt));
-                } while (strReturnInt < 0 || strReturnInt >= model.GetWorks().Count);
-                return strReturn;
-            }*/
+         
             }
         }
 
@@ -182,9 +180,25 @@ namespace CesiEasySave.Controller
         {
             WorkVar workvar = new WorkVar();
             int savetype;
-            workvar.name = view.AskName();
+           
+                workvar.name = view.AskName();
+          
+             do{
             workvar.source = view.AskSource();
-            workvar.target = view.AskTarget();
+                if (!FolderBuilder.CheckFolder(workvar.source))
+                {
+                    view.unreachablePath();
+                }
+            } while (!FolderBuilder.CheckFolder(workvar.source));
+            do
+            {
+                workvar.target = view.AskTarget();
+                if (!FolderBuilder.CheckFolder(workvar.target))
+                {
+                    view.unreachablePath();
+                }
+            } while (!FolderBuilder.CheckFolder(workvar.target));
+            
             string strSave = "";
 
             do
@@ -207,7 +221,8 @@ namespace CesiEasySave.Controller
                 try
                 {
                 WorkVar workvar = AskDataWork();
-                model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].GetName()); // add a work
+                 
+                model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
                     Console.WriteLine("[+] Work succesfull add.");
                 }
                 catch (Exception error)

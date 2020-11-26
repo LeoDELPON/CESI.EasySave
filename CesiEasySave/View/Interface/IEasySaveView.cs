@@ -21,6 +21,7 @@ namespace CesiEasySave.View.Interface
         public bool ConfirmDelete(string name);
         public string AskLanguage();
         public void TooMuchWorks();
+        void unreachablePath();
     }
 } 
 

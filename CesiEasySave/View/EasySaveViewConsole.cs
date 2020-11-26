@@ -121,7 +121,7 @@ namespace CesiEasySave.View
             int i = 0;
             foreach (Save save in typeSave)
             {
-                Console.WriteLine(i + ") " + save.GetName());
+                Console.WriteLine(i + ") " + save.GetNameTypeWork());
                 i++;
             }
             return Console.ReadLine();
@@ -165,6 +165,11 @@ namespace CesiEasySave.View
         public void TooMuchWorks()
         {
             Console.WriteLine(Language.GetRequestedString(26));
+        }
+
+        public void unreachablePath()
+        {
+            Console.WriteLine(Language.GetRequestedString(27));
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal static class FileBuilder
+    public static class FileBuilder
     {
 
         internal static void GenerateFile(string sourceDir, string backupDir, string fileName)

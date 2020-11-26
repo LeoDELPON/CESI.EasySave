@@ -11,10 +11,12 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
+        
         public List<long> dirSize = new List<long>();
         public Full() : base()
         {
             TypeSave = SaveType.FULL;
+            idTypeSave = "ful";
         }
         
 
@@ -51,7 +53,7 @@ namespace CESI.BS.EasySave.BS
             {
                 foreach (FileInfo file in source.GetFiles())
                 {
-                    Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
+                    //Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
                     dirSize.Add(file.Length);
                     file.CopyTo(Path.Combine(target.FullName, file.Name), true);
                 }
@@ -71,7 +73,7 @@ namespace CESI.BS.EasySave.BS
                 return false;
             }
         }
-        public override string GetName()
+        public override string GetNameTypeWork()
         {
             return Language.GetRequestedString(16);
         }

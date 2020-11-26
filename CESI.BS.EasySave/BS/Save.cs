@@ -12,6 +12,7 @@ namespace CESI.BS.EasySave.BS
     {
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
+        public string idTypeSave { get; set; }
 
         public static int SUCCESS_OPERATION = 0;
         public static int ERROR_OPERATION = 1;
@@ -58,7 +59,7 @@ namespace CESI.BS.EasySave.BS
             string[] pathFile = path.Split('.');
             return pathFile[pathFile.Length - 1];
         }
-        public abstract string GetName();
+        public abstract string GetNameTypeWork();
 
       
         

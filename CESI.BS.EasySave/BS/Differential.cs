@@ -11,10 +11,13 @@ namespace CESI.BS.EasySave.BS
         private string fullBackupPath { get; set; }
         private string folderToSave { get; set; }
         private string diffBackupFolder { get; set; }
-        //must be relavtive
+        //must be relative
         private string commonPath { get; set; }
        
-
+        public Differential()
+        {
+            idTypeSave = "dif";
+        }
 
 
         public override int SaveProcess(string sourceFolder,
@@ -78,7 +81,7 @@ namespace CESI.BS.EasySave.BS
 
         }
 
-        public override string GetName()
+        public override string GetNameTypeWork()
         {
             return Language.GetRequestedString(15);
         }

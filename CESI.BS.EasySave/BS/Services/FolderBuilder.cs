@@ -5,10 +5,10 @@ using System.IO;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal static class FolderBuilder
+    public static class FolderBuilder
     {
         //Allow user to create folder in specified path
-        internal static void CreateFolder(string requestedPath)
+        public static void CreateFolder(string requestedPath)
         {
             if (Directory.Exists(requestedPath))
             {
@@ -19,7 +19,7 @@ namespace CESI.BS.EasySave.BS
         }
 
         //Allow user to delete an existing folder at specified path
-        internal static void DeleteFolder(string requestedPath)
+        public static void DeleteFolder(string requestedPath)
         {
             if (Directory.Exists(requestedPath) != true)
             {
@@ -31,7 +31,7 @@ namespace CESI.BS.EasySave.BS
 
 
         //Allow user to check if a specified folder already exist
-        internal static bool CheckFolder(string requestedPath)
+        public static bool CheckFolder(string requestedPath)
         {
             if (Directory.Exists(requestedPath))
             {
