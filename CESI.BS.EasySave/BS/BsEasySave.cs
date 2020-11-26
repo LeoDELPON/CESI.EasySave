@@ -18,7 +18,7 @@ namespace CESI.BS.EasySave.BS
 
 
 
-        List<Work> works = new List<Work>();
+        public List<Work> works = new List<Work>();
         // à remplire de tous les enfants de save
 
         public List<Work> GetWorks()
@@ -64,7 +64,14 @@ namespace CESI.BS.EasySave.BS
         public void DeleteWork(int idWork)
         {
 
-            works.Remove(works[idWork]);
+            try
+            {
+                works.Remove(works[idWork]);
+
+            } catch(Exception e)
+            {
+                Console.WriteLine("[-] An error occured, can't delete work: {0}", e);
+            }
         }
 
 

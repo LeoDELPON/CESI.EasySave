@@ -31,7 +31,7 @@ namespace CESI.BS.EasySave.BS
 
             DirectoryInfo dirSource = new DirectoryInfo(sourceD);
             DirectoryInfo dirDestination = new DirectoryInfo(destD);
-            bool status = CopyAll(dirSource, dirDestination);
+            bool status = CopyAll(dirSource, dirDestination, false);
             if (!status)
             {
                 handler.OnStop(false);
@@ -42,15 +42,22 @@ namespace CESI.BS.EasySave.BS
             return returnInfo;
         }
 
-        public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool recursive)
         {
             if (!FolderBuilder.CheckFolder(target.ToString()))
             {
                 FolderBuilder.CreateFolder(target.FullName);
-            }            
+            }
+            if (!recursive)
+            {
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
-            fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves"); 
-      //      fullSaveDirectory  = new DirectoryInfo(target.ToString()+ source.FullName.);
+                fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves");
+                fullSaveDirectory = new DirectoryInfo(target.ToString() + "\\" + source.Name + "\\FullSaves");
+            }
+            else
+            {
+                fullSaveDirectory = new DirectoryInfo(target.ToString());
+            }
        //  fullSaveDirectory.CreateSubdirectory("FullSaves");
             
            
@@ -76,7 +83,8 @@ namespace CESI.BS.EasySave.BS
                 {
                     DirectoryInfo nextTargetSubDir =
                         fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
-                    CopyAll(directorySourceSubDir, nextTargetSubDir);
+                    Console.WriteLine("nextTarget = " + nextTargetSubDir +" \nnextDirectory = " + directorySourceSubDir);
+                    CopyAll(directorySourceSubDir, nextTargetSubDir, true);
                 }
                 return true;
             } catch(SecurityException e)
