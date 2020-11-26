@@ -71,7 +71,7 @@ namespace CESI.BS.EasySave.BS
                 FileInfo info = new FileInfo(f);
                 size += info.Length;
             }
-            return size;
+            return size;sssaaaaqqqqffffffe
         }
     }
 }

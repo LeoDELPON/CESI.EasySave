@@ -2,24 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
     internal class Differential : Save
     {
-        private string fullBackupPath { get; set; }
-        private string folderToSave { get; set; }
-        private string diffBackupFolder { get; set; }
-        private string commonPath { get; set; }
-        private string backupPath { get; set; }
-        private string workName { get; set; }
+        private string FullBackupPath { get; set; }
+        private string FolderToSave { get; set; }
+        private string DiffBackupPath { get; set; }
+        private string CommonPath { get; set; }
+        private string BackupPath { get; set; }
+        private string WorkName { get; set; }
         private DataHandler handler;
 
         public Differential(string props)
         {
             TypeSave = SaveType.DIFFERENTIAL;
-            workName = props;
+            WorkName = props;
         }
 
 
@@ -33,63 +34,72 @@ namespace CESI.BS.EasySave.BS
                     "[-] Source directory has not been found: " + sourceFolder);
 
             string directoryToSaveName = Path.GetDirectoryName(sourceFolder);
-            this.fullBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "FullSaves";
-            this.diffBackupFolder = targetFolder + @"\" + directoryToSaveName + @"\" + "DiffSaves";
-            this.backupPath = targetFolder + @"\" + directoryToSaveName;
-            this.folderToSave = sourceFolder;
+            FullBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "FullSaves";
+            DiffBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "DiffSaves";
+            BackupPath = targetFolder + @"\" + directoryToSaveName;
+            FolderToSave = sourceFolder;
 
             try
             {
                 //test if save folder exist
-                if (!FolderBuilder.CheckFolder(this.backupPath))
+                if (!FolderBuilder.CheckFolder(BackupPath))
                 {                    
                     FolderBuilder.CreateFolder(targetFolder);
-                    FolderBuilder.CreateFolder(this.fullBackupPath);
-                    FolderBuilder.CreateFolder(this.diffBackupFolder);
+                    FolderBuilder.CreateFolder(FullBackupPath);
+                    FolderBuilder.CreateFolder(DiffBackupPath);
 
                     Console.WriteLine("Attention : Il n'y a pas de FullSave encore crée, nous allons donc en faire une");
 
-                    this.diffBackupFolder = this.fullBackupPath;
+                    DiffBackupPath = FullBackupPath;
 
                 }
                 DateTime durationStart = DateTime.Now;
                 propertiesWork[WorkProperties.Date] = durationStart;
-                this.diffBackupFolder = this.diffBackupFolder + "\\" + DateTime.Now; 
-                FolderBuilder.CreateFolder(this.diffBackupFolder);
+                DiffBackupPath = DiffBackupPath + "\\" + DateTime.Now; 
+                FolderBuilder.CreateFolder(DiffBackupPath);
 
-                string[] allActualFiles = GetFilesFromFolder(this.folderToSave);
-                propertiesWork[WorkProperties.EligibleFiles] = allActualFiles.Length;
-                long folderSize = GetFolderSize(sourceFolder);
+
+                DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
+                DirectoryInfo directoryFullSave = new DirectoryInfo(FullBackupPath);
+
+                IEnumerable<FileInfo> listFileSource = GetFilesFromFolderBis(directorySource);
+                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolderBis(directoryFullSave);
+
+                FileCompare fileCompared = new FileCompare();
+
+                var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, fileCompared);
+
+
+                propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
+                long folderSize = getSizeOfDiff(queryGetDifferenceFile);
                 propertiesWork[WorkProperties.Size] = folderSize;
+                propertiesWork[WorkProperties.RemainingSize] = folderSize;
                 handler = DataHandler.Instance;
-                handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, workName, directoryToSaveName, this.diffBackupFolder);
+                handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, WorkName, directoryToSaveName, DiffBackupPath);
                 int i = 0;
 
-                foreach (var file in allActualFiles)
-                {
-                    FileInfo actualFile = new FileInfo(file);                    
-                    string actualFileDirectory = actualFile.DirectoryName;                   
-                    FileInfo backupFile = new FileInfo(Path.GetFullPath(this.fullBackupPath + GetRelativePath(actualFile.ToString(), this.folderToSave)));
-                    if (!backupFile.Exists || backupFile.Length != actualFile.Length)
+                foreach (var file in queryGetDifferenceFile)
+                {                             
+                  
+                    string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath + GetRelativePath(file.ToString(), FolderToSave));
+                        
+                    if (!Directory.Exists(backupFolderWithRelativePath))
                     {
-                        
-                        string backupFolderWithRelativePath = Path.GetFullPath(this.diffBackupFolder + GetRelativePath(actualFileDirectory, this.folderToSave));
-                        
-                        if (!Directory.Exists(backupFolderWithRelativePath))
-                        {
 
-                            Directory.CreateDirectory(backupFolderWithRelativePath);
-                        }
-                        File.Copy(file, backupFolderWithRelativePath, true);
-
+                        Directory.CreateDirectory(backupFolderWithRelativePath);
                     }
+                    File.Copy(file.ToString(), backupFolderWithRelativePath, true);
+
+                    
                     i++;
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
-                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles],);
+                    folderSize = folderSize - file.Length;
+                    propertiesWork[WorkProperties.RemainingSize] = folderSize;
+                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
 
                 handler.OnStop(true);
-                propertiesWork[WorkProperties.Size] = GetDirectorySize(this.diffBackupFolder);
+                propertiesWork[WorkProperties.Size] = GetDirectorySize(DiffBackupPath);
                 return returnInfo;
 
             }
@@ -137,6 +147,26 @@ namespace CESI.BS.EasySave.BS
         return b;
 
     
+        }
+
+        private IEnumerable<FileInfo> GetFilesFromFolderBis(DirectoryInfo dir)
+        {
+            IEnumerable<FileInfo> files = dir.GetFiles(
+                "*.*",
+                SearchOption.AllDirectories
+                );
+            return files;
+        }
+
+
+        private long getSizeOfDiff(IEnumerable<FileInfo> queryGetDifferenceFile)
+        {
+            long size = 0;
+            foreach(FileInfo file in queryGetDifferenceFile)
+            {
+                size += file.Length;
+            }
+            return size;
         }
     }
 }

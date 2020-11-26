@@ -62,7 +62,8 @@ namespace CESI.BS.EasySave.BS
                     Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
                     file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
-                    propertiesWork[WorkProperties.RemainingSize] = folderSize - file.Length;
+                    folderSize = folderSize - file.Length;
+                    propertiesWork[WorkProperties.RemainingSize] = folderSize;
                     handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
 
