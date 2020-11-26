@@ -13,23 +13,23 @@ namespace CESI.BS.EasySave.BS.Factory
                 properties[WorkProperties.Name],
                 properties[WorkProperties.Source],
                 properties[WorkProperties.Target],
-                CreateSaveObject(properties[WorkProperties.TypeSave])
+                CreateSaveObject(properties[WorkProperties.TypeSave], properties[WorkProperties.Name])
             );
         }
 
-        public override Save CreateSaveObject(string _saveType)
+        public override Save CreateSaveObject(string _saveType, string prop)
         {
             Save _save;
             switch(_saveType.GetSaveTypeFromString())
             {
                 case SaveType.DIFFERENTIAL:
-                    _save = new Differential();
+                    _save = new Differential(prop);
                     break;
                 case SaveType.FULL:
-                    _save = new Full();
+                    _save = new Full(prop);
                     break;
                 default:
-                    _save = new Differential();
+                    _save = new Differential(prop);
                     break;
             }
             return _save;

@@ -11,21 +11,18 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
-        
-        public List<long> dirSize = new List<long>();
-        public Full() : base()
+        public DirectoryInfo fullSaveDirectory;
+        public DataHandler handler;
+        public string workName;
+        public Full(string props) : base()
         {
             TypeSave = SaveType.FULL;
-            idTypeSave = "ful";
+            workName = props;
         }
-        
 
         public override int SaveProcess(string sourceD, string destD)
         {
             int returnInfo = SUCCESS_OPERATION;
-            DateTime durationStart = DateTime.Now;
-            propertiesWork[WorkProperties.Date] = durationStart;
-
             if (!Directory.Exists(sourceD))
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceD);
@@ -33,38 +30,49 @@ namespace CESI.BS.EasySave.BS
             DirectoryInfo dirSource = new DirectoryInfo(sourceD);
             DirectoryInfo dirDestination = new DirectoryInfo(destD);
             bool status = CopyAll(dirSource, dirDestination);
-            propertiesWork[WorkProperties.Size] = dirSize.Sum();
             if (!status)
             {
-                propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+                handler.OnStop(false);
                 returnInfo = ERROR_OPERATION;
                 return returnInfo;
             }
-
-            propertiesWork[WorkProperties.Duration] = DateTime.Now.Add(DateTime.Now.Subtract(durationStart)).Date;
+            handler.OnStop(true);
             return returnInfo;
         }
 
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
-            if(!FolderBuilder.CheckFolder(target.ToString()))
+            if (!FolderBuilder.CheckFolder(target.ToString()))
+            {
                 FolderBuilder.CreateFolder(target.FullName);
+                fullSaveDirectory = new DirectoryInfo(target.ToString());
+                fullSaveDirectory.CreateSubdirectory(source.FullName).CreateSubdirectory("FullSaves");
+            }
+           
+            int fileNumber = GetFilesFromFolder(source.ToString()).Length;
+            propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
+            long folderSize = GetFolderSize(source.ToString());
+            propertiesWork[WorkProperties.Size] = folderSize;
+            handler = DataHandler.Instance;
+            handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
             try
             {
                 foreach (FileInfo file in source.GetFiles())
                 {
-                    //Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
-                    dirSize.Add(file.Length);
-                    file.CopyTo(Path.Combine(target.FullName, file.Name), true);
+                    Console.WriteLine(@"[+] Copying {0}\{1}", target.FullName, file.Name);
+                    file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
+                    propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
+                    folderSize = folderSize - file.Length;
+                    propertiesWork[WorkProperties.RemainingSize] = folderSize;
+                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
 
                 foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir =
-                        target.CreateSubdirectory(directorySourceSubDir.Name);
+                        fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
                     CopyAll(directorySourceSubDir, nextTargetSubDir);
                 }
-                
                 return true;
             } catch(SecurityException e)
             {
