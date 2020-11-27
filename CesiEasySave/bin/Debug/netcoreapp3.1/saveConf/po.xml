@@ -1,13 +1,13 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-diff
-<\name>
+po
+</name>
 <source>
 D:\after fx projects
-<\source>
+</source>
 <target>
 D:\testsave\diff
-<\target>
+</target>
 <typeSave>
-0
-<\typeSave>
+1
+</typeSave>
