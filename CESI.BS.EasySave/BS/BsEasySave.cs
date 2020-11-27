@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CESI.BS.EasySave.BS.Factory;
 using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.BS.ConfSaver;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -17,7 +18,7 @@ namespace CESI.BS.EasySave.BS
         }
 
         public List<Work> works = new List<Work>();
-        // à remplire de tous les enfants de save
+        // à remplir de tous les enfants de save
 
         public List<Work> GetWorks()
         {
@@ -64,8 +65,9 @@ namespace CESI.BS.EasySave.BS
 
             try
             {
+                string temp = works[idWork].Name;
                 works.Remove(works[idWork]);
-
+                ConfSaver.ConfSaver.DeleteFile(temp);
             } catch(Exception e)
             {
                 Console.WriteLine("[-] An error occured, can't delete work: {0}", e);

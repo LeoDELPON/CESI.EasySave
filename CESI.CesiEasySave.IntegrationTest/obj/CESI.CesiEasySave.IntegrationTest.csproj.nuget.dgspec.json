@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj": {}
+    "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj": {}
   },
   "projects": {
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj": {
+    "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
+        "projectUniqueName": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
         "projectName": "CESI.CesiEasySave.IntegrationTest",
-        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
-        "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-        "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\obj\\",
+        "projectPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
+        "packagesPath": "C:\\Users\\REMI\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\REMI\\source\\repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\REMI\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

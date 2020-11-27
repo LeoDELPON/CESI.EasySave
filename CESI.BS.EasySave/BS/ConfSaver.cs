@@ -122,10 +122,23 @@ namespace CESI.BS.EasySave.BS.ConfSaver
 
                 }
                 listWorkVar.Add(workvar);
-                
+                sr.Close();
             }
 
             return listWorkVar;
+        }
+
+        internal static void DeleteFile(string name)
+        {
+            Console.WriteLine(savePath + name + extension);
+            if (FileBuilder.CheckFile(savePath + name + extension))
+            {
+                FileBuilder.DeleteFile(savePath + name + extension);
+            }
+            else
+            {
+                Console.WriteLine("[-] There is no work with this name.");
+            }
         }
         private static void WriteFile(WorkVar workvar, byte[] header)
         {
