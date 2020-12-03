@@ -43,6 +43,9 @@
       "WpfApp1/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "CESI.BS.EasySave": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/WpfApp1.dll": {}
         },

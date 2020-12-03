@@ -36,3 +36,7 @@ D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfAp
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.dll
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.pdb
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.genruntimeconfig.cache
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.exe
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.csproj.CopyComplete

@@ -5,25 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid
-        >
+        Title="MainWindow" Height="460" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="705*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>
             <RowDefinition Height="387*"/>
         </Grid.RowDefinitions>
-        <ListBox Margin="0,40,378,70" Grid.Row="1"/>
-        <ListBox Margin="427,40,0,70" Grid.Row="1"/>
-        <Label Content="EasySave Program by CESI" HorizontalAlignment="Left" Margin="343,24,0,0" VerticalAlignment="Top" Height="33" Width="160" Grid.RowSpan="2"/>
-        <Button Content="DELETE WORK" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Click="Button_Click" Height="37" Width="140" Grid.Row="1"/>
-        <Button Content="ADD WORK TO WORK LIST" HorizontalAlignment="Left" Margin="171,340,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="37" Width="174" Grid.Row="1"/>
-        <Button Content="EXECUTE WORK LIST" HorizontalAlignment="Left" Margin="395,324,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="24" Width="178" RenderTransformOrigin="0.588,-0.132" Grid.Row="1"/>
-        <ProgressBar HorizontalAlignment="Left" Height="18" Margin="614,359,0,0" VerticalAlignment="Top" Width="172" Grid.Row="1"/>
-        <Label Content="WORK STATUS" HorizontalAlignment="Left" Margin="662,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.361,0.696" Grid.Row="1"/>
-        <Button Content="Pause" HorizontalAlignment="Left" Margin="449,348,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="1"/>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="503,348,0,0" VerticalAlignment="Top" Height="39" Width="70" Grid.Row="1"/>
-        <Button Content="Language" HorizontalAlignment="Left" Margin="43,24,0,0" VerticalAlignment="Top"/>
-        <Button Content="Abort" HorizontalAlignment="Left" Margin="395,349,0,0" VerticalAlignment="Top" Height="38" Width="54" RenderTransformOrigin="-0.603,0.462" Grid.Row="1"/>
+        <ListBox Margin="0,40,378,70" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <ListBox Margin="332,40,0,70" Grid.Row="1" Grid.Column="2"/>
+        <Label Content="EasySave Program by CESI" HorizontalAlignment="Left" Margin="248,24,0,0" VerticalAlignment="Top" Height="33" Width="160" Grid.RowSpan="2" Grid.Column="2" Name="lbl"/>
+        <Button Content="DELETE WORK" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Click="Button_Click" Height="37" Width="140" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <Button Content="ADD WORK TO WORK LIST" HorizontalAlignment="Left" Margin="76,340,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="37" Width="174" Grid.Row="1" Grid.Column="2"/>
+        <Button Content="EXECUTE WORK LIST" HorizontalAlignment="Left" Margin="300,324,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="24" Width="178" RenderTransformOrigin="0.588,-0.132" Grid.Row="1" Grid.Column="2"/>
+        <ProgressBar HorizontalAlignment="Left" Height="18" Margin="519,359,0,0" VerticalAlignment="Top" Width="172" Grid.Row="1" Grid.Column="2"/>
+        <Label Content="WORK STATUS" HorizontalAlignment="Left" Margin="567,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.361,0.696" Grid.Row="1" Grid.Column="2"/>
+        <Button Content="Pause" HorizontalAlignment="Left" Margin="354,348,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="1" Grid.Column="2"/>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="408,348,0,0" VerticalAlignment="Top" Height="39" Width="70" Grid.Row="1" Grid.Column="2"/>
+        <Button Content="Language" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Content="Abort" HorizontalAlignment="Left" Margin="300,349,0,0" VerticalAlignment="Top" Height="38" Width="54" RenderTransformOrigin="-0.603,0.462" Grid.Row="1" Grid.Column="2"/>
 
 
     </Grid>

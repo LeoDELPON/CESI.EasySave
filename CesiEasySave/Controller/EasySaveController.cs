@@ -4,6 +4,9 @@ using CesiEasySave.View.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
 
 
@@ -15,13 +18,33 @@ namespace CesiEasySave.Controller
         CESI.BS.EasySave.BS.BSEasySave model;
         int limitWork = 5;
         
+         Thread threadView = new Thread(ThreadViewFct);
+        
         public Controller()
         {
+           
             view = new EasySaveViewConsole();
             model = new BSEasySave();
+            threadView.SetApartmentState(ApartmentState.STA);
+            threadView.Start();
+            
+            
             FetchSavesConfs();
             ProgramLoop();
         }
+        private static void ThreadViewFct(object o)
+        {
+
+            Window viewWindow= new WpfApp1.MainWindow();
+            viewWindow.Show();
+            System.Windows.Threading.Dispatcher.Run();
+
+
+
+
+
+        }
+        
         private void FetchSavesConfs()
         {
             List<WorkVar> works = model.confSaver.GetSavedWorks();

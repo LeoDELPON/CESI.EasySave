@@ -30,6 +30,9 @@
         }
       },
       "WpfApp1/1.0.0": {
+        "dependencies": {
+          "CESI.BS.EasySave": "1.0.0"
+        },
         "runtime": {
           "WpfApp1.dll": {}
         }

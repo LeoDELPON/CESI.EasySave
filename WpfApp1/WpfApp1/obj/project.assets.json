@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "CESI.BS.EasySave/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/CESI.BS.EasySave.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CESI.BS.EasySave.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CESI.BS.EasySave/1.0.0": {
+      "type": "project",
+      "path": "../../CESI.BS.EasySave/CESI.BS.EasySave.csproj",
+      "msbuildProject": "../../CESI.BS.EasySave/CESI.BS.EasySave.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "CESI.BS.EasySave >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Marcus\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "WpfApp1/1.0.0": {
+        "dependencies": {
+          "CESI.BS.EasySave": "1.0.0"
+        },
         "runtime": {
           "WpfApp1.dll": {}
+        }
+      },
+      "CESI.BS.EasySave/1.0.0": {
+        "runtime": {
+          "CESI.BS.EasySave.dll": {}
         }
       }
     }
   },
   "libraries": {
     "WpfApp1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CESI.BS.EasySave/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
