@@ -9,7 +9,8 @@
       "CesiEasySave/1.0.0": {
         "dependencies": {
           "CESI.BS.EasySave": "1.0.0",
-          "System.Runtime": "4.3.1"
+          "System.Runtime": "4.3.1",
+          "WpfApp1": "1.0.0"
         },
         "runtime": {
           "CesiEasySave.dll": {}
@@ -26,6 +27,11 @@
       "CESI.BS.EasySave/1.0.0": {
         "runtime": {
           "CESI.BS.EasySave.dll": {}
+        }
+      },
+      "WpfApp1/1.0.0": {
+        "runtime": {
+          "WpfApp1.dll": {}
         }
       }
     }
@@ -58,6 +64,11 @@
       "hashPath": "system.runtime.4.3.1.nupkg.sha512"
     },
     "CESI.BS.EasySave/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WpfApp1/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

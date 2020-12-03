@@ -9,6 +9,7 @@ namespace CESI.BS.EasySave.BS
 {
     public class BSEasySave
     {
+        public ConfSaver.ConfSaver confSaver = new ConfSaver.ConfSaver();
         public List<Save> typeSave { get; set; } = new List<Save>();
         public BSEasySave()
         {
@@ -67,7 +68,7 @@ namespace CESI.BS.EasySave.BS
             {
                 string temp = works[idWork].Name;
                 works.Remove(works[idWork]);
-                ConfSaver.ConfSaver.DeleteFile(temp);
+                confSaver.DeleteFile(temp);
             } catch(Exception e)
             {
                 Console.WriteLine("[-] An error occured, can't delete work: {0}", e);

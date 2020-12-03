@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CESI.BS.EasySave\CESI.BS.EasySave.csproj" />
-    <ProjectReference Include="..\WpfApp1\WpfApp1\CESI.CesiEasySave.ViewWindow.csproj" />
+    <ProjectReference Include="..\WpfApp1\WpfApp1\WpfApp1.csproj" />
   </ItemGroup>
 
 </Project>

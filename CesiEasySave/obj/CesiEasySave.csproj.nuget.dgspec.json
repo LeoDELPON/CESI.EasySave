@@ -85,8 +85,8 @@
               "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
                 "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
               },
-              "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj": {
-                "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj"
+              "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
+                "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj"
               }
             }
           }
@@ -128,12 +128,12 @@
         }
       }
     },
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj": {
+    "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj",
-        "projectName": "CESI.CesiEasySave.ViewWindow",
-        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj",
+        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "projectName": "WpfApp1",
+        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
         "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
         "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",

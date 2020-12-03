@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
-using CESI.CesiEasySave.ViewWindow;
+
 
 namespace CesiEasySave.Controller
 {
@@ -24,7 +24,7 @@ namespace CesiEasySave.Controller
         }
         private void FetchSavesConfs()
         {
-            List<WorkVar> works = GetSavedWorks();
+            List<WorkVar> works = model.confSaver.GetSavedWorks();
             foreach (WorkVar work in works)
             {
                 model.AddWork(work.name, work.source, work.target, model.typeSave[work.typeSave].idTypeSave);
@@ -227,7 +227,7 @@ namespace CesiEasySave.Controller
                 WorkVar workvar = AskDataWork();
                  
                 model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
-                    SaveWork(workvar);
+                    model.confSaver.SaveWork(workvar);
                     Console.WriteLine("[+] Work succesfull add.");
 
                 }
@@ -273,7 +273,7 @@ namespace CesiEasySave.Controller
                                 try
                                 {
                                     int newSaveType = int.Parse(view.AskSaveType(model.typeSave));
-                                    ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newSaveType.ToString());
+                                    model.confSaver.ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newSaveType.ToString());
                                     model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
                                  
                                 }
@@ -295,7 +295,7 @@ namespace CesiEasySave.Controller
                                 try
                                 {
                                     string newField = view.AskStr();
-                                    ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newField);
+                                    model.confSaver.ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newField);
                                     model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
                                
                                 }

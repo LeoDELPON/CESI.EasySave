@@ -7,7 +7,7 @@ using Microsoft.VisualBasic;
 
 namespace CESI.BS.EasySave.BS.ConfSaver
 {
-    public static class ConfSaver
+    public class ConfSaver
     {
         public struct WorkVar
         {
@@ -16,11 +16,11 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             public string target;
             public int typeSave;
         }
-        public static FileStream file;
-        public static string savePath = Environment.CurrentDirectory + @"\saveConf\";
-        public static string extension = ".xml";
+        public FileStream file;
+        public string savePath = Environment.CurrentDirectory + @"\saveConf\";
+        public string extension = ".xml";
         
-        public static void SaveWork(WorkVar workvar)
+        public void SaveWork(WorkVar workvar)
         {
             byte[] header = new UTF8Encoding(true).GetBytes("<? xml version = \"1.0\" encoding = \"UTF-8\" ?>" + Environment.NewLine);
 
@@ -29,7 +29,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
 
         }
 
-        private static void MakeSurePathExist(WorkVar workvar)
+        private void MakeSurePathExist(WorkVar workvar)
         {
             if (!FolderBuilder.CheckFolder(savePath))
             {
@@ -41,14 +41,14 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 sr.Close();
             }
         }
-        private static void MakeSurePathExist()
+        private void MakeSurePathExist()
         {
             if (!FolderBuilder.CheckFolder(savePath))
             {
                 FolderBuilder.CreateFolder(savePath);
             }
         }
-        public static void ModifyFile(string name, int fieldChosen, string newString)
+        public void ModifyFile(string name, int fieldChosen, string newString)
         {
             string nameExt = name + extension;
             if (!File.Exists(savePath + nameExt))
@@ -98,7 +98,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             }
         }
 
-        public static List<WorkVar> GetSavedWorks()
+        public List<WorkVar> GetSavedWorks()
         {
             MakeSurePathExist();
             string[] files = Directory.GetFiles(savePath);
@@ -137,7 +137,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             return listWorkVar;
         }
 
-        internal static void DeleteFile(string name)
+        internal void DeleteFile(string name)
         {
             Console.WriteLine(savePath + name + extension);
             if (FileBuilder.CheckFile(savePath + name + extension))
@@ -149,7 +149,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 Console.WriteLine("[-] There is no work with this name.");
             }
         }
-        private static void WriteFile(WorkVar workvar, byte[] header)
+        private void WriteFile(WorkVar workvar, byte[] header)
         {
             file = File.OpenWrite(savePath + workvar.name + extension);
 
