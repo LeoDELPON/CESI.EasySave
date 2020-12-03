@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CESI.BS.EasySave\CESI.BS.EasySave.csproj" />
+    <ProjectReference Include="..\WpfApp1\WpfApp1\CESI.CesiEasySave.ViewWindow.csproj" />
   </ItemGroup>
 
 </Project>

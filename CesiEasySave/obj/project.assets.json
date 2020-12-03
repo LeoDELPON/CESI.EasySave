@@ -39,6 +39,19 @@
         "runtime": {
           "bin/placeholder/CESI.BS.EasySave.dll": {}
         }
+      },
+      "CESI.CesiEasySave.ViewWindow/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/CESI.CesiEasySave.ViewWindow.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CESI.CesiEasySave.ViewWindow.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -169,11 +182,17 @@
       "type": "project",
       "path": "../CESI.BS.EasySave/CESI.BS.EasySave.csproj",
       "msbuildProject": "../CESI.BS.EasySave/CESI.BS.EasySave.csproj"
+    },
+    "CESI.CesiEasySave.ViewWindow/1.0.0": {
+      "type": "project",
+      "path": "../WpfApp1/WpfApp1/CESI.CesiEasySave.ViewWindow.csproj",
+      "msbuildProject": "../WpfApp1/WpfApp1/CESI.CesiEasySave.ViewWindow.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "CESI.BS.EasySave >= 1.0.0",
+      "CESI.CesiEasySave.ViewWindow >= 1.0.0",
       "System.Runtime >= 4.3.1"
     ]
   },
@@ -206,6 +225,9 @@
           "projectReferences": {
             "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
               "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            },
+            "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj": {
+              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\CESI.CesiEasySave.ViewWindow.csproj"
             }
           }
         }
@@ -238,6 +260,9 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
