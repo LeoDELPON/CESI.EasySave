@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <ListBox Margin="0,40,378,70" Grid.Row="1" Grid.ColumnSpan="3"/>
         <ListBox Margin="332,40,0,70" Grid.Row="1" Grid.Column="2"/>
-        <Label Content="EasySave Program by CESI" HorizontalAlignment="Left" Margin="248,24,0,0" VerticalAlignment="Top" Height="33" Width="160" Grid.RowSpan="2" Grid.Column="2" Name="lbl"/>
+        <Label Content="{DynamicResource Test}" HorizontalAlignment="Left" Margin="248,24,0,0" VerticalAlignment="Top" Height="33" Width="160" Grid.RowSpan="2" Grid.Column="2" Name="lbl"/>
         <Button Content="DELETE WORK" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Click="Button_Click" Height="37" Width="140" Grid.Row="1" Grid.ColumnSpan="3"/>
         <Button Content="ADD WORK TO WORK LIST" HorizontalAlignment="Left" Margin="76,340,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="37" Width="174" Grid.Row="1" Grid.Column="2"/>
         <Button Content="EXECUTE WORK LIST" HorizontalAlignment="Left" Margin="300,324,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="24" Width="178" RenderTransformOrigin="0.588,-0.132" Grid.Row="1" Grid.Column="2"/>

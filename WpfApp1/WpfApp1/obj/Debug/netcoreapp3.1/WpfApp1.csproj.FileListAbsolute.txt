@@ -40,3 +40,6 @@ D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.csproj.CopyComplete
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\App.baml
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\Language\en-US.baml
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\Language\fr-FR.baml

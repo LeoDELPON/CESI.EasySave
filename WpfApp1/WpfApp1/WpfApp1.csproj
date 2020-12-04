@@ -10,4 +10,11 @@
     <ProjectReference Include="..\..\CESI.BS.EasySave\CESI.BS.EasySave.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Language\en-US.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

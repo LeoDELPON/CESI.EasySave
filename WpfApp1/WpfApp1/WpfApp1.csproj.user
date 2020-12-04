@@ -10,6 +10,12 @@
     <Page Update="languageWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Language\en-US.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Language\fr-FR.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
