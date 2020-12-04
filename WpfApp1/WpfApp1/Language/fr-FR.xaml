@@ -3,5 +3,14 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="Culture">fr-FR</system:String>
     <system:String x:Key="Test">Français</system:String>
+    <system:String x:Key="Title">EasySave par CESI</system:String>
+    <system:String x:Key="DeleteWork">SUPPRIMER</system:String>
+    <system:String x:Key="AddWorkToWorkList">AJOUTER LE TRAVAIL A LA LISTE</system:String>
+    <system:String x:Key="ExecuteWorkList">EXECUTER LA LISTE</system:String>
+    <system:String x:Key="Language">Langue</system:String>
+    <system:String x:Key="Abort">Annuler</system:String>
+    <system:String x:Key="Pause">Pause</system:String>
+    <system:String x:Key="Resume">Reprendre</system:String>
+    <system:String x:Key="WorkStatus">Avancement de la sauvegarde</system:String>
 
 </ResourceDictionary>

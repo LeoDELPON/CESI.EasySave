@@ -2,6 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="Culture">en-US</system:String>
-    <system:String x:Key="Test">English</system:String>
+    <system:String x:Key="Name">English</system:String>
+    <system:String x:Key="Title">EasySave by CESI</system:String>
+    <system:String x:Key="DeleteWork">DELETE</system:String>
+    <system:String x:Key="AddWorkToWorkList">ADD WORK TO WORK LIST</system:String>
+    <system:String x:Key="ExecuteWorkList">EXECUTE WORK LIST</system:String>
+    <system:String x:Key="Language">Language</system:String>
+    <system:String x:Key="Abort">Abort</system:String>
+    <system:String x:Key="Pause">Pause</system:String>
+    <system:String x:Key="Resume">Resume</system:String>
+    <system:String x:Key="WorkStatus">Save status</system:String>
+
 
 </ResourceDictionary>
