@@ -72,7 +72,7 @@ namespace WpfApp1
                 wv.target = addWorkWindow.WorkTargetTB.Text;
                 wv.typeSave = addWorkWindow.SaveTypeCB.SelectedIndex;
                 bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name);// ajout du travail
-                WrkElements we = new WrkElements(wv, bs.works.Count - 1, bs);
+                WrkElements we = new WrkElements(wv, bs);
                 PrepareWrkElement(we);
                 confSaver.SaveWork(wv);
 
@@ -113,7 +113,7 @@ namespace WpfApp1
             foreach (ConfSaver.WorkVar work in listWorks)
             {
                
-                WrkElements we = new WrkElements(work, listWorks.IndexOf(work), bs);
+                WrkElements we = new WrkElements(work, bs);
                 PrepareWrkElement(we);
 
                
@@ -191,6 +191,21 @@ namespace WpfApp1
                 if ((bool)we.inSvdList.checkBox.IsChecked && SaveListLbl.Items.Contains(we.inSvdList))
                 {
                     ToWorkList(we);
+                }
+            }
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i< weList.Count(); i++) 
+            {
+                WrkElements we = weList[i];
+                if ((bool)we.inSvdList.checkBox.IsChecked && SaveListLbl.Items.Contains(we.inSvdList))
+                {
+                    bs.DeleteWork(weList.IndexOf(we));
+                    SaveListLbl.Items.Remove(we.inSvdList);
+                    confSaver.DeleteFile(we.wv.name);
+                    weList.Remove(we);
                 }
             }
         }

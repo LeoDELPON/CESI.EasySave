@@ -19,13 +19,12 @@ namespace WpfApp1
     /// </summary>
     public partial class WrkElementInWrkList : UserControl
     {
-        private ConfSaver.WorkVar workVar;
-        BSEasySave BS;
-        public WrkElementInWrkList(ConfSaver.WorkVar workVar, BSEasySave BS)
+        
+
+        public WrkElementInWrkList(ConfSaver.WorkVar workVar,BSEasySave BS)
         {
             InitializeComponent();
-            this.workVar = workVar;
-            this.BS = BS;
+
             workNameLbl.Content = workVar.name;
             workSourceLbl.Content = workVar.source;
             workTargetLbl.Content = workVar.target;

@@ -136,7 +136,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             return listWorkVar;
         }
 
-        internal void DeleteFile(string name)
+        public void DeleteFile(string name)
         {
             Console.WriteLine(savePath + name + extension);
             if (FileBuilder.CheckFile(savePath + name + extension))

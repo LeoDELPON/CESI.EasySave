@@ -8,15 +8,15 @@ namespace WpfApp1
 {
     class WrkElements
     {
-        public int index { get;  }
         public WrkElementInSavedList inSvdList { get; }
         public WrkElementInWrkList inWrkList { get; }
-
-        public WrkElements(ConfSaver.WorkVar workVar, int index, BSEasySave BS)
+        public ConfSaver.WorkVar wv { get; set; }
+        public WrkElements(ConfSaver.WorkVar workVar,  BSEasySave BS)
         {
-            this.index = index;
+
             inSvdList = new WrkElementInSavedList(workVar, BS);
             inWrkList = new WrkElementInWrkList(workVar, BS);
+            wv = workVar;
             
         }
        
