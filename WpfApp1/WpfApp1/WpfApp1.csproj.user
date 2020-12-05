@@ -7,6 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AddWorkWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LanguageSelectionWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WrkElementInSvdList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,7 +21,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="languageWindow.xaml">
+    <Page Update="AddWorkWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LanguageSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Language\en-US.xaml">

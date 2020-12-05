@@ -1,0 +1,32 @@
+﻿<Window x:Class="WpfApp1.AddWorkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="AddWorkWindow" Height="300" Width="200" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel>
+            <Label Name ="coucou" Content="{DynamicResource CreateWork}" HorizontalAlignment="Center"/>       
+            <Label Content="{DynamicResource WorkName}" HorizontalAlignment="Center"/>
+            <TextBox x:Name="WorkNameTB"/>
+            <Label Content="{DynamicResource WorkSource}" HorizontalAlignment="Center"/>
+            <TextBox x:Name="WorkSourceTB"/>
+            <Label Content="{DynamicResource WorkTarget}" HorizontalAlignment="Center"/>
+            <TextBox x:Name="WorkTargetTB"/>
+            <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
+            <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
+                <ComboBoxItem Content="{DynamicResource Dif}" x:Name="dif"/>
+                <ComboBoxItem Content="{DynamicResource Ful}" x:Name="ful" IsSelected="True"/>
+                
+            </ComboBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Center" Width="50" Margin="0,0,5,0" x:Name="CancelBtn" Click="CancelBtn_Click" />
+                <Button Content="{DynamicResource OK}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="OkBtn" Click="OkBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+    
+</Window>

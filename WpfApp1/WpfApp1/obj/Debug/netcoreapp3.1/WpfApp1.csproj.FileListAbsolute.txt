@@ -47,3 +47,5 @@ D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WrkEl
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WrkElementInWrkList.baml
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WrkElementInSvdList.g.cs
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WrkElementInSvdList.baml
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\AddWorkWindow.g.cs
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\AddWorkWindow.baml

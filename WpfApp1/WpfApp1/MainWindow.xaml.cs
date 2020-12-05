@@ -27,6 +27,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        Uri LanguageUri = new Uri(@"\Language\en-US.xaml", UriKind.Relative);
+        AddWorkWindow addWorkWindow = new AddWorkWindow();
         ConfSaver confSaver = new ConfSaver();
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
         ResourceManager rm = new ResourceManager("fr-FR", Assembly.GetExecutingAssembly());
@@ -34,36 +36,71 @@ namespace WpfApp1
         BSEasySave bs = new BSEasySave(); 
         
 
-        public MainWindow()
-        {
+        public MainWindow()        {
+         
             InitializeComponent();
             this.Show();
             listWorks = confSaver.GetSavedWorks();
             addExistingWorksToView();
         }
 
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (FolderBuilder.CheckFolder(addWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(addWorkWindow.WorkTargetTB.Text))
+            {
+                addWorkWindow.Close();
+                ConfSaver.WorkVar wv = new ConfSaver.WorkVar();
+                wv.name = addWorkWindow.WorkNameTB.Text;
+                wv.source = addWorkWindow.WorkSourceTB.Text;
+                wv.target = addWorkWindow.WorkTargetTB.Text;
+                wv.typeSave = addWorkWindow.SaveTypeCB.SelectedIndex;
+                bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name);// ajout du travail
+                WrkElements we = new WrkElements(wv, bs.works.Count - 1, bs);
+                PrepareWrkElement(we);
+                confSaver.SaveWork(wv);
+
+              
+            }
+            else
+            {
+                //error Message
+            }
+        }
+        private void toWorkList_Click(object sender, RoutedEventArgs e, WrkElements we)
+        {
+            
+                SaveListLbl.Items.Remove(we.inSvdList);
+                WorkListLbl.Items.Add(we.inWrkList);
+            
+        }
+        private void toSaveList_Click(object sender, RoutedEventArgs e, WrkElements we)
+        {
+            WorkListLbl.Items.Remove(we.inWrkList);
+            SaveListLbl.Items.Add(we.inSvdList);
+
+        }
+
         private void addExistingWorksToView()
         {
-           foreach(ConfSaver.WorkVar work in listWorks)
+         
+            foreach (ConfSaver.WorkVar work in listWorks)
             {
+               
                 WrkElements we = new WrkElements(work, listWorks.IndexOf(work), bs);
-                we.inSvdList.toWorkList.Click += (sender, e) =>//exporter ces 
-                {
-                    SaveListLbl.Items.Remove(we.inSvdList);
-                    WorkListLbl.Items.Add(we.inWrkList);
-                };
-                we.inWrkList.ToSaveList.Click += (sender, e) =>
-                {
-                    WorkListLbl.Items.Remove(we.inWrkList);
-                    SaveListLbl.Items.Add(we.inSvdList);
+                PrepareWrkElement(we);
 
-                    
-                };
                
 
-                SaveListLbl.Items.Add(we.inSvdList); 
-
             }
+        }
+
+        private void PrepareWrkElement(WrkElements we)
+        {
+        
+            we.inSvdList.toWorkList.Click += (sender, e) => toWorkList_Click(sender, e, we);
+            we.inWrkList.ToSaveList.Click += (sender, e) => toSaveList_Click(sender, e, we);
+            SaveListLbl.Items.Add(we.inSvdList);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -78,14 +115,14 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            ChangeLangage(new Uri(@"\Language\en-US.xaml", UriKind.Relative));
+            LanguageUri = new Uri(@"\Language\en-US.xaml", UriKind.Relative);
+            ChangeLangage(LanguageUri);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-          
-            ChangeLangage(new Uri(@"\Language\fr-FR.xaml", UriKind.Relative));
+            LanguageUri = new Uri(@"\Language\fr-FR.xaml", UriKind.Relative);
+            ChangeLangage(LanguageUri);
         }
         public void ChangeLangage(Uri dictionnaryUri)
         {
@@ -111,8 +148,24 @@ namespace WpfApp1
          
 
         }
-       
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddWorkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!addWorkWindow.IsVisible)
+            {
+                addWorkWindow = new AddWorkWindow(LanguageUri);
+                addWorkWindow.OkBtn.Click += OkBtn_Click;
+                addWorkWindow.Show();
+            }
+            
+            
+        }
+        
     }
 }
 
