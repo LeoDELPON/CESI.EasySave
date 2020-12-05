@@ -133,7 +133,6 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 listWorkVar.Add(workvar);
                 sr.Close();
             }
-
             return listWorkVar;
         }
 

@@ -16,7 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.BS.ConfSaver;
 
 namespace WpfApp1
 {
@@ -26,14 +27,45 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ResourceDictionary obj;
+        ConfSaver confSaver = new ConfSaver();
+        List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
         ResourceManager rm = new ResourceManager("fr-FR", Assembly.GetExecutingAssembly());
+        private ResourceDictionary obj;
+        BSEasySave bs = new BSEasySave(); 
+        
+
         public MainWindow()
         {
             InitializeComponent();
             this.Show();
+            listWorks = confSaver.GetSavedWorks();
+            addExistingWorksToView();
         }
-    
+
+        private void addExistingWorksToView()
+        {
+           foreach(ConfSaver.WorkVar work in listWorks)
+            {
+                WrkElements we = new WrkElements(work, listWorks.IndexOf(work), bs);
+                we.inSvdList.toWorkList.Click += (sender, e) =>//exporter ces 
+                {
+                    SaveListLbl.Items.Remove(we.inSvdList);
+                    WorkListLbl.Items.Add(we.inWrkList);
+                };
+                we.inWrkList.ToSaveList.Click += (sender, e) =>
+                {
+                    WorkListLbl.Items.Remove(we.inWrkList);
+                    SaveListLbl.Items.Add(we.inSvdList);
+
+                    
+                };
+               
+
+                SaveListLbl.Items.Add(we.inSvdList); 
+
+            }
+        }
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -75,7 +107,8 @@ namespace WpfApp1
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+           
+         
 
         }
        

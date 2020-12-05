@@ -94,7 +94,7 @@ namespace CESI.BS.EasySave.BS
         }
         public override string GetNameTypeWork()
         {
-            return Language.GetRequestedString(16);
+            return "Ful";  // don't touch this it's useful
         }
     }
 }

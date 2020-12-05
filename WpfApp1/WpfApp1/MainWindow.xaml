@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="490" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="490" Width="820" ResizeMode="NoResize">
+   
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="58*"/>
             <ColumnDefinition Width="18*"/>
@@ -17,8 +19,9 @@
             <RowDefinition Height="317*"/>
             <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
-        <ListBox Margin="0,40,378,14" Grid.Row="1" Grid.ColumnSpan="3"/>
-        <ListBox Margin="332,40,0,14" Grid.Row="1" Grid.Column="2"/>
+
+        <ListBox Margin="0,40,378,14" Padding="20,0,0,0" Grid.Row="1" Grid.ColumnSpan="3" Name="SaveListLbl" />
+        <ListBox Margin="332,40,0,14" Grid.Row="1" Grid.Column="2" Name ="WorkListLbl"/>
         <Label Content="{DynamicResource Title}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="105,21,0,0" VerticalAlignment="Top" Height="33" Width="445" Grid.RowSpan="2" Grid.Column="2" Name="lbl"/>
         <Button Content="{DynamicResource DeleteWork}" HorizontalAlignment="Right" Margin="0,0,631,51" VerticalAlignment="Bottom" Click="Button_Click" Height="37" Width="140" Grid.Row="2" Grid.ColumnSpan="3"/>
         <Button Content="{DynamicResource AddWorkToWorkList}" HorizontalAlignment="Left" Margin="105,16,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="37" Width="174" Grid.Row="2" Grid.Column="2"/>
@@ -28,6 +31,7 @@
         <Button Content="{DynamicResource Pause}" HorizontalAlignment="Left" Margin="354,35,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="2" Grid.Column="2"/>
         <Button Content="{DynamicResource Resume}" Margin="408,32,232,32" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.53,-2.998"/>
         <Button Content="{DynamicResource Language}" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="56" />
+       
         <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="297,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2"/>
 
 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -143,7 +144,7 @@ namespace CESI.BS.EasySave.BS
 
         public override string GetNameTypeWork()
         {
-            return Language.GetRequestedString(15);
+            return "Dif"; // don't touch this it's useful
         }
     }
 }

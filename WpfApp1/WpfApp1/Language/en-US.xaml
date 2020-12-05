@@ -12,6 +12,8 @@
     <system:String x:Key="Pause">Pause</system:String>
     <system:String x:Key="Resume">Resume</system:String>
     <system:String x:Key="WorkStatus">Save status</system:String>
+    <system:String x:Key="Dif">Differential</system:String>
+    <system:String x:Key="Ful">Full</system:String>
 
 
 </ResourceDictionary>
