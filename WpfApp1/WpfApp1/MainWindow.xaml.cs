@@ -39,17 +39,19 @@ namespace WpfApp1
         public MainWindow()        {
          
             InitializeComponent();
+            addWorkWindow.OkBtn.Click += OkBtn_Click;
             Closing += MainWindow_Closing;
             this.Show();
             listWorks = confSaver.GetSavedWorks();
             addExistingWorksToView();
             ChangeLangage(languageSelectionWindow.getLanguagePath());
-            languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click1;
+            languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
         }
 
-        private void LanguageOkBtn_Click1(object sender, RoutedEventArgs e)
+        private void LanguageOkBtn_Click(object sender, RoutedEventArgs e)
         {
             ChangeLangage(languageSelectionWindow.getLanguagePath());
+            addWorkWindow.ChangeLangage(languageSelectionWindow.getLanguagePath());
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -62,7 +64,7 @@ namespace WpfApp1
 
             if (FolderBuilder.CheckFolder(addWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(addWorkWindow.WorkTargetTB.Text))
             {
-                addWorkWindow.Close();
+                addWorkWindow.Hide();
                 ConfSaver.WorkVar wv = new ConfSaver.WorkVar();
                 wv.name = addWorkWindow.WorkNameTB.Text;
                 wv.source = addWorkWindow.WorkSourceTB.Text;
@@ -167,12 +169,9 @@ namespace WpfApp1
 
         private void AddWorkBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!addWorkWindow.IsVisible)
-            {
-                addWorkWindow = new AddWorkWindow(languageSelectionWindow.getLanguagePath());
-                addWorkWindow.OkBtn.Click += OkBtn_Click;
+            
                 addWorkWindow.Show();
-            }
+          
 
 
         }

@@ -27,15 +27,23 @@ namespace WpfApp1
         {
 
             InitializeComponent();
-
+            Closing += AddWorkWindow_Closing;
             ChangeLangage(dictionnaryUri);
 
 
         }
+
+        private void AddWorkWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+        }
+
         public AddWorkWindow()
         {
 
             InitializeComponent();
+            Closing += AddWorkWindow_Closing;
 
         }
         public void ChangeLangage(Uri dictionnaryUri)
@@ -65,7 +73,7 @@ namespace WpfApp1
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }
