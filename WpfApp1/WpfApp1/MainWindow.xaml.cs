@@ -32,6 +32,7 @@ namespace WpfApp1
         AddWorkWindow addWorkWindow = new AddWorkWindow();
         ConfSaver confSaver = new ConfSaver();
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
+        List<WrkElements> weList = new List<WrkElements>(); 
         private ResourceDictionary obj;
         BSEasySave bs = new BSEasySave(); 
         
@@ -84,16 +85,26 @@ namespace WpfApp1
         }
         private void toWorkList_Click(object sender, RoutedEventArgs e, WrkElements we)
         {
-            
-                SaveListLbl.Items.Remove(we.inSvdList);
-                WorkListLbl.Items.Add(we.inWrkList);
-            
+            ToWorkList(we);
+
         }
+
+        private void ToWorkList(WrkElements we)
+        {
+            SaveListLbl.Items.Remove(we.inSvdList);
+            WorkListLbl.Items.Add(we.inWrkList);
+        }
+
         private void toSaveList_Click(object sender, RoutedEventArgs e, WrkElements we)
+        {
+            ToSaveList(we);
+
+        }
+
+        private void ToSaveList(WrkElements we)
         {
             WorkListLbl.Items.Remove(we.inWrkList);
             SaveListLbl.Items.Add(we.inSvdList);
-
         }
 
         private void addExistingWorksToView()
@@ -116,6 +127,7 @@ namespace WpfApp1
             we.inSvdList.toWorkList.Click += (sender, e) => toWorkList_Click(sender, e, we);
             we.inWrkList.ToSaveList.Click += (sender, e) => toSaveList_Click(sender, e, we);
             SaveListLbl.Items.Add(we.inSvdList);
+            weList.Add(we);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -128,15 +140,6 @@ namespace WpfApp1
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-         
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-     
-        }
         public void ChangeLangage(Uri dictionnaryUri)
         {
             if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
@@ -179,6 +182,17 @@ namespace WpfApp1
         private void languageBtn_Click(object sender, RoutedEventArgs e)
         {
             languageSelectionWindow.Show();
+        }
+
+        private void MultipleAddBtn(object sender, RoutedEventArgs e)
+        {
+            foreach (WrkElements we in weList)
+            {
+                if ((bool)we.inSvdList.checkBox.IsChecked && SaveListLbl.Items.Contains(we.inSvdList))
+                {
+                    ToWorkList(we);
+                }
+            }
         }
     }
 }
