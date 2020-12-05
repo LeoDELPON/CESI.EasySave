@@ -24,5 +24,7 @@
     <system:String x:Key="WorkSource">Source path</system:String>
     <system:String x:Key="WorkTarget">Target Path</system:String>
     <system:String x:Key="WorkSaveType">Save Type</system:String>
+    <!--SelectLanguageWindow-->
+    <system:String x:Key="SelectLanguage">Select the language</system:String>
 
 </ResourceDictionary>

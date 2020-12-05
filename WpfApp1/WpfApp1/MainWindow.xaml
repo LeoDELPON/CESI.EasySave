@@ -30,7 +30,7 @@
         <Label Content="{DynamicResource WorkStatus}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="497,0,0,62" VerticalAlignment="Bottom" RenderTransformOrigin="0.361,0.696" Grid.Row="2" Grid.Column="2" Height="26" Width="217"/>
         <Button Content="{DynamicResource Pause}" HorizontalAlignment="Left" Margin="354,35,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="2" Grid.Column="2"/>
         <Button Content="{DynamicResource Resume}" Margin="408,32,232,32" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.53,-2.998"/>
-        <Button Content="{DynamicResource Language}" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="56" />
+        <Button Content="{DynamicResource Language}" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="56" Click="languageBtn_Click" />
 
         <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="297,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2"/>
         <Button Content="+" Name="AddWorkBtn"  HorizontalAlignment="Center" Margin="0,18,0,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Width="39" Click="AddWorkBtn_Click"/>

@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="LanguageSelectionWindow" Height="100" Width="200" ResizeMode="NoResize">
+        Title="LanguageSelectionWindow" Height="150" Width="200" ResizeMode="NoResize">
     <Grid>
         <StackPanel>
             <Label Name ="coucou" Content="{DynamicResource SelectLanguage}" HorizontalAlignment="Center"/>
             
-            <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
-                <ComboBoxItem Content="Français" IsSelected="true" />
-                <ComboBoxItem Content="English" />
+            <ComboBox HorizontalContentAlignment="center" x:Name="LanguageCB">
+                
 
             </ComboBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Center" Width="50" Margin="0,0,5,0" x:Name="CancelBtn" Click="CancelBtn_Click" />
                 <Button Content="{DynamicResource OK}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="OkBtn" Click="OkBtn_Click"/>
             </StackPanel>
         </StackPanel>

@@ -27,11 +27,11 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        Uri LanguageUri = new Uri(@"\Language\en-US.xaml", UriKind.Relative);
+     
+        LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
         AddWorkWindow addWorkWindow = new AddWorkWindow();
         ConfSaver confSaver = new ConfSaver();
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
-        ResourceManager rm = new ResourceManager("fr-FR", Assembly.GetExecutingAssembly());
         private ResourceDictionary obj;
         BSEasySave bs = new BSEasySave(); 
         
@@ -39,9 +39,22 @@ namespace WpfApp1
         public MainWindow()        {
          
             InitializeComponent();
+            Closing += MainWindow_Closing;
             this.Show();
             listWorks = confSaver.GetSavedWorks();
             addExistingWorksToView();
+            ChangeLangage(languageSelectionWindow.getLanguagePath());
+            languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click1;
+        }
+
+        private void LanguageOkBtn_Click1(object sender, RoutedEventArgs e)
+        {
+            ChangeLangage(languageSelectionWindow.getLanguagePath());
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();//we will have to manage running work
         }
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
@@ -115,14 +128,12 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LanguageUri = new Uri(@"\Language\en-US.xaml", UriKind.Relative);
-            ChangeLangage(LanguageUri);
+         
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            LanguageUri = new Uri(@"\Language\fr-FR.xaml", UriKind.Relative);
-            ChangeLangage(LanguageUri);
+     
         }
         public void ChangeLangage(Uri dictionnaryUri)
         {
@@ -158,14 +169,18 @@ namespace WpfApp1
         {
             if (!addWorkWindow.IsVisible)
             {
-                addWorkWindow = new AddWorkWindow(LanguageUri);
+                addWorkWindow = new AddWorkWindow(languageSelectionWindow.getLanguagePath());
                 addWorkWindow.OkBtn.Click += OkBtn_Click;
                 addWorkWindow.Show();
             }
-            
-            
+
+
         }
-        
+
+        private void languageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            languageSelectionWindow.Show();
+        }
     }
 }
 
