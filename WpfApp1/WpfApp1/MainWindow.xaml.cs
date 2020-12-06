@@ -165,7 +165,7 @@ namespace WpfApp1
         private void PrepareWrkElement(WrkElements we)
         {
         
-            we.inSvdList.toWorkList.Click += (sender, e) => ToWorkList_Click(sender, e, we);
+            we.inSvdList.ToWorkList.Click += (sender, e) => ToWorkList_Click(sender, e, we);
             we.inWrkList.ToSaveList.Click += (sender, e) => ToSaveList_Click(sender, e, we);
             we.inWrkList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
@@ -209,6 +209,10 @@ namespace WpfApp1
 
         public void launchWorkList()
         {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                launchWorkBtn.IsEnabled = false;
+            });
 
             foreach (WrkElements we in weList)
             {
@@ -216,23 +220,57 @@ namespace WpfApp1
                 {
                   
                 
-                we.inWrkList.workProgressBar.Value = 0; //reset progress Bar
+                we.inWrkList.workProgressBar.Value = 0; //reset progress Bar             
+            
+                we.inSvdList.ToWorkList.IsEnabled = false; //disable clicks
+                    if (WorkListLbl.Items.Contains(we.inWrkList))
+                    {
+                        we.inWrkList.IsEnabled = false;
+                    }
+
                 });
             }
+          
             foreach (WrkElements we in weList)
             {
+                int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
+                   
+                   
                    
                     bs.works[weList.IndexOf(we)]._saveType.handler.Subscribe(we.inWrkList);
                     bs.works[weList.IndexOf(we)].Perform();
                     bs.works[weList.IndexOf(we)]._saveType.handler.Unsubscribe(we.inWrkList);
+                    
+                   
                 }
             }
+            foreach (WrkElements we in weList)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+         
+                    we.inSvdList.ToWorkList.IsEnabled = true;//enable clicks
+                    if (WorkListLbl.Items.Contains(we.inWrkList))
+                    {
+                        we.inWrkList.IsEnabled = true;
+                    }
+
+                });
+            }
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+           
+                launchWorkBtn.IsEnabled = true;
+            });
         }
         private void launchWorksButton(object sender, RoutedEventArgs e)            
         {
+            
             Thread worksThreads = new Thread(launchWorkList);
+
             worksThreads.Start();
             
         }

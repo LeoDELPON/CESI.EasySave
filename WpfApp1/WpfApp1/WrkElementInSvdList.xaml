@@ -17,7 +17,7 @@
             <Label Content="label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="51" />
         </StackPanel>
 
-        <Button Content="->" VerticalAlignment="Center" Background="Green" Width="23" Margin=" 10px" Name ="toWorkList" />
+        <Button Content="->" VerticalAlignment="Center" Background="Green" Width="23" Margin=" 10px" Name ="ToWorkList" />
 
 
     </StackPanel>
