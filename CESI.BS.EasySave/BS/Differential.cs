@@ -109,7 +109,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
+                    handler.OnNext(propertiesWork);
                 }
                 handler.OnStop(true);
                 return returnInfo;
