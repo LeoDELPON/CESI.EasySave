@@ -22,7 +22,7 @@ namespace CESI.BS.EasySave.BS.Factory
             );
         }
 
-        public override Save CreateSaveObject(string _saveType, string prop, IList<string> extensions, string key)
+        public override Save CreateSaveObject(string _saveType, string prop, List<string> extensions, string key)
         {
             Save _save;
             switch(_saveType.GetSaveTypeFromString())

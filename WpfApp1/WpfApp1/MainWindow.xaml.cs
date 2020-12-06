@@ -133,7 +133,7 @@ namespace WpfApp1
                     wv.key = addWorkWindow.key;
                     wv.extension = addWorkWindow.extention;
                 }
-                bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name);// ajout du travail
+                //bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name);// ajout du travail
                 WrkElements we = new WrkElements(wv, bs);
                 
             

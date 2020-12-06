@@ -50,7 +50,7 @@ namespace CesiEasySave.Controller
             List<WorkVar> works = model.confSaver.GetSavedWorks();
             foreach (WorkVar work in works)
             {
-                model.AddWork(work.name, work.source, work.target, model.typeSave[work.typeSave].idTypeSave);
+                //model.AddWork(work.name, work.source, work.target, model.typeSave[work.typeSave].idTypeSave);
             }
         }
         private void ProgramLoop()
@@ -249,7 +249,7 @@ namespace CesiEasySave.Controller
                 {
                 WorkVar workvar = AskDataWork();
                  
-                model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
+               // model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
                     model.confSaver.SaveWork(workvar);
                     Console.WriteLine("[+] Work succesfull add.");
 

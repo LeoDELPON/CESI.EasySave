@@ -76,7 +76,6 @@ namespace CESI.BS.EasySave.BS
             }
             try
             {
-                double temp = 0;
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
@@ -86,11 +85,7 @@ namespace CESI.BS.EasySave.BS
                         if (ext == GetExtension(file.Name))
                         {
                             string arguments = _key + " " + file.FullName;
-                            Stopwatch stopW2 = new Stopwatch();
-                            stopW2.Start();
                             string dataEncrypted = RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
-                            stopW2.Stop();
-                            temp += stopW2.ElapsedMilliseconds;
                             tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
                         }
                         File.WriteAllBytes(Path.Combine(fullSaveDirectory.FullName, file.Name), tmpByte);
@@ -99,8 +94,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    propertiesWork[WorkProperties.EncryptDuration] = temp;
-                    handler.OnNext(propertiesWork);
+                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
 
                 foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())

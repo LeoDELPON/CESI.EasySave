@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
 using System.Threading;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -77,7 +76,6 @@ namespace CESI.BS.EasySave.BS
                 handler = DataHandler.Instance;
                 handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, WorkName, directoryToSaveName, DiffBackupPath);
                 int i = 0;
-                double temp = 0;
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, FolderToSave);
@@ -85,7 +83,6 @@ namespace CESI.BS.EasySave.BS
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);
                     try
                     {
-                        
                         if (!FolderBuilder.CheckFolder(pathTest))
                         {
                             FolderBuilder.CreateFolder(pathTest);
@@ -96,11 +93,7 @@ namespace CESI.BS.EasySave.BS
                             if (ext == GetExtension(file.Name))
                             {
                                 string args = _key = " " + file.FullName;
-                                Stopwatch stopW2 = new Stopwatch();
-                                stopW2.Start();
                                 string dataEncrypted = RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
-                                stopW2.Stop();
-                                temp += stopW2.ElapsedMilliseconds;
                                 tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
                             }
                             File.WriteAllBytes(Path.Combine(pathTest, file.Name), tmpByte);
@@ -116,8 +109,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    propertiesWork[WorkProperties.EncryptDuration] = temp;
-                    handler.OnNext(propertiesWork);
+                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
                 handler.OnStop(true);
                 return returnInfo;
