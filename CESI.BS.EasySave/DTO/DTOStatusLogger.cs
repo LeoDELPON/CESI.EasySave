@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CESI.BS.EasySave.DTO
 {
-    class DTOStatusLogger
+    public class DTOStatusLogger
     {
 
         public string Name { get; set; }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CESI.BS.EasySave.DTO
 {
-    class DTOLogger
+    public class DTOLogger
     {
 
         public DateTime Date { get; set; }
