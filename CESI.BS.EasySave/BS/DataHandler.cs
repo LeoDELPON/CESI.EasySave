@@ -77,11 +77,12 @@ namespace CESI.BS.EasySave.BS
             StatusLogger.GenerateStatusLog(Dictionary);
         }
 
-        public void OnNext(object remainingFiles, object remainingSize)
+        public void OnNext(Dictionary<WorkProperties, object> newDictionary)
         {
-            dictionary[WorkProperties.RemainingSize] = remainingSize;
-            dictionary[WorkProperties.RemainingFiles] = remainingFiles;
-            ComputeProgress(remainingSize);
+            dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
+            dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
+            ComputeProgress((double)newDictionary[WorkProperties.RemainingSize]);
+            Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
         }
 
