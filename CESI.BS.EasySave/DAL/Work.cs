@@ -11,9 +11,6 @@ namespace CESI.BS.EasySave.DAL
     public class Work
     {
         public Save _saveType { get; set; }
-        private long remainingSize;
-        private string filepath = Environment.CurrentDirectory + @"\savesConf\";
-
         public Guid Id { get; private set; }
         public WorkState State { get; set; }
         public string Name { get; set; }

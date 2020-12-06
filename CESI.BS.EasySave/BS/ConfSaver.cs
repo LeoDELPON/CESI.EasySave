@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace CESI.BS.EasySave.BS.ConfSaver
 {
@@ -61,32 +62,40 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             {
                 case 1:
                     strFieldChoosen = "<name>";
-                    strFieldChoosenEnd = "<\\name>";
+                    strFieldChoosenEnd = @"</name>";
                     break;
                 case 2:
                     strFieldChoosen = "<source>";
-                    strFieldChoosenEnd = "<\\source>";
+                    strFieldChoosenEnd = "</source>";
                     break;
                 case 3:
                     strFieldChoosen = "<target>";
-                    strFieldChoosenEnd = "<\\targer>";
+                    strFieldChoosenEnd = "</target>";
                     break;
                 case 4:
                     strFieldChoosen = "<typeSave>";
-                    strFieldChoosenEnd = "<\\typesave>";
+                    strFieldChoosenEnd = "</typeSave>";
                     break;
                 default:
                     strFieldChoosen = "<name>";
-                    strFieldChoosenEnd = "<\\name>";
+                    strFieldChoosenEnd = "</name>";
                     break;
             }
             string text = File.ReadAllText(savePath + nameExt);
-            Match mtch = Regex.Match(text, strFieldChoosen + ".+?"+ strFieldChoosenEnd);
+            string testMatch = strFieldChoosen + Environment.NewLine + "(.*)" + Environment.NewLine + strFieldChoosenEnd + ".*";
+            
+
+               Match mtch = Regex.Match(text, strFieldChoosen + Environment.NewLine + "(.*)" + Environment.NewLine + strFieldChoosenEnd + ".*");
+            string value = mtch.Value;
             if (mtch.Success)
             {
 
-                text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd + Environment.NewLine);
-                File.WriteAllText("test.txt", text);
+                text=text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd);
+                File.WriteAllText(savePath + nameExt, text);
+                if (fieldChosen == 1)
+                {
+                    FileSystem.Rename(savePath + nameExt, savePath + newString + extension);
+                }
             }
         }
 
@@ -123,10 +132,23 @@ namespace CESI.BS.EasySave.BS.ConfSaver
 
                 }
                 listWorkVar.Add(workvar);
-                
+                sr.Close();
             }
 
             return listWorkVar;
+        }
+
+        internal static void DeleteFile(string name)
+        {
+            Console.WriteLine(savePath + name + extension);
+            if (FileBuilder.CheckFile(savePath + name + extension))
+            {
+                FileBuilder.DeleteFile(savePath + name + extension);
+            }
+            else
+            {
+                Console.WriteLine("[-] There is no work with this name.");
+            }
         }
         private static void WriteFile(WorkVar workvar, byte[] header)
         {
@@ -135,16 +157,16 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             file.Write(header);
             file.Write(new UTF8Encoding(true).GetBytes("<name>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.name + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes(@"<\name>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"</name>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes("<source>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.source + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes(@"<\source>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"</source>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes("<target>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.target + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes(@"<\target>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"</target>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes("<typeSave>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.typeSave + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes(@"<\typeSave>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"</typeSave>" + Environment.NewLine));
             file.Close();
         }
 

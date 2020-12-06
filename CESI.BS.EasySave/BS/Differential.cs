@@ -33,7 +33,6 @@ namespace CESI.BS.EasySave.BS
             if (!Directory.Exists(sourceFolder))
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceFolder);
-
             string directoryToSaveName = new DirectoryInfo(sourceFolder).Name;
             FullBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "FullSaves";
             DiffBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "DiffSaves";
@@ -49,12 +48,13 @@ namespace CESI.BS.EasySave.BS
                     Console.WriteLine("[+] Warning, Full Save not created, Full Save in creating");
                     DiffBackupPath = FullBackupPath;
                 }
-                DateTime durationStart = DateTime.Now;
-
-                propertiesWork[WorkProperties.Date] = durationStart;
-                DiffBackupPath = DiffBackupPath + "\\" + durationStart.ToString("dd_MM_yyyy");
+                else
+                {
+                    DiffBackupPath = DiffBackupPath + "\\" + DateTime.Now.ToString("dd_MM_yyyy");
+                }
+                
+                propertiesWork[WorkProperties.Date] = DateTime.Now.ToString("dd_MM_yyyy");
                 FolderBuilder.CreateFolder(DiffBackupPath);
-
 
                 DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
                 DirectoryInfo directoryFullSave = new DirectoryInfo(FullBackupPath);
@@ -97,10 +97,8 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
                     handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
                 }
-
                 handler.OnStop(true);
                 return returnInfo;
-
             }
             catch (Exception e)
             {
@@ -113,7 +111,6 @@ namespace CESI.BS.EasySave.BS
 
         public long GetDirectorySize(string p)
         {
-
             string[] a = Directory.GetFiles(p, "*.*");
             long b = 0;
             foreach (string name in a)
@@ -122,8 +119,6 @@ namespace CESI.BS.EasySave.BS
                 b += info.Length;
             }
             return b;
-
-
         }
 
         private IEnumerable<FileInfo> GetFilesFromFolderBis(DirectoryInfo dir)

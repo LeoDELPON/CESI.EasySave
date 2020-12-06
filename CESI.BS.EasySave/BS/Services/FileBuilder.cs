@@ -20,7 +20,27 @@ namespace CESI.BS.EasySave.BS
             }
         }     
 
+        public static void DeleteFile(string path)
+        {
+            try
+            {
+                File.Delete(path);
+            }
+            catch (UnauthorizedAccessException error)
+            {
+                Console.WriteLine("[-] there is no file with this name : {0}", error); ;
+            }
+            
+        }
 
-        
+        public static bool CheckFile(string requestedPath)
+        {
+            if (File.Exists(requestedPath))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
