@@ -84,7 +84,8 @@ namespace CESI.BS.EasySave.BS
                         byte[] tmpByte = File.ReadAllBytes(file.Name);
                         if (ext == GetExtension(file.Name))
                         {
-                            string dataEncrypted = RunProcess("CESI.Cryptosoft.EasySave.Project.exe", "cle fullpath");
+                            string arguments = _key + " " + file.FullName;
+                            string dataEncrypted = RunProcess("CESI.Cryptosoft.EasySave.Project.exe", arguments);
                             tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
                         }
                         File.WriteAllBytes(Path.Combine(fullSaveDirectory.FullName, file.Name), tmpByte);
