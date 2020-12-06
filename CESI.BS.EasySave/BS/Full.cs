@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
+using System.Diagnostics;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -13,15 +14,18 @@ namespace CESI.BS.EasySave.BS
     {
 
         long folderSize;
-
-
+        public IList<string> _extension;
         public string workName;
-        public Full(string props) : base()
+        public string _key;
+
+        public Full(string props, IList<string> extensions, string key) : base()
         {
-        idTypeSave ="ful";
+            idTypeSave ="ful";
             handler = DataHandler.Instance;
-        TypeSave = SaveType.FULL;
+            TypeSave = SaveType.FULL;
             workName = props;
+            _extension = extensions;
+            _key = key;
         }
 
         public override int SaveProcess(string sourceD, string destD)
@@ -46,9 +50,6 @@ namespace CESI.BS.EasySave.BS
 
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool recursive)
         {
-
-
-
             DirectoryInfo fullSaveDirectory;
             if (!FolderBuilder.CheckFolder(target.ToString()))
             {
@@ -78,8 +79,17 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
-                    
-                    file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
+                    foreach (string ext in _extension)
+                    {
+                        byte[] tmpByte = File.ReadAllBytes(file.Name);
+                        if (ext == GetExtension(file.Name))
+                        {
+                            string dataEncrypted = RunProcess("CESI.Cryptosoft.EasySave.Project.exe", "cle fullpath");
+                            tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
+                        }
+                        File.WriteAllBytes(Path.Combine(fullSaveDirectory.FullName, file.Name), tmpByte);
+                    }
+                    //file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
