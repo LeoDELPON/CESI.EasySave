@@ -9,18 +9,18 @@
     <StackPanel >
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="386" >
       
-        <Button Content="&lt;-" VerticalAlignment="Center" Background="Red" Width="23" Margin=" 10px" Name ="ToSaveList" />
-        <StackPanel Orientation="Horizontal" Background="CadetBlue" Margin="0" Width="331"  >
+        <Button Content="&lt;-" VerticalAlignment="Center" Background="Red" Width="23" Margin=" 10px" Name ="ToSaveList" BorderThickness="0"/>
+        <StackPanel Orientation="Horizontal" Background="CadetBlue" Margin="0" Width="342"  >
 
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workNameLbl" Width="62" />
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workSourceLbl" Width="110" />
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="104" />
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="51" />
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workNameLbl" Width="62" FontFamily="Segoe UI Semilight" Foreground="White"/>
+                <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workSourceLbl" Width="110" FontFamily="Segoe UI Semilight" Foreground="White"/>
+                <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="104" FontFamily="Segoe UI Semilight" Foreground="White"/>
+                <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="65" FontFamily="Segoe UI Semilight" Foreground="White"/>
         </StackPanel>
         </StackPanel>
 
 
-<ProgressBar Height="7" Name="workProgressBar"/>
+<ProgressBar Height="7" Name="workProgressBar" BorderThickness="0"/>
     </StackPanel>
     
 

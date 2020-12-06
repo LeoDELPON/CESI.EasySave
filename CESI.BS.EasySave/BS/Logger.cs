@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.Json;
+using CESI.BS.EasySave.BS.Factory;
 using CESI.BS.EasySave.DAL;
 
 namespace CESI.BS.EasySave.BS
@@ -16,23 +18,21 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary) 
         {
+            string json = "";
+            json = JsonSerializer.Serialize(new WorkFactory().CreateDtoLogger(dictionary));
             if (!FolderBuilder.CheckFolder(LogFilePath))
             {
                 FolderBuilder.CreateFolder(LogFilePath);
             }
             if (!File.Exists(LogFullName))
             {
-                System.IO.File.WriteAllText(LogFullName, LogInfoString);
+                File.WriteAllText(LogFullName, json);
             }
             StreamWriter file = File.AppendText(LogFullName);
-            file.WriteLine(@"> " + dictionary[WorkProperties.Date] + " | "
-                                 + dictionary[WorkProperties.Name] + " | "
-                                 + dictionary[WorkProperties.Source] + " | "
-                                 + dictionary[WorkProperties.Target] + " | "
-                                 + dictionary[WorkProperties.Size] + " bytes | "
-                                 + dictionary[WorkProperties.Duration] + " ms" + "\n\n");
+            file.WriteLine(json);
             file.Close();
         }
+
         private static string LogFilePath => logFilePath;
         private static string LogFileExtension => logFileExtension;
         private static string LogFullName => logFullName;

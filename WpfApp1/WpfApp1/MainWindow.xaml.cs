@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -29,10 +30,11 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-     
+        ProcessusChoosing processusChoosing = new ProcessusChoosing(Process.GetProcesses());
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
         
         AddWorkWindow addWorkWindow = new AddWorkWindow();
+        List<string> forbProc = new List<string>();
         
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
         List<WrkElements> weList = new List<WrkElements>(); 
@@ -55,7 +57,20 @@ namespace WpfApp1
             addExistingWorksToView();
             ChangeLangage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
+            processusChoosing.OkBtn.Click += pcOkBtn;
+        }
 
+        private void pcOkBtn(object sender, RoutedEventArgs e)
+        {
+            processusChoosing.Hide();
+            forbProc.Clear();
+            foreach(ComboBox cb in processusChoosing.ListCB.Items)
+            {
+                if (cb.SelectedIndex > -1)
+                {
+                    forbProc.Add(cb.SelectedItem.ToString());
+                }
+            }
         }
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
@@ -135,12 +150,13 @@ namespace WpfApp1
         private void ToWorkList_Click(object sender, RoutedEventArgs e, WrkElements we)
         {
             ToWorkList(we);
-
+            
         }
 
         private void ToWorkList(WrkElements we)
         {
             SaveListLbl.Items.Remove(we.inSvdList);
+            we.inWrkList.workProgressBar.Value = 0;
             WorkListLbl.Items.Add(we.inWrkList);
         }
 
@@ -173,7 +189,7 @@ namespace WpfApp1
         private void PrepareWrkElement(WrkElements we)
         {
         
-            we.inSvdList.toWorkList.Click += (sender, e) => ToWorkList_Click(sender, e, we);
+            we.inSvdList.ToWorkList.Click += (sender, e) => ToWorkList_Click(sender, e, we);
             we.inWrkList.ToSaveList.Click += (sender, e) => ToSaveList_Click(sender, e, we);
             we.inWrkList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
@@ -186,15 +202,9 @@ namespace WpfApp1
 
       
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
-        }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+  
 
         public void ChangeLangage(Uri dictionnaryUri)
         {
@@ -216,24 +226,87 @@ namespace WpfApp1
                 }
             }
         }
-
+       
         public void launchWorkList()
         {
-            
-
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                launchWorkBtn.IsEnabled = false;
+            });
 
             foreach (WrkElements we in weList)
             {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                  
+                
+                we.inWrkList.workProgressBar.Value = 0; //reset progress Bar             
+            
+                we.inSvdList.ToWorkList.IsEnabled = false; //disable clicks
+                    if (WorkListLbl.Items.Contains(we.inWrkList))
+                    {
+                        we.inWrkList.IsEnabled = false;
+                    }
+
+                });
+            }
+          
+            foreach (WrkElements we in weList)
+            {
+                int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
+                   
+                   
+                   
+                    bs.works[weList.IndexOf(we)]._saveType.handler.Subscribe(we.inWrkList);
                     bs.works[weList.IndexOf(we)].Perform();
+                    bs.works[weList.IndexOf(we)]._saveType.handler.Unsubscribe(we.inWrkList);
+                    
+                   
                 }
             }
+            foreach (WrkElements we in weList)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+         
+                    we.inSvdList.ToWorkList.IsEnabled = true;//enable clicks
+                    if (WorkListLbl.Items.Contains(we.inWrkList))
+                    {
+                        we.inWrkList.IsEnabled = true;
+                    }
+
+                });
+            }
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+           
+                launchWorkBtn.IsEnabled = true;
+            });
         }
-        private void launchWorksButton(object sender, RoutedEventArgs e)            
+        private void launchWorksButton(object sender, RoutedEventArgs e)
         {
+            Process[] aProc;
+           
             Thread worksThreads = new Thread(launchWorkList);
-            worksThreads.Start();
+            if (forbProc.Count == 0)
+            {
+                worksThreads.Start();
+            }
+            else
+            {
+                foreach(string name in forbProc)
+                {
+                    aProc = Process.GetProcessesByName(name);
+                   if (aProc.Length > 0) { 
+                        return;
+
+                    }
+                }
+                worksThreads.Start();
+            }
             
         }
         
@@ -277,6 +350,13 @@ namespace WpfApp1
                 }
             }
         }
+
+        private void CriticalProcessesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            processusChoosing.Show();
+        }
+
+
     }
 }
 

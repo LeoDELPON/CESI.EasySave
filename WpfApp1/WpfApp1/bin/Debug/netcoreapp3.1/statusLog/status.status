@@ -1,4 +1,4 @@
 The log are writen following this pattern:
 > date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
 
-> 14:28:54 | marinelepen | Not Running | 3 | 0 | Error | Error | Error | full | tets
+> 23:14:13 | truc | Not Running | 256 | 4353144546 | Error | Error | Error | dessins | diff

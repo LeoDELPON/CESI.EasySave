@@ -104,3 +104,6 @@ C:\Users\Kylian\Source\Repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.csproj.CopyComplete
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.dll
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CesiEasySave\obj\Debug\netcoreapp3.1\CesiEasySave.pdb
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\bin\Debug\netcoreapp3.1\WpfApp1.exe
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\bin\Debug\netcoreapp3.1\WpfApp1.dll
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CesiEasySave\bin\Debug\netcoreapp3.1\WpfApp1.pdb

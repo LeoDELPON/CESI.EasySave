@@ -30,7 +30,6 @@ namespace CESI.BS.EasySave.DAL
             Name = name;
             Source = source;
             Target = destination;
-
         }
 
         public void Perform()

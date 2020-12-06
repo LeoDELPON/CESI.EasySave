@@ -1,6 +1,7 @@
 ﻿using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Security;
 using System.Text;
@@ -13,7 +14,7 @@ namespace CESI.BS.EasySave.BS
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
         public string idTypeSave { get; set; }
-
+        public DataHandler handler;
         public static int SUCCESS_OPERATION = 0;
         public static int ERROR_OPERATION = 1;
         public static int IN_PROGRESS = 2;
@@ -60,13 +61,9 @@ namespace CESI.BS.EasySave.BS
             string[] pathFile = path.Split('.');
             return pathFile[pathFile.Length - 1];
         }
+
         public abstract string GetNameTypeWork();
 
-      
-        
-      
-      
-      
         protected long GetFolderSize(string path)
         {
             long size = 0;
@@ -77,6 +74,18 @@ namespace CESI.BS.EasySave.BS
                 size += info.Length;
             }
             return size;
+        }
+
+        public string RunProcess(string processName, string arguments)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = processName;
+            process.StartInfo.Arguments = arguments;
+            process.Start();
+            process.WaitForExit();
+            using StreamReader reader = process.StandardOutput;
+            string data = reader.ReadToEnd();
+            return data;
         }
     }
 }

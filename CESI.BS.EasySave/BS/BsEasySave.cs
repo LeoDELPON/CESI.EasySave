@@ -14,8 +14,8 @@ namespace CESI.BS.EasySave.BS
         public BSEasySave()
         {
 
-            typeSave.Add(new WorkFactory().CreateSaveObject("dif",""));
-            typeSave.Add(new WorkFactory().CreateSaveObject("ful",""));
+            typeSave.Add(new WorkFactory().CreateSaveObject("dif","", null, ""));
+            typeSave.Add(new WorkFactory().CreateSaveObject("ful","", null, ""));
         }
 
         public List<Work> works = new List<Work>();
@@ -25,14 +25,16 @@ namespace CESI.BS.EasySave.BS
         {
             return works;
         }
-        public void AddWork(string name, string source, string target, string save)
+        public void AddWork(string name, string source, string target, string save, IList<string> extensions, string key)
         {
-            Dictionary<WorkProperties, string> propertiesWork = new Dictionary<WorkProperties, string>
+            Dictionary<WorkProperties, object> propertiesWork = new Dictionary<WorkProperties, object>
             {
                 [WorkProperties.Name] = name,
                 [WorkProperties.Source] = source,
                 [WorkProperties.Target] = target,
-                [WorkProperties.TypeSave] = save
+                [WorkProperties.TypeSave] = save,
+                [WorkProperties.Extensions] = extensions,
+                [WorkProperties.Key] = key
             };
             works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
         }
