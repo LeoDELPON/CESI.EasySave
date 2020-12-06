@@ -18,6 +18,6 @@ namespace CESI.BS.EasySave.DTO
         public string Target { get; set; }
         public DateTime Date { get; set; }
 
-
+   
     }
 }

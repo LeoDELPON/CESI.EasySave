@@ -8,6 +8,7 @@ namespace CESI.BS.EasySave.BS.Factory
 {
     class WorkFactory : Factory
     {
+
         public override Work CreateWorkObject(Dictionary<WorkProperties, object> properties)
         {
             return new Work(
@@ -53,6 +54,8 @@ namespace CESI.BS.EasySave.BS.Factory
 
         public override DTOStatusLogger CreateDtoStatusLogger(Dictionary<WorkProperties, object> propertiesStatus)
         {
+
+
             DTOStatusLogger statusLogger = new DTOStatusLogger();
             statusLogger.Name = propertiesStatus[WorkProperties.Name].ToString();
             statusLogger.State = propertiesStatus[WorkProperties.State].ToString();
