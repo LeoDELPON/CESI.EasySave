@@ -18,7 +18,7 @@ namespace CESI.BS.EasySave.BS
         public string workName;
         public string _key;
 
-        public Full(string props, IList<string> extensions, string key) : base()
+        public Full(string props, List<string> extensions, string key) : base()
         {
             idTypeSave ="ful";
             handler = DataHandler.Instance;

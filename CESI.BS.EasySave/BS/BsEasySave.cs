@@ -25,7 +25,7 @@ namespace CESI.BS.EasySave.BS
         {
             return works;
         }
-        public void AddWork(string name, string source, string target, string save, IList<string> extensions, string key)
+        public void AddWork(string name, string source, string target, string save, List<string> extensions, string key)
         {
             Dictionary<WorkProperties, object> propertiesWork = new Dictionary<WorkProperties, object>
             {

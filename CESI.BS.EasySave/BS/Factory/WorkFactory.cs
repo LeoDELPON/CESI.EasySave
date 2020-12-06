@@ -17,7 +17,7 @@ namespace CESI.BS.EasySave.BS.Factory
                 properties[WorkProperties.Target].ToString(),
                 CreateSaveObject(properties[WorkProperties.TypeSave].ToString(), 
                     properties[WorkProperties.Name].ToString(), 
-                    (IList<string>)properties[WorkProperties.Extensions],
+                    (List<string>)properties[WorkProperties.Extensions],
                     properties[WorkProperties.Key].ToString())
             );
         }

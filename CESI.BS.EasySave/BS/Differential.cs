@@ -20,7 +20,7 @@ namespace CESI.BS.EasySave.BS
         private IList<string> _extensions;
         public string _key;
 
-        public Differential(string props, IList<string> extensions, string key)
+        public Differential(string props, List<string> extensions, string key)
         {
             handler = DataHandler.Instance;
             idTypeSave  = "dif";
