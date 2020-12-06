@@ -1,4 +1,5 @@
 ﻿using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,7 @@ namespace CESI.BS.EasySave.BS.Factory
 {
     class WorkFactory : Factory
     {
+
         public override Work CreateWorkObject(Dictionary<WorkProperties, object> properties)
         {
             return new Work(
@@ -36,6 +38,35 @@ namespace CESI.BS.EasySave.BS.Factory
                     break;
             }
             return _save;
+        }
+        public override DTOLogger CreateDtoLogger(Dictionary<WorkProperties, object> propertiesLogs)
+        {
+            DTOLogger logger = new DTOLogger();
+            logger.Date = (DateTime)propertiesLogs[WorkProperties.Date];
+            logger.Name = propertiesLogs[WorkProperties.Name].ToString();
+            logger.Source = propertiesLogs[WorkProperties.Source].ToString();
+            logger.Target = propertiesLogs[WorkProperties.Target].ToString();
+            logger.Size = propertiesLogs[WorkProperties.Size].ToString();
+            logger.Duration = propertiesLogs[WorkProperties.Duration].ToString();
+            logger.EncryptDuration = propertiesLogs[WorkProperties.EncryptDuration].ToString();
+            return logger;
+        }
+
+        public override DTOStatusLogger CreateDtoStatusLogger(Dictionary<WorkProperties, object> propertiesStatus)
+        {
+
+
+            DTOStatusLogger statusLogger = new DTOStatusLogger();
+            statusLogger.Name = propertiesStatus[WorkProperties.Name].ToString();
+            statusLogger.State = propertiesStatus[WorkProperties.State].ToString();
+            statusLogger.EligibleFiles = propertiesStatus[WorkProperties.EligibleFiles].ToString();
+            statusLogger.Size = propertiesStatus[WorkProperties.Size].ToString();
+            statusLogger.Progress = propertiesStatus[WorkProperties.Progress].ToString();
+            statusLogger.RemainingSize = propertiesStatus[WorkProperties.RemainingSize].ToString();
+            statusLogger.Source = propertiesStatus[WorkProperties.Source].ToString();
+            statusLogger.Target = propertiesStatus[WorkProperties.Target].ToString();
+            statusLogger.Date = (DateTime)propertiesStatus[WorkProperties.Date];
+            return statusLogger;
         }
     }
 }
