@@ -203,9 +203,25 @@ namespace WpfApp1
                 }
             }
         }
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {         
 
+        public void launchWorkList()
+        {
+            
+
+
+            foreach (WrkElements we in weList)
+            {
+                if (WorkListLbl.Items.Contains(we.inWrkList))
+                {
+                    bs.works[weList.IndexOf(we)].Perform();
+                }
+            }
+        }
+        private void launchWorksButton(object sender, RoutedEventArgs e)            
+        {
+            Thread worksThreads = new Thread(launchWorkList);
+            worksThreads.Start();
+            
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

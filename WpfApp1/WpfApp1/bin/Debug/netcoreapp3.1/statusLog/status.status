@@ -1,4 +1,4 @@
 The log are writen following this pattern:
 > date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
 
-> 23:07:21 | diff | Not Running | 1 | 0 | Error | Error | Error | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020
+> 14:28:54 | marinelepen | Not Running | 3 | 0 | Error | Error | Error | full | tets

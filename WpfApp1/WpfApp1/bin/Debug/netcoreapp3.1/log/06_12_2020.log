@@ -1,0 +1,9 @@
+All log are writen following this pattern:
+> date | workName | sourcePath | targetPath | fileSize | elapsedTime
+
+> 14:20:38 | marinelepen | full | tets | 0 bytes | 20 ms
+
+
+> 14:28:54 | marinelepen | full | tets | 0 bytes | 15 ms
+
+
