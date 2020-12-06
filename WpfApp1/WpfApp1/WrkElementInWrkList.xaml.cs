@@ -19,17 +19,22 @@ namespace WpfApp1
     /// </summary>
     public partial class WrkElementInWrkList : UserControl
     {
-        
+        BSEasySave bs;
 
         public WrkElementInWrkList(ConfSaver.WorkVar workVar,BSEasySave BS)
         {
             InitializeComponent();
+            bs = BS;
+            UpdateWv(workVar);
 
+        }
+
+        public void UpdateWv(ConfSaver.WorkVar workVar)
+        {
             workNameLbl.Content = workVar.name;
             workSourceLbl.Content = workVar.source;
             workTargetLbl.Content = workVar.target;
-            workTypeLbl.SetResourceReference(Label.ContentProperty, BS.typeSave[workVar.typeSave].GetNameTypeWork());
-
+            workTypeLbl.SetResourceReference(Label.ContentProperty, bs.typeSave[workVar.typeSave].GetNameTypeWork());
         }
     }
 }

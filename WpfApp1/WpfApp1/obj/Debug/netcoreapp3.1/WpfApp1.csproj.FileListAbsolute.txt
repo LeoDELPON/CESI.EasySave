@@ -49,3 +49,5 @@ D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\AddWo
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\AddWorkWindow.baml
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\LanguageSelectionWindow.g.cs
 D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\LanguageSelectionWindow.baml
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\ModifyWorkWindow.g.cs
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\ModifyWorkWindow.baml

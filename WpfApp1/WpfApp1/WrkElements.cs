@@ -6,7 +6,7 @@ using System.Text;
 
 namespace WpfApp1
 {
-    class WrkElements
+    public class WrkElements
     {
         public WrkElementInSavedList inSvdList { get; }
         public WrkElementInWrkList inWrkList { get; }
@@ -16,9 +16,17 @@ namespace WpfApp1
 
             inSvdList = new WrkElementInSavedList(workVar, BS);
             inWrkList = new WrkElementInWrkList(workVar, BS);
+                
             wv = workVar;
+        
             
         }
-       
+        public WrkElements()
+        {
+
+          
+
+        }
+
     }
 }

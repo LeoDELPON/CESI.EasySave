@@ -49,5 +49,9 @@ namespace CESI.BS.EasySave.DAL
             }
             return saveT;
         }
+        public static string GetSaveTypeFromInt(int i)
+        {
+            return GetString((SaveType) i);
+        }
     }
 }

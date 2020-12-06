@@ -25,6 +25,7 @@ namespace WpfApp1
         {
             public string name;
             public Uri path;
+       
         }
         private ResourceDictionary obj;
         public LanguageSelectionWindow()
@@ -42,7 +43,7 @@ namespace WpfApp1
             
             
         }
-
+     
         private void LanguageCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
