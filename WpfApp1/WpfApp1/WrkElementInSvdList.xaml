@@ -11,13 +11,13 @@
         <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="checkBox"/>
         <StackPanel Orientation="Horizontal" Background="CadetBlue" Margin="0" Width="331"  >
 
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workNameLbl" Width="62" />
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workSourceLbl" Width="110" />
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="104" />
-            <Label Content="label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="51" />
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workNameLbl" Width="62" FontFamily="Segoe UI Semilight" Foreground="White"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workSourceLbl" Width="110" FontFamily="Segoe UI Semilight" Foreground="White"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="93" FontFamily="Segoe UI Semilight" Foreground="White"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="65" FontFamily="Segoe UI Semilight" Foreground="White"/>
         </StackPanel>
 
-        <Button Content="->" VerticalAlignment="Center" Background="Green" Width="23" Margin=" 10px" Name ="toWorkList" />
+        <Button Content="->" VerticalAlignment="Center" Background="Green" Width="23" Margin=" 10px" Name ="ToWorkList" Foreground="White" BorderThickness="0"/>
 
 
     </StackPanel>

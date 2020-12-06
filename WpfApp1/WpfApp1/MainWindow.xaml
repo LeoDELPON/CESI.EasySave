@@ -23,16 +23,14 @@
         <ListBox Margin="0,40,378,14" Padding="20,0,0,0" Grid.Row="1" Grid.ColumnSpan="3" Name="SaveListLbl" />
         <ListBox Margin="332,40,0,14" Grid.Row="1" Grid.Column="2" Name ="WorkListLbl"/>
         <Label Content="{DynamicResource Title}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="105,21,0,0" VerticalAlignment="Top" Height="33" Width="445" Grid.RowSpan="2" Grid.Column="2" Name="lbl"/>
-        <Button Content="{DynamicResource DeleteWork}" Background="red" HorizontalAlignment="Right" Margin="0,0,626,51" VerticalAlignment="Bottom" Height="37" Width="140" Grid.Row="2" Grid.ColumnSpan="3" Click="DeleteBtn_Click"/>
-        <Button Content="{DynamicResource AddWorkToWorkList}" Background="green" HorizontalAlignment="Left" Margin="116,18,0,0" VerticalAlignment="Top" Click="MultipleAddBtn" Height="37" Width="174" Grid.Row="2" Grid.Column="2"/>
-        <Button Content="{DynamicResource ExecuteWorkList}" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Click="launchWorksButton" Height="24" Width="192" RenderTransformOrigin="0.588,-0.132" Grid.Row="2" Grid.Column="2"/>
-        <ProgressBar HorizontalAlignment="Left" Height="21" Margin="512,53,0,0" VerticalAlignment="Top" Width="186" Grid.Row="2" Grid.Column="2"/>
-        <Label Content="{DynamicResource WorkStatus}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="497,0,0,62" VerticalAlignment="Bottom" RenderTransformOrigin="0.361,0.696" Grid.Row="2" Grid.Column="2" Height="26" Width="217"/>
-        <Button Content="{DynamicResource Pause}" HorizontalAlignment="Left" Margin="354,35,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="2" Grid.Column="2"/>
-        <Button Content="{DynamicResource Resume}" Margin="408,32,232,32" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.53,-2.998"/>
-        <Button Content="{DynamicResource Language}" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="56" Click="languageBtn_Click" />
+        <Button Content="{DynamicResource DeleteWork}" Background="red" HorizontalAlignment="Right" Margin="0,0,619,51" VerticalAlignment="Bottom" Height="37" Width="140" Grid.Row="2" Grid.ColumnSpan="2" Click="DeleteBtn_Click" Grid.Column="1"/>
+        <Button Content="{DynamicResource AddWorkToWorkList}" Background="green" HorizontalAlignment="Left" Margin="128,18,0,0" VerticalAlignment="Top" Click="MultipleAddBtn" Height="37" Width="174" Grid.Row="2" Grid.Column="2"/>
+        <Button Content="{DynamicResource ExecuteWorkList}" HorizontalAlignment="Left" Margin="479,10,0,0" VerticalAlignment="Top" Name="launchWorkBtn" Click="launchWorksButton" Height="24" Width="192" RenderTransformOrigin="0.588,-0.132" Grid.Row="2" Grid.Column="2"/>
+        <Button Content="{DynamicResource Pause}" HorizontalAlignment="Left" Margin="521,35,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="2" Grid.Column="2"/>
+        <Button Content="{DynamicResource Resume}" Margin="575,32,65,32" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.53,-2.998"/>
+        <Button Content="{DynamicResource Language}" HorizontalAlignment="Left"  Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="56" Click="languageBtn_Click" />
 
-        <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="297,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2"/>
+        <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="464,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2"/>
         <Button Content="+" Name="AddWorkBtn"  HorizontalAlignment="Center" Margin="0,18,0,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Width="39" Click="AddWorkBtn_Click"/>
 
 

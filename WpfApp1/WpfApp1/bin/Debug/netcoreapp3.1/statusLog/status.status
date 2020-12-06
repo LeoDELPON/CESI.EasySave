@@ -1,4 +1,4 @@
 The log are writen following this pattern:
 > date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
 
-> 17:43:51 | test | Not Running | 42 | 1633524894 | Error | Error | Error | after fx projects | diff
+> 18:57:44 | test | Not Running | 40 | 1633524894 | Error | Error | Error | after fx projects | diff

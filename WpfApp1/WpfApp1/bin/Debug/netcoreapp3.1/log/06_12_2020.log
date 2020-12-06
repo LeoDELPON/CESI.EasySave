@@ -22,3 +22,87 @@ All log are writen following this pattern:
 > 17:43:51 | test | after fx projects | diff | 1633524894 bytes | 12796 ms
 
 
+> 17:49:01 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\FullSaves | 1633524894 bytes | 7628 ms
+
+
+> 17:49:24 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\06_12_2020 | 0 bytes | 7628 ms
+
+
+> 17:49:51 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\06_12_2020 | 0 bytes | 16915 ms
+
+
+> 17:49:51 | pa | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:49:56 | test | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:50:28 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\FullSaves | 1633524894 bytes | 16915 ms
+
+
+> 17:50:33 | pa | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:50:40 | test | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:51:47 | pa | after fx projects | diff | 1633524894 bytes | 10721 ms
+
+
+> 17:51:52 | test | after fx projects | diff | 1633524894 bytes | 10721 ms
+
+
+> 18:20:02 | a | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\06_12_2020 | 0 bytes | 9724 ms
+
+
+> 18:20:02 | pa | after fx projects | diff | 1633524894 bytes | 9724 ms
+
+
+> 18:25:25 | test | after fx projects | diff | 1633524894 bytes | 69701 ms
+
+
+> 18:26:27 | test | after fx projects | diff | 1633524894 bytes | 69701 ms
+
+
+> 18:26:32 | test | after fx projects | diff | 1633524894 bytes | 69701 ms
+
+
+> 18:27:22 | test | after fx projects | diff | 1633524894 bytes | 69701 ms
+
+
+> 18:27:56 | dessins | dessins | diff | 4353144546 bytes | 67599 ms
+
+
+> 18:34:43 | test | after fx projects | diff | 1633524894 bytes | 40890 ms
+
+
+> 18:35:23 | dessins | dessins | diff | 4353144546 bytes | 40890 ms
+
+
+> 18:36:43 | test | after fx projects | diff | 1633524894 bytes | 40890 ms
+
+
+> 18:37:53 | dessins | dessins | diff | 4353144546 bytes | 40890 ms
+
+
+> 18:38:53 | test | after fx projects | diff | 1633524894 bytes | 40890 ms
+
+
+> 18:47:05 | dessins | dessins | diff | 4353144546 bytes | 70222 ms
+
+
+> 18:47:57 | test | after fx projects | diff | 1633524894 bytes | 70222 ms
+
+
+> 18:52:43 | test | after fx projects | diff | 1633524894 bytes | 7676 ms
+
+
+> 18:56:08 | test | after fx projects | diff | 1633524894 bytes | 10345 ms
+
+
+> 18:57:37 | test | after fx projects | diff | 1633524894 bytes | 12572 ms
+
+
+> 18:57:44 | test | after fx projects | diff | 1633524894 bytes | 12572 ms
+
+
