@@ -5717,19 +5717,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\REMI\\.nuget\\packages\\": {}
+    "C:\\Users\\Marcus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\REMI\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
       "projectName": "CESI.BS.EasySave.UnitTest",
-      "projectPath": "C:\\Users\\REMI\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
-      "packagesPath": "C:\\Users\\REMI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\REMI\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
+      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
+      "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
+      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\REMI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

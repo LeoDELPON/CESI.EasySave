@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfApp1.CipherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        
+        Title="CephirWindow" Height="186" Width="200" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Height="172" >
+            <Label Name ="Title" Content="{DynamicResource XOR}" HorizontalAlignment="Center"/>
+            <Label Content="{DynamicResource KEY}"/>
+            <TextBox  Name ="keyTextBox" Text="" TextWrapping="Wrap" Width="196" RenderTransformOrigin="0.464,2.791"/>
+            <Label Content="{DynamicResource EXTENSION}"/>
+            <Label>
+                <TextBox  Name="extentionTextBox" Text="" TextWrapping="Wrap" Width="120"/>
+            </Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="{DynamicResource OK}" Width="50" Name="OkBtn"  />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

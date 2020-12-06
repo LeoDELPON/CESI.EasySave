@@ -16,6 +16,7 @@
             <Label Content="{DynamicResource WorkTarget}" HorizontalAlignment="Center"/>
             <TextBox x:Name="WorkTargetTB"/>
             <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
+            <Button Content="{DynamicResource XOR}" Grid.Column="1" HorizontalAlignment="Left" Margin="6,51,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="CipherOptions"/>
             <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
                 <ComboBoxItem Content="{DynamicResource Dif}" x:Name="dif"/>
                 <ComboBoxItem Content="{DynamicResource Ful}" x:Name="ful" IsSelected="True"/>

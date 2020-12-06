@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Text.Json;
 using CESI.BS.EasySave.DAL;
-
+using CESI.BS.EasySave.BS.Factory;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -17,13 +17,14 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateStatusLog(Dictionary<WorkProperties, object> dictionary)
         {
+
             if (!FolderBuilder.CheckFolder(LogFilePath))
             {
                 FolderBuilder.CreateFolder(LogFilePath);
             }
 
-            string json = JsonSerializer.Serialize(dictionary);
-            System.IO.File.WriteAllText(LogFullName, json);
+            string json = JsonSerializer.Serialize(new WorkFactory().CreateDtoStatusLogger(dictionary));
+            File.WriteAllText(LogFullName, json);
         }
 
         private static string LogFilePath => logFilePath;

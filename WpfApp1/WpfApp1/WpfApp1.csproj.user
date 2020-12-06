@@ -16,6 +16,9 @@
     <Compile Update="ModifyWorkWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProcessusChoosing.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WrkElementInSvdList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +28,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddWorkWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CipherWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LanguageSelectionWindow.xaml">
@@ -40,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ModifyWorkWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProcessusChoosing.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WrkElementInSvdList.xaml">

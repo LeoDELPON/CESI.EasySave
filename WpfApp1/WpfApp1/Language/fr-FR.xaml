@@ -18,6 +18,7 @@
     <system:String x:Key="WorkStatus">Avancement de la sauvegarde</system:String>
     <system:String x:Key="Dif">Differentielle</system:String>
     <system:String x:Key="Ful">Complete</system:String>
+    <system:String x:Key="Process">Processus métiers</system:String>
     <!--workCreationWindow-->
     <system:String x:Key="CreateWork">Créer un travail</system:String>
     <system:String x:Key="WorkName">Nom</system:String>
@@ -28,5 +29,7 @@
     <system:String x:Key="ModifyWork">Modifier un travail</system:String>
     <!--SelectLanguageWindow-->
     <system:String x:Key="SelectLanguage">Selectionnez la langue</system:String>
-
+    <system:String x:Key="XOR">Options chiffrement</system:String>
+    <system:String x:Key="KEY">Votre clé :</system:String>
+    <system:String x:Key="EXTENSION">Extension</system:String>
 </ResourceDictionary>
