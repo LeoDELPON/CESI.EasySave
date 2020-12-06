@@ -61,6 +61,7 @@ namespace CESI.BS.EasySave.BS
             string[] pathFile = path.Split('.');
             return pathFile[pathFile.Length - 1];
         }
+
         public abstract string GetNameTypeWork();
 
         protected long GetFolderSize(string path)
