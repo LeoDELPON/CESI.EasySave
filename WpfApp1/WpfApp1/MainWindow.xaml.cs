@@ -198,9 +198,9 @@ namespace WpfApp1
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
             SaveListLbl.Items.Add(we.inSvdList);
             weList.Add(we);
-            extentionList.Add(we.wv.extension);
+            //extentionList.Add(we.wv.extension);
            
-            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), extentionList, we.wv.key);
+            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), null, "");
         }
 
       
