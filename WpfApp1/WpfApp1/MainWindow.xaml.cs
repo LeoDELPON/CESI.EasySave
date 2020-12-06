@@ -200,12 +200,32 @@ namespace WpfApp1
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
                     Thread.CurrentThread.CurrentCulture = culture;
                     Thread.CurrentThread.CurrentUICulture = culture;
+
+                    //test
                 }
             }
         }
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {         
 
+        public void launchWorkList()
+        {
+            
+
+
+            foreach (WrkElements we in weList)
+            {
+                if (WorkListLbl.Items.Contains(we.inWrkList))
+                {
+                    bs.works[weList.IndexOf(we)]._saveType.handler.Subscribe(we.inWrkList);
+                    bs.works[weList.IndexOf(we)].Perform();
+                    bs.works[weList.IndexOf(we)]._saveType.handler.Unsubscribe(we.inWrkList);
+                }
+            }
+        }
+        private void launchWorksButton(object sender, RoutedEventArgs e)            
+        {
+            Thread worksThreads = new Thread(launchWorkList);
+            worksThreads.Start();
+            
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

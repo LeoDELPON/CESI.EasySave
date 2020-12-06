@@ -11,13 +11,15 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
-       
-        
-        public DataHandler handler;
+
+        long folderSize;
+
+
         public string workName;
         public Full(string props) : base()
         {
         idTypeSave ="ful";
+            handler = DataHandler.Instance;
         TypeSave = SaveType.FULL;
             workName = props;
         }
@@ -64,10 +66,13 @@ namespace CESI.BS.EasySave.BS
             }
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
-            long folderSize = GetFolderSize(source.ToString());
-            propertiesWork[WorkProperties.Size] = folderSize;
-            handler = DataHandler.Instance;
-            handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
+            if (!recursive)
+            {
+                folderSize = GetFolderSize(source.ToString());
+                propertiesWork[WorkProperties.Size] = folderSize;
+                handler = DataHandler.Instance;
+                handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
+            }
             try
             {
                 foreach (FileInfo file in source.GetFiles())

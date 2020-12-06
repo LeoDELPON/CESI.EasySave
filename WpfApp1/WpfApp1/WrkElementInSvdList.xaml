@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WpfApp1"
              mc:Ignorable="d" Width="386" 
              >
+
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="386" >
         <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="checkBox"/>
         <StackPanel Orientation="Horizontal" Background="CadetBlue" Margin="0" Width="331"  >

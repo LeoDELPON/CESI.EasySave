@@ -1,0 +1,24 @@
+All log are writen following this pattern:
+> date | workName | sourcePath | targetPath | fileSize | elapsedTime
+
+> 14:20:38 | marinelepen | full | tets | 0 bytes | 20 ms
+
+
+> 14:28:54 | marinelepen | full | tets | 0 bytes | 15 ms
+
+
+> 17:40:52 | pa | after fx projects | diff | 1633524894 bytes | 9085 ms
+
+
+> 17:42:27 | pa | after fx projects | diff | 1633524894 bytes | 55145 ms
+
+
+> 17:42:32 | test | after fx projects | diff | 1633524894 bytes | 55145 ms
+
+
+> 17:43:46 | pa | after fx projects | diff | 1633524894 bytes | 12796 ms
+
+
+> 17:43:51 | test | after fx projects | diff | 1633524894 bytes | 12796 ms
+
+

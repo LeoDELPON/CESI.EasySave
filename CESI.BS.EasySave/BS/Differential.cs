@@ -18,7 +18,7 @@ namespace CESI.BS.EasySave.BS
         private string CommonPath { get; set; }
         private string BackupPath { get; set; }
         private string WorkName { get; set; }
-        private DataHandler handler;
+
 
         public Differential(string props)
         {

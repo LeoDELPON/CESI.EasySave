@@ -17,7 +17,7 @@ namespace WpfApp1
     /// <summary>
     /// Logique d'interaction pour WrkElementInWrkList.xaml
     /// </summary>
-    public partial class WrkElementInWrkList : UserControl
+    public partial class WrkElementInWrkList : UserControl, Observer
     {
         BSEasySave bs;
 
@@ -27,6 +27,15 @@ namespace WpfApp1
             bs = BS;
             UpdateWv(workVar);
 
+        }
+
+        public void reactProgression(double progress)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                workProgressBar.Value = progress;
+            });
+           
         }
 
         public void UpdateWv(ConfSaver.WorkVar workVar)

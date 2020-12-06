@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WpfApp1"
              mc:Ignorable="d" 
              Width="386" >
+    <StackPanel >
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="386" >
       
         <Button Content="&lt;-" VerticalAlignment="Center" Background="Red" Width="23" Margin=" 10px" Name ="ToSaveList" />
@@ -16,9 +17,11 @@
             <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="104" />
             <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="51" />
         </StackPanel>
+        </StackPanel>
 
-        
+
+<ProgressBar Height="7" Name="workProgressBar"/>
     </StackPanel>
-
+    
 
 </UserControl>
