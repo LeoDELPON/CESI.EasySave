@@ -16,12 +16,13 @@
             <Label Content="{DynamicResource WorkTarget}" HorizontalAlignment="Center"/>
             <TextBox x:Name="WorkTargetTB"/>
             <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
-            <Button Content="{DynamicResource XOR}" Grid.Column="1" HorizontalAlignment="Left" Margin="6,51,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="CipherOptions"/>
-            <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
+                        <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
                 <ComboBoxItem Content="{DynamicResource Dif}" x:Name="dif"/>
                 <ComboBoxItem Content="{DynamicResource Ful}" x:Name="ful" IsSelected="True"/>
                 
             </ComboBox>
+            <Button Content="{DynamicResource XOR}" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="CipherOptions"/>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Center" Width="50" Margin="0,0,5,0" x:Name="CancelBtn" Click="CancelBtn_Click" />
                 <Button Content="{DynamicResource OK}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="OkBtn" Click="OkBtn_Click"/>
