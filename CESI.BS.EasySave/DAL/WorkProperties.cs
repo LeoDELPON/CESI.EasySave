@@ -20,6 +20,7 @@ namespace CESI.BS.EasySave.DAL
         Size,
         RemainingSize,
         Extensions,
-        Key
+        Key,
+        EncryptDuration
     }
 }
