@@ -42,7 +42,7 @@ namespace WpfApp1
    
         public BSEasySave bs = new BSEasySave();
         ModifyWorkWindow modifyWorkWindow;
-        public IList<string> extentionList;
+        public List<string> extentionList = new List<string>();
 
 
         public MainWindow()        {
@@ -132,8 +132,11 @@ namespace WpfApp1
                 {
                     wv.key = addWorkWindow.key;
                     wv.extension = addWorkWindow.extention;
+                    extentionList.Clear();
+                    extentionList.Add(wv.extension);
+                    
                 }
-                //bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name);// ajout du travail
+                bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name, extentionList, wv.key);// ajout du travail
                 WrkElements we = new WrkElements(wv, bs);
                 
             
