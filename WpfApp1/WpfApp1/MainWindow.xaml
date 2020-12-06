@@ -32,6 +32,7 @@
 
         <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="464,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2"/>
         <Button Content="+" Name="AddWorkBtn"  HorizontalAlignment="Center" Margin="0,18,0,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Width="39" Click="AddWorkBtn_Click"/>
+        <Button Content="{DynamicResource Process}" Grid.Column="2" HorizontalAlignment="Left" Margin="626,21,0,10" Click="CriticalProcessesBtn_Click"/>
 
 
     </Grid>
