@@ -24,7 +24,7 @@ namespace WpfApp1
         private ResourceDictionary obj;
         public CipherWindow cipherWindow = new CipherWindow();
 
-        public bool isXor = false;
+      
         public string key;
         public string extention;
 

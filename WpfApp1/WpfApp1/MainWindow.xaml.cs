@@ -118,6 +118,10 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(addWorkWindow.Name == "")
+            {
+                addWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+            }
 
             if (FolderBuilder.CheckFolder(addWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(addWorkWindow.WorkTargetTB.Text))
             {
@@ -128,13 +132,20 @@ namespace WpfApp1
                 wv.target = addWorkWindow.WorkTargetTB.Text;
                 wv.typeSave = addWorkWindow.SaveTypeCB.SelectedIndex;
                 
-                if (addWorkWindow.isXor == true)
+                if ((bool)addWorkWindow.isXor.IsChecked)
                 {
                     wv.key = addWorkWindow.key;
                     wv.extension = addWorkWindow.extention;
                     extentionList.Clear();
                     extentionList.Add(wv.extension);
-                    
+
+                }
+                else
+                {
+                    wv.key = "null";
+                    wv.extension = "null";
+                    extentionList.Clear();
+                    extentionList.Add(wv.extension);
                 }
                 bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name, extentionList, wv.key);// ajout du travail
                 WrkElements we = new WrkElements(wv, bs);
