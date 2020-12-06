@@ -132,6 +132,7 @@ namespace WpfApp1
         private void ToWorkList(WrkElements we)
         {
             SaveListLbl.Items.Remove(we.inSvdList);
+            we.inWrkList.workProgressBar.Value = 0;
             WorkListLbl.Items.Add(we.inWrkList);
         }
 
@@ -208,13 +209,21 @@ namespace WpfApp1
 
         public void launchWorkList()
         {
-            
 
-
+            foreach (WrkElements we in weList)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                  
+                
+                we.inWrkList.workProgressBar.Value = 0; //reset progress Bar
+                });
+            }
             foreach (WrkElements we in weList)
             {
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
+                   
                     bs.works[weList.IndexOf(we)]._saveType.handler.Subscribe(we.inWrkList);
                     bs.works[weList.IndexOf(we)].Perform();
                     bs.works[weList.IndexOf(we)]._saveType.handler.Unsubscribe(we.inWrkList);

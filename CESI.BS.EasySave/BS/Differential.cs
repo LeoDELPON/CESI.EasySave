@@ -15,13 +15,13 @@ namespace CESI.BS.EasySave.BS
         private string FullBackupPath { get; set; }
         private string FolderToSave { get; set; }
         private string DiffBackupPath { get; set; }
-        private string CommonPath { get; set; }
         private string BackupPath { get; set; }
         private string WorkName { get; set; }
 
 
         public Differential(string props)
         {
+            handler = DataHandler.Instance;
             idTypeSave  = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
             WorkName = props;

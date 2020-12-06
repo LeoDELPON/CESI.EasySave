@@ -22,3 +22,33 @@ All log are writen following this pattern:
 > 17:43:51 | test | after fx projects | diff | 1633524894 bytes | 12796 ms
 
 
+> 17:49:01 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\FullSaves | 1633524894 bytes | 7628 ms
+
+
+> 17:49:24 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\06_12_2020 | 0 bytes | 7628 ms
+
+
+> 17:49:51 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\06_12_2020 | 0 bytes | 16915 ms
+
+
+> 17:49:51 | pa | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:49:56 | test | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:50:28 | azertyuiop | after fx projects | D:\testsave\diff\after fx projects\FullSaves | 1633524894 bytes | 16915 ms
+
+
+> 17:50:33 | pa | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:50:40 | test | after fx projects | diff | 1633524894 bytes | 16915 ms
+
+
+> 17:51:47 | pa | after fx projects | diff | 1633524894 bytes | 10721 ms
+
+
+> 17:51:52 | test | after fx projects | diff | 1633524894 bytes | 10721 ms
+
+
