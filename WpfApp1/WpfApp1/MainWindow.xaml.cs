@@ -215,7 +215,9 @@ namespace WpfApp1
             {
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
+                    bs.works[weList.IndexOf(we)]._saveType.handler.Subscribe(we.inWrkList);
                     bs.works[weList.IndexOf(we)].Perform();
+                    bs.works[weList.IndexOf(we)]._saveType.handler.Unsubscribe(we.inWrkList);
                 }
             }
         }

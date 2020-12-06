@@ -1,12 +1,12 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-uu
+test
 </name>
 <source>
-C:\Users\Kylian\Desktop\Jeux
+D:\after fx projects
 </source>
 <target>
-C:\Users\Kylian\Desktop\TEst
+D:\testsave\diff
 </target>
 <typeSave>
 1

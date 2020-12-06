@@ -6,9 +6,10 @@ using System.Diagnostics;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal sealed class DataHandler
+    public class DataHandler : Observable
     {
         private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
+      
         private static long Size { get; set; }
         private static int Files { get; set; }
         private static string Name { get; set; }
@@ -20,6 +21,7 @@ namespace CESI.BS.EasySave.BS
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
+            subscribers = new List<Observer>();
         }
 
         public void Init(int files, long size, string name, string source, string target)
@@ -40,7 +42,8 @@ namespace CESI.BS.EasySave.BS
             long sizeProperty = (long)Dictionary[WorkProperties.Size];
             if (sizeProperty != 0)
             {
-                Dictionary[WorkProperties.Progress] = ((long)remainingSize * 100) / sizeProperty;
+                Dictionary[WorkProperties.Progress] = (sizeProperty-(long)remainingSize) * 100 / sizeProperty;
+                NotifyAll();
             }
             else
             {
@@ -53,6 +56,7 @@ namespace CESI.BS.EasySave.BS
         public static DataHandler Instance { get { return lazy.Value; } }
 
         public Dictionary<WorkProperties, object> Dictionary { get => dictionary; set => dictionary = value; }
+        public List<Observer> subscribers { get; set; } = new List<Observer>();
 
         public void OnStop(bool noError)
         {
@@ -79,6 +83,28 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.RemainingFiles] = remainingFiles;
             ComputeProgress(remainingSize);
             StatusLogger.GenerateStatusLog(Dictionary);
+        }
+
+        public void Subscribe(Observer obs)
+        {
+           subscribers.Add(obs);
+        }
+
+        public void NotifyAll()
+        {
+            if (double.TryParse(dictionary[WorkProperties.Progress].ToString(), out double prog)){
+                foreach (Observer obs in subscribers)
+                {
+                    obs.reactProgression(prog);
+                }
+            
+            }
+          
+        }
+
+        public void Unsubscribe(Observer obs)
+        {
+            subscribers.Remove(obs);
         }
     }
 }

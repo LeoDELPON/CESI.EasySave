@@ -33,6 +33,7 @@ namespace WpfApp1
 
         }
 
+     
         public void UpdateWv(ConfSaver.WorkVar workVar )
         {
             workNameLbl.Content = workVar.name;
