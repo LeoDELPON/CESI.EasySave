@@ -22,13 +22,23 @@ namespace WpfApp1
     public partial class AddWorkWindow : Window
     {
         private ResourceDictionary obj;
+        public CipherWindow cipherWindow = new CipherWindow();
+
+        public bool isXor = false;
+        public string key;
+        public string extention;
 
         public AddWorkWindow(Uri dictionnaryUri)
+
+
         {
 
             InitializeComponent();
             Closing += AddWorkWindow_Closing;
             ChangeLangage(dictionnaryUri);
+            cipherWindow.OkBtn.Click += OkBtn_Click;
+
+
 
 
         }
@@ -44,6 +54,7 @@ namespace WpfApp1
 
             InitializeComponent();
             Closing += AddWorkWindow_Closing;
+            cipherWindow.OkBtn.Click += OkBtn_Click;
 
         }
         public void ChangeLangage(Uri dictionnaryUri)
@@ -64,11 +75,22 @@ namespace WpfApp1
                 }
             }
         }
+        private void CipherOptions(object sender, RoutedEventArgs e)
+        {
 
+            cipherWindow.Show();
+
+        }
 
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            cipherWindow.Hide();
+
+            key = cipherWindow.keyTextBox.Text;
+            extention = cipherWindow.extentionTextBox.Text;
+
+
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

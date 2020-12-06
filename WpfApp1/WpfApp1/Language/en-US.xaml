@@ -28,5 +28,8 @@
     <system:String x:Key="ModifyWork">Modify work</system:String>
     <!--SelectLanguageWindow-->
     <system:String x:Key="SelectLanguage">Select the language</system:String>
+    <system:String x:Key="XOR">Cipher options</system:String>
+    <system:String x:Key="KEY">Your key :</system:String>
+    <system:String x:Key="EXTENSION">Type of file</system:String>
 
 </ResourceDictionary>

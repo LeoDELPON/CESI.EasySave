@@ -31,6 +31,7 @@ namespace WpfApp1
     {
      
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
+        
         AddWorkWindow addWorkWindow = new AddWorkWindow();
         
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
@@ -39,6 +40,7 @@ namespace WpfApp1
    
         public BSEasySave bs = new BSEasySave();
         ModifyWorkWindow modifyWorkWindow;
+        public IList<string> extentionList;
 
 
         public MainWindow()        {
@@ -53,6 +55,7 @@ namespace WpfApp1
             addExistingWorksToView();
             ChangeLangage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
+
         }
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
@@ -109,6 +112,12 @@ namespace WpfApp1
                 wv.source = addWorkWindow.WorkSourceTB.Text;
                 wv.target = addWorkWindow.WorkTargetTB.Text;
                 wv.typeSave = addWorkWindow.SaveTypeCB.SelectedIndex;
+                
+                if (addWorkWindow.isXor == true)
+                {
+                    wv.key = addWorkWindow.key;
+                    wv.extension = addWorkWindow.extention;
+                }
                 bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name);// ajout du travail
                 WrkElements we = new WrkElements(wv, bs);
                 
@@ -170,7 +179,9 @@ namespace WpfApp1
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
             SaveListLbl.Items.Add(we.inSvdList);
             weList.Add(we);
-            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave));
+            extentionList.Add(we.wv.extension);
+           
+            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), extentionList, we.wv.key);
         }
 
       
@@ -225,8 +236,8 @@ namespace WpfApp1
             worksThreads.Start();
             
         }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        
+                 private void Button_Click_3(object sender, RoutedEventArgs e)
         {
 
         }

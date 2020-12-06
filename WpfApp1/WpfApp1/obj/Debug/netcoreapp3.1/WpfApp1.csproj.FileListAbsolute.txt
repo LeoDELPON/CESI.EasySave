@@ -85,3 +85,5 @@ C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3
 C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.csproj.CopyComplete
 C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.dll
 C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\WpfApp1.pdb
+C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\CipherWindow.g.cs
+C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\CipherWindow.baml
