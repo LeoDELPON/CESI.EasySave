@@ -24,6 +24,7 @@ namespace CESI.BS.EasySave.BS
             }
 
             string json = JsonSerializer.Serialize(new WorkFactory().CreateDtoStatusLogger(dictionary));
+
             System.IO.File.WriteAllText(LogFullName, json);
 
             StreamWriter file = File.AppendText(LogFullName);

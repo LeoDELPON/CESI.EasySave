@@ -48,6 +48,7 @@ namespace CESI.BS.EasySave.BS.Factory
             logger.Target = propertiesLogs[WorkProperties.Target].ToString();
             logger.Size = propertiesLogs[WorkProperties.Size].ToString();
             logger.Duration = propertiesLogs[WorkProperties.Duration].ToString();
+            logger.EncryptDuration = propertiesLogs[WorkProperties.EncryptDuration].ToString();
             return logger;
         }
 
