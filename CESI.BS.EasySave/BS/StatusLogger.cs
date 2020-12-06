@@ -23,9 +23,6 @@ namespace CESI.BS.EasySave.BS
             }
 
             string json = JsonSerializer.Serialize(dictionary);
-
-
-
             System.IO.File.WriteAllText(LogFullName, json);
         }
 

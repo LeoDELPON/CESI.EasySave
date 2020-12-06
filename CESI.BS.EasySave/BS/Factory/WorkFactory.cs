@@ -38,7 +38,6 @@ namespace CESI.BS.EasySave.BS.Factory
             }
             return _save;
         }
-
         public override DTOLogger CreateDtoLogger(Dictionary<WorkProperties, object> propertiesLogs)
         {
             DTOLogger logger = new DTOLogger();
