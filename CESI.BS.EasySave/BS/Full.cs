@@ -44,6 +44,9 @@ namespace CESI.BS.EasySave.BS
 
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool recursive)
         {
+
+
+
             DirectoryInfo fullSaveDirectory;
             if (!FolderBuilder.CheckFolder(target.ToString()))
             {
@@ -70,6 +73,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
+                    
                     file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
