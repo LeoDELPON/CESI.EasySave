@@ -200,6 +200,8 @@ namespace WpfApp1
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
                     Thread.CurrentThread.CurrentCulture = culture;
                     Thread.CurrentThread.CurrentUICulture = culture;
+
+                    //test
                 }
             }
         }
