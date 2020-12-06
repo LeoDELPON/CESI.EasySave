@@ -15,18 +15,20 @@ namespace CESI.BS.EasySave.BS
         private string FullBackupPath { get; set; }
         private string FolderToSave { get; set; }
         private string DiffBackupPath { get; set; }
-        private string CommonPath { get; set; }
         private string BackupPath { get; set; }
         private string WorkName { get; set; }
-        private DataHandler handler;
+        private IList<string> _extensions;
+        public string _key;
 
-        public Differential(string props)
+        public Differential(string props, IList<string> extensions, string key)
         {
+            handler = DataHandler.Instance;
             idTypeSave  = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
             WorkName = props;
+            _extensions = extensions;
+            _key = key;
         }
-
 
         public override int SaveProcess(string sourceFolder, string targetFolder)
         {
@@ -85,7 +87,18 @@ namespace CESI.BS.EasySave.BS
                         {
                             FolderBuilder.CreateFolder(pathTest);
                         }
-                        file.CopyTo(Path.Combine(pathTest, file.Name), true);
+                        foreach (string ext in _extensions)
+                        {
+                            byte[] tmpByte = File.ReadAllBytes(file.Name);
+                            if (ext == GetExtension(file.Name))
+                            {
+                                string args = _key = " " + file.FullName;
+                                string dataEncrypted = RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
+                                tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
+                            }
+                            File.WriteAllBytes(Path.Combine(pathTest, file.Name), tmpByte);
+                        }
+                        //file.CopyTo(Path.Combine(pathTest, file.Name), true);
                         Console.WriteLine("[+] Copying {0}", file.FullName);
                     }
                     catch (Exception e)
@@ -130,7 +143,6 @@ namespace CESI.BS.EasySave.BS
                 );
             return files;
         }
-
 
         private long getSizeOfDiff(IEnumerable<FileInfo> queryGetDifferenceFile)
         {

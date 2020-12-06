@@ -6,20 +6,26 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
+using System.Diagnostics;
 
 namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
-       
-        
-        public DataHandler handler;
+
+        long folderSize;
+        public IList<string> _extension;
         public string workName;
-        public Full(string props) : base()
+        public string _key;
+
+        public Full(string props, IList<string> extensions, string key) : base()
         {
-        idTypeSave ="ful";
-        TypeSave = SaveType.FULL;
+            idTypeSave ="ful";
+            handler = DataHandler.Instance;
+            TypeSave = SaveType.FULL;
             workName = props;
+            _extension = extensions;
+            _key = key;
         }
 
         public override int SaveProcess(string sourceD, string destD)
@@ -61,16 +67,30 @@ namespace CESI.BS.EasySave.BS
             }
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
-            long folderSize = GetFolderSize(source.ToString());
-            propertiesWork[WorkProperties.Size] = folderSize;
-            handler = DataHandler.Instance;
-            handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
+            if (!recursive)
+            {
+                folderSize = GetFolderSize(source.ToString());
+                propertiesWork[WorkProperties.Size] = folderSize;
+                handler = DataHandler.Instance;
+                handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
+            }
             try
             {
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
-                    file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
+                    foreach (string ext in _extension)
+                    {
+                        byte[] tmpByte = File.ReadAllBytes(file.Name);
+                        if (ext == GetExtension(file.Name))
+                        {
+                            string arguments = _key + " " + file.FullName;
+                            string dataEncrypted = RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
+                            tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
+                        }
+                        File.WriteAllBytes(Path.Combine(fullSaveDirectory.FullName, file.Name), tmpByte);
+                    }
+                    //file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
