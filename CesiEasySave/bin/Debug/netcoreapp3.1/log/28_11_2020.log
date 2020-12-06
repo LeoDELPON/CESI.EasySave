@@ -1,0 +1,9 @@
+All log are writen following this pattern:
+> date | workName | sourcePath | targetPath | fileSize | elapsedTime
+
+> 17:05:30 | DifferentielleTest | humboldt-app | C:\DataDest\humboldt-app\FullSaves\28_11_2020 | 22729652 bytes | 298 ms
+
+
+> 17:07:31 | DifferentielleTest | humboldt-app | C:\DataDest\humboldt-app\DiffSaves\28_11_2020 | 0 bytes | 298 ms
+
+

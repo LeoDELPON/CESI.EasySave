@@ -1,4 +1,4 @@
 The log are writen following this pattern:
 > date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
 
-> 12:00:00 | COMPLETE | Not Running | 2 | 2450 | 0 | 1 | 0 | tinder_swap | tinder_swap
+> 17:07:31 | DifferentielleTest | Not Running | 2 | 0 | Too little size. Can't compute progress | 0 | 0 | humboldt-app | C:\DataDest\humboldt-app\DiffSaves\28_11_2020

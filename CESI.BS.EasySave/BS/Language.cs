@@ -17,7 +17,7 @@ namespace CESI.BS.EasySave.BS
 
           //instantiation of the regular expression
           private static Regex regex;
-
+          
           //Can be called to choose and change language
           public static void SetChosenLanguage(string newLanguage)
           {

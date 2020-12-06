@@ -15,6 +15,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             public string target;
             public int typeSave;
         }
+
         public static FileStream file;
         public static string savePath = Environment.CurrentDirectory + @"\saveConf\";
         public static string extension = ".xml";
