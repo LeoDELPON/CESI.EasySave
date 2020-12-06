@@ -17,13 +17,18 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateStatusLog(Dictionary<WorkProperties, object> dictionary)
         {
+
             if (!FolderBuilder.CheckFolder(LogFilePath))
             {
                 FolderBuilder.CreateFolder(LogFilePath);
             }
 
-            string json = JsonSerializer.Serialize(dictionary);
+            string json = JsonSerializer.Serialize(new WorkFactory().CreateDtoStatusLogger(dictionary));
             System.IO.File.WriteAllText(LogFullName, json);
+
+            StreamWriter file = File.AppendText(LogFullName);
+            file.WriteLine(json);
+            file.Close();
         }
 
         private static string LogFilePath => logFilePath;
