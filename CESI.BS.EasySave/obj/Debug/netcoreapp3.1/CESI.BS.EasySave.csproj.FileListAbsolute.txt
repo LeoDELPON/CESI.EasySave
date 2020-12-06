@@ -73,3 +73,4 @@ C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.AssemblyInfo.cs
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.csprojAssemblyReference.cache

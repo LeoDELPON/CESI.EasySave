@@ -10,17 +10,18 @@
         <StackPanel>
             <Label Name ="coucou" Content="{DynamicResource CreateWork}" HorizontalAlignment="Center"/>       
             <Label Content="{DynamicResource WorkName}" HorizontalAlignment="Center"/>
-            <TextBox x:Name="WorkNameTB"/>
+            <TextBox x:Name="WorkNameTB" />
             <Label Content="{DynamicResource WorkSource}" HorizontalAlignment="Center"/>
             <TextBox x:Name="WorkSourceTB"/>
             <Label Content="{DynamicResource WorkTarget}" HorizontalAlignment="Center"/>
             <TextBox x:Name="WorkTargetTB"/>
             <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
-                        <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
+            <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
                 <ComboBoxItem Content="{DynamicResource Dif}" x:Name="dif"/>
                 <ComboBoxItem Content="{DynamicResource Ful}" x:Name="ful" IsSelected="True"/>
-                
+
             </ComboBox>
+            <CheckBox  HorizontalAlignment="Center" Name="isXor"/>
             <Button Content="{DynamicResource XOR}" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="CipherOptions"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
