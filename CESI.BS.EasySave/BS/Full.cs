@@ -94,7 +94,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    handler.OnNext(propertiesWork[WorkProperties.RemainingFiles], propertiesWork[WorkProperties.RemainingSize]);
+                    handler.OnNext(propertiesWork);
                 }
 
                 foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
