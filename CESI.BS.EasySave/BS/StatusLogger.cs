@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Text.Json;
 using CESI.BS.EasySave.DAL;
+
 
 namespace CESI.BS.EasySave.BS
 {
@@ -19,16 +21,12 @@ namespace CESI.BS.EasySave.BS
             {
                 FolderBuilder.CreateFolder(LogFilePath);
             }
-            System.IO.File.WriteAllText(LogFullName, LogInfoString + @"> " + dictionary[WorkProperties.Date] + " | "
-                                                                           + dictionary[WorkProperties.Name] + " | "
-                                                                           + dictionary[WorkProperties.State] + " | "
-                                                                           + dictionary[WorkProperties.EligibleFiles] + " | "
-                                                                           + dictionary[WorkProperties.Size] + " | "
-                                                                           + dictionary[WorkProperties.Progress] + " | "
-                                                                           + dictionary[WorkProperties.RemainingFiles] + " | "
-                                                                           + dictionary[WorkProperties.RemainingSize] + " | "
-                                                                           + dictionary[WorkProperties.Source] + " | "
-                                                                           + dictionary[WorkProperties.Target]);
+
+            string json = JsonSerializer.Serialize(dictionary);
+
+
+
+            System.IO.File.WriteAllText(LogFullName, json);
         }
 
         private static string LogFilePath => logFilePath;
