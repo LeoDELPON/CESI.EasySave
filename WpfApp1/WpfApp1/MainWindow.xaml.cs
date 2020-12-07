@@ -357,15 +357,18 @@ namespace WpfApp1
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i< weList.Count(); i++) 
+            int offset = 0;
+            int goal = weList.Count();
+            for (int i = 0; i< goal; i++) 
             {
-                WrkElements we = weList[i];
+                WrkElements we = weList[i-offset];
                 if ((bool)we.inSvdList.checkBox.IsChecked && SaveListLbl.Items.Contains(we.inSvdList))
                 {
                     bs.DeleteWork(weList.IndexOf(we));
                     SaveListLbl.Items.Remove(we.inSvdList);
                     bs.confSaver.DeleteFile(we.wv.name);
                     weList.Remove(we);
+                    offset++;
                 }
             }
         }
