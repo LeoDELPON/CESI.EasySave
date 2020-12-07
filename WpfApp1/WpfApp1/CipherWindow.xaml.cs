@@ -13,7 +13,7 @@ namespace WpfApp1
     {
 
         List<InfoLanguage> listLanguage = new List<InfoLanguage>();
-        private ResourceDictionary obj;
+
 
         struct InfoLanguage
         {
@@ -42,24 +42,7 @@ namespace WpfApp1
             }
             
         }
-        public void ChangeLanguage(Uri dictionnaryUri)
-        {
-            if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
-            {
-                ResourceDictionary objNewLanguageDictionary = (ResourceDictionary)(Application.LoadComponent(dictionnaryUri));
-
-                if (objNewLanguageDictionary != null)
-                {
-                    this.Resources.MergedDictionaries.Remove(obj);
-                    this.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
-
-                    CultureInfo culture =
-                       new CultureInfo((string)Application.Current.Resources["Culture"]);
-                    Thread.CurrentThread.CurrentCulture = culture;
-                    Thread.CurrentThread.CurrentUICulture = culture;
-                }
-            }
-        }
+      
 
     }
 }

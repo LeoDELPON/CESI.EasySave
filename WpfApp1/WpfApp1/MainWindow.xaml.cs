@@ -108,9 +108,8 @@ namespace WpfApp1
         private void LanguageOkBtn_Click(object sender, RoutedEventArgs e)
         {
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
-            addWorkWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
-            addWorkWindow.cipherWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
-            modifyWorkWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
+          
+          
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -235,19 +234,30 @@ namespace WpfApp1
 
                 if (objNewLanguageDictionary != null)
                 {
-                    this.Resources.MergedDictionaries.Remove(obj);
-                    this.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+                    ChanheLanguageRessourcesOfAllWindows(objNewLanguageDictionary);
 
                     CultureInfo culture =
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
                     Thread.CurrentThread.CurrentCulture = culture;
                     Thread.CurrentThread.CurrentUICulture = culture;
 
-                    //test
+
                 }
             }
         }
-       
+
+        private void ChanheLanguageRessourcesOfAllWindows(ResourceDictionary objNewLanguageDictionary)
+        {
+            Resources.MergedDictionaries.Remove(obj);
+            Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            addWorkWindow.Resources.MergedDictionaries.Remove(obj);
+            addWorkWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            addWorkWindow.cipherWindow.Resources.MergedDictionaries.Remove(obj);
+            addWorkWindow.cipherWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            modifyWorkWindow.Resources.MergedDictionaries.Remove(obj);
+            modifyWorkWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+        }
+
         public void launchWorkList()
         {
             Application.Current.Dispatcher.Invoke(() =>
