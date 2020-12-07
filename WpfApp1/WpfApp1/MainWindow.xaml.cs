@@ -120,6 +120,11 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Length == 0))
+            {
+              
+                return;
+            }
             if(addWorkWindow.Name == "")
             {
                 addWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");

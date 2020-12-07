@@ -24,9 +24,9 @@ namespace WpfApp1
         private ResourceDictionary obj;
         public CipherWindow cipherWindow = new CipherWindow();
 
-      
-        public string key;
-        public string extention;
+
+        public string key { get; set; } = "";
+        public string extention { get; set; } = "";
 
         public AddWorkWindow(Uri dictionnaryUri)
 
@@ -77,18 +77,26 @@ namespace WpfApp1
         }
         private void CipherOptions(object sender, RoutedEventArgs e)
         {
-
-            cipherWindow.Show();
+            if ((bool)isXor.IsChecked)
+            {
+                cipherWindow.Show();
+            }
 
         }
 
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            cipherWindow.Hide();
+            if ((cipherWindow.keyTextBox.Text.Length == 0 && cipherWindow.extentionTextBox.Text.Length == 0) ||
+                (cipherWindow.keyTextBox.Text.Length > 0 && cipherWindow.extentionTextBox.Text.Length > 0))
+            {
 
-            key = cipherWindow.keyTextBox.Text;
-            extention = cipherWindow.extentionTextBox.Text;
+
+                cipherWindow.Hide();
+
+                key = cipherWindow.keyTextBox.Text;
+                extention = cipherWindow.extentionTextBox.Text;
+            }
 
 
         }

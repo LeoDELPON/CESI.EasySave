@@ -36,7 +36,11 @@ namespace WpfApp1
         private void Cipher_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            Hide();
+            if ((keyTextBox.Text.Length==0 && extentionTextBox.Text.Length ==0) || (keyTextBox.Text.Length > 0 && extentionTextBox.Text.Length > 0))
+            {
+                Hide();
+            }
+            
         }
         public void ChangeLanguage(Uri dictionnaryUri)
         {
