@@ -85,17 +85,18 @@ namespace CESI.BS.EasySave.BS
                         byte[] tmpByte = File.ReadAllBytes(file.FullName);
                         if (ext == file.Extension)
                         {
-                            string arguments = _key + " " + file.FullName;
+                            string arguments = _key + " " + file.FullName + " " + Path.Combine(fullSaveDirectory.FullName, file.Name);
                             Stopwatch stopW2 = new Stopwatch();
                             stopW2.Start();
-                            string dataEncrypted = RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
+                            RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
                             stopW2.Stop();
                             temp += stopW2.ElapsedMilliseconds;
-                            tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
+                        } else
+                        {
+                            file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                         }
-                        File.WriteAllBytes(Path.Combine(fullSaveDirectory.FullName, file.Name), tmpByte);
+
                     }
-                    //file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;

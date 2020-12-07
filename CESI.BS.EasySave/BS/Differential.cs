@@ -97,13 +97,13 @@ namespace CESI.BS.EasySave.BS
                                 string args = _key = " " + file.FullName;
                                 Stopwatch stopW2 = new Stopwatch();
                                 stopW2.Start();
-                                string dataEncrypted = RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
+                                RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
                                 stopW2.Stop();
-                                tmpByte = Encoding.ASCII.GetBytes(dataEncrypted);
+                            } else
+                            {
+                                file.CopyTo(Path.Combine(pathTest, file.Name), true);
                             }
-                            File.WriteAllBytes(Path.Combine(pathTest, file.Name), tmpByte);
                         }
-                        //file.CopyTo(Path.Combine(pathTest, file.Name), true);
                         Console.WriteLine("[+] Copying {0}", file.FullName);
                     }
                     catch (Exception e)

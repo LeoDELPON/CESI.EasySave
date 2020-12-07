@@ -70,16 +70,13 @@ namespace CESI.BS.EasySave.BS
             return size;
         }
 
-        public string RunProcess(string processName, string arguments)
+        public void RunProcess(string processName, string arguments)
         {
             Process process = new Process();
             process.StartInfo.FileName = processName;
             process.StartInfo.Arguments = arguments;
             process.Start();
             process.WaitForExit();
-            using StreamReader reader = process.StandardOutput;
-            string data = reader.ReadToEnd();
-            return data;
         }
     }
 }

@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BS\Cryptosoft\**" />
     <Compile Remove="BS\Interface\**" />
+    <EmbeddedResource Remove="BS\Cryptosoft\**" />
     <EmbeddedResource Remove="BS\Interface\**" />
+    <None Remove="BS\Cryptosoft\**" />
     <None Remove="BS\Interface\**" />
   </ItemGroup>
 
