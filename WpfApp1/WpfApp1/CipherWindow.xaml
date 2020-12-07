@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         
-        Title="CephirWindow" Height="186" Width="200" ResizeMode="NoResize">
+        Title="CypherWindow" Height="186" Width="200" ResizeMode="NoResize">
     <Grid>
         <StackPanel Height="172" >
             <Label Name ="Title" Content="{DynamicResource XOR}" HorizontalAlignment="Center"/>

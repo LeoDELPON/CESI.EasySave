@@ -55,7 +55,7 @@ namespace WpfApp1
             this.Show();
             listWorks = bs.confSaver.GetSavedWorks();
             addExistingWorksToView();
-            ChangeLangage(languageSelectionWindow.getLanguagePath());
+            ChangeLanguage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
             processusChoosing.OkBtn.Click += pcOkBtn;
         }
@@ -107,8 +107,10 @@ namespace WpfApp1
 
         private void LanguageOkBtn_Click(object sender, RoutedEventArgs e)
         {
-            ChangeLangage(languageSelectionWindow.getLanguagePath());
-            addWorkWindow.ChangeLangage(languageSelectionWindow.getLanguagePath());
+            ChangeLanguage(languageSelectionWindow.getLanguagePath());
+            addWorkWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
+            addWorkWindow.cipherWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
+            modifyWorkWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -218,7 +220,7 @@ namespace WpfApp1
 
   
 
-        public void ChangeLangage(Uri dictionnaryUri)
+        public void ChangeLanguage(Uri dictionnaryUri)
         {
             if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
             {

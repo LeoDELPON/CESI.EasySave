@@ -35,7 +35,7 @@ namespace WpfApp1
 
             InitializeComponent();
             Closing += AddWorkWindow_Closing;
-            ChangeLangage(dictionnaryUri);
+            ChangeLanguage(dictionnaryUri);
             cipherWindow.OkBtn.Click += OkBtn_Click;
 
 
@@ -57,7 +57,7 @@ namespace WpfApp1
             cipherWindow.OkBtn.Click += OkBtn_Click;
 
         }
-        public void ChangeLangage(Uri dictionnaryUri)
+        public void ChangeLanguage(Uri dictionnaryUri)
         {
             if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
             {
