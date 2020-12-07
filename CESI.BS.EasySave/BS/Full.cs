@@ -14,7 +14,7 @@ namespace CESI.BS.EasySave.BS
     {
 
         long folderSize;
-        public IList<string> _extension;
+        public List<string> _extension;
         public string workName;
         public string _key;
 
@@ -81,7 +81,7 @@ namespace CESI.BS.EasySave.BS
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
                     foreach (string ext in _extension)
                     {
-                        byte[] tmpByte = File.ReadAllBytes(file.Name);
+                        byte[] tmpByte = File.ReadAllBytes(file.FullName);
                         if (ext == GetExtension(file.Name))
                         {
                             string arguments = _key + " " + file.FullName;
