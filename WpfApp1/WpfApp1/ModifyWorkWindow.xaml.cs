@@ -1,7 +1,9 @@
 ﻿using CESI.BS.EasySave.BS;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +23,7 @@ namespace WpfApp1
     {
         public WrkElements we { get; set; } = new WrkElements();
         BSEasySave bs;
+        private ResourceDictionary obj;
 
         public ModifyWorkWindow(BSEasySave BS)
         {
@@ -66,6 +69,24 @@ namespace WpfApp1
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        public void ChangeLanguage(Uri dictionnaryUri)
+        {
+            if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
+            {
+                ResourceDictionary objNewLanguageDictionary = (ResourceDictionary)(Application.LoadComponent(dictionnaryUri));
+
+                if (objNewLanguageDictionary != null)
+                {
+                    this.Resources.MergedDictionaries.Remove(obj);
+                    this.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+
+                    CultureInfo culture =
+                       new CultureInfo((string)Application.Current.Resources["Culture"]);
+                    Thread.CurrentThread.CurrentCulture = culture;
+                    Thread.CurrentThread.CurrentUICulture = culture;
+                }
+            }
         }
     }
 }

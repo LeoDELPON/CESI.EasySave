@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Windows;
 
 namespace WpfApp1
@@ -11,6 +13,8 @@ namespace WpfApp1
     {
 
         List<InfoLanguage> listLanguage = new List<InfoLanguage>();
+        private ResourceDictionary obj;
+
         struct InfoLanguage
         {
             public string name;
@@ -33,6 +37,24 @@ namespace WpfApp1
         {
             e.Cancel = true;
             Hide();
+        }
+        public void ChangeLanguage(Uri dictionnaryUri)
+        {
+            if (String.IsNullOrEmpty(dictionnaryUri.OriginalString) == false)
+            {
+                ResourceDictionary objNewLanguageDictionary = (ResourceDictionary)(Application.LoadComponent(dictionnaryUri));
+
+                if (objNewLanguageDictionary != null)
+                {
+                    this.Resources.MergedDictionaries.Remove(obj);
+                    this.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+
+                    CultureInfo culture =
+                       new CultureInfo((string)Application.Current.Resources["Culture"]);
+                    Thread.CurrentThread.CurrentCulture = culture;
+                    Thread.CurrentThread.CurrentUICulture = culture;
+                }
+            }
         }
 
     }
