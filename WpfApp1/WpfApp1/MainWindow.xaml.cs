@@ -133,7 +133,7 @@ namespace WpfApp1
             if (FolderBuilder.CheckFolder(addWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(addWorkWindow.WorkTargetTB.Text))
             {
                 addWorkWindow.Hide();
-                ConfSaver.WorkVar wv = new ConfSaver.WorkVar();
+                WorkVar wv = new WorkVar();
                 wv.name = addWorkWindow.WorkNameTB.Text;
                 wv.source = addWorkWindow.WorkSourceTB.Text;
                 wv.target = addWorkWindow.WorkTargetTB.Text;
@@ -216,7 +216,9 @@ namespace WpfApp1
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
             SaveListLbl.Items.Add(we.inSvdList);
             weList.Add(we);
-            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), null, "");
+            List<string> bouchon = new List<string>();
+            bouchon.Add(we.wv.extension);
+            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), bouchon, we.wv.key);
         }
 
       
