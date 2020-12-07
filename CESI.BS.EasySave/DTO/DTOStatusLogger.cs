@@ -16,7 +16,7 @@ namespace CESI.BS.EasySave.DTO
         public string RemainingSize { get; set; }
         public string Source { get; set; }
         public string Target { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
    
     }

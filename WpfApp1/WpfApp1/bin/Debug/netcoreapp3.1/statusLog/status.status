@@ -1,4 +1,1 @@
-The log are writen following this pattern:
-> date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
-
-> 23:14:13 | truc | Not Running | 256 | 4353144546 | Error | Error | Error | dessins | diff
+{"Name":"07-12-2020-01-55-53","State":"Running","EligibleFiles":"53575","Size":"362327137","Progress":"79","RemaningFiles":null,"RemainingSize":"73649962","Source":"humboldt-app","Target":"Test","Date":"01:56:03"}

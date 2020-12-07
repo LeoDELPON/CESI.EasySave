@@ -6,7 +6,7 @@ namespace CESI.BS.EasySave.DTO
 {
     public class DTOLogger
     {
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string Name { get; set; }
         public string Source { get; set; }
         public string Target { get; set; }

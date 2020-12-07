@@ -35,6 +35,8 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.Size] = size;
             dictionary[WorkProperties.EligibleFiles] = files;
             dictionary[WorkProperties.State] = "Running";
+            dictionary[WorkProperties.Duration] = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+            dictionary[WorkProperties.EncryptDuration] = "0";
         }
 
         private void ComputeProgress(object remainingSize)
@@ -81,7 +83,9 @@ namespace CESI.BS.EasySave.BS
         {
             dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
             dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
-            ComputeProgress((double)newDictionary[WorkProperties.RemainingSize]);
+            dictionary[WorkProperties.Duration] = newDictionary[WorkProperties.Duration];
+            ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
+
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
         }

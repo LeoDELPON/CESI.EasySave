@@ -43,7 +43,7 @@ namespace CESI.BS.EasySave.BS.Factory
         public override DTOLogger CreateDtoLogger(Dictionary<WorkProperties, object> propertiesLogs)
         {
             DTOLogger logger = new DTOLogger();
-            logger.Date = (DateTime)propertiesLogs[WorkProperties.Date];
+            logger.Date = propertiesLogs[WorkProperties.Date].ToString();
             logger.Name = propertiesLogs[WorkProperties.Name].ToString();
             logger.Source = propertiesLogs[WorkProperties.Source].ToString();
             logger.Target = propertiesLogs[WorkProperties.Target].ToString();
@@ -64,7 +64,7 @@ namespace CESI.BS.EasySave.BS.Factory
             statusLogger.RemainingSize = propertiesStatus[WorkProperties.RemainingSize].ToString();
             statusLogger.Source = propertiesStatus[WorkProperties.Source].ToString();
             statusLogger.Target = propertiesStatus[WorkProperties.Target].ToString();
-            statusLogger.Date = (DateTime)propertiesStatus[WorkProperties.Date];
+            statusLogger.Date = propertiesStatus[WorkProperties.Date].ToString();
             return statusLogger;
         }
     }
