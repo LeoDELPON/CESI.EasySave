@@ -92,7 +92,7 @@ namespace CESI.BS.EasySave.BS
                         foreach (string ext in _extensions)
                         {
                             byte[] tmpByte = File.ReadAllBytes(file.Name);
-                            if (ext == GetExtension(file.Name))
+                            if (ext == file.Extension)
                             {
                                 string args = _key = " " + file.FullName;
                                 Stopwatch stopW2 = new Stopwatch();
