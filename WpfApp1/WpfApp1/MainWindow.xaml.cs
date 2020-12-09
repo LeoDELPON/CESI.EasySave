@@ -108,9 +108,8 @@ namespace WpfApp1
         private void LanguageOkBtn_Click(object sender, RoutedEventArgs e)
         {
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
-            addWorkWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
-            addWorkWindow.cipherWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
-            modifyWorkWindow.ChangeLanguage(languageSelectionWindow.getLanguagePath());
+          
+          
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -120,6 +119,11 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Length == 0))
+            {
+              
+                return;
+            }
             if(addWorkWindow.Name == "")
             {
                 addWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
@@ -128,7 +132,7 @@ namespace WpfApp1
             if (FolderBuilder.CheckFolder(addWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(addWorkWindow.WorkTargetTB.Text))
             {
                 addWorkWindow.Hide();
-                ConfSaver.WorkVar wv = new ConfSaver.WorkVar();
+                WorkVar wv = new WorkVar();
                 wv.name = addWorkWindow.WorkNameTB.Text;
                 wv.source = addWorkWindow.WorkSourceTB.Text;
                 wv.target = addWorkWindow.WorkTargetTB.Text;
@@ -211,7 +215,9 @@ namespace WpfApp1
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
             SaveListLbl.Items.Add(we.inSvdList);
             weList.Add(we);
-            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), null, "");
+            List<string> bouchon = new List<string>();
+            bouchon.Add(we.wv.extension);
+            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), bouchon, we.wv.key);
         }
 
       
@@ -228,19 +234,30 @@ namespace WpfApp1
 
                 if (objNewLanguageDictionary != null)
                 {
-                    this.Resources.MergedDictionaries.Remove(obj);
-                    this.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+                    ChanheLanguageRessourcesOfAllWindows(objNewLanguageDictionary);
 
                     CultureInfo culture =
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
                     Thread.CurrentThread.CurrentCulture = culture;
                     Thread.CurrentThread.CurrentUICulture = culture;
 
-                    //test
+
                 }
             }
         }
-       
+
+        private void ChanheLanguageRessourcesOfAllWindows(ResourceDictionary objNewLanguageDictionary)
+        {
+            Resources.MergedDictionaries.Remove(obj);
+            Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            addWorkWindow.Resources.MergedDictionaries.Remove(obj);
+            addWorkWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            addWorkWindow.cipherWindow.Resources.MergedDictionaries.Remove(obj);
+            addWorkWindow.cipherWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            modifyWorkWindow.Resources.MergedDictionaries.Remove(obj);
+            modifyWorkWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+        }
+
         public void launchWorkList()
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -352,15 +369,18 @@ namespace WpfApp1
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i< weList.Count(); i++) 
+            int offset = 0;
+            int goal = weList.Count();
+            for (int i = 0; i< goal; i++) 
             {
-                WrkElements we = weList[i];
+                WrkElements we = weList[i-offset];
                 if ((bool)we.inSvdList.checkBox.IsChecked && SaveListLbl.Items.Contains(we.inSvdList))
                 {
                     bs.DeleteWork(weList.IndexOf(we));
                     SaveListLbl.Items.Remove(we.inSvdList);
                     bs.confSaver.DeleteFile(we.wv.name);
                     weList.Remove(we);
+                    offset++;
                 }
             }
         }

@@ -1,0 +1,1 @@
+Le projet principal est "WpfApp1". C'est celui-ci qu'il faut démarrer.

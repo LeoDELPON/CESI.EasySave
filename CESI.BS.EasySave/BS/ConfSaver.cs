@@ -77,6 +77,14 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                     strFieldChoosen = "<typeSave>";
                     strFieldChoosenEnd = "</typeSave>";
                     break;
+                case 5:
+                    strFieldChoosen = "<key>";
+                    strFieldChoosenEnd = "</key>";
+                    break;
+                case 6:
+                    strFieldChoosen = "<extension>";
+                    strFieldChoosenEnd = "</extension>";
+                    break;
                 default:
                     strFieldChoosen = "<name>";
                     strFieldChoosenEnd = "</name>";
@@ -113,8 +121,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 while ((sr.ReadLine()) != null){
                     switch (sr.ReadLine())
                     {
-                        case "<name>":
-                            
+                        case "<name>":                            
                             workvar.name = sr.ReadLine();
                             break;
                         case "<source>":
@@ -125,6 +132,12 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                             break;
                         case "<typeSave>":
                             workvar.typeSave = int.Parse(sr.ReadLine());
+                            break;
+                        case "<key>":
+                            workvar.key = sr.ReadLine();
+                            break;
+                        case "<extention>":
+                            workvar.extension = sr.ReadLine();
                             break;
                         default:
                             Console.WriteLine(sr.ReadLine());
@@ -167,6 +180,12 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             file.Write(new UTF8Encoding(true).GetBytes("<typeSave>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.typeSave + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(@"</typeSave>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes("<key>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(workvar.key + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"</key>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes("<extention>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(workvar.extension + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"</extention>" + Environment.NewLine));
             file.Close();
         }
 
