@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj": {}
+    "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj": {}
   },
   "projects": {
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+    "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "projectUniqueName": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
         "projectName": "CESI.BS.EasySave",
-        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
-        "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-        "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
+        "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "packagesPath": "C:\\Users\\remin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\remin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,17 +58,17 @@
         }
       }
     },
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj": {
+    "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+        "projectUniqueName": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
         "projectName": "CesiEasySave",
-        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
-        "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-        "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\obj\\",
+        "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+        "packagesPath": "C:\\Users\\remin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\remin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,78 +82,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-                "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
-              },
-              "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
-                "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "System.Runtime": {
-              "target": "Package",
-              "version": "[4.3.1, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WPF": {
-              "privateAssets": "none"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-        "projectName": "WpfApp1",
-        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-        "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-        "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
-            "projectReferences": {
-              "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-                "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+              "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+                "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
               }
             }
           }
@@ -180,9 +110,6 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WPF": {
-              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
