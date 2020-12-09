@@ -77,7 +77,7 @@ namespace CESI.BS.EasySave.BS
                 handler = DataHandler.Instance;
                 handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, WorkName, directoryToSaveName, DiffBackupPath);
                 int i = 0;
-                double temp = 0;
+                double temp = -1;
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, FolderToSave);
@@ -91,14 +91,16 @@ namespace CESI.BS.EasySave.BS
                         }
                         foreach (string ext in _extensions)
                         {
-                            byte[] tmpByte = File.ReadAllBytes(file.Name);
+                      
+                            byte[] tmpByte = File.ReadAllBytes(file.FullName);
                             if (ext == file.Extension)
                             {
-                                string args = _key = " " + file.FullName;
+                                string args = _key + " " + file.FullName + " " + Path.Combine(pathTest, file.Name);
                                 Stopwatch stopW2 = new Stopwatch();
                                 stopW2.Start();
                                 RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
                                 stopW2.Stop();
+                                temp = stopW2.ElapsedMilliseconds;
                             } else
                             {
                                 file.CopyTo(Path.Combine(pathTest, file.Name), true);
