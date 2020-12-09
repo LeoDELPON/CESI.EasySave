@@ -101,7 +101,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
                     folderSize = folderSize - file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    propertiesWork[WorkProperties.Duration] = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+                    propertiesWork[WorkProperties.Duration] = DateTime.Now.ToString("ss-MM-hh");
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     handler.OnNext(propertiesWork);
                 }
