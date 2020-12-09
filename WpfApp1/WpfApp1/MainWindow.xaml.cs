@@ -121,10 +121,10 @@ namespace WpfApp1
         {
             if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Length == 0))
             {
-              
+               
                 return;
             }
-            if(addWorkWindow.Name == "")
+            if (addWorkWindow.WorkNameTB.Text.Equals(""))
             {
                 addWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             }
