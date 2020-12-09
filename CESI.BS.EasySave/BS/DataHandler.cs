@@ -84,6 +84,7 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
             dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
             dictionary[WorkProperties.Duration] = newDictionary[WorkProperties.Duration];
+            dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
             ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
 
             Logger.GenerateLog(Dictionary);

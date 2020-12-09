@@ -76,7 +76,8 @@ namespace CESI.BS.EasySave.BS
             }
             try
             {
-                double temp = 0;
+                double temp = -1;
+      
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
@@ -90,7 +91,7 @@ namespace CESI.BS.EasySave.BS
                             stopW2.Start();
                             RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
                             stopW2.Stop();
-                            temp += stopW2.ElapsedMilliseconds;
+                            temp = stopW2.ElapsedMilliseconds;
                         } else
                         {
                             file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
