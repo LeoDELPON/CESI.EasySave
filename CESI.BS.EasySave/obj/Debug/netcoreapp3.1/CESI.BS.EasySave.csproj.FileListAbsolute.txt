@@ -74,3 +74,15 @@ C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
 C:\Users\Kylian\Source\Repos\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.csprojAssemblyReference.cache
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.exe
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.deps.json
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.runtimeconfig.json
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.runtimeconfig.dev.json
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.AssemblyInfoInputs.cache
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.AssemblyInfo.cs
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.csproj.CoreCompileInputs.cache
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+C:\Users\remin\Source\Repos\LeoDELPON\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.genruntimeconfig.cache

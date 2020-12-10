@@ -123,10 +123,10 @@ namespace WpfApp1
             List<string> extentionList = new List<string>();
             if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Length == 0))
             {
-              
+               
                 return;
             }
-            if(addWorkWindow.Name == "")
+            if (addWorkWindow.WorkNameTB.Text.Equals(""))
             {
                 addWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             }
@@ -213,8 +213,8 @@ namespace WpfApp1
         
             we.inSvdList.ToWorkList.Click += (sender, e) => ToWorkList_Click(sender, e, we);
             we.inWrkList.ToSaveList.Click += (sender, e) => ToSaveList_Click(sender, e, we);
-            we.inWrkList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
-            we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, we);
+            we.inWrkList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
+            we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
             SaveListLbl.Items.Add(we.inSvdList);
             weList.Add(we);
             List<string> bouchon = new List<string>();

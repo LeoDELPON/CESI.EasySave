@@ -45,8 +45,9 @@ namespace WpfApp1
             if (!IsVisible)
             {
                 this.we = we;
-                UpdateWv();
+                
                 Show();
+                UpdateWv();
 
             }
 
@@ -58,7 +59,7 @@ namespace WpfApp1
             WorkNameTB.Text = we.wv.name;
             WorkSourceTB.Text = we.wv.source;
             WorkTargetTB.Text = we.wv.target;
-            SaveTypeCB.SelectedItem = we.wv.typeSave;
+            SaveTypeCB.SelectedIndex = we.wv.typeSave;
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
