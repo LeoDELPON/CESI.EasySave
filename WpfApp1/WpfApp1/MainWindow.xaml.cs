@@ -48,11 +48,11 @@ namespace WpfApp1
         public MainWindow()        {
          
             InitializeComponent();
-            modifyWorkWindow = new ModifyWorkWindow(bs);
+            modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;
             addWorkWindow.OkBtn.Click += OkBtn_Click;
             Closing += MainWindow_Closing;
-            this.Show();
+            Show();
             listWorks = bs.confSaver.GetSavedWorks();
             addExistingWorksToView();
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
@@ -75,6 +75,15 @@ namespace WpfApp1
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
         {
+            List<string> listExt = new List<string>();
+            listExt.Clear();
+            for(int i = 1; i< modifyWorkWindow.extLV.Items.Count; i++)
+            {
+                if (!((TextBox)modifyWorkWindow.extLV.Items[i]).Text.Equals("")){
+                    listExt.Add(((TextBox)modifyWorkWindow.extLV.Items[i]).Text);
+                }
+            }
+
             if (FolderBuilder.CheckFolder(modifyWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(modifyWorkWindow.WorkTargetTB.Text))
             {
                 modifyWorkWindow.Hide();
@@ -85,19 +94,18 @@ namespace WpfApp1
                 bs.ModifyWork(bs.GetWorks()[index], 3, modifyWorkWindow.WorkTargetTB.Text);
                 bs.ModifyWork(bs.GetWorks()[index], 4, modifyWorkWindow.SaveTypeCB.SelectedIndex);
                 WorkVar workVar = new WorkVar();
-
-                bs.confSaver.ModifyFile(weList[index].wv.name, 2, modifyWorkWindow.WorkSourceTB.Text);
-                bs.confSaver.ModifyFile(weList[index].wv.name, 3, modifyWorkWindow.WorkTargetTB.Text);
-                bs.confSaver.ModifyFile(weList[index].wv.name, 4, modifyWorkWindow.SaveTypeCB.SelectedIndex.ToString());
-                bs.confSaver.ModifyFile(weList[index].wv.name, 1, modifyWorkWindow.WorkNameTB.Text);
                 workVar.name = modifyWorkWindow.WorkNameTB.Text;
                 workVar.source = modifyWorkWindow.WorkSourceTB.Text;
                 workVar.target = modifyWorkWindow.WorkTargetTB.Text;
                 workVar.typeSave = modifyWorkWindow.SaveTypeCB.SelectedIndex;
+                workVar.key = modifyWorkWindow.KeyTB.Text;
+                workVar.extension = listExt;
+                bs.confSaver.modifyEntireFile(workVar.name, workVar);  
 
                 weList[index].wv = workVar;
                 weList[index].inSvdList.UpdateWv(weList[index].wv);
                 weList[index].inWrkList.UpdateWv(weList[index].wv);
+                weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
             }
 
 
@@ -119,9 +127,7 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            List<string> extentionList = new List<string>();
-            if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Length == 0))
+            if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Count == 0))
             {
                
                 return;
@@ -144,20 +150,20 @@ namespace WpfApp1
                 {
                     wv.key = addWorkWindow.key;
                     //wv.extension = addWorkWindow.extention;
-                    extentionList.Clear();
-                    extentionList = addWorkWindow.extention;
+                    wv.extension = addWorkWindow.extention;
+                   
 
                 }
                 else
                 {
                     wv.key = "null";
-                    wv.extension = "null";
-                    extentionList.Clear();
-                    extentionList.Add(wv.extension);
+                    wv.extension = new List<string>();
+                    wv.extension.Add("null");
+              
                 }
-                bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name, extentionList, wv.key);// ajout du travail
+                bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name, wv.extension, wv.key);// ajout du travail
                 WrkElements we = new WrkElements(wv, bs);
-                
+                we.chiffrage = (bool)addWorkWindow.isXor.IsChecked;
             
                 PrepareWrkElement(we);
                 bs.confSaver.SaveWork(wv);
@@ -210,16 +216,14 @@ namespace WpfApp1
 
         private void PrepareWrkElement(WrkElements we)
         {
-        
+            weList.Add(we);
             we.inSvdList.ToWorkList.Click += (sender, e) => ToWorkList_Click(sender, e, we);
             we.inWrkList.ToSaveList.Click += (sender, e) => ToSaveList_Click(sender, e, we);
             we.inWrkList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
             SaveListLbl.Items.Add(we.inSvdList);
-            weList.Add(we);
-            List<string> bouchon = new List<string>();
-            bouchon.Add(we.wv.extension);
-            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), bouchon, we.wv.key);
+                      
+            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), we.wv.extension, we.wv.key);
         }
 
       

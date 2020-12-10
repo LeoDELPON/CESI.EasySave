@@ -50,6 +50,42 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 FolderBuilder.CreateFolder(savePath);
             }
         }
+        public void modifyEntireFile(string name, WorkVar wv)
+        {
+            ModifyFile(name, 2, wv.source);
+            ModifyFile(name, 3, wv.target);
+            ModifyFile(name, 4, wv.typeSave.ToString());
+            ModifyFile(name, 5, wv.key);
+            ModifyFile(name, 6, wv.extension);
+            ModifyFile(name, 1, wv.name);
+        }
+        public void ModifyFile(string name, int fieldChosen, List<string> newExts)
+        {
+            if (fieldChosen==6)
+            {
+                string nameExt = name + extension;
+                if (!File.Exists(savePath + nameExt))
+                {
+                    return;
+                }
+                string strFieldChoosen = @"<extentions>";
+                string strFieldChoosenEnd = @"</extentions>";
+                string text = File.ReadAllText(savePath + nameExt);              
+                Match mtch = Regex.Match(text, @"<extentions>(\s*(.*))*\s*<\/extentions>.*");
+                string value = mtch.Value;
+                if (mtch.Success)
+                {
+                    string finaltext = "";
+                    foreach (string str in newExts)
+                    {
+                        finaltext += "<ext>" + Environment.NewLine + str + Environment.NewLine + "</ext>"+ Environment.NewLine;
+                    }
+                    text = text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + finaltext + strFieldChoosenEnd);
+                    File.WriteAllText(savePath + nameExt, text);
+                  
+                }
+            }
+        }
         public void ModifyFile(string name, int fieldChosen, string newString)
         {
             string nameExt = name + extension;
@@ -117,30 +153,34 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             foreach (string fileStr in files)
             {
                 WorkVar workvar = new WorkVar();
+                workvar.extension = new List<string>();
                 sr  = File.OpenText(fileStr);
-                while ((sr.ReadLine()) != null){
-                    switch (sr.ReadLine())
+                string strReturn;
+                while ((strReturn = sr.ReadLine()) != null){
+            
+                  
+                    switch (strReturn.Trim())
                     {
-                        case "<name>":                            
-                            workvar.name = sr.ReadLine();
+                        case "<name>":                             
+                            workvar.name = sr.ReadLine().Trim();                          
                             break;
                         case "<source>":
-                            workvar.source = sr.ReadLine();
+                            workvar.source = sr.ReadLine().Trim();
                             break;
                         case "<target>":
-                            workvar.target = sr.ReadLine();
+                            workvar.target = sr.ReadLine().Trim(); 
                             break;
                         case "<typeSave>":
-                            workvar.typeSave = int.Parse(sr.ReadLine());
+                            workvar.typeSave = int.Parse(sr.ReadLine().Trim());
                             break;
                         case "<key>":
-                            workvar.key = sr.ReadLine();
+                            workvar.key = sr.ReadLine().Trim(); 
                             break;
-                        case "<extention>":
-                            workvar.extension = sr.ReadLine();
+                        case "<ext>":
+                            workvar.extension.Add(sr.ReadLine().Trim()); 
                             break;
                         default:
-                            Console.WriteLine(sr.ReadLine());
+                           
                             break;
                     }
 
@@ -183,9 +223,14 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             file.Write(new UTF8Encoding(true).GetBytes("<key>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(workvar.key + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(@"</key>" + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes("<extention>" + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes(workvar.extension + Environment.NewLine));
-            file.Write(new UTF8Encoding(true).GetBytes(@"</extention>" + Environment.NewLine));
+            file.Write(new UTF8Encoding(true).GetBytes(@"<extentions>" + Environment.NewLine));
+            foreach (string ext in workvar.extension)
+            {
+                file.Write(new UTF8Encoding(true).GetBytes("<ext>" + Environment.NewLine));
+                file.Write(new UTF8Encoding(true).GetBytes(ext + Environment.NewLine));
+                file.Write(new UTF8Encoding(true).GetBytes("</ext>" + Environment.NewLine));
+            }
+            file.Write(new UTF8Encoding(true).GetBytes("</extentions>" + Environment.NewLine));
             file.Close();
         }
 

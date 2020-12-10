@@ -26,7 +26,7 @@ namespace WpfApp1
 
 
         public string key { get; set; } = "";
-        public List<string> extention { get; set; }
+        public List<string> extention { get; set; } = new List<string>();
 
       
 
@@ -57,8 +57,16 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((cipherWindow.keyTextBox.Text.Length == 0 && cipherWindow.extentionTextBox.Text.Length == 0) ||
-                (cipherWindow.keyTextBox.Text.Length > 0 && cipherWindow.extentionTextBox.Text.Length > 0))
+            foreach (TextBox textBox in cipherWindow.extentionList)
+            {
+                if (!textBox.Text.Equals(""))
+                {
+                    extention.Add(textBox.Text);
+                }
+            
+            }
+            if ((cipherWindow.keyTextBox.Text.Length == 0 && extention.Count == 0) ||
+                (cipherWindow.keyTextBox.Text.Length > 0 && extention.Count > 0))
             {
 
 
@@ -68,10 +76,7 @@ namespace WpfApp1
 
 
 
-                foreach (TextBox textBox in cipherWindow.extentionList)
-                {
-                    extention.Add(textBox.Text);
-                }
+               
             }
 
 

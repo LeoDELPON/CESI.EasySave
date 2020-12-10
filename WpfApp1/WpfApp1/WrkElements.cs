@@ -11,12 +11,19 @@ namespace WpfApp1
         public WrkElementInSavedList inSvdList { get; }
         public WrkElementInWrkList inWrkList { get; }
         public ConfSaver.WorkVar wv { get; set; }
+        public bool chiffrage { get; set; }
         public WrkElements(ConfSaver.WorkVar workVar,  BSEasySave BS)
         {
-
+            if (workVar.extension.Count > 0 && workVar.key.Length > 0)
+            {
+                chiffrage = true;
+            }else
+            {
+                chiffrage = false;
+            }
             inSvdList = new WrkElementInSavedList(workVar, BS);
             inWrkList = new WrkElementInWrkList(workVar, BS);
-                
+            
             wv = workVar;
         
             
