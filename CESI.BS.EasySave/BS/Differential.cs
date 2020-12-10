@@ -13,7 +13,7 @@ namespace CESI.BS.EasySave.BS
     internal class Differential : Save
     {
        /// <summary>
-       /// Chemins des Backup
+       /// Chemins pour sauvegarde complète.
        /// </summary>
         private string FullBackupPath { get; set; }
         /// <summary>
@@ -21,15 +21,27 @@ namespace CESI.BS.EasySave.BS
         /// </summary>
         private string FolderToSave { get; set; }
         /// <summary>
-        /// Chemins pour comparaison des backup
+        /// Chemins pour sauvegarde différentiel.
         /// </summary>
         private string DiffBackupPath { get; set; }
+        /// <summary>
+        /// Chemin d'une sauvegarde.
+        /// </summary>
         private string BackupPath { get; set; }
+        /// <summary>
+        /// Nom du travail.
+        /// </summary>
         private string WorkName { get; set; }
         private IList<string> _extensions;
         public string _key;
 
 
+        /// <summary>
+        /// Sauvegarde différentielle.
+        /// </summary>
+        /// <param name="props"></param>
+        /// <param name="extensions">Liste des extensions des fichiers</param>
+        /// <param name="key"></param>
         public Differential(string props, List<string> extensions, string key)
         {
             handler = DataHandler.Instance;
@@ -40,6 +52,12 @@ namespace CESI.BS.EasySave.BS
             _key = key;
         }
 
+        /// <summary>
+        /// Création d'une sauvegarde différentielle
+        /// </summary>
+        /// <param name="sourceFolder">Fichier source</param>
+        /// <param name="targetFolder">Fichier de destination</param>
+        /// <returns></returns>
         public override int SaveProcess(string sourceFolder, string targetFolder)
         {
             int returnInfo = SUCCESS_OPERATION;
