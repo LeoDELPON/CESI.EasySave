@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfApp1
 
@@ -13,7 +15,8 @@ namespace WpfApp1
     {
 
         List<InfoLanguage> listLanguage = new List<InfoLanguage>();
-
+        public List<TextBox> extentionList = new List<TextBox>();
+        
 
         struct InfoLanguage
         {
@@ -27,6 +30,20 @@ namespace WpfApp1
             listLanguage.Add(new InfoLanguage { name = "Français", path = new Uri(@"\Language\fr-FR.xaml", UriKind.Relative) });
             listLanguage.Add(new InfoLanguage { name = "English", path = new Uri(@"\Language\en-US.xaml", UriKind.Relative) });
             Closing += Cipher_Window_Closing;
+            AddExtentionBoxButton.Click += AddExtentionBoxButton_Click;
+
+
+
+
+
+        }
+
+        private void AddExtentionBoxButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox extention = new TextBox();
+            SPExtention.Children.Add(extention);
+            extentionList.Add(extention);
+
 
 
 
@@ -42,7 +59,8 @@ namespace WpfApp1
             }
             
         }
-      
+
+       
 
     }
 }

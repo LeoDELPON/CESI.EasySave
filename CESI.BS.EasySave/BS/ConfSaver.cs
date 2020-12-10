@@ -16,7 +16,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             public string target;
             public int typeSave;
             public string key;
-            public string extension;
+            public List<string> extension;
         }
         public FileStream file;
         public string savePath = Environment.CurrentDirectory + @"\saveConf\";

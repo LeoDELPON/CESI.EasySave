@@ -32,4 +32,5 @@
     <system:String x:Key="XOR">Options chiffrement</system:String>
     <system:String x:Key="KEY">Votre clé :</system:String>
     <system:String x:Key="EXTENSION">Extension</system:String>
+    <system:String x:Key="ADDEXTENSION">Ajouter des extention</system:String>
 </ResourceDictionary>
