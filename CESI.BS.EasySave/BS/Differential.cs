@@ -32,7 +32,7 @@ namespace CESI.BS.EasySave.BS
         /// Nom du travail.
         /// </summary>
         private string WorkName { get; set; }
-        private IList<string> _extensions;
+        private readonly IList<string> _extensions;
         public string _key;
 
 
@@ -71,6 +71,7 @@ namespace CESI.BS.EasySave.BS
             FolderToSave = sourceFolder;
             try
             {
+                //regarde si le fichier destination est vide (signifie que c'est la premiere sauvegarde.)
                 if (!FolderBuilder.CheckFolder(BackupPath))
                 {
                     FolderBuilder.CreateFolder(targetFolder);
@@ -81,7 +82,7 @@ namespace CESI.BS.EasySave.BS
                 }
                 else
                 {
-                    DiffBackupPath = DiffBackupPath + "\\" + DateTime.Now.ToString("dd_MM_yyyy");
+                    DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy");
                 }
                 
                 propertiesWork[WorkProperties.Date] = DateTime.Now.ToString("dd_MM_yyyy");
@@ -93,10 +94,9 @@ namespace CESI.BS.EasySave.BS
                 IEnumerable<FileInfo> listFileSource = GetFilesFromFolderBis(directorySource);
                 IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolderBis(directoryFullSave);
 
-                FileCompare fileCompared = new FileCompare();
+                var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
 
-                var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, fileCompared);
-
+                //premiere assignation de valeur et instanciation de data handler
                 propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
                 long folderSize = getSizeOfDiff(queryGetDifferenceFile);
                 propertiesWork[WorkProperties.Size] = folderSize;
@@ -116,12 +116,14 @@ namespace CESI.BS.EasySave.BS
                         {
                             FolderBuilder.CreateFolder(pathTest);
                         }
+                        // parti chiffrage
                         foreach (string ext in _extensions)
                         {
-                      
+
                             byte[] tmpByte = File.ReadAllBytes(file.FullName);
                             if (ext == file.Extension)
                             {
+                                //chiffré
                                 string args = _key + " " + file.FullName + " " + Path.Combine(pathTest, file.Name);
                                 Stopwatch stopW2 = new Stopwatch();
                                 stopW2.Start();
@@ -130,18 +132,21 @@ namespace CESI.BS.EasySave.BS
                                 temp = stopW2.ElapsedMilliseconds;
                             } else
                             {
+                                //non chiffré
                                 file.CopyTo(Path.Combine(pathTest, file.Name), true);
                             }
                         }
                         Console.WriteLine("[+] Copying {0}", file.FullName);
                     }
+                    //gestion des erreurs
                     catch (Exception e)
                     {
                         Console.WriteLine("[-] An Error has occured while trying to copy Files : {0}", e);
                     }
                     i++;
+                    //assignation de valeur du dictionnaire
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
-                    folderSize = folderSize - file.Length;
+                    folderSize -= file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = folderSize;
                     propertiesWork[WorkProperties.Duration] = DateTime.Now.ToString("ss-MM-hh");
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
@@ -152,6 +157,7 @@ namespace CESI.BS.EasySave.BS
             }
             catch (Exception e)
             {
+                //gestion des erreurs
                 returnInfo = ERROR_OPERATION;
                 Console.WriteLine("[-] An error occured while trying to save : {0}", e);
                 handler.OnStop(false);
@@ -159,6 +165,11 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
+        /// <summary>
+        /// calcul la taille du dossier
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public long GetDirectorySize(string p)
         {
             string[] a = Directory.GetFiles(p, "*.*");
@@ -171,6 +182,11 @@ namespace CESI.BS.EasySave.BS
             return b;
         }
 
+        /// <summary>
+        /// trouve les fichiers du dossier.
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         private IEnumerable<FileInfo> GetFilesFromFolderBis(DirectoryInfo dir)
         {
             IEnumerable<FileInfo> files = dir.GetFiles(
@@ -180,6 +196,11 @@ namespace CESI.BS.EasySave.BS
             return files;
         }
 
+        /// <summary>
+        /// calculer la taille des dossiers a manipuler
+        /// </summary>
+        /// <param name="queryGetDifferenceFile"></param>
+        /// <returns></returns>
         private long getSizeOfDiff(IEnumerable<FileInfo> queryGetDifferenceFile)
         {
             long size = 0;
@@ -190,6 +211,10 @@ namespace CESI.BS.EasySave.BS
             return size;
         }
 
+        /// <summary>
+        /// une fonction de marcus le fdp
+        /// </summary>
+        /// <returns></returns>
         public override string GetNameTypeWork()
         {
             return "Dif"; // don't touch this it's useful

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {}
+    "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {}
   },
   "projects": {
-    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+    "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "projectUniqueName": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
         "projectName": "CESI.BS.EasySave",
-        "projectPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
-        "packagesPath": "C:\\Users\\remib\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
+        "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "packagesPath": "C:\\Users\\remin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\remib\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\remin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
