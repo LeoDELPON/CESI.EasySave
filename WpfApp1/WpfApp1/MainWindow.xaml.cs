@@ -240,7 +240,7 @@ namespace WpfApp1
 
                 if (objNewLanguageDictionary != null)
                 {
-                    ChanheLanguageRessourcesOfAllWindows(objNewLanguageDictionary);
+                    ChangeLanguageRessourcesOfAllWindows(objNewLanguageDictionary);
 
                     CultureInfo culture =
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
@@ -252,7 +252,7 @@ namespace WpfApp1
             }
         }
 
-        private void ChanheLanguageRessourcesOfAllWindows(ResourceDictionary objNewLanguageDictionary)
+        private void ChangeLanguageRessourcesOfAllWindows(ResourceDictionary objNewLanguageDictionary)
         {
             Resources.MergedDictionaries.Remove(obj);
             Resources.MergedDictionaries.Add(objNewLanguageDictionary);

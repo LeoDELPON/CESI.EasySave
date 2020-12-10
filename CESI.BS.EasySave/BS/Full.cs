@@ -14,17 +14,19 @@ namespace CESI.BS.EasySave.BS
     {
 
         long folderSize;
-        public List<string> _extension;
+        public List<string> _cryptoExtension;
+        public List<string> _priorityExtension;
         public string workName;
         public string _key;
 
-        public Full(string props, List<string> extensions, string key) : base()
+        public Full(string props, List<string> cryptoExtensions, List<string> priorityExtensions, string key) : base()
         {
             idTypeSave ="ful";
             handler = DataHandler.Instance;
             TypeSave = SaveType.FULL;
             workName = props;
-            _extension = extensions;
+            _cryptoExtension = cryptoExtensions;
+            _priorityExtension = priorityExtensions;
             _key = key;
         }
 
@@ -59,7 +61,7 @@ namespace CESI.BS.EasySave.BS
             {
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
                 fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves");
-                fullSaveDirectory = new DirectoryInfo(target.ToString() + "\\" + source.Name + "\\FullSaves");
+                fullSaveDirectory = new DirectoryInfo(target.ToString() +  @"\" + source.Name + @"\FullSaves");
             }
             else
             {
@@ -81,7 +83,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
-                    foreach (string ext in _extension)
+                    foreach (string ext in _cryptoExtension)
                     {
                         byte[] tmpByte = File.ReadAllBytes(file.FullName);
                         if (ext == file.Extension)
