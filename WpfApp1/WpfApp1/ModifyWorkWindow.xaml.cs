@@ -60,6 +60,13 @@ namespace WpfApp1
             WorkSourceTB.Text = we.wv.source;
             WorkTargetTB.Text = we.wv.target;
             SaveTypeCB.SelectedIndex = we.wv.typeSave;
+            KeyTB.Text = we.wv.key;
+           /* foreach (string ext in we.wv.extension)
+            {
+
+            }*/
+
+
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
