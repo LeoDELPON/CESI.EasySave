@@ -26,7 +26,7 @@ namespace WpfApp1
 
 
         public string key { get; set; } = "";
-        public string extention { get; set; } = "";
+        public List<string> extention { get; set; }
 
       
 
@@ -65,7 +65,13 @@ namespace WpfApp1
                 cipherWindow.Hide();
 
                 key = cipherWindow.keyTextBox.Text;
-                extention = cipherWindow.extentionTextBox.Text;
+
+
+
+                foreach (TextBox textBox in cipherWindow.extentionList)
+                {
+                    extention.Add(textBox.Text);
+                }
             }
 
 

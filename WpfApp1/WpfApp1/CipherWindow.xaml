@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         
-        Title="CypherWindow" Height="186" Width="200" ResizeMode="NoResize">
+        Title="CypherWindow" Height="400" Width="200" ResizeMode="NoResize">
     <Grid>
-        <StackPanel Height="172" >
+        <StackPanel Margin="0,0,0,-1" >
             <Label Name ="Title" Content="{DynamicResource XOR}" HorizontalAlignment="Center"/>
             <Label Content="{DynamicResource KEY}"/>
             <TextBox  Name ="keyTextBox" Text="" TextWrapping="Wrap" Width="196" RenderTransformOrigin="0.464,2.791"/>
-            <Label Content="{DynamicResource EXTENSION}"/>
-            <Label>
-                <TextBox  Name="extentionTextBox" Text="" TextWrapping="Wrap" Width="120"/>
-            </Label>
+            <Label Content="{DynamicResource EXTENSION}" Height="24"/>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Name="SPExtention">
+                <TextBox  TextWrapping="Wrap" Width="120" Name="extentionTextBox"/>
+            </StackPanel>
+            <Button  Content="{DynamicResource ADDEXTENSION}" Name ="AddExtentionBoxButton"/>
+
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Content="{DynamicResource OK}" Width="50" Name="OkBtn"  />
             </StackPanel>

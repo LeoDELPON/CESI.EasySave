@@ -42,7 +42,7 @@ namespace WpfApp1
    
         public BSEasySave bs = new BSEasySave();
         ModifyWorkWindow modifyWorkWindow;
-        public List<string> extentionList = new List<string>();
+        
 
 
         public MainWindow()        {
@@ -119,6 +119,8 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+
+            List<string> extentionList = new List<string>();
             if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Length == 0))
             {
               
@@ -141,9 +143,9 @@ namespace WpfApp1
                 if ((bool)addWorkWindow.isXor.IsChecked)
                 {
                     wv.key = addWorkWindow.key;
-                    wv.extension = addWorkWindow.extention;
+                    //wv.extension = addWorkWindow.extention;
                     extentionList.Clear();
-                    extentionList.Add(wv.extension);
+                    extentionList = addWorkWindow.extention;
 
                 }
                 else
