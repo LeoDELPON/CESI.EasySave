@@ -12,14 +12,23 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Differential : Save
     {
-       
+       /// <summary>
+       /// Chemins des Backup
+       /// </summary>
         private string FullBackupPath { get; set; }
+        /// <summary>
+        /// Fichier à sauvegarder
+        /// </summary>
         private string FolderToSave { get; set; }
+        /// <summary>
+        /// Chemins pour comparaison des backup
+        /// </summary>
         private string DiffBackupPath { get; set; }
         private string BackupPath { get; set; }
         private string WorkName { get; set; }
         private IList<string> _extensions;
         public string _key;
+
 
         public Differential(string props, List<string> extensions, string key)
         {
