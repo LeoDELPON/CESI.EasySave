@@ -200,19 +200,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marcus\\.nuget\\packages\\": {}
+    "C:\\Users\\remin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+      "projectUniqueName": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
       "projectName": "CesiEasySave",
-      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
-      "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\obj\\",
+      "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+      "packagesPath": "C:\\Users\\remin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CesiEasySave\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\remin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -226,11 +226,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             },
-            "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
-              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj"
+            "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
+              "projectPath": "C:\\Users\\remin\\Source\\Repos\\LeoDELPON\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj"
             }
           }
         }
