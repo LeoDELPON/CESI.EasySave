@@ -12,13 +12,34 @@ namespace CESI.BS.EasySave.BS
 {
     internal class Full : Save
     {
-
+        /// <summary>
+        /// Taille du fichier.
+        /// </summary>
         long folderSize;
+        /// <summary>
+        /// Liste des extensions des fichiers.
+        /// </summary>
         public List<string> _cryptoExtension;
+        /// <summary>
+        /// Liste des fichiers prioritaires.
+        /// </summary>
         public List<string> _priorityExtension;
+        /// <summary>
+        /// Nom du travail.
+        /// </summary>
         public string workName;
+        /// <summary>
+        /// Clé.
+        /// </summary>
         public string _key;
 
+        /// <summary>
+        /// Sauvegarde complète.
+        /// </summary>
+        /// <param name="props">Props</param>
+        /// <param name="cryptoExtensions">Liste des extensions des fichiers</param>
+        /// <param name="priorityExtensions">Extensions de fichiers prioritaires</param>
+        /// <param name="key"></param>
         public Full(string props, List<string> cryptoExtensions, List<string> priorityExtensions, string key) : base()
         {
             idTypeSave ="ful";
@@ -30,6 +51,12 @@ namespace CESI.BS.EasySave.BS
             _key = key;
         }
 
+        /// <summary>
+        /// Process de sauvegarde.
+        /// </summary>
+        /// <param name="sourceD">String du répertoire source</param>
+        /// <param name="destD">String du répertoire de destination</param>
+        /// <returns></returns>
         public override int SaveProcess(string sourceD, string destD)
         {
             int returnInfo = SUCCESS_OPERATION;
@@ -40,19 +67,33 @@ namespace CESI.BS.EasySave.BS
             DirectoryInfo dirSource = new DirectoryInfo(sourceD);
             DirectoryInfo dirDestination = new DirectoryInfo(destD);
             bool status = CopyAll(dirSource, dirDestination, false);
+
+            //Vérifie si ça c'est bien passé
             if (!status)
             {
+                //Retourne une erreur
                 handler.OnStop(false);
                 returnInfo = ERROR_OPERATION;
                 return returnInfo;
             }
+
+            //C'est réussi
             handler.OnStop(true);
             return returnInfo;
         }
 
+        /// <summary>
+        /// Copie de tous les fichiers.
+        /// </summary>
+        /// <param name="source">Répertoire source</param>
+        /// <param name="target">Répertoire de destination</param>
+        /// <param name="recursive">Booléan recursive</param>
+        /// <returns></returns>
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool recursive)
         {
             DirectoryInfo fullSaveDirectory;
+
+            //Vérifie le dossier cible
             if (!FolderBuilder.CheckFolder(target.ToString()))
             {
                 FolderBuilder.CreateFolder(target.FullName);
@@ -67,8 +108,12 @@ namespace CESI.BS.EasySave.BS
             {
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
             }
+            
+            //Numéro du fichier
             int fileNumber = GetFilesFromFolder(source.ToString()).Length;
             propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
+
+            //Récupère tous les fichierse
             if (!recursive)
             {
                 folderSize = GetFolderSize(source.ToString());
@@ -76,16 +121,22 @@ namespace CESI.BS.EasySave.BS
                 handler = DataHandler.Instance;
                 handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
             }
+            
             try
             {
                 double temp = -1;
-      
+                
+                //Pour tous les fichier dans la source
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
+                    
+                    //Pour chaques extensions dans la source
                     foreach (string ext in _cryptoExtension)
                     {
                         byte[] tmpByte = File.ReadAllBytes(file.FullName);
+
+                        //Vérifie les extensions
                         if (ext == file.Extension)
                         {
                             string arguments = _key + " " + file.FullName + " " + Path.Combine(fullSaveDirectory.FullName, file.Name);
@@ -108,6 +159,7 @@ namespace CESI.BS.EasySave.BS
                     handler.OnNext(propertiesWork);
                 }
 
+                //Pour tous les répertoire source dans "source"
                 foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir =
