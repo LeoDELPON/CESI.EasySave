@@ -16,7 +16,6 @@ namespace CESI.BS.EasySave.DAL
         public string Name { get; set; }
         public string Source { get; set; }
         public string Target { get; set; }
-        
         public string SaveType
         {
             get { return _saveType.TypeSave.ToString(); }
