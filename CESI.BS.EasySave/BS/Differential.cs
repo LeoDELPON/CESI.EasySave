@@ -92,7 +92,7 @@ namespace CESI.BS.EasySave.BS
                 propertiesWork[WorkProperties.Target] = DiffBackupPath;
                 propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
                 propertiesWork[WorkProperties.Size] = FolderSize = GetSizeOfDiff(queryGetDifferenceFile);
-                
+                propertiesWork[WorkProperties.Source] = sourceFolder;
                 handler.Init(propertiesWork);
                 int i = 0;
                 double temp = -1;

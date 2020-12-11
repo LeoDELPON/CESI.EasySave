@@ -295,13 +295,13 @@ namespace WpfApp1
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
-                 //   Thread saveThread = new Thread(launchWork =>
-                  //  {
+                  Thread saveThread = new Thread(launchWork =>
+                   {
                         bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
                         bs.works[weList.IndexOf(we)].Perform();
                         bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);
-                  //  });
-                   // saveThread.Start();
+                   });
+                    saveThread.Start();
                 }
             }
             foreach (WrkElements we in weList)

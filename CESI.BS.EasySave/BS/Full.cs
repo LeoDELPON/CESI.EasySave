@@ -19,7 +19,7 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Liste des extensions des fichiers.
         /// </summary>
-        public List<string> _cryptoExtension;
+        public List<string> _cryptoExtension = new List<string>();
         /// <summary>
         /// Liste des fichiers prioritaires.
         /// </summary>
@@ -93,10 +93,11 @@ namespace CESI.BS.EasySave.BS
             DirectoryInfo fullSaveDirectory;
 
             //Vérifie le dossier cible
-            if (!Directory.Exists(target.ToString()))
+            string path = target.ToString() + @"\" + propertiesWork[WorkProperties.Name] + "_" + source.Name.ToString() + @"\FullSaves" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+            if (!Directory.Exists(path))
             {
-                FolderBuilder.CreateFolder(target.FullName + @"\FullSaves");
-                fullSaveDirectory = new DirectoryInfo(target.FullName + @"\FullSaves");
+                FolderBuilder.CreateFolder(path);
+                fullSaveDirectory = new DirectoryInfo(path);
             }
             else
             {
