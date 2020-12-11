@@ -296,9 +296,9 @@ namespace WpfApp1
                    
                    
                    
-                    bs.works[weList.IndexOf(we)]._saveType.handler.Subscribe(we.inWrkList);
+                    bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
                     bs.works[weList.IndexOf(we)].Perform();
-                    bs.works[weList.IndexOf(we)]._saveType.handler.Unsubscribe(we.inWrkList);
+                    bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);
                     
                    
                 }

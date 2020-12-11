@@ -9,12 +9,6 @@ namespace CESI.BS.EasySave.BS
     public class DataHandler : Observable
     {
         private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
-      
-        private static long Size { get; set; }
-        private static int Files { get; set; }
-        private static string Name { get; set; }
-        private static string Source { get; set; }
-        private static string Target { get; set; }
 
         private readonly Stopwatch stopwatch;
         private DataHandler()
@@ -24,18 +18,15 @@ namespace CESI.BS.EasySave.BS
             subscribers = new List<Observer>();
         }
 
-        public void Init(int files, long size, string name, string source, string target)
+        public void Init(Dictionary<WorkProperties, object> newDictionary)
         {
-            Size = size;
-            Files = files;
             dictionary[WorkProperties.Date] = DateTime.Now.ToString("HH:mm:ss");
-            dictionary[WorkProperties.Name] = name;
-            dictionary[WorkProperties.Source] = source;
-            dictionary[WorkProperties.Target] = target;
-            dictionary[WorkProperties.Size] = size;
-            dictionary[WorkProperties.EligibleFiles] = files;
+            dictionary[WorkProperties.Name] = newDictionary[WorkProperties.Name];
+            dictionary[WorkProperties.Source] = newDictionary[WorkProperties.Source];
+            dictionary[WorkProperties.Target] = newDictionary[WorkProperties.Target];
+            dictionary[WorkProperties.Size] = newDictionary[WorkProperties.Name];
+            dictionary[WorkProperties.EligibleFiles] = newDictionary[WorkProperties.Name];
             dictionary[WorkProperties.State] = "Running";
-            dictionary[WorkProperties.Duration] = DateTime.Now.ToString("HH-mm-ss");
             dictionary[WorkProperties.EncryptDuration] = "0";
         }
 
@@ -83,7 +74,7 @@ namespace CESI.BS.EasySave.BS
         {
             dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
             dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
-            dictionary[WorkProperties.Duration] = newDictionary[WorkProperties.Duration];
+            dictionary[WorkProperties.Duration] = stopwatch.ElapsedMilliseconds;
             dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
             ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
 

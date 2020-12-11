@@ -17,13 +17,13 @@ namespace CESI.BS.EasySave.BS
        /// </summary>
         private string FullBackupPath { get; set; }
         /// <summary>
-        /// Fichier à sauvegarder
-        /// </summary>
-        private string FolderToSave { get; set; }
-        /// <summary>
         /// Chemins pour sauvegarde différentiel.
         /// </summary>
         private string DiffBackupPath { get; set; }
+        /// <summary>
+        /// taille des fichiers.
+        /// </summary>
+        private long FolderSize { get; set; }
         /// <summary>
         /// Chemin d'une sauvegarde.
         /// </summary>
@@ -31,7 +31,6 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Nom du travail.
         /// </summary>
-        private string WorkName { get; set; }
         private readonly IList<string> _extensions;
         public string _key;
 
@@ -44,10 +43,9 @@ namespace CESI.BS.EasySave.BS
         /// <param name="key"></param>
         public Differential(string props, List<string> extensions, string key)
         {
-            handler = DataHandler.Instance;
-            idTypeSave  = "dif";
+            IdTypeSave  = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
-            WorkName = props;
+            propertiesWork[WorkProperties.Name] = props;
             _extensions = extensions;
             _key = key;
         }
@@ -58,61 +56,54 @@ namespace CESI.BS.EasySave.BS
         /// <param name="sourceFolder">Fichier source</param>
         /// <param name="targetFolder">Fichier de destination</param>
         /// <returns></returns>
-        public override int SaveProcess(string sourceFolder, string targetFolder)
+        public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
-            int returnInfo = SUCCESS_OPERATION;
+            handler = DataHandler.Instance;
             if (!Directory.Exists(sourceFolder))
-                throw new DirectoryNotFoundException(
-                    "[-] Source directory has not been found: " + sourceFolder);
-            string directoryToSaveName = new DirectoryInfo(sourceFolder).Name;
-            FullBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "FullSaves";
-            DiffBackupPath = targetFolder + @"\" + directoryToSaveName + @"\" + "DiffSaves";
-            BackupPath = targetFolder + @"\" + directoryToSaveName;
-            FolderToSave = sourceFolder;
+            {
+                throw new DirectoryNotFoundException("[-] Source directory has not been found: " + sourceFolder);
+            }
+            DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
+            BackupPath = targetFolder + @"\" + directorySource.Name;
+            FullBackupPath = BackupPath + @"\FullSaves";
+            DiffBackupPath = BackupPath + @"\DiffSaves";
+            if (!Directory.Exists(BackupPath))
+            {
+                Console.WriteLine("[+] Warning, Full Save not created, Full Save being created");
+                DiffBackupPath = FullBackupPath;
+            }
+            else
+            {
+                DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy");
+            }
+
+            FolderBuilder.CreateFolder(DiffBackupPath);
+
+            DirectoryInfo directoryFullSave = new DirectoryInfo(FullBackupPath);
+
+            IEnumerable<FileInfo> listFileSource = GetFilesFromFolderBis(directorySource);
+            IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolderBis(directoryFullSave);
+
             try
             {
-                //regarde si le fichier destination est vide (signifie que c'est la premiere sauvegarde.)
-                if (!FolderBuilder.CheckFolder(BackupPath))
-                {
-                    FolderBuilder.CreateFolder(targetFolder);
-                    FolderBuilder.CreateFolder(FullBackupPath);
-                    FolderBuilder.CreateFolder(DiffBackupPath);
-                    Console.WriteLine("[+] Warning, Full Save not created, Full Save in creating");
-                    DiffBackupPath = FullBackupPath;
-                }
-                else
-                {
-                    DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy");
-                }
-                
-                propertiesWork[WorkProperties.Date] = DateTime.Now.ToString("dd_MM_yyyy");
-                FolderBuilder.CreateFolder(DiffBackupPath);
-
-                DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
-                DirectoryInfo directoryFullSave = new DirectoryInfo(FullBackupPath);
-
-                IEnumerable<FileInfo> listFileSource = GetFilesFromFolderBis(directorySource);
-                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolderBis(directoryFullSave);
-
                 var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
 
                 //premiere assignation de valeur et instanciation de data handler
+                propertiesWork[WorkProperties.Target] = DiffBackupPath;
                 propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
-                long folderSize = getSizeOfDiff(queryGetDifferenceFile);
-                propertiesWork[WorkProperties.Size] = folderSize;
-                propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                handler = DataHandler.Instance;
-                handler.Init((int)propertiesWork[WorkProperties.EligibleFiles], folderSize, WorkName, directoryToSaveName, DiffBackupPath);
+                propertiesWork[WorkProperties.Size] = FolderSize = GetSizeOfDiff(queryGetDifferenceFile);
+                
+                handler.Init(propertiesWork);
                 int i = 0;
                 double temp = -1;
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
-                    string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, FolderToSave);
+                    string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString());
                     string pathTest = file.DirectoryName;
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);
                     try
                     {
-                        if (!FolderBuilder.CheckFolder(pathTest))
+                        if (!Directory.Exists(pathTest))
                         {
                             FolderBuilder.CreateFolder(pathTest);
                         }
@@ -146,42 +137,22 @@ namespace CESI.BS.EasySave.BS
                     i++;
                     //assignation de valeur du dictionnaire
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - i;
-                    folderSize -= file.Length;
-                    propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    propertiesWork[WorkProperties.Duration] = DateTime.Now.ToString("ss-MM-hh");
+                    FolderSize -= file.Length;
+                    propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     handler.OnNext(propertiesWork);
                 }
                 handler.OnStop(true);
-                return returnInfo;
+                return true;
             }
             catch (Exception e)
             {
                 //gestion des erreurs
-                returnInfo = ERROR_OPERATION;
                 Console.WriteLine("[-] An error occured while trying to save : {0}", e);
                 handler.OnStop(false);
-                return returnInfo;
+                return false;
             }
         }
-
-        /// <summary>
-        /// calcul la taille du dossier
-        /// </summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        public long GetDirectorySize(string p)
-        {
-            string[] a = Directory.GetFiles(p, "*.*");
-            long b = 0;
-            foreach (string name in a)
-            {
-                FileInfo info = new FileInfo(name);
-                b += info.Length;
-            }
-            return b;
-        }
-
         /// <summary>
         /// trouve les fichiers du dossier.
         /// </summary>
@@ -201,7 +172,7 @@ namespace CESI.BS.EasySave.BS
         /// </summary>
         /// <param name="queryGetDifferenceFile"></param>
         /// <returns></returns>
-        private long getSizeOfDiff(IEnumerable<FileInfo> queryGetDifferenceFile)
+        private long GetSizeOfDiff(IEnumerable<FileInfo> queryGetDifferenceFile)
         {
             long size = 0;
             foreach(FileInfo file in queryGetDifferenceFile)
@@ -209,15 +180,6 @@ namespace CESI.BS.EasySave.BS
                 size += file.Length;
             }
             return size;
-        }
-
-        /// <summary>
-        /// une fonction de marcus le fdp
-        /// </summary>
-        /// <returns></returns>
-        public override string GetNameTypeWork()
-        {
-            return "Dif"; // don't touch this it's useful
         }
     }
 }

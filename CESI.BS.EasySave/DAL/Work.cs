@@ -10,23 +10,18 @@ namespace CESI.BS.EasySave.DAL
 
     public class Work
     {
-        public Save _saveType { get; set; }
+        public Save SaveType { get; set; }
         public Guid Id { get; private set; }
         public WorkState State { get; set; }
         public string Name { get; set; }
         public string Source { get; set; }
         public string Target { get; set; }
-        
-        public string SaveType
-        {
-            get { return _saveType.TypeSave.ToString(); }
-        }
 
         internal Work(string name, string source, string destination, Save saveType)
         {
             Id = Guid.NewGuid();
             State = WorkState.Exist;
-            _saveType = saveType;
+            SaveType = saveType;
             Name = name;
             Source = source;
             Target = destination;
@@ -34,7 +29,7 @@ namespace CESI.BS.EasySave.DAL
 
         public void Perform()
         {
-            _saveType.SaveProcess(Source, Target);
+            SaveType.SaveProcess(Source, Target);
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using CESI.BS.EasySave.DAL;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Security;
-using System.Text;
 
 
 namespace CESI.BS.EasySave.BS
@@ -13,7 +10,7 @@ namespace CESI.BS.EasySave.BS
     {
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
-        public string idTypeSave { get; set; }
+        public string IdTypeSave { get; set; }
         public DataHandler handler;
         public static int SUCCESS_OPERATION = 0;
         public static int ERROR_OPERATION = 1;
@@ -42,7 +39,7 @@ namespace CESI.BS.EasySave.BS
         /// <remarks>   Leo , 24/11/2020. </remarks>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
-        public abstract int SaveProcess(string sourceDirectory, 
+        public abstract bool SaveProcess(string sourceDirectory, 
             string destinationDirectory
             );
 
@@ -55,9 +52,6 @@ namespace CESI.BS.EasySave.BS
                 );
             return files;
         }
-
-        public abstract string GetNameTypeWork();
-
         protected long GetFolderSize(string path)
         {
             long size = 0;

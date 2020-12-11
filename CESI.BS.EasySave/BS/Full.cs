@@ -13,9 +13,9 @@ namespace CESI.BS.EasySave.BS
     internal class Full : Save
     {
         /// <summary>
-        /// Taille du fichier.
+        /// Taille du dossier.
         /// </summary>
-        long folderSize;
+        long FolderSize { get; set; }
         /// <summary>
         /// Liste des extensions des fichiers.
         /// </summary>
@@ -24,15 +24,11 @@ namespace CESI.BS.EasySave.BS
         /// Liste des fichiers prioritaires.
         /// </summary>
         public List<string> _priorityExtension;
-        /// <summary>
-        /// Nom du travail.
-        /// </summary>
-        public string workName;
+        
         /// <summary>
         /// Clé.
         /// </summary>
         public string _key;
-
         /// <summary>
         /// Sauvegarde complète.
         /// </summary>
@@ -42,10 +38,9 @@ namespace CESI.BS.EasySave.BS
         /// <param name="key"></param>
         public Full(string props, List<string> cryptoExtensions, List<string> priorityExtensions, string key) : base()
         {
-            idTypeSave ="ful";
-            handler = DataHandler.Instance;
+            IdTypeSave ="ful";
             TypeSave = SaveType.FULL;
-            workName = props;
+            propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
             _priorityExtension = priorityExtensions;
             _key = key;
@@ -54,32 +49,37 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Process de sauvegarde.
         /// </summary>
-        /// <param name="sourceD">String du répertoire source</param>
-        /// <param name="destD">String du répertoire de destination</param>
+        /// <param name="sourceFolder">String du répertoire source</param>
+        /// <param name="targetFolder">String du répertoire de destination</param>
         /// <returns></returns>
-        public override int SaveProcess(string sourceD, string destD)
+        public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
-            int returnInfo = SUCCESS_OPERATION;
-            if (!Directory.Exists(sourceD))
+            handler = DataHandler.Instance;
+            if (!Directory.Exists(sourceFolder))
+            {
                 throw new DirectoryNotFoundException(
-                    "[-] Source directory has not been found: " + sourceD);
-
-            DirectoryInfo dirSource = new DirectoryInfo(sourceD);
-            DirectoryInfo dirDestination = new DirectoryInfo(destD);
-            bool status = CopyAll(dirSource, dirDestination, false);
+                    "[-] Source directory has not been found: " + sourceFolder);
+            }
+            propertiesWork[WorkProperties.Source] = sourceFolder;
+            propertiesWork[WorkProperties.Target] = targetFolder;
+            propertiesWork[WorkProperties.EligibleFiles] = GetFilesFromFolder(sourceFolder).Length;
+            propertiesWork[WorkProperties.Size] = GetFolderSize(sourceFolder);
+            handler.Init(propertiesWork);
+            DirectoryInfo dirSource = new DirectoryInfo(sourceFolder);
+            DirectoryInfo dirDestination = new DirectoryInfo(targetFolder);
+            bool status = CopyAll(dirSource, dirDestination);
 
             //Vérifie si ça c'est bien passé
             if (!status)
             {
                 //Retourne une erreur
                 handler.OnStop(false);
-                returnInfo = ERROR_OPERATION;
-                return returnInfo;
+                return false;
             }
 
             //C'est réussi
             handler.OnStop(true);
-            return returnInfo;
+            return true;
         }
 
         /// <summary>
@@ -87,41 +87,21 @@ namespace CESI.BS.EasySave.BS
         /// </summary>
         /// <param name="source">Répertoire source</param>
         /// <param name="target">Répertoire de destination</param>
-        /// <param name="recursive">Booléan recursive</param>
         /// <returns></returns>
-        public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool recursive)
+        public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             DirectoryInfo fullSaveDirectory;
 
             //Vérifie le dossier cible
-            if (!FolderBuilder.CheckFolder(target.ToString()))
+            if (!Directory.Exists(target.ToString()))
             {
-                FolderBuilder.CreateFolder(target.FullName);
-            }
-            if (!recursive)
-            {
-                fullSaveDirectory = new DirectoryInfo(target.ToString());
-                fullSaveDirectory.CreateSubdirectory(source.Name).CreateSubdirectory("FullSaves");
-                fullSaveDirectory = new DirectoryInfo(target.ToString() +  @"\" + source.Name + @"\FullSaves");
+                FolderBuilder.CreateFolder(target.FullName + @"\FullSaves");
+                fullSaveDirectory = new DirectoryInfo(target.FullName + @"\FullSaves");
             }
             else
             {
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
-            }
-            
-            //Numéro du fichier
-            int fileNumber = GetFilesFromFolder(source.ToString()).Length;
-            propertiesWork[WorkProperties.EligibleFiles] = fileNumber;
-
-            //Récupère tous les fichierse
-            if (!recursive)
-            {
-                folderSize = GetFolderSize(source.ToString());
-                propertiesWork[WorkProperties.Size] = folderSize;
-                handler = DataHandler.Instance;
-                handler.Init(fileNumber, folderSize, workName, source.Name, target.Name);
-            }
-            
+            }  
             try
             {
                 double temp = -1;
@@ -151,10 +131,9 @@ namespace CESI.BS.EasySave.BS
                         }
 
                     }
-                    propertiesWork[WorkProperties.RemainingFiles] = fileNumber - 1;
-                    folderSize = folderSize - file.Length;
-                    propertiesWork[WorkProperties.RemainingSize] = folderSize;
-                    propertiesWork[WorkProperties.Duration] = DateTime.Now.ToString("ss-MM-hh");
+                    propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - 1;
+                    FolderSize -= file.Length;
+                    propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     handler.OnNext(propertiesWork);
                 }
@@ -165,7 +144,7 @@ namespace CESI.BS.EasySave.BS
                     DirectoryInfo nextTargetSubDir =
                         fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
                     Console.WriteLine("nextTarget = " + nextTargetSubDir +" \nnextDirectory = " + directorySourceSubDir);
-                    CopyAll(directorySourceSubDir, nextTargetSubDir, true);
+                    CopyAll(directorySourceSubDir, nextTargetSubDir);
                 }
                 return true;
             } catch(SecurityException e)
@@ -174,10 +153,6 @@ namespace CESI.BS.EasySave.BS
                     "an error occured because of the right access : {0}", e);
                 return false;
             }
-        }
-        public override string GetNameTypeWork()
-        {
-            return "Ful";  // don't touch this it's useful
         }
     }
 }

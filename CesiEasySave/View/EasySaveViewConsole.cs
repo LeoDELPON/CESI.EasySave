@@ -121,7 +121,7 @@ namespace CesiEasySave.View
             int i = 0;
             foreach (Save save in typeSave)
             {
-                Console.WriteLine(i + ") " + save.GetNameTypeWork());
+                Console.WriteLine(i + ") " + save.IdTypeSave);
                 i++;
             }
             return Console.ReadLine();
