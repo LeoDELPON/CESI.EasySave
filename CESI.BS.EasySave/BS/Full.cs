@@ -23,7 +23,7 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Liste des fichiers prioritaires.
         /// </summary>
-        public List<string> _priorityExtension;
+      //  public List<string> _priorityExtension;
         
         /// <summary>
         /// Clé.
@@ -36,13 +36,13 @@ namespace CESI.BS.EasySave.BS
         /// <param name="cryptoExtensions">Liste des extensions des fichiers</param>
         /// <param name="priorityExtensions">Extensions de fichiers prioritaires</param>
         /// <param name="key"></param>
-        public Full(string props, List<string> cryptoExtensions, List<string> priorityExtensions, string key) : base()
+        public Full(string props, List<string> cryptoExtensions, string key) : base()
         {
             IdTypeSave ="ful";
             TypeSave = SaveType.FULL;
             propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
-            _priorityExtension = priorityExtensions;
+         //   _priorityExtension = priorityExtensions;
             _key = key;
         }
 

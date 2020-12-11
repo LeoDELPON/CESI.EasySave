@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -84,7 +85,7 @@ namespace WpfApp1
                 }
             }
 
-            if (FolderBuilder.CheckFolder(modifyWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(modifyWorkWindow.WorkTargetTB.Text))
+            if (Directory.Exists(modifyWorkWindow.WorkSourceTB.Text) && Directory.Exists(modifyWorkWindow.WorkTargetTB.Text))
             {
                 modifyWorkWindow.Hide();
                 int index = weList.IndexOf(modifyWorkWindow.we);
@@ -137,7 +138,7 @@ namespace WpfApp1
                 addWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             }
 
-            if (FolderBuilder.CheckFolder(addWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(addWorkWindow.WorkTargetTB.Text))
+            if (Directory.Exists(addWorkWindow.WorkSourceTB.Text) && Directory.Exists(addWorkWindow.WorkTargetTB.Text))
             {
                 addWorkWindow.Hide();
                 WorkVar wv = new WorkVar();

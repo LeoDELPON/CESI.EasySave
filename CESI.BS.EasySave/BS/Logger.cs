@@ -20,7 +20,7 @@ namespace CESI.BS.EasySave.BS
         {
             string json = "";
             json = JsonSerializer.Serialize(new WorkFactory().CreateDtoLogger(dictionary));
-            if (!FolderBuilder.CheckFolder(LogFilePath))
+            if (!Directory.Exists(LogFilePath))
             {
                 FolderBuilder.CreateFolder(LogFilePath);
             }

@@ -17,7 +17,7 @@ namespace CESI.BS.EasySave.BS
 
         internal static void GenerateStatusLog(Dictionary<WorkProperties, object> dictionary)
         {
-            if (!FolderBuilder.CheckFolder(LogFilePath))
+            if (!Directory.Exists(LogFilePath))
             {
                 FolderBuilder.CreateFolder(LogFilePath);
             }

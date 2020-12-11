@@ -8,7 +8,7 @@
         Title="CypherWindow" Height="400" Width="200" ResizeMode="NoResize">
     <Grid>
         <StackPanel Margin="0,0,0,-1" >
-            <Label Name ="Title" Content="{DynamicResource XOR}" HorizontalAlignment="Center"/>
+            <Label Name ="TopTitle" Content="{DynamicResource XOR}" HorizontalAlignment="Center"/>
             <Label Content="{DynamicResource KEY}"/>
             <TextBox  Name ="keyTextBox" Text="" TextWrapping="Wrap" Width="196" RenderTransformOrigin="0.464,2.791"/>
             <Label Content="{DynamicResource EXTENSION}" Height="24"/>

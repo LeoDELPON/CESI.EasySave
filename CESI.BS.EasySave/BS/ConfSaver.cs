@@ -33,7 +33,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
 
         private void MakeSurePathExist(WorkVar workvar)
         {
-            if (!FolderBuilder.CheckFolder(savePath))
+            if (!Directory.Exists(savePath))
             {
                 FolderBuilder.CreateFolder(savePath);
             }
@@ -45,7 +45,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         }
         private void MakeSurePathExist()
         {
-            if (!FolderBuilder.CheckFolder(savePath))
+            if (!Directory.Exists(savePath))
             {
                 FolderBuilder.CreateFolder(savePath);
             }
