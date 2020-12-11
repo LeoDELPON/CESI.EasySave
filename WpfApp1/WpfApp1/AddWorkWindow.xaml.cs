@@ -57,25 +57,20 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            extention.Clear();
-            for (int i = 0; i< cipherWindow.SPExtention.Children.Count; i++)
+            foreach (TextBox textBox in cipherWindow.extentionList)
             {
-                if (!((TextBox)cipherWindow.SPExtention.Children[i]).Text.Equals(""))
+                if (!textBox.Text.Equals(""))
                 {
-                    extention.Add(((TextBox)cipherWindow.SPExtention.Children[i]).Text);
+                    extention.Add(textBox.Text);
                 }
             
             }
-            if (extention.Count == 0)
-            {
-                extention.Add("null");
-                
-            }
-            if ((cipherWindow.keyTextBox.Text.Length == 0 && cipherWindow.SPExtention.Children.Count == 0) || (cipherWindow.keyTextBox.Text.Length > 0 && cipherWindow.SPExtention.Children.Count > 0))
+            if ((cipherWindow.keyTextBox.Text.Length == 0 && extention.Count == 0) ||
+                (cipherWindow.keyTextBox.Text.Length > 0 && extention.Count > 0))
             {
 
 
-            cipherWindow.Hide();
+                cipherWindow.Hide();
 
                 key = cipherWindow.keyTextBox.Text;
 

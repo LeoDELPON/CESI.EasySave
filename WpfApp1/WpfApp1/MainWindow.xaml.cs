@@ -75,7 +75,6 @@ namespace WpfApp1
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
         {
-            
             List<string> listExt = new List<string>();
             listExt.Clear();
             for(int i = 1; i< modifyWorkWindow.extLV.Items.Count; i++)
@@ -84,17 +83,16 @@ namespace WpfApp1
                     listExt.Add(((TextBox)modifyWorkWindow.extLV.Items[i]).Text);
                 }
             }
-            if (listExt.Count == 0)
-            {
-                listExt.Add("null");
-            }
 
             if (FolderBuilder.CheckFolder(modifyWorkWindow.WorkSourceTB.Text) && FolderBuilder.CheckFolder(modifyWorkWindow.WorkTargetTB.Text))
             {
                 modifyWorkWindow.Hide();
                 int index = weList.IndexOf(modifyWorkWindow.we);
                 int Size = bs.GetWorks().Count();
-           
+                bs.ModifyWork(bs.GetWorks()[index], 1, modifyWorkWindow.WorkNameTB.Text);
+                bs.ModifyWork(bs.GetWorks()[index], 2, modifyWorkWindow.WorkSourceTB.Text);
+                bs.ModifyWork(bs.GetWorks()[index], 3, modifyWorkWindow.WorkTargetTB.Text);
+                bs.ModifyWork(bs.GetWorks()[index], 4, modifyWorkWindow.SaveTypeCB.SelectedIndex);
                 WorkVar workVar = new WorkVar();
                 workVar.name = modifyWorkWindow.WorkNameTB.Text;
                 workVar.source = modifyWorkWindow.WorkSourceTB.Text;
@@ -102,9 +100,7 @@ namespace WpfApp1
                 workVar.typeSave = modifyWorkWindow.SaveTypeCB.SelectedIndex;
                 workVar.key = modifyWorkWindow.KeyTB.Text;
                 workVar.extension = listExt;
-                bs.confSaver.modifyEntireFile(bs.GetWorks()[index].Name, workVar);
-                bs.ModifyWork(bs.GetWorks()[index],workVar.name, workVar.source, workVar.target, ((ComboBoxItem)modifyWorkWindow.SaveTypeCB.SelectedItem).Name, workVar.extension, workVar.key);
-            
+                bs.confSaver.modifyEntireFile(workVar.name, workVar);  
 
                 weList[index].wv = workVar;
                 weList[index].inSvdList.UpdateWv(weList[index].wv);
@@ -244,7 +240,7 @@ namespace WpfApp1
 
                 if (objNewLanguageDictionary != null)
                 {
-                    ChangeLanguageRessourcesOfAllWindows(objNewLanguageDictionary);
+                    ChanheLanguageRessourcesOfAllWindows(objNewLanguageDictionary);
 
                     CultureInfo culture =
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
@@ -256,7 +252,7 @@ namespace WpfApp1
             }
         }
 
-        private void ChangeLanguageRessourcesOfAllWindows(ResourceDictionary objNewLanguageDictionary)
+        private void ChanheLanguageRessourcesOfAllWindows(ResourceDictionary objNewLanguageDictionary)
         {
             Resources.MergedDictionaries.Remove(obj);
             Resources.MergedDictionaries.Add(objNewLanguageDictionary);

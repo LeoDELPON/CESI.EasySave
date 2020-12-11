@@ -38,18 +38,22 @@ namespace CESI.BS.EasySave.BS
             };
             works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
         }
-        public void ModifyWork(Work work, string name, string source, string target, string save, List<string> extensions, string key)
+        public void ModifyWork(Work work, int field, string newField)
         {
-            Dictionary<WorkProperties, object> propertiesWork = new Dictionary<WorkProperties, object>
+            switch (field)
             {
-                [WorkProperties.Name] = name,
-                [WorkProperties.Source] = source,
-                [WorkProperties.Target] = target,
-                [WorkProperties.TypeSave] = save,
-                [WorkProperties.Extensions] = extensions,
-                [WorkProperties.Key] = key
-            };
-            works[works.IndexOf(work)] = new WorkFactory().CreateWorkObject(propertiesWork);
+                case 1:
+                    work.Name = newField;
+                    break;
+                case 2:
+                    work.Source = newField;
+                    break;
+                case 3:
+                    work.Target = newField;
+                    break;
+                default:
+                    break;
+            }
         }
         public void ModifyWork(Work work, int field, int typeSaveChoosen)
         {
