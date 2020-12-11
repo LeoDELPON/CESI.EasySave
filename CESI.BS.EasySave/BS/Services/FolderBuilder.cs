@@ -28,16 +28,5 @@ namespace CESI.BS.EasySave.BS
             }
             Directory.Delete(requestedPath);
         }
-
-
-        //Allow user to check if a specified folder already exist
-        public static bool CheckFolder(string requestedPath)
-        {
-            if (Directory.Exists(requestedPath))
-            {
-                return true;
-            }
-            return false;
-        }
     }
 }

@@ -55,7 +55,7 @@ namespace CESI.BS.EasySave.BS
         {
             if (field == 4)
             {
-                work._saveType = typeSave[typeSaveChoosen];
+                work.SaveType = typeSave[typeSaveChoosen];
             }
 
         }

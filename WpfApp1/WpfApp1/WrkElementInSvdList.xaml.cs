@@ -39,7 +39,7 @@ namespace WpfApp1
             workNameLbl.Content = workVar.name;
             workSourceLbl.Content = workVar.source;
             workTargetLbl.Content = workVar.target;
-            workTypeLbl.SetResourceReference(Label.ContentProperty, bs.typeSave[workVar.typeSave].GetNameTypeWork());
+            workTypeLbl.SetResourceReference(Label.ContentProperty, bs.typeSave[workVar.typeSave].IdTypeSave);
         }
     }
 }

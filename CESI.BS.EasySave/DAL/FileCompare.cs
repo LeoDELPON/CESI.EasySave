@@ -7,7 +7,7 @@ namespace CESI.BS.EasySave.DAL
 {
     public class FileCompare : IEqualityComparer<FileInfo>
     {
-        public FileCompare() { }
+        private FileCompare() { }
 
         public bool Equals(FileInfo f1, FileInfo f2)
         {
@@ -20,5 +20,8 @@ namespace CESI.BS.EasySave.DAL
             string s = $"{fi.Name}{fi.Length}";
             return s.GetHashCode();
         }
+
+        private static readonly Lazy<FileCompare> lazy = new Lazy<FileCompare>(() => new FileCompare());
+        public static FileCompare Instance { get { return lazy.Value; } }
     }
 }
