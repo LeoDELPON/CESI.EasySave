@@ -24,15 +24,15 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.Name] = newDictionary[WorkProperties.Name];
             dictionary[WorkProperties.Source] = newDictionary[WorkProperties.Source];
             dictionary[WorkProperties.Target] = newDictionary[WorkProperties.Target];
-            dictionary[WorkProperties.Size] = newDictionary[WorkProperties.Name];
-            dictionary[WorkProperties.EligibleFiles] = newDictionary[WorkProperties.Name];
+            dictionary[WorkProperties.Size] = newDictionary[WorkProperties.Size];
+            dictionary[WorkProperties.EligibleFiles] = newDictionary[WorkProperties.EligibleFiles];
             dictionary[WorkProperties.State] = "Running";
             dictionary[WorkProperties.EncryptDuration] = "0";
         }
 
         private void ComputeProgress(object remainingSize)
         {
-            long sizeProperty = (long)Dictionary[WorkProperties.Size];
+            long sizeProperty = long.Parse(Dictionary[WorkProperties.Size].ToString());
             if (sizeProperty != 0)
             {
                 Dictionary[WorkProperties.Progress] = (sizeProperty-(long)remainingSize) * 100 / sizeProperty;

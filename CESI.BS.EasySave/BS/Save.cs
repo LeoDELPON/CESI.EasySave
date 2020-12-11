@@ -11,7 +11,7 @@ namespace CESI.BS.EasySave.BS
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
         public string IdTypeSave { get; set; }
-        public DataHandler handler;
+        public DataHandler handler = DataHandler.Instance;
         public static int SUCCESS_OPERATION = 0;
         public static int ERROR_OPERATION = 1;
         public static int IN_PROGRESS = 2;

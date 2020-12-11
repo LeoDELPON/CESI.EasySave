@@ -68,18 +68,9 @@ namespace WpfApp1
             if ((cipherWindow.keyTextBox.Text.Length == 0 && extention.Count == 0) ||
                 (cipherWindow.keyTextBox.Text.Length > 0 && extention.Count > 0))
             {
-
-
                 cipherWindow.Hide();
-
-                key = cipherWindow.keyTextBox.Text;
-
-
-
-               
+                key = cipherWindow.keyTextBox.Text;               
             }
-
-
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
