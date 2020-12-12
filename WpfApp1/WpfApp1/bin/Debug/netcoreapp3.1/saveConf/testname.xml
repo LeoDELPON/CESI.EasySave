@@ -1,21 +1,27 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-autreNom
+testname
 </name>
 <source>
-D:\after fx projects
+D:\textdetest
 </source>
 <target>
 D:\testsave\diff
 </target>
 <typeSave>
-0
+1
 </typeSave>
 <key>
-ziyughv
+lacle
 </key>
 <extentions>
 <ext>
-.exe
+.jpg
+</ext>
+<ext>
+.ce
+</ext>
+<ext>
+.coco
 </ext>
 </extentions>

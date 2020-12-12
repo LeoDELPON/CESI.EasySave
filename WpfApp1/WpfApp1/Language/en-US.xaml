@@ -18,8 +18,8 @@
     <system:String x:Key="Pause">Pause</system:String>
     <system:String x:Key="Resume">Resume</system:String>
     <system:String x:Key="WorkStatus">Save status</system:String>
-    <system:String x:Key="Dif">Differential</system:String>
-    <system:String x:Key="Ful">Full</system:String>
+    <system:String x:Key="dif">Differential</system:String>
+    <system:String x:Key="ful">Full</system:String>
     <system:String x:Key="Process">Critical processes</system:String>
     <!--workCreationWindow-->
     <system:String x:Key="CreateWork">Create a Work</system:String>

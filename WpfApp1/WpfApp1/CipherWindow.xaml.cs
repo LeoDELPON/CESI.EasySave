@@ -31,6 +31,7 @@ namespace WpfApp1
             listLanguage.Add(new InfoLanguage { name = "English", path = new Uri(@"\Language\en-US.xaml", UriKind.Relative) });
             Closing += Cipher_Window_Closing;
             AddExtentionBoxButton.Click += AddExtentionBoxButton_Click;
+            AddExtention();
 
 
 
@@ -40,27 +41,37 @@ namespace WpfApp1
 
         private void AddExtentionBoxButton_Click(object sender, RoutedEventArgs e)
         {
+            AddExtention();
+        }
+
+        private void AddExtention()
+        {
             TextBox extention = new TextBox();
-            SPExtention.Children.Add(extention);
+            extention.Width = 180;
+            SPExtention.Items.Add(extention);
             extentionList.Add(extention);
-
-
-
-
-
         }
 
         private void Cipher_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            if ((keyTextBox.Text.Length==0 && extentionTextBox.Text.Length ==0) || (keyTextBox.Text.Length > 0 && extentionTextBox.Text.Length > 0))
-            {
+            keyTextBox.Text = "";
+            extentionList.Clear();
+            SPExtention.Items.Clear();
+          //  if ((keyTextBox.Text.Length==0 && extentionList.Count ==0) || (keyTextBox.Text.Length > 0 && extentionList.Count > 0))
+            //{
                 Hide();
-            }
+            //}
             
         }
 
-       
-
+        private void RemoveExtentionButon_Click(object sender, RoutedEventArgs e)
+        {
+            if (extentionList.Count > 0)
+            {
+                SPExtention.Items.RemoveAt(SPExtention.Items.Count - 1);
+                extentionList.RemoveAt(extentionList.Count - 1);
+            }
+        }
     }
 }

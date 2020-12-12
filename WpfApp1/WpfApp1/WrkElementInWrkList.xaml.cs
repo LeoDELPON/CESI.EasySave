@@ -1,5 +1,6 @@
 ﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.ConfSaver;
+using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,7 +44,7 @@ namespace WpfApp1
             workNameLbl.Content = workVar.name;
             workSourceLbl.Content = workVar.source;
             workTargetLbl.Content = workVar.target;
-            workTypeLbl.SetResourceReference(Label.ContentProperty, bs.typeSave[workVar.typeSave].IdTypeSave);
+            workTypeLbl.SetResourceReference(Label.ContentProperty, SaveTypeMethods.GetSaveTypeFromInt(workVar.typeSave));
         }
     }
 }

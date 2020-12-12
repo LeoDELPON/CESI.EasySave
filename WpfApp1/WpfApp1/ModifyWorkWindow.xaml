@@ -25,8 +25,10 @@
             <CheckBox Name ="CypherOptionsCHB"/>
             <Label Content="{DynamicResource KEY}" HorizontalAlignment="Center" Name ="keyLbl"/>
             <TextBox x:Name="KeyTB" Width="180"/>
-            <ListView Name="extLV" Width="200" Margin="0" HorizontalContentAlignment="Center">
+            <ListView Name="extLV" Width="200" Margin="0" HorizontalContentAlignment="Center" >
                 <Label Content="{DynamicResource EXTENSION}" HorizontalAlignment="Center"/>
+             
+             
             </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Name="PlusMinusBtnSP">
                 <Button Content="{DynamicResource Plus}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="plusBtn" Click="plusBtn_Click"/>

@@ -16,8 +16,8 @@
     <system:String x:Key="Pause">Pause</system:String>
     <system:String x:Key="Resume">Reprendre</system:String>
     <system:String x:Key="WorkStatus">Avancement de la sauvegarde</system:String>
-    <system:String x:Key="Dif">Differentielle</system:String>
-    <system:String x:Key="Ful">Complete</system:String>
+    <system:String x:Key="dif">Differentielle</system:String>
+    <system:String x:Key="ful">Complete</system:String>
     <system:String x:Key="Process">Processus métiers</system:String>
     <!--workCreationWindow-->
     <system:String x:Key="CreateWork">Créer un travail</system:String>

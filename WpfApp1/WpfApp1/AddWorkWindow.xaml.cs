@@ -57,6 +57,7 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            extention.Clear();
             foreach (TextBox textBox in cipherWindow.extentionList)
             {
                 if (!textBox.Text.Equals(""))
