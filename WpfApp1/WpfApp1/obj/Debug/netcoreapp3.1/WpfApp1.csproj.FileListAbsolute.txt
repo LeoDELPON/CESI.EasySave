@@ -212,3 +212,6 @@ C:\Users\remib\Documents\GitHub\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcorea
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.exe
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.dll
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.pdb
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.exe
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.dll
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.pdb

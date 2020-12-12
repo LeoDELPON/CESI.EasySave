@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "62RLEGv30yoaHl0wcF8WtuezOLHIlVC/czfscP2aVeaRY7SPcijN8+YyzyrEpXZKdzfRBpLwAJuOzdFb9YW6vw==",
+  "dgSpecHash": "Pa0htsHCDkVAOZaHNgy1k1oOiyZ9+nISgJGHFGiA2FKnK8YO3VDuJQZirEsVHLu/Im2feFghtBbFeh+nJXVspw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -35,12 +35,12 @@ namespace CESI.BS.EasySave.BS
         /// Chemins pour sauvegarde différentiel.
         /// </summary>
         private string DiffBackupPath { get; set; }
-        
+
         /// <summary>
         /// Chemin d'une sauvegarde.
         /// </summary>
         private string BackupPath { get; set; }
-        
+
 
         private readonly Dictionary<WorkProperties, object> propertiesWork;
         public string IdTypeSave { get; set; }
@@ -48,7 +48,7 @@ namespace CESI.BS.EasySave.BS
         public DataHandler handler;
 
         Stopwatch stopwatch;
-        public FactoSave(bool isSaveDiff,
+        public FactoSave(char saveType,
                          string sourceFolder,
                          string targetFolder,
                          string props,
@@ -56,24 +56,25 @@ namespace CESI.BS.EasySave.BS
                          List<string> priorityExtensions,
                          string key)
         {
-            if (isSaveDiff)
+            switch (saveType)
             {
-                IdTypeSave = "dif";
-                TypeSave = SaveType.DIFFERENTIAL;
-            }
-            else
-            {
-                IdTypeSave = "ful";
-                TypeSave = SaveType.FULL;
+                case 'F':
+                    IdTypeSave = "ful";
+                    TypeSave = SaveType.FULL;
+                    break;
+                case 'D':
+                    IdTypeSave = "dif";
+                    TypeSave = SaveType.DIFFERENTIAL;
+                    break;
             }
             propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
             _priorityExtension = priorityExtensions;
             _key = key;
-            Save(isSaveDiff,sourceFolder,targetFolder);
+            Save(saveType, sourceFolder, targetFolder);
         }
 
-        public bool Save(bool isSaveDiff,string sourceFolder,string targetFolder)
+        public bool Save(char saveType, string sourceFolder, string targetFolder)
         {
             handler = DataHandler.Instance;
             if (!Directory.Exists(sourceFolder))
@@ -83,9 +84,11 @@ namespace CESI.BS.EasySave.BS
             DirectoryInfo directorySource = new DirectoryInfo(sourceFolder);
             BackupPath = targetFolder + @"\" + directorySource.Name;
             FullBackupPath = BackupPath + @"\FullSaves";
-            if (isSaveDiff)
+            switch (saveType)
             {
-                DiffBackupPath = BackupPath + @"\DiffSaves";
+                case 'D':
+                    DiffBackupPath = BackupPath + @"\DiffSaves"; ;
+                    break;
             }
             if (!Directory.Exists(BackupPath))
             {
@@ -99,22 +102,15 @@ namespace CESI.BS.EasySave.BS
 
             FolderBuilder.CreateFolder(DiffBackupPath);
 
-            DirectoryInfo directorySave = new DirectoryInfo(FullBackupPath);
+            DirectoryInfo directorySave;
 
             IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(directorySource);
-            if (isSaveDiff)
-            {
-                IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(new DirectoryInfo(FullBackupPath));
-                var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
-                propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
-                propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(queryGetDifferenceFile);
-                listFileSource = queryGetDifferenceFile;
-            }
+            SelectToCopyFile(saveType, listFileSource);
             propertiesWork[WorkProperties.Source] = sourceFolder;
             propertiesWork[WorkProperties.Target] = DiffBackupPath;
             handler.Init(propertiesWork);
             try
-            { 
+            {
                 foreach (FileInfo file in listFileSource)
                 {
                     directorySave = new DirectoryInfo(file.DirectoryName.Replace(sourceFolder, Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString())));
@@ -124,26 +120,10 @@ namespace CESI.BS.EasySave.BS
                         {
                             FolderBuilder.CreateFolder(directorySave.FullName);
                         }
-                        // parti chiffrage
-                        foreach (string ext in _cryptoExtension)
-                        {
 
-                            byte[] tmpByte = File.ReadAllBytes(file.FullName);
-                            if (ext == file.Extension)
-                            {
-                                //chiffré
-                                string args = _key + " " + file.FullName + " " + Path.Combine(directorySave.FullName, file.Name);
-                                stopwatch = new Stopwatch();
-                                stopwatch.Start();
-                                RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
-                                stopwatch.Stop();
-                            }
-                            else
-                            {
-                                //non chiffré
-                                file.CopyTo(Path.Combine(directorySave.FullName, file.Name), true);
-                            }
-                        }
+                        CopyFile(file, directorySave);
+
+
                         Console.WriteLine("[+] Copying {0}", file.FullName);
                     }
                     //gestion des erreurs
@@ -169,6 +149,40 @@ namespace CESI.BS.EasySave.BS
                 return false;
             }
         }
+        private void SelectToCopyFile(char saveType, IEnumerable<FileInfo> listFileSource)
+        {
+            switch (saveType)
+            {
+                case 'D':
+                    IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(new DirectoryInfo(FullBackupPath));
+                    var queryGetDifferenceFile = (from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
+                    propertiesWork[WorkProperties.EligibleFiles] = queryGetDifferenceFile.Count();
+                    propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(queryGetDifferenceFile);
+                    listFileSource = queryGetDifferenceFile;
+                    break;
+            }
+        }
+
+        private void CopyFile(FileInfo file, DirectoryInfo directorySave)
+        {
+            foreach (string ext in _cryptoExtension)
+            {
+                if (ext == file.Extension)
+                {
+                    //chiffré
+                    string args = _key + " " + file.FullName + " " + Path.Combine(directorySave.FullName, file.Name);
+                    stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
+                    stopwatch.Stop();
+                }
+                else
+                {
+                    file.CopyTo(Path.Combine(directorySave.FullName, file.Name), true);
+                }
+            }
+        }
+
         public void ScanSourceFolder()
         {
             //to be done
@@ -203,3 +217,4 @@ namespace CESI.BS.EasySave.BS
         }
     }
 }
+

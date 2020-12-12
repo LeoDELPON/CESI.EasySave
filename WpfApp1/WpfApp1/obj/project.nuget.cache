@@ -1,21 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "XHtO+07Y6HkOv4lKoKq5l0iMh/yXeSN/Sfw5EMKD0aPDO7DNJlwL5SFP2fuac47/9vTfDATw7+loILdbSnqcyQ==",
-  "success": false,
+  "dgSpecHash": "Cwku3Tgl20NqhH5UcRjKrNuuSxNnr89mLeVoZKwpqfPBpmv4Smj4JNBcBQV5MRDUKxc0eURDUUkP8X9HeYmk1g==",
+  "success": true,
   "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Les informations relatives au projet sont introuvables pour 'D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj'. Si vous utilisez Visual Studio, cela peut être dû au fait que le projet est déchargé ou qu'il ne fait pas partie de la solution actuelle. Dans ce cas, exécutez une restauration à partir de la ligne de commande. Sinon, il est possible que le fichier projet soit non valide ou que des cibles nécessaires à la restauration soient manquantes.",
-      "libraryId": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }
