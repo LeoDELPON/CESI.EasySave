@@ -1,23 +1,28 @@
-﻿using CESI.Server.EasySave.DTO;
+﻿using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.DTO;
+using CESI.Server.EasySave.DTO;
 using CESI.Server.EasySave.Services;
 using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
+using System.Text.Json;
 using System.Threading;
 
 namespace CESI.Server.EasySave.Networking
 {
-    public sealed class ServerSocket
+    public sealed class ServerSocket : Observer
     {
         private Socket _socket;
+        private Socket _clientSocket;
         private DTOHostMachine _host;
         private const int PORT = 9999;
         private byte[] _buffer = new byte[1024];
+        private string _dataSent = "";
         private static readonly Lazy<ServerSocket> lazy = new Lazy<ServerSocket>(() => new ServerSocket());
         public static ServerSocket Instance { get { return lazy.Value; } }
         private ServerSocket()
         {
+            DataHandler.Instance.SubscribeServer(this);
             _host = new DTOHostMachine();
             _host = HostInfoBuilder.GetHostIpAndName();
             Console.WriteLine("[+] Initializing the socket");
@@ -63,6 +68,7 @@ namespace CESI.Server.EasySave.Networking
         private void AcceptedCallBack(IAsyncResult result)
         {
             Socket clientSocket = _socket.EndAccept(result);
+            _clientSocket = clientSocket;
             AcceptConnection();
             clientSocket.BeginReceive(
                 _buffer,
@@ -72,12 +78,7 @@ namespace CESI.Server.EasySave.Networking
                 ReceiveCallBack,
                 clientSocket);
             AcceptConnection();
-            Console.WriteLine(clientSocket.RemoteEndPoint);
-            while (true)
-            {
-                SendMockData(clientSocket);
-                Thread.Sleep(1000);
-            }
+            
         }
 
         private void ReceiveCallBack(IAsyncResult _clientSocketResult)
@@ -105,14 +106,25 @@ namespace CESI.Server.EasySave.Networking
                 clientSocket);
         }
 
-        public void SendMockData(Socket s)
+        public void SendLogData(Socket s)
         {
-            string dataMock = "C > Python";
-            byte[] data = Encoding.ASCII.GetBytes(dataMock);
+            string data = _dataSent;
+            Message msg = new Message(data);
             SocketAsyncEventArgs e = new SocketAsyncEventArgs();
             e.RemoteEndPoint = s.RemoteEndPoint;
-            e.SetBuffer(data, 0, dataMock.Length);
+            e.SetBuffer(msg.finalBuffer, 0, data.Length);
             s.SendToAsync(e);
+        }
+
+        public void reactProgression(double progress)
+        {
+            
+        }
+
+        public void reactDataLogServ(DTOLogger dto)
+        {
+            _dataSent = JsonSerializer.Serialize(dto);
+            SendLogData(_clientSocket);
         }
     }
 }

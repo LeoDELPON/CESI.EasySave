@@ -14,7 +14,7 @@ namespace CESI.Server.EasySave.Services
             {
                 case 2000:
                     Message msg = new Message(packet);
-                    Console.WriteLine("[+] {0} ", msg.Text);
+                    Console.WriteLine(msg.Text);
                     break;
                 default:
                     Console.WriteLine("Pas OP");

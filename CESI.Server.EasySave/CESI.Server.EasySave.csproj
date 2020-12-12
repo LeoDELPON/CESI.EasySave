@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CESI.BS.EasySave\CESI.BS.EasySave.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,7 @@
 ﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +29,10 @@ namespace WpfApp1
             bs = BS;
             UpdateWv(workVar);
 
+        }
+
+        public void reactDataLogServ(DTOLogger dto)
+        {
         }
 
         public void reactProgression(double progress)

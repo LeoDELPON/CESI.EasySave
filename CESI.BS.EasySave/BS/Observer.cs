@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CESI.BS.EasySave.DTO;
+
 
 namespace CESI.BS.EasySave.BS
 {
@@ -9,7 +8,7 @@ namespace CESI.BS.EasySave.BS
 
    
             public void reactProgression(double progress);
-        
+            public void reactDataLogServ(DTOLogger dto);
     }
 
 }
