@@ -11,16 +11,6 @@
         "runtime": {
           "bin/placeholder/CESI.BS.EasySave.dll": {}
         }
-      },
-      "CESI.Server.EasySave/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/CESI.Server.EasySave.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CESI.Server.EasySave.dll": {}
-        }
       }
     }
   },
@@ -29,33 +19,28 @@
       "type": "project",
       "path": "../../CESI.BS.EasySave/CESI.BS.EasySave.csproj",
       "msbuildProject": "../../CESI.BS.EasySave/CESI.BS.EasySave.csproj"
-    },
-    "CESI.Server.EasySave/1.0.0": {
-      "type": "project",
-      "path": "../../CESI.Server.EasySave/CESI.Server.EasySave.csproj",
-      "msbuildProject": "../../CESI.Server.EasySave/CESI.Server.EasySave.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "CESI.BS.EasySave >= 1.0.0",
-      "CESI.Server.EasySave >= 1.0.0"
+      "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\delpo\\.nuget\\packages\\": {}
+    "C:\\Users\\Marcus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
+      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
+      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -69,11 +54,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             },
-            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
-              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
+            "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
+              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
             }
           }
         }
@@ -97,6 +82,16 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.10, 3.1.10]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -105,8 +100,19 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Les informations relatives au projet sont introuvables pour 'D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj'. Si vous utilisez Visual Studio, cela peut être dû au fait que le projet est déchargé ou qu'il ne fait pas partie de la solution actuelle. Dans ce cas, exécutez une restauration à partir de la ligne de commande. Sinon, il est possible que le fichier projet soit non valide ou que des cibles nécessaires à la restauration soient manquantes.",
+      "libraryId": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }
