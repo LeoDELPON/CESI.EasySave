@@ -18,8 +18,8 @@
             <TextBox x:Name="WorkTargetTB" Width="180"/>
                 <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
             <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB" Width="180">
-                <ComboBoxItem Content="{DynamicResource Dif}" x:Name="dif"/>
-                <ComboBoxItem Content="{DynamicResource Ful}" x:Name="ful" IsSelected="True"/>
+                <ComboBoxItem Content="{DynamicResource dif}" x:Name="dif"/>
+                <ComboBoxItem Content="{DynamicResource ful}" x:Name="ful" IsSelected="True"/>
             </ComboBox>
             <Label Content="{DynamicResource XOR}" HorizontalAlignment="Center" />
             <CheckBox Name ="CypherOptionsCHB"/>

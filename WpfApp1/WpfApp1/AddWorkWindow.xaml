@@ -17,8 +17,8 @@
             <TextBox x:Name="WorkTargetTB"/>
             <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
             <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB">
-                <ComboBoxItem Content="{DynamicResource Dif}" x:Name="dif"/>
-                <ComboBoxItem Content="{DynamicResource Ful}" x:Name="ful" IsSelected="True"/>
+                <ComboBoxItem Content="{DynamicResource dif}" x:Name="dif"/>
+                <ComboBoxItem Content="{DynamicResource ful}" x:Name="ful" IsSelected="True"/>
 
             </ComboBox>
             <CheckBox  HorizontalAlignment="Center" Name="isXor"/>

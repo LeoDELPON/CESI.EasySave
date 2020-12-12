@@ -1,21 +1,21 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-testname
+diff
 </name>
 <source>
-D:\textdetest
+D:\after fx projects
 </source>
 <target>
 D:\testsave\diff
 </target>
 <typeSave>
-1
+0
 </typeSave>
 <key>
-lacle
+null
 </key>
 <extentions>
 <ext>
-.mp4
+null
 </ext>
 </extentions>
