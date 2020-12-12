@@ -161,7 +161,7 @@ namespace WpfApp1
                 weList[index].inWrkList.UpdateWv(weList[index].wv);
                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
                 bs.confSaver.modifyEntireFile(bs.works[index].Name, weList[index].wv);
-                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(addWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
+                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(modifyWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
               
 
 
@@ -357,11 +357,15 @@ namespace WpfApp1
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
-                 // Thread saveThread = new Thread(launchWork =>
-                 //  {
-                        bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
-                        bs.works[weList.IndexOf(we)].Perform();
-                        bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
+                    // Thread saveThread = new Thread(launchWork =>
+                    //  {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        we.inWrkList.workProgressBar.Value = 0;
+                    });
+                    bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
+                    bs.works[weList.IndexOf(we)].Perform();
+                    bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
                  //  });
                   //  saveThread.Start();
                 }

@@ -131,10 +131,7 @@ namespace WpfApp1
                 extLV.Items.RemoveAt(extLV.Items.Count - 1);
             }
         }
-        private void OkBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
        
     }
 }

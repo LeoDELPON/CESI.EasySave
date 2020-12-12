@@ -60,10 +60,11 @@ namespace CESI.BS.EasySave.BS
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceFolder);
             }
+          
             propertiesWork[WorkProperties.Source] = sourceFolder;
             propertiesWork[WorkProperties.Target] = targetFolder;
             propertiesWork[WorkProperties.EligibleFiles] = GetFilesFromFolder(sourceFolder).Length;
-            propertiesWork[WorkProperties.Size] = GetFolderSize(sourceFolder);
+            propertiesWork[WorkProperties.Size] = FolderSize = GetFolderSize(sourceFolder);
             handler.Init(propertiesWork);
             DirectoryInfo dirSource = new DirectoryInfo(sourceFolder);
             DirectoryInfo dirDestination = new DirectoryInfo(targetFolder);
