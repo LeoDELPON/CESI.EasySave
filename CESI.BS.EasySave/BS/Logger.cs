@@ -28,13 +28,11 @@ namespace CESI.BS.EasySave.BS
             if (!File.Exists(LogFullName))
             {
                 File.WriteAllText(LogFullName, json);
-            }
-           
-            StreamWriter file = File.AppendText(LogFullName);
-            Monitor.Enter(file);
+            }        
+            StreamWriter file = File.AppendText(LogFullName);          
             file.WriteLine(json);
             file.Close();
-            Monitor.Exit(file);
+         
         }
 
         private static string LogFilePath => logFilePath;
