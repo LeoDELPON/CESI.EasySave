@@ -27,7 +27,18 @@ namespace CESI.BS.EasySave.BS
         }
         public void AddWork(string name, string source, string target, string save, List<string> extensions, string key)
         {
-            Dictionary<WorkProperties, object> propertiesWork = new Dictionary<WorkProperties, object>
+            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, extensions, key);
+            works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
+        }
+        public void AddWorkAt(string name, string source, string target, string save, List<string> extensions, string key, int index)
+        {
+            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, extensions, key);
+            works.Insert(index, new WorkFactory().CreateWorkObject(propertiesWork));
+        }
+
+        private static Dictionary<WorkProperties, object> createPropertiesWork(string name, string source, string target, string save, List<string> extensions, string key)
+        {
+            return new Dictionary<WorkProperties, object>
             {
                 [WorkProperties.Name] = name,
                 [WorkProperties.Source] = source,
@@ -36,24 +47,13 @@ namespace CESI.BS.EasySave.BS
                 [WorkProperties.Extensions] = extensions,
                 [WorkProperties.Key] = key
             };
-            works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
         }
-        public void ModifyWork(Work work, int field, string newField)
+
+        public void ModifyWork(Work work, string name, string source, string target, string save, List<string> extensions, string key)
         {
-            switch (field)
-            {
-                case 1:
-                    work.Name = newField;
-                    break;
-                case 2:
-                    work.Source = newField;
-                    break;
-                case 3:
-                    work.Target = newField;
-                    break;
-                default:
-                    break;
-            }
+            int index = works.IndexOf(work);
+            works.Remove(work);
+            AddWorkAt(name, source, target, save, extensions, key, index);
         }
         public void ModifyWork(Work work, int field, int typeSaveChoosen)
         {

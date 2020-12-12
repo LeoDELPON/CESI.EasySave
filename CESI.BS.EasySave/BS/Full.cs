@@ -108,7 +108,7 @@ namespace CESI.BS.EasySave.BS
                 double temp = -1;
                 
                 //Pour tous les fichier dans la source
-                if (_cryptoExtension.Count >0)
+               
                 foreach (FileInfo file in source.GetFiles())
                 {
                     Console.WriteLine(@"[+] Copying {0}", file.Name);

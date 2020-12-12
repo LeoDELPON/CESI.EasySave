@@ -1,9 +1,9 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-testname
+okaye
 </name>
 <source>
-D:\textdetest
+D:\after fx projects
 </source>
 <target>
 D:\testsave\diff
@@ -12,7 +12,7 @@ D:\testsave\diff
 1
 </typeSave>
 <key>
-lacle
+laclé
 </key>
 <extentions>
 <ext>

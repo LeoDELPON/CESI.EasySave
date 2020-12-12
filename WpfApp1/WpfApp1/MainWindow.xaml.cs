@@ -76,39 +76,97 @@ namespace WpfApp1
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
         {
+
+            /* List<string> listExt = new List<string>();
+             listExt.Clear();
+             for(int i = 1; i< modifyWorkWindow.extLV.Items.Count; i++)
+             {
+                 if (!((TextBox)modifyWorkWindow.extLV.Items[i]).Text.Equals("")){
+                     listExt.Add(((TextBox)modifyWorkWindow.extLV.Items[i]).Text);
+                 }
+             }
+
+             if (Directory.Exists(modifyWorkWindow.WorkSourceTB.Text) && Directory.Exists(modifyWorkWindow.WorkTargetTB.Text))
+             {
+                 modifyWorkWindow.Hide();
+                 int index = weList.IndexOf(modifyWorkWindow.we);
+                 int Size = bs.GetWorks().Count();
+                 bs.ModifyWork(bs.GetWorks()[index], 1, modifyWorkWindow.WorkNameTB.Text);
+                 bs.ModifyWork(bs.GetWorks()[index], 2, modifyWorkWindow.WorkSourceTB.Text);
+                 bs.ModifyWork(bs.GetWorks()[index], 3, modifyWorkWindow.WorkTargetTB.Text);
+                 bs.ModifyWork(bs.GetWorks()[index], 4, modifyWorkWindow.SaveTypeCB.SelectedIndex);
+                 WorkVar workVar = new WorkVar();
+                 workVar.name = modifyWorkWindow.WorkNameTB.Text;
+                 workVar.source = modifyWorkWindow.WorkSourceTB.Text;
+                 workVar.target = modifyWorkWindow.WorkTargetTB.Text;
+                 workVar.typeSave = modifyWorkWindow.SaveTypeCB.SelectedIndex;
+                 workVar.key = modifyWorkWindow.KeyTB.Text;
+                 workVar.extension = listExt;
+                 bs.confSaver.modifyEntireFile(workVar.name, workVar);  
+
+                 weList[index].wv = workVar;
+                 weList[index].inSvdList.UpdateWv(weList[index].wv);
+                 weList[index].inWrkList.UpdateWv(weList[index].wv);
+                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
+             }
+ */
             List<string> listExt = new List<string>();
-            listExt.Clear();
-            for(int i = 1; i< modifyWorkWindow.extLV.Items.Count; i++)
+            for (int i = 1; i < modifyWorkWindow.extLV.Items.Count; i++)
             {
-                if (!((TextBox)modifyWorkWindow.extLV.Items[i]).Text.Equals("")){
+                if (!((TextBox)modifyWorkWindow.extLV.Items[i]).Text.Equals(""))
+                {
                     listExt.Add(((TextBox)modifyWorkWindow.extLV.Items[i]).Text);
                 }
+            }
+            if ((bool)modifyWorkWindow.CypherOptionsCHB.IsChecked && (modifyWorkWindow.KeyTB.Text.Length==0 || listExt.Count == 0))
+            {
+
+                return;
+            }
+            if (modifyWorkWindow.WorkNameTB.Text.Equals(""))
+            {
+                modifyWorkWindow.WorkNameTB.Text = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             }
 
             if (Directory.Exists(modifyWorkWindow.WorkSourceTB.Text) && Directory.Exists(modifyWorkWindow.WorkTargetTB.Text))
             {
                 modifyWorkWindow.Hide();
+                WorkVar wv = new WorkVar();
+                wv.name = modifyWorkWindow.WorkNameTB.Text;
+                wv.source = modifyWorkWindow.WorkSourceTB.Text;
+                wv.target = modifyWorkWindow.WorkTargetTB.Text;
+                wv.typeSave = modifyWorkWindow.SaveTypeCB.SelectedIndex;
                 int index = weList.IndexOf(modifyWorkWindow.we);
-                int Size = bs.GetWorks().Count();
-                bs.ModifyWork(bs.GetWorks()[index], 1, modifyWorkWindow.WorkNameTB.Text);
-                bs.ModifyWork(bs.GetWorks()[index], 2, modifyWorkWindow.WorkSourceTB.Text);
-                bs.ModifyWork(bs.GetWorks()[index], 3, modifyWorkWindow.WorkTargetTB.Text);
-                bs.ModifyWork(bs.GetWorks()[index], 4, modifyWorkWindow.SaveTypeCB.SelectedIndex);
-                WorkVar workVar = new WorkVar();
-                workVar.name = modifyWorkWindow.WorkNameTB.Text;
-                workVar.source = modifyWorkWindow.WorkSourceTB.Text;
-                workVar.target = modifyWorkWindow.WorkTargetTB.Text;
-                workVar.typeSave = modifyWorkWindow.SaveTypeCB.SelectedIndex;
-                workVar.key = modifyWorkWindow.KeyTB.Text;
-                workVar.extension = listExt;
-                bs.confSaver.modifyEntireFile(workVar.name, workVar);  
+                if ((bool)modifyWorkWindow.CypherOptionsCHB.IsChecked)
+                {
+                    wv.key = modifyWorkWindow.KeyTB.Text;
+                    //wv.extension = addWorkWindow.extention;
+                    wv.extension = listExt;
 
-                weList[index].wv = workVar;
+
+                }
+                else
+                {
+                    wv.key = "null";
+                    wv.extension = new List<string>();
+                    wv.extension.Add("null");
+
+                }
+                weList[index].wv = wv;
                 weList[index].inSvdList.UpdateWv(weList[index].wv);
                 weList[index].inWrkList.UpdateWv(weList[index].wv);
                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
-            }
+                bs.confSaver.modifyEntireFile(bs.works[index].Name, weList[index].wv);
+                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(addWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
+              
 
+
+
+            }
+            else
+            {
+                //error Message
+            }
 
 
 
