@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CtXA1MGfeE+sDUPZFOVZuxcqb+VWlz2ZXyLx0SUaWP98S9RnF9p0Veev2GcFk44YclunBmuH0GyBRZMNwFWhEA==",
+  "dgSpecHash": "Ik5l2Hu4eNyYM2hivQVwPTzLGsYr7eGzui1FrRXZm2TS091KUJZSOkO6t5FXmYKTg/a81p+qiFbcXJyK45wmLg==",
   "success": true,
-  "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
