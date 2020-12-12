@@ -67,7 +67,7 @@ namespace CESI.BS.EasySave.BS
             handler.Init(propertiesWork);
             DirectoryInfo dirSource = new DirectoryInfo(sourceFolder);
             DirectoryInfo dirDestination = new DirectoryInfo(targetFolder);
-            bool status = CopyAll(dirSource, dirDestination);
+            bool status = CopyAll(dirSource, dirDestination, false);
 
             //Vérifie si ça c'est bien passé
             if (!status)
@@ -88,13 +88,13 @@ namespace CESI.BS.EasySave.BS
         /// <param name="source">Répertoire source</param>
         /// <param name="target">Répertoire de destination</param>
         /// <returns></returns>
-        public bool CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool isRecursive)
         {
             DirectoryInfo fullSaveDirectory;
 
             //Vérifie le dossier cible
             string path = target.ToString() + @"\" + propertiesWork[WorkProperties.Name] + "_" + source.Name.ToString() + @"\FullSaves" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(path) && !isRecursive)
             {
                 FolderBuilder.CreateFolder(path);
                 fullSaveDirectory = new DirectoryInfo(path);
@@ -146,7 +146,7 @@ namespace CESI.BS.EasySave.BS
                     DirectoryInfo nextTargetSubDir =
                         fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
                     Console.WriteLine("nextTarget = " + nextTargetSubDir +" \nnextDirectory = " + directorySourceSubDir);
-                    CopyAll(directorySourceSubDir, nextTargetSubDir);
+                    CopyAll(directorySourceSubDir, nextTargetSubDir, true);
                 }
                 return true;
             } catch(SecurityException e)
