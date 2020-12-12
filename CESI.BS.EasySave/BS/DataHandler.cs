@@ -11,7 +11,7 @@ namespace CESI.BS.EasySave.BS
         private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
 
         private readonly Stopwatch stopwatch;
-        private DataHandler()
+        public DataHandler()
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();

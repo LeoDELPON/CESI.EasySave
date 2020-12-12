@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using CESI.BS.EasySave.BS.Factory;
 using CESI.BS.EasySave.DAL;
 
@@ -28,9 +29,12 @@ namespace CESI.BS.EasySave.BS
             {
                 File.WriteAllText(LogFullName, json);
             }
+           
             StreamWriter file = File.AppendText(LogFullName);
+            Monitor.Enter(file);
             file.WriteLine(json);
             file.Close();
+            Monitor.Exit(file);
         }
 
         private static string LogFilePath => logFilePath;
