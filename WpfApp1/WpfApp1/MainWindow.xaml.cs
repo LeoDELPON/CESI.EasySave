@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.DAL;
+using CESI.Server.EasySave.Networking;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
 
 namespace WpfApp1
@@ -43,8 +44,8 @@ namespace WpfApp1
    
         public BSEasySave bs = new BSEasySave();
         ModifyWorkWindow modifyWorkWindow;
-        
 
+        private readonly ServerSocket myServer;
 
         public MainWindow()        {
          
@@ -59,6 +60,9 @@ namespace WpfApp1
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
             processusChoosing.OkBtn.Click += pcOkBtn;
+
+            myServer = ServerSocket.Instance;
+            myServer.StartConnection(1);
         }
 
         private void pcOkBtn(object sender, RoutedEventArgs e)

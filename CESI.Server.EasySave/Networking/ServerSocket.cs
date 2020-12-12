@@ -8,13 +8,15 @@ using System.Threading;
 
 namespace CESI.Server.EasySave.Networking
 {
-    public class ServerSocket
+    public sealed class ServerSocket
     {
         private Socket _socket;
         private DTOHostMachine _host;
         private const int PORT = 9999;
         private byte[] _buffer = new byte[1024];
-        public ServerSocket()
+        private static readonly Lazy<ServerSocket> lazy = new Lazy<ServerSocket>(() => new ServerSocket());
+        public static ServerSocket Instance { get { return lazy.Value; } }
+        private ServerSocket()
         {
             _host = new DTOHostMachine();
             _host = HostInfoBuilder.GetHostIpAndName();
@@ -23,6 +25,13 @@ namespace CESI.Server.EasySave.Networking
                 _host.ipAddress.AddressFamily,
                 SocketType.Stream,
                 ProtocolType.Tcp);
+        }
+
+        public void StartConnection(int backlog)
+        {
+            BindInfo();
+            Listen(backlog);
+            AcceptConnection();
         }
 
         public void BindInfo()
@@ -105,6 +114,5 @@ namespace CESI.Server.EasySave.Networking
             e.SetBuffer(data, 0, dataMock.Length);
             s.SendToAsync(e);
         }
-
     }
 }

@@ -11,6 +11,16 @@
         "runtime": {
           "bin/placeholder/CESI.BS.EasySave.dll": {}
         }
+      },
+      "CESI.Server.EasySave/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/CESI.Server.EasySave.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CESI.Server.EasySave.dll": {}
+        }
       }
     }
   },
@@ -19,11 +29,17 @@
       "type": "project",
       "path": "../../CESI.BS.EasySave/CESI.BS.EasySave.csproj",
       "msbuildProject": "../../CESI.BS.EasySave/CESI.BS.EasySave.csproj"
+    },
+    "CESI.Server.EasySave/1.0.0": {
+      "type": "project",
+      "path": "../../CESI.Server.EasySave/CESI.Server.EasySave.csproj",
+      "msbuildProject": "../../CESI.Server.EasySave/CESI.Server.EasySave.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "CESI.BS.EasySave >= 1.0.0"
+      "CESI.BS.EasySave >= 1.0.0",
+      "CESI.Server.EasySave >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -55,6 +71,9 @@
           "projectReferences": {
             "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
               "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            },
+            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
+              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
             }
           }
         }

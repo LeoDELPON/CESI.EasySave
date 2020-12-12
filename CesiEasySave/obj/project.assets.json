@@ -40,11 +40,22 @@
           "bin/placeholder/CESI.BS.EasySave.dll": {}
         }
       },
+      "CESI.Server.EasySave/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/CESI.Server.EasySave.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CESI.Server.EasySave.dll": {}
+        }
+      },
       "WpfApp1/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "CESI.BS.EasySave": "1.0.0"
+          "CESI.BS.EasySave": "1.0.0",
+          "CESI.Server.EasySave": "1.0.0"
         },
         "compile": {
           "bin/placeholder/WpfApp1.dll": {}
@@ -185,6 +196,11 @@
       "type": "project",
       "path": "../CESI.BS.EasySave/CESI.BS.EasySave.csproj",
       "msbuildProject": "../CESI.BS.EasySave/CESI.BS.EasySave.csproj"
+    },
+    "CESI.Server.EasySave/1.0.0": {
+      "type": "project",
+      "path": "../CESI.Server.EasySave/CESI.Server.EasySave.csproj",
+      "msbuildProject": "../CESI.Server.EasySave/CESI.Server.EasySave.csproj"
     },
     "WpfApp1/1.0.0": {
       "type": "project",
