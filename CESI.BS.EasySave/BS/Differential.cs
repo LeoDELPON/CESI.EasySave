@@ -58,6 +58,7 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
+         
             handler = DataHandler.Instance;
             if (!Directory.Exists(sourceFolder))
             {
@@ -98,6 +99,7 @@ namespace CESI.BS.EasySave.BS
                 double temp = -1;
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
+                    WaitForUnpause();
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString());
                     string pathTest = file.DirectoryName;
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);

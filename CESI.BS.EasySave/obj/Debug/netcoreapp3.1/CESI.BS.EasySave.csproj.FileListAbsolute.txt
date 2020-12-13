@@ -85,3 +85,4 @@ D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
 D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.genruntimeconfig.cache
+D:\CESI\stage\projet\CESI.EasySave\CESI.BS.EasySave\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.csprojAssemblyReference.cache

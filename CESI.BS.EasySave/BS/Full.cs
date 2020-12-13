@@ -91,6 +91,7 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool isRecursive)
         {
+            WaitForUnpause();
             DirectoryInfo fullSaveDirectory;
 
             //Vérifie le dossier cible

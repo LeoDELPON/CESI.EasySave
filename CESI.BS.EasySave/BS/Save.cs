@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-
+using System.Threading;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -10,6 +10,7 @@ namespace CESI.BS.EasySave.BS
     {
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
+        public object pause = new object();
         public string IdTypeSave { get; set; }
         public DataHandler handler = DataHandler.Instance;
         public static int SUCCESS_OPERATION = 0;
@@ -32,7 +33,7 @@ namespace CESI.BS.EasySave.BS
             };
         }
 
-
+        
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary> Making a method that will be overrided by other classes </summary>
         ///
@@ -71,6 +72,11 @@ namespace CESI.BS.EasySave.BS
             process.StartInfo.Arguments = arguments;
             process.Start();
             process.WaitForExit();
+        }
+        public void WaitForUnpause()
+        {
+            Monitor.Enter(pause);
+            Monitor.Exit(pause);
         }
     }
 }

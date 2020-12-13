@@ -26,11 +26,11 @@
         <Button Content="{DynamicResource DeleteWork}" Background="red" HorizontalAlignment="Right" Margin="0,0,619,51" VerticalAlignment="Bottom" Height="37" Width="140" Grid.Row="2" Grid.ColumnSpan="2" Click="DeleteBtn_Click" Grid.Column="1"/>
         <Button Content="{DynamicResource AddWorkToWorkList}" Background="green" HorizontalAlignment="Left" Margin="128,18,0,0" VerticalAlignment="Top" Click="MultipleAddBtn" Height="37" Width="174" Grid.Row="2" Grid.Column="2"/>
         <Button Content="{DynamicResource ExecuteWorkList}" HorizontalAlignment="Left" Margin="479,10,0,0" VerticalAlignment="Top" Name="launchWorkBtn" Click="launchWorksButton" Height="24" Width="192" RenderTransformOrigin="0.588,-0.132" Grid.Row="2" Grid.Column="2"/>
-        <Button Content="{DynamicResource Pause}" HorizontalAlignment="Left" Margin="521,35,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="2" Grid.Column="2" Click="PauseBtn_Click"/>
-        <Button Content="{DynamicResource Resume}" Margin="575,32,65,32" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.53,-2.998" Click="ResumeBtnClick"/>
+        <Button Content="{DynamicResource Pause}" HorizontalAlignment="Left" Margin="521,35,0,0" VerticalAlignment="Top" Height="39" Width="54" Grid.Row="2" Grid.Column="2" Name="pauseBtn" Click="PauseBtn_Click" IsEnabled="false"/>
+        <Button Content="{DynamicResource Resume}" Margin="575,32,65,32" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.53,-2.998" Name="resumeBtn" Click="ResumeBtnClick" IsEnabled="false"/>
         <Button Content="{DynamicResource Language}" HorizontalAlignment="Left"  Margin="0,24,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="56" Click="languageBtn_Click" />
 
-        <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="464,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2" Click="AbortBtn_Click"/>
+        <Button Content="{DynamicResource Abort}" HorizontalAlignment="Left" Margin="464,0,0,32" VerticalAlignment="Bottom" Height="38" Width="57" RenderTransformOrigin="-0.603,0.462" Grid.Row="2" Grid.Column="2" IsEnabled="false" Name="abortBtn" Click="AbortBtn_Click"/>
         <Button Content="+" Name="AddWorkBtn"  HorizontalAlignment="Center" Margin="0,18,0,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Width="39" Click="AddWorkBtn_Click"/>
         <Button Content="{DynamicResource Process}" Grid.Column="2" HorizontalAlignment="Left" Margin="626,21,0,10" Click="CriticalProcessesBtn_Click"/>
 

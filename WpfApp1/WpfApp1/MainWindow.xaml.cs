@@ -338,15 +338,13 @@ namespace WpfApp1
 
         private void EnablButtonsAccess(bool access)
         {
-            //Application.Current.Dispatcher.Invoke(() =>
-            //{
+            
                 launchWorkBtn.IsEnabled = access;
-            //});
+          
 
             foreach (WrkElements we in weList)
             {
-               // Application.Current.Dispatcher.Invoke(() =>
-               // {                      
+                                
 
                     we.inSvdList.ToWorkList.IsEnabled = access; //disable clicks
                     if (WorkListLbl.Items.Contains(we.inWrkList))
@@ -354,18 +352,18 @@ namespace WpfApp1
                         we.inWrkList.IsEnabled = access;
                     }
 
-              //  });
+           
             }
         }
 
         private void launchWorksButton(object sender, RoutedEventArgs e)
         {
             Process[] aProc;
-           
-            //Thread worksThreads = new Thread(launchWorkList);
+            abortBtn.IsEnabled = true;
+            pauseBtn.IsEnabled = true;
+   
             if (forbProc.Count == 0)
             {
-                //      worksThreads.Start();
                 launchWorkList();
             }
             else
@@ -378,16 +376,12 @@ namespace WpfApp1
 
                     }
                 }
-                // worksThreads.Start();
                 launchWorkList();
             }
             
         }
         
-                 private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         private void AddWorkBtn_Click(object sender, RoutedEventArgs e)
         {            
@@ -435,20 +429,45 @@ namespace WpfApp1
 
         private void PauseBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            bool allclear = true;
+            foreach (Work w in bs.works)
+            {
+                allclear = allclear && Monitor.TryEnter(w.SaveType.pause);
+                
+            }
+            if (allclear)
+            {
+                pauseBtn.IsEnabled = false;
+                resumeBtn.IsEnabled = true;
+            }
         }
 
         private void AbortBtn_Click(object sender, RoutedEventArgs e)
         {
             foreach(Thread th in threadList)
             {
-                th.Interrupt();
+                th.Interrupt();               
             }
+            pauseBtn.IsEnabled = false;
+            resumeBtn.IsEnabled = false;
+            abortBtn.IsEnabled = false;
         }
 
         private void ResumeBtnClick(object sender, RoutedEventArgs e)
         {
-
+            bool allclear = true;
+            foreach (Work w in bs.works)
+            {
+                Monitor.Exit(w.SaveType.pause);
+                allclear = allclear && !Monitor.IsEntered(w.SaveType.pause);
+            }
+            if (allclear)
+            {
+                pauseBtn.IsEnabled = true;
+                resumeBtn.IsEnabled = false;
+            }
+           
+         
         }
     }
 }
