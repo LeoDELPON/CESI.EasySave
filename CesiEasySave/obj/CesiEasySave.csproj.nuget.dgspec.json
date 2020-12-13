@@ -91,7 +91,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+                "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

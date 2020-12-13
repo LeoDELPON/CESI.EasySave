@@ -58,8 +58,7 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
-         
-            handler = DataHandler.Instance;
+            handler.GetStopwatch.Start();
             if (!Directory.Exists(sourceFolder))
             {
                 throw new DirectoryNotFoundException("[-] Source directory has not been found: " + sourceFolder);

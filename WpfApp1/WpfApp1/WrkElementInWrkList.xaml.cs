@@ -1,6 +1,7 @@
 ﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace WpfApp1
     /// <summary>
     /// Logique d'interaction pour WrkElementInWrkList.xaml
     /// </summary>
-    public partial class WrkElementInWrkList : UserControl, Observer
+    public partial class WrkElementInWrkList : UserControl, IObserver
     {
         BSEasySave bs;
 
@@ -30,7 +31,11 @@ namespace WpfApp1
 
         }
 
-        public void reactProgression(double progress)
+        public void ReactDataLogServ(DTODataServer dict)
+        {
+        }
+
+        public void ReactProgression(double progress)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {

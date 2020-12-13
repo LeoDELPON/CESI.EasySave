@@ -7,19 +7,24 @@ namespace CESI.Server.EasySave.Services
     {
         public static void Handle(byte[] packet, Socket clientSocket)
         {
-            ushort packetLength = BitConverter.ToUInt16(packet, 0);
-            ushort packetType = BitConverter.ToUInt16(packet, 2);
-            //Console.WriteLine("[+] Packet received... Length:{0} | Type: {1}", packetLength, packetType);
-            switch (packetType)
+            Message msg = new Message(packet);
+            ActionResultMessage(msg.Text);
+        }
+
+        public static void ActionResultMessage(string msg)
+        {
+            switch (msg)
             {
-                case 2000:
-                    Message msg = new Message(packet);
-                    Console.WriteLine("[+] {0} ", msg.Text);
+                case "STOP":
+                    break;
+                case "START":
+                    break;
+                case "PAUSE":
                     break;
                 default:
-                    Console.WriteLine("Pas OP");
                     break;
             }
         }
+
     }
 }

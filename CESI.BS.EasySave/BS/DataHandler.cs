@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 using CESI.BS.EasySave.DAL;
 using System.Diagnostics;
+using CESI.BS.EasySave.DTO;
+using CESI.BS.EasySave.BS.Factory;
 using System.Threading;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class DataHandler 
+    public class DataHandler : IObservable
     {
         private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
-
-        private readonly Stopwatch stopwatch;
-        public DataHandler()
+        private readonly Stopwatch stopwatch = new Stopwatch();
+        public Stopwatch GetStopwatch { get { return stopwatch; } }
+        public DataHandler() : base()
         {
-            stopwatch = new Stopwatch();
-            stopwatch.Start();
-            subscribers = new List<Observer>();
+            subscribers = new List<IObserver>();
+            serverSubscriber = new List<IObserver>();
         }
 
         public void Init(Dictionary<WorkProperties, object> newDictionary)
@@ -54,7 +55,8 @@ namespace CESI.BS.EasySave.BS
         public static DataHandler Instance { get { return lazy.Value; } }
 
         public Dictionary<WorkProperties, object> Dictionary { get => dictionary; set => dictionary = value; }
-        public List<Observer> subscribers { get; set; } = new List<Observer>();
+        public List<IObserver> subscribers { get; set; } = new List<IObserver>();
+        public List<IObserver> serverSubscriber { get; set; }
 
         public void OnStop(bool noError)
         {
@@ -83,11 +85,56 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
             long progress = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
 
+            ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
+            NotifyServer(Dictionary);
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
             return progress;
         }
 
-      
+        public void Subscribe(IObserver obs)
+        {
+           subscribers.Add(obs);
+        }
+
+        public void SubscribeServer(IObserver obs)
+        {
+            serverSubscriber.Add(obs);
+        }
+
+        public void NotifyAll()
+        {
+            if (double.TryParse(dictionary[WorkProperties.Progress].ToString(), out double prog)){
+                foreach (IObserver obs in subscribers)
+                {
+                    obs.ReactProgression(prog);
+                }     
+            }
+        }
+
+        public void NotifyServer(Dictionary<WorkProperties, object> dict)
+        {
+            DTODataServer dto = new WorkFactory().CreateDtoDataServer(dict);
+            try
+            {
+                foreach (IObserver obs in serverSubscriber)
+                {
+                    obs.ReactDataLogServ(dto);
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine("[-] An error occured while trying to notify the server : {0}", e);
+            }
+        }
+
+        public void Unsubscribe(IObserver obs)
+        {
+            subscribers.Remove(obs);
+        }
+
+        public void UnSubscribeServer(IObserver obs)
+        {
+            serverSubscriber.Remove(obs);
+        }
     }
 }

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "CESI.Server.EasySave/1.0.0": {
+        "dependencies": {
+          "CESI.BS.EasySave": "1.0.0"
+        },
         "runtime": {
           "CESI.Server.EasySave.dll": {}
+        }
+      },
+      "CESI.BS.EasySave/1.0.0": {
+        "runtime": {
+          "CESI.BS.EasySave.dll": {}
         }
       }
     }
   },
   "libraries": {
     "CESI.Server.EasySave/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CESI.BS.EasySave/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

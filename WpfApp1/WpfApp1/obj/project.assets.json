@@ -15,6 +15,9 @@
       "CESI.Server.EasySave/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "CESI.BS.EasySave": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/CESI.Server.EasySave.dll": {}
         },
@@ -118,5 +121,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problème de lecture du fichier cache D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

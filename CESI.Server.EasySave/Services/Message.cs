@@ -3,7 +3,7 @@
     public class Message : PacketStructure
     {
         private string _message;
-        public Message(string message) : base((ushort)(4 + message.Length), 2000)
+        public Message(string message) : base((ushort)(message.Length))
         {
             Text = message;
         }
@@ -15,11 +15,11 @@
 
         public string Text
         {
-            get { return ReadString(4, finalBuffer.Length - 4); }
+            get { return ReadString(0, finalBuffer.Length); }
             set
             {
                 _message = value;
-                WriteString(value, 4);
+                WriteString(value, 0);
             }
         }
     }

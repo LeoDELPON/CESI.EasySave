@@ -23,7 +23,7 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Liste des fichiers prioritaires.
         /// </summary>
-      //  public List<string> _priorityExtension;
+        ///  public List<string> _priorityExtension;
         
         /// <summary>
         /// Clé.
@@ -54,7 +54,7 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
-            handler = DataHandler.Instance;
+            handler.GetStopwatch.Start();
             if (!Directory.Exists(sourceFolder))
             {
                 throw new DirectoryNotFoundException(
@@ -108,9 +108,7 @@ namespace CESI.BS.EasySave.BS
             try
             {
                 double temp = -1;
-                
                 //Pour tous les fichier dans la source
-               
                 foreach (FileInfo file in source.GetFiles())
                 {
                     WaitForUnpause();

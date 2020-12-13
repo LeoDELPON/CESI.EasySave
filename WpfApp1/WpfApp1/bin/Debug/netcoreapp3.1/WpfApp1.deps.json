@@ -21,6 +21,9 @@
         }
       },
       "CESI.Server.EasySave/1.0.0": {
+        "dependencies": {
+          "CESI.BS.EasySave": "1.0.0"
+        },
         "runtime": {
           "CESI.Server.EasySave.dll": {}
         }
