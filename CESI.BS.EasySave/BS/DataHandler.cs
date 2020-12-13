@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class DataHandler : Observable
+    public class DataHandler 
     {
         private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
 
@@ -33,19 +33,21 @@ namespace CESI.BS.EasySave.BS
             Monitor.Exit(dictionary);
         }
 
-        private void ComputeProgress(object remainingSize)
+        private long ComputeProgress(object remainingSize)
         {
+            long progress = 0;
             long sizeProperty = long.Parse(Dictionary[WorkProperties.Size].ToString());
             if (sizeProperty != 0)
             {
-                Dictionary[WorkProperties.Progress] = (sizeProperty-(long)remainingSize) * 100 / sizeProperty;
-                NotifyAll();
+                progress = (sizeProperty - (long)remainingSize) * 100 / sizeProperty;
+                Dictionary[WorkProperties.Progress] = progress;
+              
             }
             else
             {
                 Dictionary[WorkProperties.Progress] = "Too little size. Can't compute progress";
             }
-
+            return progress;
         }
 
         private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler());
@@ -73,38 +75,19 @@ namespace CESI.BS.EasySave.BS
             StatusLogger.GenerateStatusLog(Dictionary);
         }
 
-        public void OnNext(Dictionary<WorkProperties, object> newDictionary)
+        public long OnNext(Dictionary<WorkProperties, object> newDictionary)
         {
             dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
             dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
             dictionary[WorkProperties.Duration] = stopwatch.ElapsedMilliseconds;
             dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
-            ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
+            long progress = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
 
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
+            return progress;
         }
 
-        public void Subscribe(Observer obs)
-        {
-           subscribers.Add(obs);
-        }
-
-        public void NotifyAll()
-        {
-            if (double.TryParse(dictionary[WorkProperties.Progress].ToString(), out double prog)){
-                foreach (Observer obs in subscribers)
-                {
-                    obs.reactProgression(prog);
-                }
-            
-            }
-          
-        }
-
-        public void Unsubscribe(Observer obs)
-        {
-            subscribers.Remove(obs);
-        }
+      
     }
 }

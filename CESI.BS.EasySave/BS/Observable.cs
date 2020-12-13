@@ -8,7 +8,7 @@ namespace CESI.BS.EasySave.BS
     {
         public void Subscribe(Observer obs);
         public void Unsubscribe(Observer obs);
-        public void NotifyAll();
+        public void NotifyAll(long progress);
         public List<Observer> subscribers { get; set; }
     }
 }

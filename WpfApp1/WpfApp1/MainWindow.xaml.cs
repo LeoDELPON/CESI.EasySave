@@ -318,9 +318,9 @@ namespace WpfApp1
                                 we.inWrkList.workProgressBar.Value = 0;
                             });
 
-                            bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
+                            bs.works[weList.IndexOf(we)].SaveType.Subscribe(we.inWrkList);
                             bs.works[weList.IndexOf(we)].Perform();
-                            bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
+                            bs.works[weList.IndexOf(we)].SaveType.Unsubscribe(we.inWrkList);//can be deleted
                             terminatedThreads++;
                         }
                         catch (ThreadInterruptedException)
@@ -328,8 +328,7 @@ namespace WpfApp1
                             Application.Current.Dispatcher.Invoke(() =>
                             {
                                 
-                                we.inWrkList.workProgressBar.Value = 0;
-                              
+                                we.inWrkList.workProgressBar.Value = 0;                              
                                 terminatedThreads++;
                             });
                         }

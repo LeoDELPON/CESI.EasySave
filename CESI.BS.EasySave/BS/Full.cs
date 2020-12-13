@@ -140,7 +140,8 @@ namespace CESI.BS.EasySave.BS
                     FolderSize -= file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
-                    handler.OnNext(propertiesWork);
+                    NotifyAll(handler.OnNext(propertiesWork));
+                    
                 }
 
                 //Pour tous les répertoire source dans "source"

@@ -6,12 +6,14 @@ using System.Threading;
 
 namespace CESI.BS.EasySave.BS
 {
-    public abstract class Save
+    public abstract class Save : Observable
     {
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
         public object pause = new object();
         public string IdTypeSave { get; set; }
+        public List<Observer> subscribers { get; set; } = new List<Observer>();
+
         public DataHandler handler = DataHandler.Instance;
         public static int SUCCESS_OPERATION = 0;
         public static int ERROR_OPERATION = 1;
@@ -77,6 +79,28 @@ namespace CESI.BS.EasySave.BS
         {
             Monitor.Enter(pause);
             Monitor.Exit(pause);
+        }
+        public void Subscribe(Observer obs)
+        {
+            subscribers.Add(obs);
+        }
+
+        public void NotifyAll(long progress)
+        {
+            
+         
+                foreach (Observer obs in subscribers)
+                {
+                    obs.reactProgression(progress);
+                }
+
+            
+
+        }
+
+        public void Unsubscribe(Observer obs)
+        {
+            subscribers.Remove(obs);
         }
     }
 }
