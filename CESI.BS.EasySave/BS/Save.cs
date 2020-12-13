@@ -91,7 +91,7 @@ namespace CESI.BS.EasySave.BS
          
                 foreach (Observer obs in subscribers)
                 {
-                    obs.reactProgression(progress);
+                    obs.ReactProgression(progress);
                 }
 
             

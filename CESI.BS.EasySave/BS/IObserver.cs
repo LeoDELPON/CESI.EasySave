@@ -6,7 +6,7 @@ namespace CESI.BS.EasySave.BS
 {
     public interface IObserver
     {
-        public void ReactProgression(double progress);
+    
         public void ReactDataLogServ(DTODataServer dict);
     }
 

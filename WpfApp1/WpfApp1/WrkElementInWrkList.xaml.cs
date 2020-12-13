@@ -19,7 +19,7 @@ namespace WpfApp1
     /// <summary>
     /// Logique d'interaction pour WrkElementInWrkList.xaml
     /// </summary>
-    public partial class WrkElementInWrkList : UserControl, IObserver
+    public partial class WrkElementInWrkList : UserControl, Observer
     {
         BSEasySave bs;
 
