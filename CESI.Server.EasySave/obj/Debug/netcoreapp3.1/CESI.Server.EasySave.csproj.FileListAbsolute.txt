@@ -28,3 +28,7 @@ D:\CESI\stage\projet\CESI.EasySave\CESI.Server.EasySave\bin\Debug\netcoreapp3.1\
 D:\CESI\stage\projet\CESI.EasySave\CESI.Server.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
 D:\CESI\stage\projet\CESI.EasySave\CESI.Server.EasySave\obj\Debug\netcoreapp3.1\CESI.Server.EasySave.csprojAssemblyReference.cache
 D:\CESI\stage\projet\CESI.EasySave\CESI.Server.EasySave\obj\Debug\netcoreapp3.1\CESI.Server.EasySave.csproj.CopyComplete
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.Server.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.exe
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.Server.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.Server.EasySave\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.Server.EasySave\obj\Debug\netcoreapp3.1\CESI.Server.EasySave.csproj.CopyComplete

@@ -1,18 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+KJ1B8O1cmBVnRpjVf6hQ8myNpxhtwGszoHJdsaKVX7HTWnlZc6MlQsZg/TH3jftoeIDNfPyTmuMqN+MbU18pA==",
+  "dgSpecHash": "HTNXYrpGYrGivRBbbVWP969cx6T63yWAcXNd+8bf9qhELN+JuUEz/S+BA9RBk/zaYJ2TrvQqTGsbmnTqc9oSsw==",
   "success": true,
-  "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
-  ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problème de lecture du fichier cache D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "projectFilePath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+  "expectedPackageFiles": [],
+  "logs": []
 }

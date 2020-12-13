@@ -127,7 +127,13 @@ namespace CESI.Server.EasySave.Networking
         public void ReactDataLogServ(DTODataServer dto)
         {
             _dataSent = JsonSerializer.Serialize(dto);
-            SendLogData(_clientSocket);
+            if(_clientSocket != null)
+            {
+                SendLogData(_clientSocket);
+            } else
+            {
+                Console.WriteLine("[-] No client connected");
+            }
         }
     }
 }
