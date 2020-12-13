@@ -91,7 +91,7 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool isRecursive)
         {
-            WaitForUnpause();
+           
             DirectoryInfo fullSaveDirectory;
 
             //Vérifie le dossier cible
@@ -113,6 +113,7 @@ namespace CESI.BS.EasySave.BS
                
                 foreach (FileInfo file in source.GetFiles())
                 {
+                    WaitForUnpause();
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
                     
                     //Pour chaques extensions dans la source

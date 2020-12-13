@@ -32,6 +32,7 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int terminatedThreads = 0;
         List<Thread> threadList = new List<Thread>();
         ProcessusChoosing processusChoosing = new ProcessusChoosing(Process.GetProcesses());
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
@@ -300,7 +301,7 @@ namespace WpfApp1
         public void launchWorkList()
         {
             threadList.Clear();
-            EnablButtonsAccess(false);
+            EnableButtonsAccess(false);
 
             foreach (WrkElements we in weList)
             {
@@ -310,7 +311,8 @@ namespace WpfApp1
                 {
                     Thread saveThread = new Thread(launchWork =>
                     {
-                    try{
+                        try
+                        {
                             Application.Current.Dispatcher.Invoke(() =>
                             {
                                 we.inWrkList.workProgressBar.Value = 0;
@@ -319,34 +321,52 @@ namespace WpfApp1
                             bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
                             bs.works[weList.IndexOf(we)].Perform();
                             bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
-                        }catch(ThreadInterruptedException)
+                            terminatedThreads++;
+                        }
+                        catch (ThreadInterruptedException)
                         {
                             Application.Current.Dispatcher.Invoke(() =>
                             {
+                                
                                 we.inWrkList.workProgressBar.Value = 0;
+                              
+                                terminatedThreads++;
                             });
-
                         }
+                        if (terminatedThreads == threadList.Count)
+                        {
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                resetButtons();
+                                EnableButtonsAccess(true);
+                            
+                            terminatedThreads = 0;
+                            });
+                        }
+                
+                   
+
                     });
                     threadList.Add(saveThread);
                     
                     saveThread.Start();
                 }
             }
-            EnablButtonsAccess(true);
+      
         }
 
-        private void EnablButtonsAccess(bool access)
+        private void EnableButtonsAccess(bool access)
         {
-            
-                launchWorkBtn.IsEnabled = access;
+           
+
+            launchWorkBtn.IsEnabled = access;
           
 
             foreach (WrkElements we in weList)
             {
                                 
 
-                    we.inSvdList.ToWorkList.IsEnabled = access; //disable clicks
+                    we.inSvdList.ToWorkList.IsEnabled = access; 
                     if (WorkListLbl.Items.Contains(we.inWrkList))
                     {
                         we.inWrkList.IsEnabled = access;
@@ -444,9 +464,23 @@ namespace WpfApp1
 
         private void AbortBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach(Thread th in threadList)
+            foreach (Thread th in threadList)
             {
-                th.Interrupt();               
+                th.Interrupt();
+            }
+            resetButtons();
+        }
+
+        private void resetButtons()
+        {
+            foreach (Work w in bs.works)
+            {
+                if (Monitor.IsEntered(w.SaveType.pause))
+                {
+                    Monitor.Exit(w.SaveType.pause);
+                }
+
+
             }
             pauseBtn.IsEnabled = false;
             resumeBtn.IsEnabled = false;
