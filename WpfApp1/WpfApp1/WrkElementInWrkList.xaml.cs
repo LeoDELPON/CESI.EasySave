@@ -19,7 +19,7 @@ namespace WpfApp1
     /// <summary>
     /// Logique d'interaction pour WrkElementInWrkList.xaml
     /// </summary>
-    public partial class WrkElementInWrkList : UserControl, Observer
+    public partial class WrkElementInWrkList : UserControl, IObserver
     {
         BSEasySave bs;
 
@@ -31,11 +31,11 @@ namespace WpfApp1
 
         }
 
-        public void reactDataLogServ(DTOLogger dto)
+        public void ReactDataLogServ(DTODataServer dict)
         {
         }
 
-        public void reactProgression(double progress)
+        public void ReactProgression(double progress)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {

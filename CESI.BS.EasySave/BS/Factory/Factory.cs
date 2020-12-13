@@ -12,5 +12,6 @@ namespace CESI.BS.EasySave.BS.Factory
         public abstract Save CreateSaveObject(string _saveType, string prop, List<string> extensions, string key);
         public abstract DTOLogger CreateDtoLogger(Dictionary<WorkProperties, object> propertiesLogs);
         public abstract DTOStatusLogger CreateDtoStatusLogger(Dictionary<WorkProperties, object> propertiesStatus);
+        public abstract DTODataServer CreateDtoDataServer(Dictionary<WorkProperties, object> propertiesServer);
     }
 }

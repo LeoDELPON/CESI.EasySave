@@ -1,8 +1,11 @@
 ﻿using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.BS.Factory;
+using CESI.BS.EasySave.DAL;
 using CESI.BS.EasySave.DTO;
 using CESI.Server.EasySave.DTO;
 using CESI.Server.EasySave.Services;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
@@ -10,7 +13,7 @@ using System.Threading;
 
 namespace CESI.Server.EasySave.Networking
 {
-    public sealed class ServerSocket : Observer
+    public sealed class ServerSocket : IObserver
     {
         private Socket _socket;
         private Socket _clientSocket;
@@ -116,12 +119,12 @@ namespace CESI.Server.EasySave.Networking
             s.SendToAsync(e);
         }
 
-        public void reactProgression(double progress)
+        public void ReactProgression(double progress)
         {
             
         }
 
-        public void reactDataLogServ(DTOLogger dto)
+        public void ReactDataLogServ(DTODataServer dto)
         {
             _dataSent = JsonSerializer.Serialize(dto);
             SendLogData(_clientSocket);

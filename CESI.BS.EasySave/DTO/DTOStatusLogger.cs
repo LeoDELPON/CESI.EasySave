@@ -6,7 +6,6 @@ namespace CESI.BS.EasySave.DTO
 {
     public class DTOStatusLogger
     {
-
         public string Name { get; set; }
         public string State { get; set; }
         public string EligibleFiles { get; set; }
@@ -17,7 +16,5 @@ namespace CESI.BS.EasySave.DTO
         public string Source { get; set; }
         public string Target { get; set; }
         public string Date { get; set; }
-
-   
     }
 }
