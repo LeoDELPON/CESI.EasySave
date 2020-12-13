@@ -32,6 +32,7 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Thread> threadList = new List<Thread>();
         ProcessusChoosing processusChoosing = new ProcessusChoosing(Process.GetProcesses());
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
         
@@ -81,39 +82,8 @@ namespace WpfApp1
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            /* List<string> listExt = new List<string>();
-             listExt.Clear();
-             for(int i = 1; i< modifyWorkWindow.extLV.Items.Count; i++)
-             {
-                 if (!((TextBox)modifyWorkWindow.extLV.Items[i]).Text.Equals("")){
-                     listExt.Add(((TextBox)modifyWorkWindow.extLV.Items[i]).Text);
-                 }
-             }
+           
 
-             if (Directory.Exists(modifyWorkWindow.WorkSourceTB.Text) && Directory.Exists(modifyWorkWindow.WorkTargetTB.Text))
-             {
-                 modifyWorkWindow.Hide();
-                 int index = weList.IndexOf(modifyWorkWindow.we);
-                 int Size = bs.GetWorks().Count();
-                 bs.ModifyWork(bs.GetWorks()[index], 1, modifyWorkWindow.WorkNameTB.Text);
-                 bs.ModifyWork(bs.GetWorks()[index], 2, modifyWorkWindow.WorkSourceTB.Text);
-                 bs.ModifyWork(bs.GetWorks()[index], 3, modifyWorkWindow.WorkTargetTB.Text);
-                 bs.ModifyWork(bs.GetWorks()[index], 4, modifyWorkWindow.SaveTypeCB.SelectedIndex);
-                 WorkVar workVar = new WorkVar();
-                 workVar.name = modifyWorkWindow.WorkNameTB.Text;
-                 workVar.source = modifyWorkWindow.WorkSourceTB.Text;
-                 workVar.target = modifyWorkWindow.WorkTargetTB.Text;
-                 workVar.typeSave = modifyWorkWindow.SaveTypeCB.SelectedIndex;
-                 workVar.key = modifyWorkWindow.KeyTB.Text;
-                 workVar.extension = listExt;
-                 bs.confSaver.modifyEntireFile(workVar.name, workVar);  
-
-                 weList[index].wv = workVar;
-                 weList[index].inSvdList.UpdateWv(weList[index].wv);
-                 weList[index].inWrkList.UpdateWv(weList[index].wv);
-                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
-             }
- */
             List<string> listExt = new List<string>();
             for (int i = 1; i < modifyWorkWindow.extLV.Items.Count; i++)
             {
@@ -329,6 +299,7 @@ namespace WpfApp1
 
         public void launchWorkList()
         {
+            threadList.Clear();
             EnablButtonsAccess(false);
 
             foreach (WrkElements we in weList)
@@ -339,14 +310,26 @@ namespace WpfApp1
                 {
                     Thread saveThread = new Thread(launchWork =>
                     {
-                        Application.Current.Dispatcher.Invoke(() =>
+                    try{
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                we.inWrkList.workProgressBar.Value = 0;
+                            });
+
+                            bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
+                            bs.works[weList.IndexOf(we)].Perform();
+                            bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
+                        }catch(ThreadInterruptedException)
                         {
-                            we.inWrkList.workProgressBar.Value = 0;
-                        });
-                        bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
-                        bs.works[weList.IndexOf(we)].Perform();
-                        bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                we.inWrkList.workProgressBar.Value = 0;
+                            });
+
+                        }
                     });
+                    threadList.Add(saveThread);
+                    
                     saveThread.Start();
                 }
             }
@@ -355,15 +338,15 @@ namespace WpfApp1
 
         private void EnablButtonsAccess(bool access)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
+            //Application.Current.Dispatcher.Invoke(() =>
+            //{
                 launchWorkBtn.IsEnabled = access;
-            });
+            //});
 
             foreach (WrkElements we in weList)
             {
-                Application.Current.Dispatcher.Invoke(() =>
-                {                      
+               // Application.Current.Dispatcher.Invoke(() =>
+               // {                      
 
                     we.inSvdList.ToWorkList.IsEnabled = access; //disable clicks
                     if (WorkListLbl.Items.Contains(we.inWrkList))
@@ -371,7 +354,7 @@ namespace WpfApp1
                         we.inWrkList.IsEnabled = access;
                     }
 
-                });
+              //  });
             }
         }
 
@@ -379,10 +362,11 @@ namespace WpfApp1
         {
             Process[] aProc;
            
-            Thread worksThreads = new Thread(launchWorkList);
+            //Thread worksThreads = new Thread(launchWorkList);
             if (forbProc.Count == 0)
             {
-                worksThreads.Start();
+                //      worksThreads.Start();
+                launchWorkList();
             }
             else
             {
@@ -394,7 +378,8 @@ namespace WpfApp1
 
                     }
                 }
-                worksThreads.Start();
+                // worksThreads.Start();
+                launchWorkList();
             }
             
         }
@@ -448,7 +433,23 @@ namespace WpfApp1
             processusChoosing.Show();
         }
 
+        private void PauseBtn_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void AbortBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(Thread th in threadList)
+            {
+                th.Interrupt();
+            }
+        }
+
+        private void ResumeBtnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
