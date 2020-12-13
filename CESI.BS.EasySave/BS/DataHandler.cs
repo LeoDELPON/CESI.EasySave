@@ -85,32 +85,20 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
             long progress = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
 
-            ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
             NotifyServer(Dictionary);
             Logger.GenerateLog(Dictionary);
             StatusLogger.GenerateStatusLog(Dictionary);
             return progress;
         }
 
-        public void Subscribe(IObserver obs)
-        {
-           subscribers.Add(obs);
-        }
+     
 
         public void SubscribeServer(IObserver obs)
         {
             serverSubscriber.Add(obs);
         }
 
-        public void NotifyAll()
-        {
-            if (double.TryParse(dictionary[WorkProperties.Progress].ToString(), out double prog)){
-                foreach (IObserver obs in subscribers)
-                {
-                    obs.ReactProgression(prog);
-                }     
-            }
-        }
+      
 
         public void NotifyServer(Dictionary<WorkProperties, object> dict)
         {
@@ -127,10 +115,7 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public void Unsubscribe(IObserver obs)
-        {
-            subscribers.Remove(obs);
-        }
+   
 
         public void UnSubscribeServer(IObserver obs)
         {
