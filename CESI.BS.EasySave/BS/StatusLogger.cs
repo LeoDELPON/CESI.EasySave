@@ -10,6 +10,7 @@ namespace CESI.BS.EasySave.BS
 {
     internal static class StatusLogger
     {
+     
         private static readonly string logFilePath = Environment.CurrentDirectory + @"\statusLog\";
         private static readonly string logFileExtension = @".status";
         private static readonly string logFullName = LogFilePath + "status" + LogFileExtension;
@@ -26,9 +27,12 @@ namespace CESI.BS.EasySave.BS
             {
                 File.WriteAllText(LogFullName, json);
             }
-            StreamWriter file = File.AppendText(LogFullName);
-            file.WriteLine(json);
-            file.Close();
+            lock (ThreadLifeManager.writeStatusLogger)
+            {
+                StreamWriter file = File.AppendText(LogFullName);
+                file.WriteLine(json);
+                file.Close();
+            }
 
         }
 

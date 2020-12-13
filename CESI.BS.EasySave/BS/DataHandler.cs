@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CESI.BS.EasySave.DAL;
 using System.Diagnostics;
+using System.Threading;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -20,6 +21,7 @@ namespace CESI.BS.EasySave.BS
 
         public void Init(Dictionary<WorkProperties, object> newDictionary)
         {
+            Monitor.Enter(dictionary);
             dictionary[WorkProperties.Date] = DateTime.Now.ToString("HH:mm:ss");
             dictionary[WorkProperties.Name] = newDictionary[WorkProperties.Name];
             dictionary[WorkProperties.Source] = newDictionary[WorkProperties.Source];
@@ -28,6 +30,7 @@ namespace CESI.BS.EasySave.BS
             dictionary[WorkProperties.EligibleFiles] = newDictionary[WorkProperties.EligibleFiles];
             dictionary[WorkProperties.State] = "Running";
             dictionary[WorkProperties.EncryptDuration] = "0";
+            Monitor.Exit(dictionary);
         }
 
         private void ComputeProgress(object remainingSize)

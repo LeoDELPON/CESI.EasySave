@@ -329,67 +329,52 @@ namespace WpfApp1
 
         public void launchWorkList()
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                launchWorkBtn.IsEnabled = false;
-            });
+            EnablButtonsAccess(false);
 
             foreach (WrkElements we in weList)
             {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                  
-                
-                we.inWrkList.workProgressBar.Value = 0; //reset progress Bar             
-            
-                we.inSvdList.ToWorkList.IsEnabled = false; //disable clicks
-                    if (WorkListLbl.Items.Contains(we.inWrkList))
-                    {
-                        we.inWrkList.IsEnabled = false;
-                    }
 
-                });
-            }
-          
-            foreach (WrkElements we in weList)
-            {
-               
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
-                    // Thread saveThread = new Thread(launchWork =>
-                    //  {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Thread saveThread = new Thread(launchWork =>
                     {
-                        we.inWrkList.workProgressBar.Value = 0;
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            we.inWrkList.workProgressBar.Value = 0;
+                        });
+                        bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
+                        bs.works[weList.IndexOf(we)].Perform();
+                        bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
                     });
-                    bs.works[weList.IndexOf(we)].SaveType.handler.Subscribe(we.inWrkList);
-                    bs.works[weList.IndexOf(we)].Perform();
-                    bs.works[weList.IndexOf(we)].SaveType.handler.Unsubscribe(we.inWrkList);//can be deleted
-                 //  });
-                  //  saveThread.Start();
+                    saveThread.Start();
                 }
             }
+            EnablButtonsAccess(true);
+        }
+
+        private void EnablButtonsAccess(bool access)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                launchWorkBtn.IsEnabled = access;
+            });
+
             foreach (WrkElements we in weList)
             {
                 Application.Current.Dispatcher.Invoke(() =>
-                {
-         
-                    we.inSvdList.ToWorkList.IsEnabled = true;//enable clicks
+                {                      
+
+                    we.inSvdList.ToWorkList.IsEnabled = access; //disable clicks
                     if (WorkListLbl.Items.Contains(we.inWrkList))
                     {
-                        we.inWrkList.IsEnabled = true;
+                        we.inWrkList.IsEnabled = access;
                     }
 
                 });
             }
-
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-           
-                launchWorkBtn.IsEnabled = true;
-            });
         }
+
         private void launchWorksButton(object sender, RoutedEventArgs e)
         {
             Process[] aProc;

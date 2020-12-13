@@ -7,11 +7,13 @@ using System.Threading;
 using CESI.BS.EasySave.BS.Factory;
 using CESI.BS.EasySave.DAL;
 
+
 namespace CESI.BS.EasySave.BS
 {
     internal static class Logger
     {
-
+     
+        static StreamWriter file;
         private static readonly string logFilePath = Environment.CurrentDirectory + @"\log\";
         private static readonly string logFileExtension = @".log";
         private static readonly string logFullName = LogFilePath + DateTime.Now.ToString("dd_MM_yyyy") + LogFileExtension;
@@ -28,10 +30,17 @@ namespace CESI.BS.EasySave.BS
             if (!File.Exists(LogFullName))
             {
                 File.WriteAllText(LogFullName, json);
-            }        
-            StreamWriter file = File.AppendText(LogFullName);          
-            file.WriteLine(json);
-            file.Close();
+            }
+
+            lock (ThreadLifeManager.writeLogger)
+            {
+                file = File.AppendText(LogFullName);
+                file.WriteLine(json);
+                file.Close();
+            }
+           
+                   
+           
          
         }
 
