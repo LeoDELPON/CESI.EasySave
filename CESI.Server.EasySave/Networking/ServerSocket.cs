@@ -93,7 +93,7 @@ namespace CESI.Server.EasySave.Networking
             }
             catch (SocketException e)
             {
-                Console.WriteLine("[-] Connexion had to be closed because the host ended the connection");
+                Console.WriteLine("[-] Connexion had to be closed because the host ended the connection : {0}", e);
                 Environment.Exit(0);
             }
             _buffer = new byte[1024];

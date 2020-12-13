@@ -7,9 +7,8 @@ namespace CESI.Server.EasySave.Services
     {
         public static void Handle(byte[] packet, Socket clientSocket)
         {
-            ushort packetLength = BitConverter.ToUInt16(packet, 0);
             ushort packetType = BitConverter.ToUInt16(packet, 2);
-            //Console.WriteLine("[+] Packet received... Length:{0} | Type: {1}", packetLength, packetType);
+
             switch (packetType)
             {
                 case 2000:
