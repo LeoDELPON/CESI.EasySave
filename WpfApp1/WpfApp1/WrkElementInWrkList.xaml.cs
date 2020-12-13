@@ -1,19 +1,10 @@
 ﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.ConfSaver;
+using CESI.BS.EasySave.BS.Observers;
 using CESI.BS.EasySave.DAL;
 using CESI.BS.EasySave.DTO;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>

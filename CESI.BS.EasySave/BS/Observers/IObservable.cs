@@ -1,9 +1,7 @@
 ﻿using CESI.BS.EasySave.DAL;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace CESI.BS.EasySave.BS
+namespace CESI.BS.EasySave.BS.Observers
 {
     interface IObservable
     {

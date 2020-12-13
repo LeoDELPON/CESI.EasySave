@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
-namespace CESI.BS.EasySave.BS
+namespace CESI.BS.EasySave.BS.Observers
 {
     public interface Observer
     {     
