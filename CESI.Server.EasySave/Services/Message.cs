@@ -15,7 +15,7 @@
 
         public string Text
         {
-            get { return ReadString(4, finalBuffer.Length - 4); }
+            get { return ReadString(0, finalBuffer.Length); }
             set
             {
                 _message = value;
