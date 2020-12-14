@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BsTest\Mock\**" />
     <Compile Remove="Mock\**" />
-    <EmbeddedResource Remove="BsTest\Mock\**" />
     <EmbeddedResource Remove="Mock\**" />
-    <None Remove="BsTest\Mock\**" />
     <None Remove="Mock\**" />
   </ItemGroup>
 

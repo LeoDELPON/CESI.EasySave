@@ -5,7 +5,7 @@ namespace CESI.BS.EasySave.BS.Observers
 {
     public interface IObserver
     {
-        public void ReactDataLogServ(DTODataServer dict);
+        public bool ReactDataLogServ(DTODataServer dict);
     }
 
 }

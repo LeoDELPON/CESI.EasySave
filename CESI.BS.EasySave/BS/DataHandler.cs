@@ -16,7 +16,6 @@ namespace CESI.BS.EasySave.BS
         public Stopwatch GetStopwatch { get { return stopwatch; } }
         public DataHandler() : base()
         {
-            subscribers = new List<IObserver>();
             serverSubscriber = new List<IObserver>();
         }
 
@@ -106,14 +105,10 @@ namespace CESI.BS.EasySave.BS
             
         }
 
-     
-
         public void SubscribeServer(IObserver obs)
         {
             serverSubscriber.Add(obs);
         }
-
-      
 
         public void NotifyServer(Dictionary<WorkProperties, object> dict)
         {
@@ -129,8 +124,6 @@ namespace CESI.BS.EasySave.BS
                 Console.WriteLine("[-] An error occured while trying to notify the server : {0}", e);
             }
         }
-
-   
 
         public void UnSubscribeServer(IObserver obs)
         {
