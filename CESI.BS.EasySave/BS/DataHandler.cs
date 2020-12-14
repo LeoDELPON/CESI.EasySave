@@ -58,7 +58,7 @@ namespace CESI.BS.EasySave.BS
         public List<IObserver> subscribers { get; set; } = new List<IObserver>();
         public List<IObserver> serverSubscriber { get; set; }
 
-        public void OnStop(bool noError)
+        public bool OnStop(bool noError)
         {
             stopwatch.Stop();           
             if (noError)
@@ -73,22 +73,37 @@ namespace CESI.BS.EasySave.BS
                 dictionary[WorkProperties.Progress] = "Error";
             }
             dictionary[WorkProperties.State] = "Not Running";
-            Logger.GenerateLog(Dictionary);
-            StatusLogger.GenerateStatusLog(Dictionary);
+            try
+            {
+                Logger.GenerateLog(Dictionary);
+                StatusLogger.GenerateStatusLog(Dictionary);
+                return true;
+            } catch(Exception e)
+            {
+                Console.WriteLine("[-] An error occured : {0}", e);
+                return false;
+            }
         }
 
         public long OnNext(Dictionary<WorkProperties, object> newDictionary)
         {
-            dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
-            dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
-            dictionary[WorkProperties.Duration] = stopwatch.ElapsedMilliseconds;
-            dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
-            long progress = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
+            if(newDictionary != null)
+            {
+                dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
+                dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
+                dictionary[WorkProperties.Duration] = stopwatch.ElapsedMilliseconds;
+                dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
+                long progress = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
 
-            NotifyServer(Dictionary);
-            Logger.GenerateLog(Dictionary);
-            StatusLogger.GenerateStatusLog(Dictionary);
-            return progress;
+                NotifyServer(Dictionary);
+                Logger.GenerateLog(Dictionary);
+                StatusLogger.GenerateStatusLog(Dictionary);
+                return progress;
+            } else
+            {
+                return -1;
+            }
+            
         }
 
      
