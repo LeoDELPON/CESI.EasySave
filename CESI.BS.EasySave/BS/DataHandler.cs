@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using CESI.BS.EasySave.DAL;
 using System.Diagnostics;
 using CESI.BS.EasySave.DTO;
 using CESI.BS.EasySave.BS.Factory;
 using System.Threading;
+using CESI.BS.EasySave.BS.Observers;
 
 namespace CESI.BS.EasySave.BS
 {

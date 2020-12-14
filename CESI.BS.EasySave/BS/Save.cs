@@ -1,4 +1,5 @@
-﻿using CESI.BS.EasySave.DAL;
+﻿using CESI.BS.EasySave.BS.Observers;
+using CESI.BS.EasySave.DAL;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;

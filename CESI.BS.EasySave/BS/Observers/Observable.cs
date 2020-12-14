@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace CESI.BS.EasySave.BS
+
+namespace CESI.BS.EasySave.BS.Observers
 {
     interface Observable
     {
