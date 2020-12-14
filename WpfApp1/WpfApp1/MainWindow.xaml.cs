@@ -33,7 +33,9 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int terminatedThreads = 0;
+        /*ManagementEventWatcher processStartEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStartTrace");
+        ManagementEventWatcher processStopEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStopTrace");
+      */  public int terminatedThreads = 0;
 
         ProcessusChoosing processusChoosing = new ProcessusChoosing(Process.GetProcesses());
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
@@ -54,6 +56,10 @@ namespace WpfApp1
         public MainWindow()        {
          
             InitializeComponent();
+            /*processStartEvent.EventArrived += new EventArrivedEventHandler(processStartEvent_EventArrived);
+            processStopEvent.EventArrived += new EventArrivedEventHandler(processStopEvent_EventArrived);*/
+         /*   processStartEvent.Start();
+            processStopEvent.Start();*/
             modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;
             addWorkWindow.OkBtn.Click += OkBtn_Click;
@@ -68,7 +74,20 @@ namespace WpfApp1
             myServer = ServerSocket.Instance;
             myServer.StartConnection(1);
         }
+       /* void processStartEvent_EventArrived(object sender, EventArrivedEventArgs e)
+        {
+            
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    WorkListLbl.Items.Add((e.NewEvent).Properties["ProcessName"].Value.ToString());
+                });
+            
+        }*/
 
+        void processStopEvent_EventArrived(object sender, EventArrivedEventArgs e)
+        {
+            // A process has been stopped
+        }
         private void pcOkBtn(object sender, RoutedEventArgs e)
         {
             processusChoosing.Hide();
