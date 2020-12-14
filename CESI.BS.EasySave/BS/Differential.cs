@@ -99,6 +99,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     WaitForUnpause();
+                    checkFileSize(file.Length);
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString());
                     string pathTest = file.DirectoryName;
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);
@@ -142,6 +143,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     NotifyAll(handler.OnNext(propertiesWork));
+                    EndReact();
                 }
                 handler.OnStop(true);
                 return true;

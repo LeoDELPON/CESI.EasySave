@@ -32,7 +32,7 @@ namespace CESI.BS.EasySave.BS
                 File.WriteAllText(LogFullName, json);
             }
 
-            lock (ThreadLifeManager.writeLogger)
+            lock (ThreadMutex.writeLogger)
             {
                 file = File.AppendText(LogFullName);
                 file.WriteLine(json);

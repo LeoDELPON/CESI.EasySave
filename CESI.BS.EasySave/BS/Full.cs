@@ -112,6 +112,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in source.GetFiles())
                 {
                     WaitForUnpause();
+                    checkFileSize(file.Length);
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
                     
                     //Pour chaques extensions dans la source
@@ -139,6 +140,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     NotifyAll(handler.OnNext(propertiesWork));
+                    EndReact();
                     
                 }
 

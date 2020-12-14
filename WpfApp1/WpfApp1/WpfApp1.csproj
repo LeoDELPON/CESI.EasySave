@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Management" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\CESI.BS.EasySave\CESI.BS.EasySave.csproj" />
     <ProjectReference Include="..\..\CESI.Server.EasySave\CESI.Server.EasySave.csproj" />
   </ItemGroup>

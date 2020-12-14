@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Reflection;
 using System.Resources;
 using System.Text;
@@ -33,7 +34,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public int terminatedThreads = 0;
-        List<Thread> threadList = new List<Thread>();
+
         ProcessusChoosing processusChoosing = new ProcessusChoosing(Process.GetProcesses());
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
         
@@ -42,9 +43,10 @@ namespace WpfApp1
         
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
         List<WrkElements> weList = new List<WrkElements>(); 
-        private ResourceDictionary obj;
+        private ResourceDictionary obj;     
    
         public BSEasySave bs = new BSEasySave();
+        public ThreadLifeManager threadLifeManager;
         ModifyWorkWindow modifyWorkWindow;
 
         private readonly ServerSocket myServer;
@@ -62,7 +64,7 @@ namespace WpfApp1
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
             processusChoosing.OkBtn.Click += pcOkBtn;
-
+            threadLifeManager = new ThreadLifeManager(bs);
             myServer = ServerSocket.Instance;
             myServer.StartConnection(1);
         }
@@ -81,9 +83,7 @@ namespace WpfApp1
         }
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-           
+        {          
 
             List<string> listExt = new List<string>();
             for (int i = 1; i < modifyWorkWindow.extLV.Items.Count; i++)
@@ -125,7 +125,7 @@ namespace WpfApp1
                     wv.key = "null";
                     wv.extension = new List<string>();
                     wv.extension.Add("null");
-
+               
                 }
                 weList[index].wv = wv;
                 weList[index].inSvdList.UpdateWv(weList[index].wv);
@@ -300,12 +300,13 @@ namespace WpfApp1
 
         public void launchWorkList()
         {
-            threadList.Clear();
+            threadLifeManager.ClearThread();
+            
             EnableButtonsAccess(false);
 
             foreach (WrkElements we in weList)
             {
-
+             
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
@@ -317,42 +318,43 @@ namespace WpfApp1
                             {
                                 we.inWrkList.workProgressBar.Value = 0;
                             });
-
+                            threadLifeManager.SubscribeToSaves(bs.works[weList.IndexOf(we)]);
                             bs.works[weList.IndexOf(we)].SaveType.Subscribe(we.inWrkList);
                             bs.works[weList.IndexOf(we)].Perform();
                             bs.works[weList.IndexOf(we)].SaveType.Unsubscribe(we.inWrkList);//can be deleted
                             terminatedThreads++;
+                            threadLifeManager.UnsubscribeToSaves(bs.works[weList.IndexOf(we)]);
                         }
                         catch (ThreadInterruptedException)
                         {
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                                
-                                we.inWrkList.workProgressBar.Value = 0;                              
+
+                                we.inWrkList.workProgressBar.Value = 0;
                                 terminatedThreads++;
                             });
                         }
-                        if (terminatedThreads == threadList.Count)
+                        if (terminatedThreads == threadLifeManager.Count())
                         {
                             Application.Current.Dispatcher.Invoke(() =>
                             {
                                 resetButtons();
                                 EnableButtonsAccess(true);
-                            
-                            terminatedThreads = 0;
+                                terminatedThreads = 0;
                             });
                         }
-                
-                   
+
+
 
                     });
-                    threadList.Add(saveThread);
-                    
+                    threadLifeManager.AddThread(saveThread);
+                   
                     saveThread.Start();
-                }
-            }
-      
+                
+                }                  
+            }      
         }
+
 
         private void EnableButtonsAccess(bool access)
         {
@@ -399,6 +401,7 @@ namespace WpfApp1
             }
             
         }
+            
         
        
 
@@ -448,13 +451,8 @@ namespace WpfApp1
 
         private void PauseBtn_Click(object sender, RoutedEventArgs e)
         {
-            bool allclear = true;
-            foreach (Work w in bs.works)
-            {
-                allclear = allclear && Monitor.TryEnter(w.SaveType.pause);
-                
-            }
-            if (allclear)
+           
+            if (threadLifeManager.Pause())
             {
                 pauseBtn.IsEnabled = false;
                 resumeBtn.IsEnabled = true;
@@ -463,10 +461,7 @@ namespace WpfApp1
 
         private void AbortBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Thread th in threadList)
-            {
-                th.Interrupt();
-            }
+            threadLifeManager.Abort();
             resetButtons();
         }
 
@@ -488,13 +483,8 @@ namespace WpfApp1
 
         private void ResumeBtnClick(object sender, RoutedEventArgs e)
         {
-            bool allclear = true;
-            foreach (Work w in bs.works)
-            {
-                Monitor.Exit(w.SaveType.pause);
-                allclear = allclear && !Monitor.IsEntered(w.SaveType.pause);
-            }
-            if (allclear)
+            
+            if (threadLifeManager.Resume())
             {
                 pauseBtn.IsEnabled = true;
                 resumeBtn.IsEnabled = false;
@@ -502,6 +492,8 @@ namespace WpfApp1
            
          
         }
+
+       
     }
 }
 

@@ -1,18 +1,24 @@
 ﻿using CESI.BS.EasySave.DAL;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Threading;
+using System;
 
 namespace CESI.BS.EasySave.BS
 {
-    public abstract class Save : Observable
+    
+    public abstract class Save : Observable, ObservableFileSize
     {
+        public long fileMaxSize = 100000000000;
+        
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;
         public object pause = new object();
         public string IdTypeSave { get; set; }
         public List<Observer> subscribers { get; set; } = new List<Observer>();
+        public List<ObserverFileSize> subscribersFileSize { get; set; } = new List<ObserverFileSize>();
 
         public DataHandler handler = DataHandler.Instance;
         public static int SUCCESS_OPERATION = 0;
@@ -22,6 +28,7 @@ namespace CESI.BS.EasySave.BS
         public static int NO_FULL_SAVE = 4;
         public Save()
         {
+  
             propertiesWork = new Dictionary<WorkProperties, object>
             {
                 { WorkProperties.Duration, 0 },
@@ -35,13 +42,13 @@ namespace CESI.BS.EasySave.BS
             };
         }
 
-        
+      
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary> Making a method that will be overrided by other classes </summary>
         ///
         /// <remarks>   Leo , 24/11/2020. </remarks>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         public abstract bool SaveProcess(string sourceDirectory, 
             string destinationDirectory
             );
@@ -98,9 +105,42 @@ namespace CESI.BS.EasySave.BS
 
         }
 
+        public void checkFileSize(long size)
+        {
+            if (size > fileMaxSize)
+            {
+                notifyFileSize();
+            }
+        }
         public void Unsubscribe(Observer obs)
         {
             subscribers.Remove(obs);
         }
+
+        public void SubscribeFileSize(ObserverFileSize obs)
+        {
+            subscribersFileSize.Add(obs);
+        }
+
+        public void UnsubscribeFileSize(ObserverFileSize obs)
+        {
+            subscribersFileSize.Remove(obs);
+        }
+
+        public void notifyFileSize()
+        {
+            foreach(ObserverFileSize obs in subscribersFileSize)
+            {
+                obs.React(this);
+            }
+        }
+        public void EndReact()
+        {
+            foreach (ObserverFileSize obs in subscribersFileSize)
+            {
+                obs.EndReaction(this);
+            }
+        }
+       
     }
 }
