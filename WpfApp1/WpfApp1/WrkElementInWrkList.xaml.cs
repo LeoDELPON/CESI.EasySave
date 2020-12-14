@@ -13,7 +13,6 @@ namespace WpfApp1
     public partial class WrkElementInWrkList : UserControl, Observer
     {
         BSEasySave bs;
-
         public WrkElementInWrkList(ConfSaver.WorkVar workVar,BSEasySave BS)
         {
             InitializeComponent();

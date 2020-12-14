@@ -45,6 +45,7 @@ namespace CESI.BS.EasySave.BS
         {
             IdTypeSave  = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
+            propertiesWork[WorkProperties.TypeSave] = "Differential";
             propertiesWork[WorkProperties.Name] = props;
             _extensions = extensions;
             _key = key;

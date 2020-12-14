@@ -40,6 +40,7 @@ namespace CESI.BS.EasySave.BS
         {
             IdTypeSave ="ful";
             TypeSave = SaveType.FULL;
+            propertiesWork[WorkProperties.TypeSave] = "Full";
             propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
          //   _priorityExtension = priorityExtensions;
@@ -91,9 +92,7 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool isRecursive)
         {
-           
             DirectoryInfo fullSaveDirectory;
-
             //Vérifie le dossier cible
             string path = target.ToString() + @"\" + propertiesWork[WorkProperties.Name] + "_" + source.Name.ToString() + @"\FullSaves" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             if (!Directory.Exists(path) && !isRecursive)
@@ -113,7 +112,6 @@ namespace CESI.BS.EasySave.BS
                 {
                     WaitForUnpause();
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
-                    
                     //Pour chaques extensions dans la source
                     foreach (string ext in _cryptoExtension)
                     {
