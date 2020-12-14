@@ -17,7 +17,7 @@ namespace CESI.Server.EasySave.Networking
         private DTOHostMachine _host;
         private const int PORT = 9999;
         private byte[] _buffer = new byte[1024];
-        private string _dataSent = "";
+        private string _dataSent = "SB";
         private static readonly Lazy<ServerSocket> lazy = new Lazy<ServerSocket>(() => new ServerSocket());
         public static ServerSocket Instance { get { return lazy.Value; } }
         private ServerSocket()
@@ -56,7 +56,13 @@ namespace CESI.Server.EasySave.Networking
         public void Listen(int backlog)
         {
             Console.WriteLine("[+] This server will listen to {0} client(s)", backlog);
-            _socket.Listen(backlog);
+            try
+            {
+                _socket.Listen(backlog);
+            } catch(ObjectDisposedException e)
+            {
+                Console.WriteLine("[-] The connection has been closed : {0}", e);
+            }
         }
 
         public void AcceptConnection()
@@ -114,11 +120,6 @@ namespace CESI.Server.EasySave.Networking
             e.RemoteEndPoint = s.RemoteEndPoint;
             e.SetBuffer(msg.finalBuffer, 0, data.Length);
             s.SendToAsync(e);
-        }
-
-        public void ReactProgression(double progress)
-        {
-            
         }
 
         public void ReactDataLogServ(DTODataServer dto)
