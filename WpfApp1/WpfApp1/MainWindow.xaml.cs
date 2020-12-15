@@ -24,6 +24,7 @@ using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.DAL;
 using CESI.Server.EasySave.Networking;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
+using static CESI.BS.EasySave.BS.ThreadLifeManager;
 
 namespace WpfApp1
 {
@@ -33,15 +34,13 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        /*ManagementEventWatcher processStartEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStartTrace");
-        ManagementEventWatcher processStopEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStopTrace");
-      */  public int terminatedThreads = 0;
-
-        ProcessusChoosing processusChoosing = new ProcessusChoosing(Process.GetProcesses());
+        public int terminatedThreads = 0;
+        AlertWindow alertWindow = new AlertWindow();
+        ProcessusChoosing processusChoosing = new ProcessusChoosing();
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
         
         AddWorkWindow addWorkWindow = new AddWorkWindow();
-        List<string> forbProc = new List<string>();
+        public List<string> forbProc { get; set; } = new List<string>();
         
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
         List<WrkElements> weList = new List<WrkElements>(); 
@@ -56,10 +55,7 @@ namespace WpfApp1
         public MainWindow()        {
          
             InitializeComponent();
-            /*processStartEvent.EventArrived += new EventArrivedEventHandler(processStartEvent_EventArrived);
-            processStopEvent.EventArrived += new EventArrivedEventHandler(processStopEvent_EventArrived);*/
-         /*   processStartEvent.Start();
-            processStopEvent.Start();*/
+         
             modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;
             addWorkWindow.OkBtn.Click += OkBtn_Click;
@@ -69,25 +65,18 @@ namespace WpfApp1
             addExistingWorksToView();
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
-            processusChoosing.OkBtn.Click += pcOkBtn;
-            threadLifeManager = new ThreadLifeManager(bs);
+            processusChoosing.OkBtn.Click += pcOkBtn;           
+            threadLifeManager = new ThreadLifeManager(bs, forbProc);        
+            threadLifeManager.OnNotAdmin += ThreadAlertMsg;
+            threadLifeManager.StartObservingProcesses();
             myServer = ServerSocket.Instance;
             myServer.StartConnection(1);
         }
-       /* void processStartEvent_EventArrived(object sender, EventArrivedEventArgs e)
-        {
-            
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    WorkListLbl.Items.Add((e.NewEvent).Properties["ProcessName"].Value.ToString());
-                });
-            
-        }*/
-
-        void processStopEvent_EventArrived(object sender, EventArrivedEventArgs e)
-        {
-            // A process has been stopped
+        public void ThreadAlertMsg()
+        {            
+            alertWindow.showMessage("NotAdminMsg", true);
         }
+     
         private void pcOkBtn(object sender, RoutedEventArgs e)
         {
             processusChoosing.Hide();
@@ -367,7 +356,7 @@ namespace WpfApp1
 
                     });
                     threadLifeManager.AddThread(saveThread);
-                   
+                    saveThread.Priority = ThreadPriority.BelowNormal;
                     saveThread.Start();
                 
                 }                  
@@ -398,26 +387,11 @@ namespace WpfApp1
 
         private void launchWorksButton(object sender, RoutedEventArgs e)
         {
-            Process[] aProc;
+   
             abortBtn.IsEnabled = true;
             pauseBtn.IsEnabled = true;
-   
-            if (forbProc.Count == 0)
-            {
-                launchWorkList();
-            }
-            else
-            {
-                foreach(string name in forbProc)
-                {
-                    aProc = Process.GetProcessesByName(name);
-                   if (aProc.Length > 0) { 
-                        return;
-
-                    }
-                }
-                launchWorkList();
-            }
+            launchWorkList();
+         
             
         }
             

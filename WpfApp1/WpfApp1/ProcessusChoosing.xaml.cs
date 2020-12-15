@@ -18,18 +18,20 @@ namespace WpfApp1
     /// </summary>
     public partial class ProcessusChoosing : Window
     {
-        Process[] listeProcess;
-        public ProcessusChoosing(Process[] listeProcess)
+        public Process[] listeProcess { get; set; }
+        public ProcessusChoosing()
         {
             InitializeComponent();
             Closing += ProcessusChoosing_Closing;
-            this.listeProcess = listeProcess;
+            listeProcess = Process.GetProcesses();
             AddNewCB();   
           
             
         }
+        public 
+        
 
-        private void ProcessusChoosing_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        void ProcessusChoosing_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
             Hide();
