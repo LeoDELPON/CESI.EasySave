@@ -38,24 +38,28 @@ namespace WpfApp1
         AlertWindow alertWindow = new AlertWindow();
         ProcessusChoosing processusChoosing = new ProcessusChoosing();
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
-        
+
         AddWorkWindow addWorkWindow = new AddWorkWindow();
         public List<string> forbProc { get; set; } = new List<string>();
-        
+
         List<ConfSaver.WorkVar> listWorks = new List<ConfSaver.WorkVar>();
-        List<WrkElements> weList = new List<WrkElements>(); 
-        private ResourceDictionary obj;     
-   
+        List<WrkElements> weList = new List<WrkElements>();
+        private ResourceDictionary obj;
+
         public BSEasySave bs = new BSEasySave();
         public ThreadLifeManager threadLifeManager;
         ModifyWorkWindow modifyWorkWindow;
 
         private readonly ServerSocket myServer;
 
-        public MainWindow()        {
-         
+        public MainWindow()
+        {
+            string processName = Process.GetCurrentProcess().ProcessName;
+            if (Process.GetProcessesByName(processName).Length > 1)
+            {
+                Application.Current.Shutdown();
+            }
             InitializeComponent();
-         
             modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;
             addWorkWindow.OkBtn.Click += OkBtn_Click;
@@ -65,23 +69,23 @@ namespace WpfApp1
             addExistingWorksToView();
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
-            processusChoosing.OkBtn.Click += pcOkBtn;           
-            threadLifeManager = new ThreadLifeManager(bs, forbProc);        
+            processusChoosing.OkBtn.Click += pcOkBtn;
+            threadLifeManager = new ThreadLifeManager(bs, forbProc);
             threadLifeManager.OnNotAdmin += ThreadAlertMsg;
             threadLifeManager.StartObservingProcesses();
             myServer = ServerSocket.Instance;
             myServer.StartConnection(1);
         }
         public void ThreadAlertMsg()
-        {            
+        {
             alertWindow.showMessage("NotAdminMsg", true);
         }
-     
+
         private void pcOkBtn(object sender, RoutedEventArgs e)
         {
             processusChoosing.Hide();
             forbProc.Clear();
-            foreach(ComboBox cb in processusChoosing.ListCB.Items)
+            foreach (ComboBox cb in processusChoosing.ListCB.Items)
             {
                 if (cb.SelectedIndex > -1)
                 {
@@ -91,7 +95,7 @@ namespace WpfApp1
         }
 
         private void ModifyOkBtn_Click(object sender, RoutedEventArgs e)
-        {          
+        {
 
             List<string> listExt = new List<string>();
             for (int i = 1; i < modifyWorkWindow.extLV.Items.Count; i++)
@@ -101,7 +105,7 @@ namespace WpfApp1
                     listExt.Add(((TextBox)modifyWorkWindow.extLV.Items[i]).Text);
                 }
             }
-            if ((bool)modifyWorkWindow.CypherOptionsCHB.IsChecked && (modifyWorkWindow.KeyTB.Text.Length==0 || listExt.Count == 0))
+            if ((bool)modifyWorkWindow.CypherOptionsCHB.IsChecked && (modifyWorkWindow.KeyTB.Text.Length == 0 || listExt.Count == 0))
             {
 
                 return;
@@ -133,7 +137,7 @@ namespace WpfApp1
                     wv.key = "null";
                     wv.extension = new List<string>();
                     wv.extension.Add("null");
-               
+
                 }
                 weList[index].wv = wv;
                 weList[index].inSvdList.UpdateWv(weList[index].wv);
@@ -141,7 +145,7 @@ namespace WpfApp1
                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
                 bs.confSaver.modifyEntireFile(bs.works[index].Name, weList[index].wv);
                 bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(modifyWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
-              
+
 
 
 
@@ -158,8 +162,8 @@ namespace WpfApp1
         private void LanguageOkBtn_Click(object sender, RoutedEventArgs e)
         {
             ChangeLanguage(languageSelectionWindow.getLanguagePath());
-          
-          
+
+
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -169,9 +173,9 @@ namespace WpfApp1
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            if((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Count == 0))
+            if ((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Count == 0))
             {
-               
+
                 return;
             }
             if (addWorkWindow.WorkNameTB.Text.Equals(""))
@@ -187,13 +191,13 @@ namespace WpfApp1
                 wv.source = addWorkWindow.WorkSourceTB.Text;
                 wv.target = addWorkWindow.WorkTargetTB.Text;
                 wv.typeSave = addWorkWindow.SaveTypeCB.SelectedIndex;
-                
+
                 if ((bool)addWorkWindow.isXor.IsChecked)
                 {
                     wv.key = addWorkWindow.key;
                     //wv.extension = addWorkWindow.extention;
                     wv.extension = addWorkWindow.extention;
-                   
+
 
                 }
                 else
@@ -201,16 +205,16 @@ namespace WpfApp1
                     wv.key = "null";
                     wv.extension = new List<string>();
                     wv.extension.Add("null");
-              
+
                 }
                 bs.AddWork(wv.name, wv.source, wv.target, ((ComboBoxItem)addWorkWindow.SaveTypeCB.SelectedItem).Name, wv.extension, wv.key);// ajout du travail
                 WrkElements we = new WrkElements(wv, bs);
                 we.chiffrage = (bool)addWorkWindow.isXor.IsChecked;
-            
+
                 PrepareWrkElement(we);
                 bs.confSaver.SaveWork(wv);
 
-              
+
             }
             else
             {
@@ -220,7 +224,7 @@ namespace WpfApp1
         private void ToWorkList_Click(object sender, RoutedEventArgs e, WrkElements we)
         {
             ToWorkList(we);
-            
+
         }
 
         private void ToWorkList(WrkElements we)
@@ -244,14 +248,14 @@ namespace WpfApp1
 
         private void addExistingWorksToView()
         {
-         
+
             foreach (ConfSaver.WorkVar work in listWorks)
             {
-                
+
                 WrkElements we = new WrkElements(work, bs);
                 PrepareWrkElement(we);
 
-               
+
 
             }
         }
@@ -264,15 +268,15 @@ namespace WpfApp1
             we.inWrkList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
             SaveListLbl.Items.Add(we.inSvdList);
-                      
+
             bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), we.wv.extension, we.wv.key);
         }
 
-      
 
 
 
-  
+
+
 
         public void ChangeLanguage(Uri dictionnaryUri)
         {
@@ -309,12 +313,12 @@ namespace WpfApp1
         public void launchWorkList()
         {
             threadLifeManager.ClearThread();
-            
+
             EnableButtonsAccess(false);
 
             foreach (WrkElements we in weList)
             {
-             
+
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
@@ -358,49 +362,49 @@ namespace WpfApp1
                     threadLifeManager.AddThread(saveThread);
                     saveThread.Priority = ThreadPriority.BelowNormal;
                     saveThread.Start();
-                
-                }                  
-            }      
+
+                }
+            }
         }
 
 
         private void EnableButtonsAccess(bool access)
         {
-           
+
 
             launchWorkBtn.IsEnabled = access;
-          
+
 
             foreach (WrkElements we in weList)
             {
-                                
 
-                    we.inSvdList.ToWorkList.IsEnabled = access; 
-                    if (WorkListLbl.Items.Contains(we.inWrkList))
-                    {
-                        we.inWrkList.IsEnabled = access;
-                    }
 
-           
+                we.inSvdList.ToWorkList.IsEnabled = access;
+                if (WorkListLbl.Items.Contains(we.inWrkList))
+                {
+                    we.inWrkList.IsEnabled = access;
+                }
+
+
             }
         }
 
         private void launchWorksButton(object sender, RoutedEventArgs e)
         {
-   
+
             abortBtn.IsEnabled = true;
             pauseBtn.IsEnabled = true;
             launchWorkList();
-         
-            
+
+
         }
-            
-        
-       
+
+
+
 
         private void AddWorkBtn_Click(object sender, RoutedEventArgs e)
-        {            
-                addWorkWindow.Show();
+        {
+            addWorkWindow.Show();
         }
 
         private void languageBtn_Click(object sender, RoutedEventArgs e)
@@ -423,9 +427,9 @@ namespace WpfApp1
         {
             int offset = 0;
             int goal = weList.Count();
-            for (int i = 0; i< goal; i++) 
+            for (int i = 0; i < goal; i++)
             {
-                WrkElements we = weList[i-offset];
+                WrkElements we = weList[i - offset];
                 if ((bool)we.inSvdList.checkBox.IsChecked && SaveListLbl.Items.Contains(we.inSvdList))
                 {
                     bs.DeleteWork(weList.IndexOf(we));
@@ -444,7 +448,7 @@ namespace WpfApp1
 
         private void PauseBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+
             if (threadLifeManager.Pause())
             {
                 pauseBtn.IsEnabled = false;
@@ -476,17 +480,17 @@ namespace WpfApp1
 
         private void ResumeBtnClick(object sender, RoutedEventArgs e)
         {
-            
+
             if (threadLifeManager.Resume())
             {
                 pauseBtn.IsEnabled = true;
                 resumeBtn.IsEnabled = false;
             }
-           
-         
+
+
         }
 
-       
+
     }
 }
 
