@@ -117,9 +117,10 @@ namespace CESI.BS.EasySave.BS
                 Parallel.For(0, files.Length, (i) =>
                 {
                     WaitForUnpause();
-                    checkFileSize(file.Length);
+                   
 
                     FileInfo fileObject = new FileInfo(files[i]);
+                    checkFileSize(fileObject.Length);
                     string dir = ReplaceLastOccurrence(files[i].Replace(source.FullName, fullSaveDirectory.FullName), fileObject.Name, "");
                     if (!Directory.Exists(dir))
                     {
@@ -147,10 +148,10 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     NotifyAll(handler.OnNext(propertiesWork));
                     EndReact();
-                    
-                }
 
                 });
+
+                
 
 
                 return true;

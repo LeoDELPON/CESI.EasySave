@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.IO;
 using System.Threading;
-using System;
 
 namespace CESI.BS.EasySave.BS
 {

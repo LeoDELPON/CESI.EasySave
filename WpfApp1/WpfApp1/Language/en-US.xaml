@@ -36,6 +36,6 @@
     <system:String x:Key="EXTENSION">Type of file</system:String>
     <system:String x:Key="ADDEXTENSION">Add Extension to XOR</system:String>
     <!--NotAdminAlertWindow-->
-    <system:String x:Key="NotAdminMsg">Please run Easy Same in admin mode for the "pause on process detected" fonction to work</system:String>
+    <system:String x:Key="NotAdminMsg">Please run Easy Same in admin mode for the "pause on process detected" fonction to work.</system:String>
     
 </ResourceDictionary>

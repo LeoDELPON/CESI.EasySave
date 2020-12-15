@@ -33,4 +33,6 @@
     <system:String x:Key="KEY">Votre clé :</system:String>
     <system:String x:Key="EXTENSION">Extension</system:String>
     <system:String x:Key="ADDEXTENSION">Ajouter des extention</system:String>
+    <!--NotAdminAlertWindow-->
+    <system:String x:Key="NotAdminMsg">Easy-Save n'est pas lancé en mode administrateur. La fonction "Arrêt l'orsque un processus métier est détecté" est désactivée.</system:String>
 </ResourceDictionary>
