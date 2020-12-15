@@ -93,3 +93,11 @@ C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.UnitTest.dll
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.UnitTest.pdb
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\obj\Debug\netcoreapp3.1\CESI.BS.EasySave.UnitTest.genruntimeconfig.cache
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.exe
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.exe
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.dll
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.dll
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\CESI.BS.EasySave.pdb
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\CESI.Server.EasySave.pdb
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\CESI.BS.EasySave.UnitTest\bin\Debug\netcoreapp3.1\Moq.dll

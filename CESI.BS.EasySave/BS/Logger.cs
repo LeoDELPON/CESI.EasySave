@@ -38,10 +38,6 @@ namespace CESI.BS.EasySave.BS
                 file.WriteLine(json);
                 file.Close();
             }
-           
-                   
-           
-         
         }
 
         private static string LogFilePath => logFilePath;

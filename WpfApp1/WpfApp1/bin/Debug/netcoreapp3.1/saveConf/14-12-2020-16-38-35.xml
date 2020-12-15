@@ -1,21 +1,21 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-12-12-2020-20-57-25
+14-12-2020-16-38-35
 </name>
 <source>
-C:\Users\delpo\OneDrive\Bureau\test
+C:\Users\delpo\OneDrive\Bureau\petittest
 </source>
 <target>
-C:\Users\delpo\OneDrive\Bureau\yolo
+C:\Users\delpo\OneDrive\Bureau\petityolo
 </target>
 <typeSave>
 1
 </typeSave>
 <key>
-yololo
+israelisalie
 </key>
 <extentions>
 <ext>
-.js
+.jsx
 </ext>
 </extentions>

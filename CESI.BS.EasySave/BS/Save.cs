@@ -1,5 +1,6 @@
 ﻿using CESI.BS.EasySave.BS.Observers;
 using CESI.BS.EasySave.DAL;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
@@ -95,15 +96,10 @@ namespace CESI.BS.EasySave.BS
 
         public void NotifyAll(long progress)
         {
-            
-         
-                foreach (Observer obs in subscribers)
-                {
-                    obs.ReactProgression(progress);
-                }
-
-            
-
+            foreach (Observer obs in subscribers)
+            {
+                obs.ReactProgression(progress);
+            }
         }
 
         public void checkFileSize(long size)
@@ -147,5 +143,19 @@ namespace CESI.BS.EasySave.BS
             }
         }
        
+        public void CryptoSoft(string _key, string sourcePath, string destPath)
+        {
+            string arguments = _key + " " + sourcePath + " " + destPath;
+            RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
+        }
+
+        public string ReplaceLastOccurrence(string Source, string Find, string Replace)
+        {
+            int place = Source.LastIndexOf(Find);
+            if (place == -1)
+                return Source;
+            string result = Source.Remove(place, Find.Length).Insert(place, Replace);
+            return result;
+        }
     }
 }
