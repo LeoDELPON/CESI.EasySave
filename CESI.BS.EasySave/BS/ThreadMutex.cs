@@ -12,6 +12,7 @@ namespace CESI.BS.EasySave.BS
         public static object filePause = new object();
         public static object threadPauseWhenProcess = new object();
         public static object bigFile = new object();
+        public static CancellationTokenSource Canceller = new CancellationTokenSource();
 
 
     }

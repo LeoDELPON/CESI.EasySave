@@ -10,11 +10,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal class Differential : Save
+    internal class DifferentialParallel : Save
     {
-       /// <summary>
-       /// Chemins pour sauvegarde complète.
-       /// </summary>
+        /// <summary>
+        /// Chemins pour sauvegarde complète.
+        /// </summary>
         private string FullBackupPath { get; set; }
         /// <summary>
         /// Chemins pour sauvegarde différentiel.
@@ -41,10 +41,11 @@ namespace CESI.BS.EasySave.BS
         /// <param name="props"></param>
         /// <param name="extensions">Liste des extensions des fichiers</param>
         /// <param name="key"></param>
-        public Differential(string props, List<string> extensions, string key)
+        public DifferentialParallel(string props, List<string> extensions, string key)
         {
-            IdTypeSave  = "dif";
+            IdTypeSave = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
+            propertiesWork[WorkProperties.TypeSave] = "Differential";
             propertiesWork[WorkProperties.Name] = props;
             _extensions = extensions;
             _key = key;
@@ -58,8 +59,10 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
-         
-            handler = DataHandler.Instance;
+
+
+
+            handler.GetStopwatch.Start();
             if (!Directory.Exists(sourceFolder))
             {
                 throw new DirectoryNotFoundException("[-] Source directory has not been found: " + sourceFolder);
@@ -100,6 +103,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     WaitForUnpause();
+                    checkFileSize(file.Length);
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString());
                     string pathTest = file.DirectoryName;
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);
@@ -123,7 +127,8 @@ namespace CESI.BS.EasySave.BS
                                 RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", args);
                                 stopW2.Stop();
                                 temp = stopW2.ElapsedMilliseconds;
-                            } else
+                            }
+                            else
                             {
                                 //non chiffré
                                 file.CopyTo(Path.Combine(pathTest, file.Name), true);
@@ -143,6 +148,7 @@ namespace CESI.BS.EasySave.BS
                     propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     NotifyAll(handler.OnNext(propertiesWork));
+                    EndReact();
                 }
                 handler.OnStop(true);
                 return true;
@@ -154,6 +160,8 @@ namespace CESI.BS.EasySave.BS
                 handler.OnStop(false);
                 return false;
             }
+
+
         }
         /// <summary>
         /// trouve les fichiers du dossier.
@@ -177,7 +185,7 @@ namespace CESI.BS.EasySave.BS
         private long GetSizeOfDiff(IEnumerable<FileInfo> queryGetDifferenceFile)
         {
             long size = 0;
-            foreach(FileInfo file in queryGetDifferenceFile)
+            foreach (FileInfo file in queryGetDifferenceFile)
             {
                 size += file.Length;
             }

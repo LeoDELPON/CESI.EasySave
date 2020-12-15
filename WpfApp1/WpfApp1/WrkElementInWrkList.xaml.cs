@@ -13,7 +13,7 @@ namespace WpfApp1
     public partial class WrkElementInWrkList : UserControl, Observer
     {
         BSEasySave bs;
-        public WrkElementInWrkList(ConfSaver.WorkVar workVar,BSEasySave BS)
+        public WrkElementInWrkList(ConfSaver.WorkVar workVar, BSEasySave BS)
         {
             InitializeComponent();
             bs = BS;
@@ -27,11 +27,14 @@ namespace WpfApp1
 
         public void ReactProgression(double progress)
         {
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 workProgressBar.Value = progress;
             });
-           
+
+
+
         }
 
         public void UpdateWv(ConfSaver.WorkVar workVar)

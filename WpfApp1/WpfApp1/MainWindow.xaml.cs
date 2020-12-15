@@ -322,8 +322,33 @@ namespace WpfApp1
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
+                    /* Task test = Task.Factory.StartNew(() =>
+                     {
+                         try
+                         {
+                             using (ThreadMutex.Canceller.Token.Register(Thread.CurrentThread.Abort)) ;
+                             while (true)
+                             {
+                                 Application.Current.Dispatcher.Invoke(() =>
+                                 {
+                                     WorkListLbl.Items.Add("en cours");
+                                 });
+                             }
+                         }
+                         catch (ThreadAbortException)
+                         {
+                             Application.Current.Dispatcher.Invoke(() =>
+                             {
+                                 WorkListLbl.Items.Add("fini");
+                             });
+                         }
+                     }, ThreadMutex.Canceller.Token);
+                     Thread.Sleep(5000);
+                     ThreadMutex.Canceller.Cancel();*/
                     Thread saveThread = new Thread(launchWork =>
                     {
+                        using (ThreadMutex.Canceller.Token.Register(Thread.CurrentThread.Abort)) { }
+
                         try
                         {
                             Application.Current.Dispatcher.Invoke(() =>
@@ -359,6 +384,7 @@ namespace WpfApp1
 
 
                     });
+
                     threadLifeManager.AddThread(saveThread);
                     saveThread.Priority = ThreadPriority.BelowNormal;
                     saveThread.Start();

@@ -19,13 +19,16 @@ namespace CESI.BS.EasySave.BS
         BSEasySave bs;
         Thread threadPause;
         public delegate void OnNotAdminDel();
+        public delegate void OnAbort();
+       
         public OnNotAdminDel OnNotAdmin { get; set; } = DefaultMethod;
-
+        CancellationTokenSource cts = new CancellationTokenSource();
         public static void DefaultMethod() { }
         
     public ThreadLifeManager(BSEasySave bs, List<string> p)
-        {         
-           
+        {
+            
+      
             this.bs = bs;
             processes = p;
             processStartEvent.EventArrived += new EventArrivedEventHandler(processStartEvent_EventArrived);
@@ -82,6 +85,7 @@ namespace CESI.BS.EasySave.BS
 
             }
         }
+      
         public void AddThread(Thread th)
         {
             listThreads.Add(th);
@@ -159,5 +163,7 @@ namespace CESI.BS.EasySave.BS
                 }
             }
         }
+
+      
     }
 }

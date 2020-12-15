@@ -12,14 +12,14 @@ namespace CESI.BS.EasySave.BS
 {
     internal static class Logger
     {
-     
+
         static StreamWriter file;
         private static readonly string logFilePath = Environment.CurrentDirectory + @"\log\";
         private static readonly string logFileExtension = @".log";
         private static readonly string logFullName = LogFilePath + DateTime.Now.ToString("dd_MM_yyyy") + LogFileExtension;
         private static readonly string logInfoString = "All log are writen following this pattern:\n> date | workName | sourcePath | targetPath | fileSize | elapsedTime" + "\n\n";
 
-        internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary) 
+        internal static void GenerateLog(Dictionary<WorkProperties, object> dictionary)
         {
             string json = "";
             json = JsonSerializer.Serialize(new WorkFactory().CreateDtoLogger(dictionary));
@@ -38,6 +38,7 @@ namespace CESI.BS.EasySave.BS
                 file.WriteLine(json);
                 file.Close();
             }
+
         }
 
         private static string LogFilePath => logFilePath;

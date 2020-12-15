@@ -20,8 +20,8 @@
             <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
 
-        <ListBox Margin="0,40,378,14" Padding="20,0,0,0" Grid.Row="1" Grid.ColumnSpan="3" Name="SaveListLbl" />
-        <ListBox Margin="332,40,0,14" Grid.Row="1" Grid.Column="2" Name ="WorkListLbl"/>
+        <ListBox Margin="0,40,378,14" Padding="20,0,0,0" Grid.Row="1" Grid.ColumnSpan="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="SaveListLbl" />
+        <ListBox Margin="332,40,0,14" Grid.Row="1" Grid.Column="2" Name ="WorkListLbl" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
         <Label Content="{DynamicResource Title}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="105,21,0,0" VerticalAlignment="Top" Height="40" Width="445" Grid.RowSpan="2" Grid.Column="2" Name="lbl" FontWeight="Bold" FontSize="22"/>
         <Button Content="{DynamicResource DeleteWork}" Background="#FFFF4646" HorizontalAlignment="Left" Margin="59,0,0,49" VerticalAlignment="Bottom" Height="40" Width="141" Grid.Row="2" Grid.ColumnSpan="3" Click="DeleteBtn_Click"/>
         <Button Content="{DynamicResource AddWorkToWorkList}" Background="#FF61B15A" HorizontalAlignment="Left" Margin="128,0,0,49" VerticalAlignment="Bottom" Click="MultipleAddBtn" Height="40" Width="170" Grid.Row="2" Grid.Column="2"/>
