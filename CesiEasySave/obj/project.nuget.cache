@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5OuS4uaWA1dl2tXhOKb6pbfY8DIRscSa0/8/R/aDH/AQupNqxXVzv3ycpTKO0u7FuJk1i+m3PLTGvdy0RMjRpw==",
+  "dgSpecHash": "922qCltta9WWJq+xjtbxt+KMNZfHOYjm20y29fjTcNvxcmCAZTrdbecontlDu0UYCdB57LSPZ0Wa4a998Fk3qA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
+  "projectFilePath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\delpo\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\system.runtime\\4.3.1\\system.runtime.4.3.1.nupkg.sha512"
+    "C:\\Users\\remib\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
+    "C:\\Users\\remib\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "C:\\Users\\remib\\.nuget\\packages\\system.runtime\\4.3.1\\system.runtime.4.3.1.nupkg.sha512"
   ],
   "logs": []
 }

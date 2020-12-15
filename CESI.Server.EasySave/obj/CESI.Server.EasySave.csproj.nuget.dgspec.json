@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {}
+    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {}
   },
   "projects": {
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "projectUniqueName": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
         "projectName": "CESI.BS.EasySave",
-        "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
-        "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
+        "projectPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "packagesPath": "C:\\Users\\remib\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\remib\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,17 +58,17 @@
         }
       }
     },
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
+    "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+        "projectUniqueName": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
         "projectName": "CESI.Server.EasySave",
-        "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
-        "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\obj\\",
+        "projectPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+        "packagesPath": "C:\\Users\\remib\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.Server.EasySave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\remib\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,8 +82,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-                "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+              "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+                "projectPath": "C:\\Users\\remib\\Documents\\GitHub\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
               }
             }
           }

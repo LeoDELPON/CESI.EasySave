@@ -9,15 +9,15 @@
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="386" >
         <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="checkBox"/>
-        <StackPanel Orientation="Horizontal" Background="CadetBlue" Margin="0" Width="331"  >
+        <StackPanel Orientation="Horizontal" Background="#FFFDB827" Margin="0" Width="331"  >
 
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workNameLbl" Width="62" FontFamily="Segoe UI Semilight" Foreground="White"/>
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workSourceLbl" Width="110" FontFamily="Segoe UI Semilight" Foreground="White"/>
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="93" FontFamily="Segoe UI Semilight" Foreground="White"/>
-            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="65" FontFamily="Segoe UI Semilight" Foreground="White"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workNameLbl" Width="62" FontFamily="Segoe UI Semilight" Foreground="White" Background="#FFFDB827"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workSourceLbl" Width="110" FontFamily="Segoe UI Semilight" Foreground="White" Background="#FFFDB827"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTargetLbl" Width="93" FontFamily="Segoe UI Semilight" Foreground="White" Background="#FFFDB827"/>
+            <Label Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name ="workTypeLbl" Width="65" FontFamily="Segoe UI Semilight" Foreground="White" Background="#FFFDB827"/>
         </StackPanel>
 
-        <Button Content="->" VerticalAlignment="Center" Background="Green" Width="23" Margin=" 10px" Name ="ToWorkList" Foreground="White" BorderThickness="0"/>
+        <Button Content="->" VerticalAlignment="Center" Background="#FF61B15A" Width="23" Margin=" 10px" Name ="ToWorkList" Foreground="White" BorderThickness="0"/>
 
 
     </StackPanel>
