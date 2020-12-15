@@ -11,7 +11,8 @@ namespace CESI.BS.EasySave.BS
         public static object writeStatusLogger = new object();
         public static object filePause = new object();
         public static object threadPauseWhenProcess = new object();
+        public static object bigFile = new object();
 
-        
+
     }
 }

@@ -108,9 +108,10 @@ namespace CESI.BS.EasySave.BS
 
         public void checkFileSize(long size)
         {
-            if (size > fileMaxSize)
+            if (size > fileMaxSize && !Monitor.IsEntered(ThreadMutex.bigFile))
             {
-                notifyFileSize();
+                //notifyFileSize();
+                Monitor.Enter(ThreadMutex.bigFile);
             }
         }
         public void Unsubscribe(Observer obs)
@@ -137,9 +138,12 @@ namespace CESI.BS.EasySave.BS
         }
         public void EndReact()
         {
-            foreach (ObserverFileSize obs in subscribersFileSize)
+/*            foreach (ObserverFileSize obs in subscribersFileSize)
             {
                 obs.EndReaction(this);
+            }*/
+            if (Monitor.IsEntered(ThreadMutex.bigFile)){
+                Monitor.Exit(ThreadMutex.bigFile);
             }
         }
        
