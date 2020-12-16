@@ -27,12 +27,16 @@
     <system:String x:Key="WorkSaveType">Type de sauvegarde</system:String>
     <!--workModificationWindow-->
     <system:String x:Key="ModifyWork">Modifier un travail</system:String>
+   
     <!--SelectLanguageWindow-->
     <system:String x:Key="SelectLanguage">Selectionnez la langue</system:String>
     <system:String x:Key="XOR">Options chiffrement</system:String>
     <system:String x:Key="KEY">Votre clé :</system:String>
     <system:String x:Key="EXTENSION">Extension</system:String>
     <system:String x:Key="ADDEXTENSION">Ajouter des extention</system:String>
-    <!--NotAdminAlertWindow-->
+    <!--AlertMessages-->
     <system:String x:Key="NotAdminMsg">Easy-Save n'est pas lancé en mode administrateur. La fonction "Arrêt l'orsque un processus métier est détecté" est désactivée.</system:String>
+    <system:String x:Key="DirectoryDoesNotExist">L'un des répertoires spécifiés n'existe pas.</system:String>
+    <system:String x:Key="IsXorCheckedButKeyOrExtentionsNull">La case Cypher Options est cochée mais les paramètres ne sont pas tous renseignés.</system:String>
+    <system:String x:Key="ProcessIsOn">Un Processus critique a démarré. Les travaux sont à présent en pause.</system:String>
 </ResourceDictionary>

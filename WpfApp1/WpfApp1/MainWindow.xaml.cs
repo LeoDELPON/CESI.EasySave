@@ -37,6 +37,7 @@ namespace WpfApp1
     {
         public int terminatedThreads = 0;
         AlertWindow alertWindow = new AlertWindow();
+
         ProcessusChoosing processusChoosing = new ProcessusChoosing();
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
 
@@ -60,7 +61,6 @@ namespace WpfApp1
             {
                 Application.Current.Shutdown();
             }
-            
             InitializeComponent();
             modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;
@@ -73,7 +73,7 @@ namespace WpfApp1
             languageSelectionWindow.OkBtn.Click += LanguageOkBtn_Click;
             processusChoosing.OkBtn.Click += pcOkBtn;
             threadLifeManager = new ThreadLifeManager(bs, forbProc);
-            threadLifeManager.OnNotAdmin += ThreadAlertMsg;
+            AddEventsWindows();
             threadLifeManager.StartObservingProcesses();
             PacketHandler.OnAbortSent += threadLifeManager.Abort;
             PacketHandler.OnResumeSent += threadLifeManager.Resume;
@@ -81,10 +81,13 @@ namespace WpfApp1
             myServer = ServerSocket.Instance;
             myServer.StartConnection(1);
         }
-        public void ThreadAlertMsg()
+
+        private void AddEventsWindows()
         {
-            alertWindow.showMessage("NotAdminMsg", true);
+            threadLifeManager.OnErrorRaised += AlertMsg;            
         }
+
+       
 
         private void pcOkBtn(object sender, RoutedEventArgs e)
         {
@@ -112,7 +115,7 @@ namespace WpfApp1
             }
             if ((bool)modifyWorkWindow.CypherOptionsCHB.IsChecked && (modifyWorkWindow.KeyTB.Text.Length == 0 || listExt.Count == 0))
             {
-
+                alertWindow.showMessage("IsXorCheckedButKeyOrExtentionsNull", true);
                 return;
             }
             if (modifyWorkWindow.WorkNameTB.Text.Equals(""))
@@ -157,7 +160,8 @@ namespace WpfApp1
             }
             else
             {
-                //error Message
+                alertWindow.showMessage("DirectoryDoesNotExist", true);
+
             }
 
 
@@ -180,8 +184,9 @@ namespace WpfApp1
         {
             if ((bool)addWorkWindow.isXor.IsChecked && (addWorkWindow.key.Length == 0 || addWorkWindow.extention.Count == 0))
             {
-
+                alertWindow.showMessage("sXorCheckedButKeyOrExtentionsNull", true);
                 return;
+
             }
             if (addWorkWindow.WorkNameTB.Text.Equals(""))
             {
@@ -200,7 +205,6 @@ namespace WpfApp1
                 if ((bool)addWorkWindow.isXor.IsChecked)
                 {
                     wv.key = addWorkWindow.key;
-                    //wv.extension = addWorkWindow.extention;
                     wv.extension = addWorkWindow.extention;
 
 
@@ -223,7 +227,7 @@ namespace WpfApp1
             }
             else
             {
-                //error Message
+                alertWindow.showMessage("DirectoryDoesNotExist", true);            
             }
         }
         private void ToWorkList_Click(object sender, RoutedEventArgs e, WrkElements we)
@@ -313,6 +317,8 @@ namespace WpfApp1
             addWorkWindow.cipherWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
             modifyWorkWindow.Resources.MergedDictionaries.Remove(obj);
             modifyWorkWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
+            alertWindow.Resources.MergedDictionaries.Remove(obj);
+            alertWindow.Resources.MergedDictionaries.Add(objNewLanguageDictionary);
         }
 
         public void launchWorkList()
@@ -520,7 +526,11 @@ namespace WpfApp1
 
 
         }
-
+        public void AlertMsg(string message)
+        {
+            alertWindow.showMessage(message, true);
+        }
+       
 
     }
 }

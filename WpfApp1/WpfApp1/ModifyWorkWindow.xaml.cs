@@ -22,7 +22,7 @@ namespace WpfApp1
     public partial class ModifyWorkWindow : Window
     {
         public WrkElements we { get; set; } = new WrkElements();
-
+        public string errorText { get; set; } = "";        
         public ModifyWorkWindow()
         {
             InitializeComponent();

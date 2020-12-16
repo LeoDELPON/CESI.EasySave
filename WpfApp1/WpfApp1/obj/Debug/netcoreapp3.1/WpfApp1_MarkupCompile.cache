@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\CESI\stage\projet\CESI.EasySave-209e831bcdaafa8b5e6a764ebf9f1dd92ff8bdf7\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\
 WpfApp1
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-D:\CESI\stage\projet\CESI.EasySave-209e831bcdaafa8b5e6a764ebf9f1dd92ff8bdf7\WpfApp1\WpfApp1\App.xaml
+D:\CESI\stage\projet\CESI.EasySave\WpfApp1\WpfApp1\App.xaml
 11-540405372
 
 12521671696
-2001533583666
+200-808930420
 AddWorkWindow.xaml;AlertWindow.xaml;CipherWindow.xaml;LanguageSelectionWindow.xaml;Language\en-US.xaml;Language\fr-FR.xaml;MainWindow.xaml;ModifyWorkWindow.xaml;ProcessusChoosing.xaml;WrkElementInSvdList.xaml;WrkElementInWrkList.xaml;
 
 False

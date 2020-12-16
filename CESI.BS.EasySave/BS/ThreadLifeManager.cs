@@ -17,13 +17,14 @@ namespace CESI.BS.EasySave.BS
         List<Thread> listThreads = new List<Thread>();
         List<string> processes = new List<string>();
         BSEasySave bs;
+        public static string notAdminErrorMsg = "NotAdminMsg";
+        public static string processIsOnMessage = "ProcessIsOn";
         Thread threadPause;
-        public delegate void OnNotAdminDel();
-        public delegate void OnAbort();
-       
-        public OnNotAdminDel OnNotAdmin { get; set; } = DefaultMethod;
+        public delegate void OnErrorRaisedDel(string message);
+        public OnErrorRaisedDel OnErrorRaised { get; set; } =(string message)=> {  };
+     
         CancellationTokenSource cts = new CancellationTokenSource();
-        public static void DefaultMethod() { }
+     
         
     public ThreadLifeManager(BSEasySave bs, List<string> p)
         {
@@ -46,7 +47,7 @@ namespace CESI.BS.EasySave.BS
             }
             catch (ManagementException)
             {
-                OnNotAdmin();
+                OnErrorRaised(notAdminErrorMsg);
             }
         }
         void processStartEvent_EventArrived(object sender, EventArrivedEventArgs e)
@@ -59,6 +60,7 @@ namespace CESI.BS.EasySave.BS
                 {
                     Monitor.Enter(ThreadMutex.threadPauseWhenProcess);
                     Pause();
+                    OnErrorRaised(processIsOnMessage);
                     Monitor.Wait(ThreadMutex.threadPauseWhenProcess);
                     Resume();
                     Monitor.Exit(ThreadMutex.threadPauseWhenProcess);

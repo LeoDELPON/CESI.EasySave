@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,6 +18,7 @@ namespace WpfApp1
     /// </summary>
     public partial class AlertWindow : Window
     {
+        
         public AlertWindow()
         {
             InitializeComponent();
@@ -34,13 +36,22 @@ namespace WpfApp1
         {
             if (isADynamicRessource)
             {
-                Text.SetResourceReference(Label.ContentProperty, msg);
+                Dispatcher.Invoke(() =>
+                {
+                    Text.SetResourceReference(Label.ContentProperty, msg);
+                });
+             
+                
             }
             else
             {
                 Text.Content = msg;
-            }           
-            Show();
+            }
+            Dispatcher.Invoke(() =>
+            {
+                Show();
+            });
+       
         }
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
