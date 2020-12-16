@@ -3,7 +3,6 @@ using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CESI.BS.EasySave.BS
 {
-    
+
     public abstract class Save : Observable, ObservableFileSize
     {
         protected long FolderSize { get; set; }
@@ -97,6 +96,7 @@ namespace CESI.BS.EasySave.BS
             propertiesWork[WorkProperties.Source] = SrcPath;
             propertiesWork[WorkProperties.Target] = BackupPath;
             handler.Init(propertiesWork);
+
             if (LoopThroughFiles(listFileHighPrio)){
                 return LoopThroughFiles(listFileLowPrio);
             }
@@ -189,9 +189,20 @@ namespace CESI.BS.EasySave.BS
             return result;
         }
 
-        public void ScanSourceFolder()
+        public List<string> ScanSourceFolder()
         {
-            //to be done
+            List<string> availableExtensions = new List<string>();
+            foreach(FileInfo file in GetFilesFromFolder(_srcDir)){
+                foreach(string ext in availableExtensions)
+                {
+                    if (file.Extension != ext)
+                    {
+                        availableExtensions.Add(file.Extension);
+                    }
+                }
+                
+            }
+            return availableExtensions;
         }
 
         protected IEnumerable<FileInfo> GetFilesFromFolder(DirectoryInfo dir)
