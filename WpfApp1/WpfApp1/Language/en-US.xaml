@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!--General-->
+    <system:String x:Key="Culture">en-US</system:String>
+    <system:String x:Key="Name">English</system:String>
+    <system:String x:Key="OK">OK</system:String>
+    <system:String x:Key="Cancel">Cancel</system:String>
+    <system:String x:Key="Plus">+</system:String>
+    <system:String x:Key="Minus">-</system:String>
+    <!--Main Window-->
+    <system:String x:Key="Title">EasySave by CESI</system:String>
+    <system:String x:Key="DeleteWork">DELETE</system:String>
+    <system:String x:Key="AddWorkToWorkList">ADD WORK TO WORK LIST</system:String>
+    <system:String x:Key="ExecuteWorkList">EXECUTE WORK LIST</system:String>
+    <system:String x:Key="Language">Language</system:String>
+    <system:String x:Key="Abort">Abort</system:String>
+    <system:String x:Key="Pause">Pause</system:String>
+    <system:String x:Key="Resume">Resume</system:String>
+    <system:String x:Key="WorkStatus">Save status</system:String>
+    <system:String x:Key="dif">Differential</system:String>
+    <system:String x:Key="ful">Full</system:String>
+    <system:String x:Key="Process">Critical processes</system:String>
+    <system:String x:Key="Priority">High priority extensions</system:String>
+    <!--workCreationWindow-->
+    <system:String x:Key="CreateWork">Create a Work</system:String>
+    <system:String x:Key="WorkName">Name</system:String>
+    <system:String x:Key="WorkSource">Source path</system:String>
+    <system:String x:Key="WorkTarget">Target Path</system:String>
+    <system:String x:Key="WorkSaveType">Save Type</system:String>
+    <!--workModificationWindow-->
+    <system:String x:Key="ModifyWork">Modify work</system:String>
+    <!--HighPriorityExtention-->
+    <system:String x:Key="LimitSize">Minimum high-priority files size</system:String>
+
+    <!--SelectLanguageWindow-->
+    <system:String x:Key="SelectLanguage">Select the language</system:String>
+    <system:String x:Key="XOR">Cipher options</system:String>
+    <system:String x:Key="KEY">Your key :</system:String>
+    <system:String x:Key="EXTENSION">Type of file</system:String>
+    <system:String x:Key="ADDEXTENSION">Add Extension to XOR</system:String>
+    <!--AlertMessages-->
+    <system:String x:Key="NotAdminMsg">Please run Easy Same in admin mode for the "pause on process detected" fonction to work.</system:String>
+    <system:String x:Key="DirectoryDoesNotExist">One of the specified directory does not exists...</system:String>
+    <system:String x:Key="IsXorCheckedButKeyOrExtentionsNull">The Cypher Options are enabled but some fields are empty.</system:String>
+    <system:String x:Key="ProcessIsOn">An critical process has been started. Works have been paused.</system:String>
+    
+</ResourceDictionary>

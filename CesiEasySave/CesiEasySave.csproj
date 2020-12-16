@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CESI.BS.EasySave\CESI.BS.EasySave.csproj" />
+    <ProjectReference Include="..\WpfApp1\WpfApp1\WpfApp1.csproj" />
   </ItemGroup>
 
 </Project>

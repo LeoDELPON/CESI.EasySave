@@ -1,63 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CESI.BS.EasySave.BS.Factory;
 using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.BS.ConfSaver;
 
 namespace CESI.BS.EasySave.BS
 {
     public class BSEasySave
     {
+        public ConfSaver.ConfSaver confSaver = new ConfSaver.ConfSaver();
         public List<Save> typeSave { get; set; } = new List<Save>();
         public BSEasySave()
         {
 
-            typeSave.Add(new Differential());
-            typeSave.Add(new Full());
+            typeSave.Add(new WorkFactory().CreateSaveObject("dif","", null, ""));
+            typeSave.Add(new WorkFactory().CreateSaveObject("ful","", null, ""));
         }
 
-
-
-        List<Work> works = new List<Work>();
-        // à remplire de tous les enfants de save
+        public List<Work> works = new List<Work>();
+        // à remplir de tous les enfants de save
 
         public List<Work> GetWorks()
         {
             return works;
         }
-        public void AddWork(string name, string source, string target, Save save)
+        public void AddWork(string name, string source, string target, string save, List<string> extensions, string key)
         {
-            works.Add(new Work(name, source, target, save));
+            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, extensions, key);
+            works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
         }
-        public void ModifyWork(Work work, int field, string newField)
+        public void AddWorkAt(string name, string source, string target, string save, List<string> extensions, string key, int index)
         {
-            switch (field)
+            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, extensions, key);
+            works.Insert(index, new WorkFactory().CreateWorkObject(propertiesWork));
+        }
+
+        private static Dictionary<WorkProperties, object> createPropertiesWork(string name, string source, string target, string save, List<string> extensions, string key)
+        {
+            return new Dictionary<WorkProperties, object>
             {
-                case 1:
-                    work.name = newField;
-                    break;
-                case 2:
-                    work.source = newField;
-                    break;
-                case 3:
-                    work.target = newField;
-                    break;
-                default:
-                    break;
-            }
+                [WorkProperties.Name] = name,
+                [WorkProperties.Source] = source,
+                [WorkProperties.Target] = target,
+                [WorkProperties.TypeSave] = save,
+                [WorkProperties.Extensions] = extensions,
+                [WorkProperties.Key] = key
+            };
+        }
+
+        public void ModifyWork(Work work, string name, string source, string target, string save, List<string> extensions, string key)
+        {
+            int index = works.IndexOf(work);
+            works.Remove(work);
+            AddWorkAt(name, source, target, save, extensions, key, index);
         }
         public void ModifyWork(Work work, int field, int typeSaveChoosen)
         {
             if (field == 4)
             {
-                work.save = typeSave[typeSaveChoosen];
+                work.SaveType = typeSave[typeSaveChoosen];
             }
 
         }
         public void DeleteWork(int idWork)
         {
 
-            works.Remove(works[idWork]);
+            try
+            {
+                string temp = works[idWork].Name;
+                works.Remove(works[idWork]);
+                confSaver.DeleteFile(temp);
+            } catch(Exception e)
+            {
+                Console.WriteLine("[-] An error occured, can't delete work: {0}", e);
+            }
         }
+
 
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 using CesiEasySave.View.Interface;
 using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.DAL;
-using LanguageClass;
+
 
 namespace CesiEasySave.View
 {
@@ -55,7 +55,7 @@ namespace CesiEasySave.View
                 int i = 0;
                 foreach (Work work in works)
                 {
-                    Console.WriteLine(i + ") " + work.name);
+                    Console.WriteLine(i + ") " + work.Name);
                     i++;
                 }
                 Console.WriteLine("[+] Success GetGetWork()");
@@ -121,7 +121,7 @@ namespace CesiEasySave.View
             int i = 0;
             foreach (Save save in typeSave)
             {
-                Console.WriteLine(i + ") " + save.GetName());
+                Console.WriteLine(i + ") " + save.IdTypeSave);
                 i++;
             }
             return Console.ReadLine();
@@ -147,7 +147,7 @@ namespace CesiEasySave.View
         {
             Console.WriteLine(Language.GetRequestedString(24));
             Console.WriteLine(name);
-            return (Console.ReadLine().ToUpper().Equals(Language.GetRequestedString(9)));
+            return Console.ReadLine().ToUpper().Equals(Language.GetRequestedString(9));
         }
 
         public string AskLanguage()
@@ -165,6 +165,11 @@ namespace CesiEasySave.View
         public void TooMuchWorks()
         {
             Console.WriteLine(Language.GetRequestedString(26));
+        }
+
+        public void unreachablePath()
+        {
+            Console.WriteLine(Language.GetRequestedString(27));
         }
     }
 }

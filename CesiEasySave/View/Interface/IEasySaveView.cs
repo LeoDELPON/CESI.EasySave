@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CESI.BS.EasySave.DAL;
+using CESI.BS.EasySave.BS;
+
 using System.Text;
 
 namespace CesiEasySave.View.Interface
@@ -19,6 +21,7 @@ namespace CesiEasySave.View.Interface
         public bool ConfirmDelete(string name);
         public string AskLanguage();
         public void TooMuchWorks();
+        void unreachablePath();
     }
 } 
 

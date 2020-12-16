@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp1.HighPriorityExtention"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+         Title="HighPriorityExtentions" Height="340" Width="200" Padding="0">
+    <StackPanel>
+        <ListBox Height="150" Width="192" Name="ListTB" >
+
+
+
+        </ListBox>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button Content="{DynamicResource Minus}" Width="98" Click="MinusBtn_Click" />
+            <Button Content="{DynamicResource Plus}" Width="100" Click="PlusBtn_Click"/>
+        </StackPanel>
+        <Label BorderBrush="white" Content="{DynamicResource LimitSize}" HorizontalContentAlignment="Center" Margin="0,10,0,5"/>
+        <TextBox Name ="LimitSize" Margin="5,0,5,10"/>       
+        <Button Content="{DynamicResource OK}" Width="100" x:Name="OkBtn"  Click="OkBtn_Click"/>
+    </StackPanel>
+
+</Window>

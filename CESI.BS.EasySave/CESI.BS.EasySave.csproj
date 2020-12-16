@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BS\Interface\" />
+    <Compile Remove="BS\Cryptosoft\**" />
+    <Compile Remove="BS\Interface\**" />
+    <EmbeddedResource Remove="BS\Cryptosoft\**" />
+    <EmbeddedResource Remove="BS\Interface\**" />
+    <None Remove="BS\Cryptosoft\**" />
+    <None Remove="BS\Interface\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

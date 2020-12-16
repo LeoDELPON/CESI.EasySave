@@ -1,0 +1,21 @@
+<? xml version = "1.0" encoding = "UTF-8" ?>
+<name>
+16-12-2020-22-22-26
+</name>
+<source>
+C:\Users\delpo\Documents\Projets\C#\CopyDirectory
+</source>
+<target>
+C:\Users\delpo\OneDrive\Bureau\SALEE
+</target>
+<typeSave>
+1
+</typeSave>
+<key>
+salamallecum
+</key>
+<extentions>
+<ext>
+.cs
+</ext>
+</extentions>

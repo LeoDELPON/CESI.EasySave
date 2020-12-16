@@ -1,34 +1,61 @@
-﻿using CESI.BS.EasySave.BS;
+﻿/*using CESI.BS.EasySave.BS;
 using CesiEasySave.View;
 using CesiEasySave.View.Interface;
-using LanguageClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
+
 
 namespace CesiEasySave.Controller
 {
-    public class Controller
+    public class Controller 
     {
         IEasySaveView view;
         CESI.BS.EasySave.BS.BSEasySave model;
         int limitWork = 5;
-        public struct WorkVar
-        {
-            public string name;
-            public string source;
-            public string target;
-            public int typeSave;
-        }
+        
+         Thread threadView = new Thread(ThreadViewFct);
+        
         public Controller()
         {
+           
             view = new EasySaveViewConsole();
             model = new BSEasySave();
+            threadView.SetApartmentState(ApartmentState.STA);
+            threadView.Start();
+            
+            
+            FetchSavesConfs();
             ProgramLoop();
         }
+        private static void ThreadViewFct(object o)
+        {
 
+            Window viewWindow= new WpfApp1.MainWindow();
+            viewWindow.Show();
+            System.Windows.Threading.Dispatcher.Run();
+
+
+
+
+
+        }
+        
+        private void FetchSavesConfs()
+        {
+            List<WorkVar> works = model.confSaver.GetSavedWorks();
+            foreach (WorkVar work in works)
+            {
+                //model.AddWork(work.name, work.source, work.target, model.typeSave[work.typeSave].idTypeSave);
+            }
+        }
         private void ProgramLoop()
         {
+        
 
 
             string answerMainMenu;
@@ -48,7 +75,14 @@ namespace CesiEasySave.Controller
                             {
                                 if (intID > -1 && intID < model.GetWorks().Count)
                                 {
-                                    model.GetWorks()[intID].save.Perform();//start the save
+                                    if (FolderBuilder.CheckFolder(model.GetWorks()[intID].Source))
+                                    {
+                                        model.GetWorks()[intID].Perform();//start the save
+                                    }
+                                    else
+                                    {
+                                        view.unreachablePath();
+                                    }
                                 }
 
                             }
@@ -121,7 +155,7 @@ namespace CesiEasySave.Controller
             foreach (char work in selectedWork)
             {
                 if (int.Parse(work.ToString()) >= 0 && int.Parse(work.ToString()) < model.GetWorks().Count)
-                    if (view.ConfirmDelete(model.GetWorks()[int.Parse(work.ToString())].name))
+                    if (!view.ConfirmDelete(model.GetWorks()[int.Parse(work.ToString())].Name))
                     {
                         model.DeleteWork(selectedWorkInt);
                     }
@@ -149,20 +183,10 @@ namespace CesiEasySave.Controller
                 {
                     GetPerfectString(out strReturn, out outOfBoundWorks);
 
-                } while (!int.TryParse(strReturn, out int intStrReturn) || !outOfBoundWorks);
+                } while (!int.TryParse(strReturn, out strReturnInt) || !outOfBoundWorks);
                 return strReturn;
 
-                /*
-                string strReturn;
-                do
-                {
-                    do
-                    {
-                        strReturn = view.PrintWorks(model.GetWorks());
-                    } while (!int.TryParse(strReturn, out strReturnInt));
-                } while (strReturnInt < 0 || strReturnInt >= model.GetWorks().Count);
-                return strReturn;
-            }*/
+         
             }
         }
 
@@ -183,9 +207,25 @@ namespace CesiEasySave.Controller
         {
             WorkVar workvar = new WorkVar();
             int savetype;
-            workvar.name = view.AskName();
+           
+                workvar.name = view.AskName();
+          
+             do{
             workvar.source = view.AskSource();
-            workvar.target = view.AskTarget();
+                if (!FolderBuilder.CheckFolder(workvar.source))
+                {
+                    view.unreachablePath();
+                }
+            } while (!FolderBuilder.CheckFolder(workvar.source));
+            do
+            {
+                workvar.target = view.AskTarget();
+                if (!FolderBuilder.CheckFolder(workvar.target))
+                {
+                    view.unreachablePath();
+                }
+            } while (!FolderBuilder.CheckFolder(workvar.target));
+            
             string strSave = "";
 
             do
@@ -208,8 +248,11 @@ namespace CesiEasySave.Controller
                 try
                 {
                 WorkVar workvar = AskDataWork();
-                model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave]); // add a work
+                 
+               // model.AddWork(workvar.name, workvar.source, workvar.target, model.typeSave[workvar.typeSave].idTypeSave); // add a work
+                    model.confSaver.SaveWork(workvar);
                     Console.WriteLine("[+] Work succesfull add.");
+
                 }
                 catch (Exception error)
                 {
@@ -253,7 +296,9 @@ namespace CesiEasySave.Controller
                                 try
                                 {
                                     int newSaveType = int.Parse(view.AskSaveType(model.typeSave));
+                                    model.confSaver.ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newSaveType.ToString());
                                     model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newSaveType);
+                                 
                                 }
                                 catch (Exception error)
                                 {
@@ -273,7 +318,9 @@ namespace CesiEasySave.Controller
                                 try
                                 {
                                     string newField = view.AskStr();
+                                    model.confSaver.ModifyFile(model.GetWorks()[int.Parse(selectedWork.ToString())].Name, fieldChosen, newField);
                                     model.ModifyWork(model.GetWorks()[int.Parse(selectedWork.ToString())], fieldChosen, newField);
+                               
                                 }
                                 catch (Exception error)
                                 {
@@ -297,4 +344,4 @@ namespace CesiEasySave.Controller
             }
         }
     }
-}
+}*/

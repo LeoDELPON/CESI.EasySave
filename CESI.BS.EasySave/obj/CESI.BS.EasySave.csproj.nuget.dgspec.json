@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {}
+    "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {}
   },
   "projects": {
-    "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+    "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
         "projectName": "CESI.BS.EasySave",
-        "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
-        "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
+        "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+        "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
+        "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,16 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Extended.Wpf.Toolkit": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "System.Management": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -49,12 +59,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.10, 3.1.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

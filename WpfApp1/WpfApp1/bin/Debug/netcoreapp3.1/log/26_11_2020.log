@@ -1,0 +1,27 @@
+All log are writen following this pattern:
+> date | workName | sourcePath | targetPath | fileSize | elapsedTime
+
+> 21:18:41 | coucou | ori | ori | 37261 bytes | 20231 ms
+
+
+> 22:52:38 | diff | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020 | 0 bytes | 0 ms
+
+
+> 22:52:38 | diff | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020 | 0 bytes | -1 ms
+
+
+> 22:54:54 | diff | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020 | 0 bytes | 0 ms
+
+
+> 23:00:56 | diff | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020 | 0 bytes | 0 ms
+
+
+> 23:02:51 | diff | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020 | 0 bytes | 6 ms
+
+
+> 23:06:34 | diff | after fx projects | D:\testsave\diff\after fx projects\FullSaves | 1633524894 bytes | 20013 ms
+
+
+> 23:07:21 | diff | after fx projects | D:\testsave\diff\after fx projects\DiffSaves\26_11_2020 | 0 bytes | 20013 ms
+
+

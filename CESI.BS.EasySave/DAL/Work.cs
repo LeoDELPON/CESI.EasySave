@@ -1,22 +1,37 @@
-﻿using System;
+﻿using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.DAL;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace CESI.BS.EasySave.DAL
 {
 
     public class Work
     {
-        public Work(string name, string source, string target, Save save)
+        public Save SaveType { get; set; }
+        public Guid Id { get; private set; }
+        public WorkState State { get; set; }
+        public string Name { get; set; }
+        public string Source { get; set; }
+        public string Target { get; set; }
+        
+
+
+        internal Work(string name, string source, string destination, Save saveType)
         {
-            this.name = name;
-            this.source = source;
-            this.target = target;
-            this.save = save;
+            Id = Guid.NewGuid();
+            State = WorkState.Exist;
+            SaveType = saveType;
+            Name = name;
+            Source = source;
+            Target = destination;
         }
-        public string name { get; set; }
-        public string source { get; set; }
-        public string target { get; set; }
-        public Save save { get; set; }
+
+        public void Perform()
+        {
+            SaveType.SaveProcess(Source, Target);
+        }
     }
 }

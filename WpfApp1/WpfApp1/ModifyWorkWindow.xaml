@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfApp1.ModifyWorkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="ModifyWorkWindow" Height="300" Width="220" ResizeMode="NoResize">
+    <Grid>
+        <ListBox HorizontalAlignment="Center" Width="200" Height="280" HorizontalContentAlignment="Center" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+          
+                <Label Name ="coucou" Content="{DynamicResource ModifyWork}" HorizontalAlignment="Center"/>
+                <Label Content="{DynamicResource WorkName}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="WorkNameTB" Width="180"/>
+                <Label Content="{DynamicResource WorkSource}" HorizontalAlignment="Center"/>
+            <TextBox x:Name="WorkSourceTB" Width="180"/>
+                <Label Content="{DynamicResource WorkTarget}" HorizontalAlignment="Center"/>
+            <TextBox x:Name="WorkTargetTB" Width="180"/>
+                <Label Content="{DynamicResource WorkSaveType}" HorizontalAlignment="Center"/>
+            <ComboBox HorizontalContentAlignment="center" x:Name="SaveTypeCB" Width="180">
+                <ComboBoxItem Content="{DynamicResource dif}" x:Name="dif"/>
+                <ComboBoxItem Content="{DynamicResource ful}" x:Name="ful" IsSelected="True"/>
+            </ComboBox>
+            <Label Content="{DynamicResource XOR}" HorizontalAlignment="Center" />
+            <CheckBox Name ="CypherOptionsCHB"/>
+            <Label Content="{DynamicResource KEY}" HorizontalAlignment="Center" Name ="keyLbl"/>
+            <TextBox x:Name="KeyTB" Width="180"/>
+            <ListView Name="extLV" Width="200" Margin="0" HorizontalContentAlignment="Center" >
+                <Label Content="{DynamicResource EXTENSION}" HorizontalAlignment="Center"/>
+             
+             
+            </ListView>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Name="PlusMinusBtnSP">
+                <Button Content="{DynamicResource Plus}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="plusBtn" Click="plusBtn_Click"/>
+                <Button Content="{DynamicResource Minus}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="minusBtn" Click="minusBtn_Click"/>
+            </StackPanel>
+            
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="{DynamicResource Cancel}" HorizontalAlignment="Center" Width="50" Margin="0,0,5,0" x:Name="CancelBtn" Click="CancelBtn_Click" />
+                    <Button Content="{DynamicResource OK}" HorizontalAlignment="Center" Width="50" Margin="5,0,0,0" x:Name="OkBtn" />
+                </StackPanel>
+          
+        </ListBox>
+    </Grid>
+</Window>

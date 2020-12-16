@@ -3,16 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CesiEasySave", "CesiEasySave\CesiEasySave.csproj", "{263FEF55-ED72-45C3-8FD4-F8624D53724F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CesiEasySave", "CesiEasySave\CesiEasySave.csproj", "{263FEF55-ED72-45C3-8FD4-F8624D53724F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C50D286F-44FC-4599-A08C-92DF768DB067} = {C50D286F-44FC-4599-A08C-92DF768DB067}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CESI.BS.EasySave", "CESI.BS.EasySave\CESI.BS.EasySave.csproj", "{C50D286F-44FC-4599-A08C-92DF768DB067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CESI.BS.EasySave", "CESI.BS.EasySave\CESI.BS.EasySave.csproj", "{C50D286F-44FC-4599-A08C-92DF768DB067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CESI.BS.EasySave.UnitTest", "CESI.BS.EasySave.UnitTest\CESI.BS.EasySave.UnitTest.csproj", "{E0BAED5F-C468-4629-A2E8-F62C3FB329C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CESI.BS.EasySave.UnitTest", "CESI.BS.EasySave.UnitTest\CESI.BS.EasySave.UnitTest.csproj", "{E0BAED5F-C468-4629-A2E8-F62C3FB329C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CESI.CesiEasySave.IntegrationTest", "CESI.CesiEasySave.IntegrationTest\CESI.CesiEasySave.IntegrationTest.csproj", "{9C2BAE9D-3CDD-4334-933A-989B933168CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CESI.CesiEasySave.IntegrationTest", "CESI.CesiEasySave.IntegrationTest\CESI.CesiEasySave.IntegrationTest.csproj", "{9C2BAE9D-3CDD-4334-933A-989B933168CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "WpfApp1\WpfApp1\WpfApp1.csproj", "{5CC17B26-6E5A-4035-A754-BBED92B83C17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CESI.Server.EasySave", "CESI.Server.EasySave\CESI.Server.EasySave.csproj", "{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,14 @@ Global
 		{9C2BAE9D-3CDD-4334-933A-989B933168CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C2BAE9D-3CDD-4334-933A-989B933168CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C2BAE9D-3CDD-4334-933A-989B933168CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC17B26-6E5A-4035-A754-BBED92B83C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC17B26-6E5A-4035-A754-BBED92B83C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC17B26-6E5A-4035-A754-BBED92B83C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC17B26-6E5A-4035-A754-BBED92B83C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

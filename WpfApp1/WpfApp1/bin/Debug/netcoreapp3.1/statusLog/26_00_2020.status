@@ -1,0 +1,4 @@
+The log are writen following this pattern:
+> date | workName| status | totalFiles | totalSize | Progress | remainingFiles | remainingSize  | sourcePath | targetPath
+
+> 12:00:00 | diff | Not Running | 39 | 1633524894 | 0 | 0 | 0 | after fx projects | D:\testsave\diff\after fx projects\FullSaves\26_11_2020

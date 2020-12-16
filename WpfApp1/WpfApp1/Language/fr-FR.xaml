@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!--General-->
+    <system:String x:Key="Culture">fr-FR</system:String>
+    <system:String x:Key="Name">Français</system:String>
+    <system:String x:Key="OK">OK</system:String>
+    <system:String x:Key="Cancel">Annuler</system:String>
+    <!--Main Window-->
+    <system:String x:Key="Title">EasySave par CESI</system:String>
+    <system:String x:Key="DeleteWork">SUPPRIMER</system:String>
+    <system:String x:Key="AddWorkToWorkList">AJOUTER LE TRAVAIL A LA LISTE</system:String>
+    <system:String x:Key="ExecuteWorkList">EXECUTER LA LISTE</system:String>
+    <system:String x:Key="Language">Langue</system:String>
+    <system:String x:Key="Abort">Stop</system:String>
+    <system:String x:Key="Pause">Pause</system:String>
+    <system:String x:Key="Resume">Reprendre</system:String>
+    <system:String x:Key="WorkStatus">Avancement de la sauvegarde</system:String>
+    <system:String x:Key="dif">Differentielle</system:String>
+    <system:String x:Key="ful">Complete</system:String>
+    <system:String x:Key="Process">Processus métiers</system:String>
+    <system:String x:Key="Priority">Extensions prioritaires</system:String>    
+    <!--workCreationWindow-->
+    <system:String x:Key="CreateWork">Créer un travail</system:String>
+    <system:String x:Key="WorkName">Nom</system:String>
+    <system:String x:Key="WorkSource">Chemin source</system:String>
+    <system:String x:Key="WorkTarget">Chemin cible</system:String>
+    <system:String x:Key="WorkSaveType">Type de sauvegarde</system:String>
+    <!--workModificationWindow-->
+    <system:String x:Key="ModifyWork">Modifier un travail</system:String>
+   
+    <!--SelectLanguageWindow-->
+    <system:String x:Key="SelectLanguage">Selectionnez la langue</system:String>
+    <system:String x:Key="XOR">Options chiffrement</system:String>
+    <system:String x:Key="KEY">Votre clé :</system:String>
+    <system:String x:Key="EXTENSION">Extension</system:String>
+    <system:String x:Key="ADDEXTENSION">Ajouter des extention</system:String>
+    <!--HighPriorityExtention-->
+    <system:String x:Key="LimitSize">Taille minimum fichiers prioritaires</system:String>
+    <!--AlertMessages-->
+    <system:String x:Key="NotAdminMsg">Easy-Save n'est pas lancé en mode administrateur. La fonction "Arrêt l'orsque un processus métier est détecté" est désactivée.</system:String>
+    <system:String x:Key="DirectoryDoesNotExist">L'un des répertoires spécifiés n'existe pas.</system:String>
+    <system:String x:Key="IsXorCheckedButKeyOrExtentionsNull">La case Cypher Options est cochée mais les paramètres ne sont pas tous renseignés.</system:String>
+    <system:String x:Key="ProcessIsOn">Un Processus critique a démarré. Les travaux sont à présent en pause.</system:String>
+    
+</ResourceDictionary>
