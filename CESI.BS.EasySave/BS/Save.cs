@@ -4,17 +4,39 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CESI.BS.EasySave.BS
 {
 
     public abstract class Save : Observable, ObservableFileSize
     {
+        protected long FolderSize { get; set; }
+
+        public List<string> _cryptoExtension;
+
+        public List<string> _priorityExtension;
+
+        public string _key;
+
+        private string FullBackupPath { get => BackupPath + @"\Full"; }
+
+        private string BackupPath { get; set; }
+
+        private string SrcPath { get; set; }
+
+        private DirectoryInfo _srcDir;
+
+        private DirectoryInfo _fullDir;
+
         public long fileMaxSize = 100000000000;
-        
+
         public SaveType TypeSave { get; protected set; }
+
         protected Dictionary<WorkProperties, object> propertiesWork;
+
         public object pause = new object();
         public string IdTypeSave { get; set; }
         public List<Observer> subscribers { get; set; } = new List<Observer>();
@@ -72,6 +94,7 @@ namespace CESI.BS.EasySave.BS
             IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
         
             propertiesWork[WorkProperties.Source] = SrcPath;
+            propertiesWork[WorkProperties.TypeSave] = TypeSave;
             propertiesWork[WorkProperties.Target] = BackupPath;
             handler.Init(propertiesWork);
 
@@ -212,14 +235,16 @@ namespace CESI.BS.EasySave.BS
 
         public string SetSavePath(string path)
         {
+           
             return path + @"\" + _srcDir.Name + CheckSaveFile(path + @"\" + _srcDir.Name);
         }
 
         public virtual string CheckSaveFile(string dir)
         {
-            if (!Directory.Exists(dir))
+            if (!Directory.Exists(dir + @"\Full"))
             {
                 Console.WriteLine("[+] Warning, Full Save not created, Full Save being created");
+                FolderBuilder.CreateFolder(dir + @"\Full");
                 return @"\Full";
             }
             else
@@ -314,7 +339,7 @@ namespace CESI.BS.EasySave.BS
 
         protected IEnumerable<FileInfo> FilterHighPriorityFiles(ref ICollection<FileInfo> fileList)
         {
-            IEnumerable<FileInfo> priorityFileList = null;
+            IEnumerable<FileInfo> priorityFileList = new List<FileInfo>();
             bool isPrioritary = false;
             foreach (FileInfo file in fileList) {
                 
@@ -335,6 +360,11 @@ namespace CESI.BS.EasySave.BS
                 }
             }
             return priorityFileList;
+        }
+
+        public void notifyFileSize()
+        {
+            throw new NotImplementedException();
         }
     }
 }
