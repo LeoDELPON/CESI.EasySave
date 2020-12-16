@@ -29,6 +29,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
             _dict[WorkProperties.Source] = "TestSource";
             _dict[WorkProperties.Target] = "TestTarget";
             _dict[WorkProperties.Size] = 99999;
+            _dict[WorkProperties.TypeSave] = "ful";
             _dict[WorkProperties.EligibleFiles] = 99999;
         }
 
