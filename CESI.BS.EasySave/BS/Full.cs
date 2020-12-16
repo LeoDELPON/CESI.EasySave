@@ -145,21 +145,9 @@ namespace CESI.BS.EasySave.BS
                     
                 }
 
-                //Pour tous les répertoire source dans "source"
-                foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
-                {
-                    DirectoryInfo nextTargetSubDir =
-                        fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
-                    Console.WriteLine("nextTarget = " + nextTargetSubDir +" \nnextDirectory = " + directorySourceSubDir);
-                    CopyAll(directorySourceSubDir, nextTargetSubDir, true);
-                }
-                return true;
-            } catch(SecurityException e)
-            {
-                Console.WriteLine("[-] While tryin to copy a file from source to destination," +
-                    "an error occured because of the right access : {0}", e);
-                return false;
-            }
+        public override ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo dir, DirectoryInfo fullDir)
+        {
+            return (ICollection<FileInfo>)GetFilesFromFolder(dir);
         }
     }
 }

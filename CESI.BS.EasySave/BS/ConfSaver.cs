@@ -16,7 +16,8 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             public string target;
             public int typeSave;
             public string key;
-            public List<string> extension;
+            public List<string> cryptoExtensions;
+            public List<string> priorityExtensions;
         }
         public FileStream file;
         public string savePath = Environment.CurrentDirectory + @"\saveConf\";
@@ -56,7 +57,8 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             ModifyFile(name, 3, wv.target);
             ModifyFile(name, 4, wv.typeSave.ToString());
             ModifyFile(name, 5, wv.key);
-            ModifyFile(name, 6, wv.extension);
+            ModifyFile(name, 6, wv.cryptoExtensions);
+            ModifyFile(name, 7, wv.priorityExtensions);
             ModifyFile(name, 1, wv.name);
         }
         public void ModifyFile(string name, int fieldChosen, List<string> newExts)
@@ -153,7 +155,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             foreach (string fileStr in files)
             {
                 WorkVar workvar = new WorkVar();
-                workvar.extension = new List<string>();
+                workvar.cryptoExtensions = new List<string>();
                 sr  = File.OpenText(fileStr);
                 string strReturn;
                 while ((strReturn = sr.ReadLine()) != null){
@@ -177,7 +179,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                             workvar.key = sr.ReadLine().Trim(); 
                             break;
                         case "<ext>":
-                            workvar.extension.Add(sr.ReadLine().Trim()); 
+                            workvar.cryptoExtensions.Add(sr.ReadLine().Trim()); 
                             break;
                         default:
                            
@@ -224,7 +226,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             file.Write(new UTF8Encoding(true).GetBytes(workvar.key + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(@"</key>" + Environment.NewLine));
             file.Write(new UTF8Encoding(true).GetBytes(@"<extentions>" + Environment.NewLine));
-            foreach (string ext in workvar.extension)
+            foreach (string ext in workvar.cryptoExtensions)
             {
                 file.Write(new UTF8Encoding(true).GetBytes("<ext>" + Environment.NewLine));
                 file.Write(new UTF8Encoding(true).GetBytes(ext + Environment.NewLine));

@@ -14,8 +14,8 @@ namespace CESI.BS.EasySave.BS
         public BSEasySave()
         {
 
-            typeSave.Add(new WorkFactory().CreateSaveObject("dif","", null, ""));
-            typeSave.Add(new WorkFactory().CreateSaveObject("ful","", null, ""));
+            typeSave.Add(new WorkFactory().CreateSaveObject("dif","", null, null, ""));
+            typeSave.Add(new WorkFactory().CreateSaveObject("ful","", null, null, ""));
         }
 
         public List<Work> works = new List<Work>();
@@ -25,18 +25,18 @@ namespace CESI.BS.EasySave.BS
         {
             return works;
         }
-        public void AddWork(string name, string source, string target, string save, List<string> extensions, string key)
+        public void AddWork(string name, string source, string target, string save, List<string> cryptoExtensions, List<string> priorityExtensions, string key)
         {
-            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, extensions, key);
+            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, cryptoExtensions, priorityExtensions, key);
             works.Add(new WorkFactory().CreateWorkObject(propertiesWork));
         }
-        public void AddWorkAt(string name, string source, string target, string save, List<string> extensions, string key, int index)
+        public void AddWorkAt(string name, string source, string target, string save, List<string> cryptoExtensions, List<string> priorityExtensions, string key, int index)
         {
-            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, extensions, key);
+            Dictionary<WorkProperties, object> propertiesWork = createPropertiesWork(name, source, target, save, cryptoExtensions, priorityExtensions, key);
             works.Insert(index, new WorkFactory().CreateWorkObject(propertiesWork));
         }
 
-        private static Dictionary<WorkProperties, object> createPropertiesWork(string name, string source, string target, string save, List<string> extensions, string key)
+        private static Dictionary<WorkProperties, object> createPropertiesWork(string name, string source, string target, string save, List<string> cryptoExtensions, List<string> priorityExtensions, string key)
         {
             return new Dictionary<WorkProperties, object>
             {
@@ -44,16 +44,17 @@ namespace CESI.BS.EasySave.BS
                 [WorkProperties.Source] = source,
                 [WorkProperties.Target] = target,
                 [WorkProperties.TypeSave] = save,
-                [WorkProperties.Extensions] = extensions,
+                [WorkProperties.CryptoExtensions] = cryptoExtensions,
+                [WorkProperties.PriorityExtensions] = priorityExtensions,
                 [WorkProperties.Key] = key
             };
         }
 
-        public void ModifyWork(Work work, string name, string source, string target, string save, List<string> extensions, string key)
+        public void ModifyWork(Work work, string name, string source, string target, string save, List<string> cryptoExtensions, List<string> priorityExtensions, string key)
         {
             int index = works.IndexOf(work);
             works.Remove(work);
-            AddWorkAt(name, source, target, save, extensions, key, index);
+            AddWorkAt(name, source, target, save, cryptoExtensions, priorityExtensions, key, index);
         }
         public void ModifyWork(Work work, int field, int typeSaveChoosen)
         {

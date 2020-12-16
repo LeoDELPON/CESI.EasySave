@@ -137,15 +137,19 @@ namespace WpfApp1
                 {
                     wv.key = modifyWorkWindow.KeyTB.Text;
                     //wv.extension = addWorkWindow.extention;
-                    wv.extension = listExt;
+                    wv.cryptoExtensions = listExt;
+                    wv.priorityExtensions = new List<string>();
+                    wv.priorityExtensions.Add("null");
 
 
                 }
                 else
                 {
                     wv.key = "null";
-                    wv.extension = new List<string>();
-                    wv.extension.Add("null");
+                    wv.cryptoExtensions = new List<string>();
+                    wv.cryptoExtensions.Add("null");
+                    wv.priorityExtensions = new List<string>();
+                    wv.priorityExtensions.Add("null");
 
                 }
                 weList[index].wv = wv;
@@ -153,7 +157,7 @@ namespace WpfApp1
                 weList[index].inWrkList.UpdateWv(weList[index].wv);
                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
                 bs.confSaver.modifyEntireFile(bs.works[index].Name, weList[index].wv);
-                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(modifyWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
+                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(modifyWorkWindow.SaveTypeCB.SelectedIndex), wv.cryptoExtensions, wv.priorityExtensions, wv.key);// modification du travail
 
 
 
