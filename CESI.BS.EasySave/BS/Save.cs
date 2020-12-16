@@ -5,39 +5,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace CESI.BS.EasySave.BS
 {
     
     public abstract class Save : Observable, ObservableFileSize
     {
-        protected long FolderSize { get; set; }
-
-        public List<string> _cryptoExtension;
-
-        public List<string> _priorityExtension;
-
-        public string _key;
-
-        private string FullBackupPath { get => BackupPath + @"\Full"; }
-
-        private string BackupPath { get; set; }
-
-        private string SrcPath { get; set; }
-
-        private DirectoryInfo _srcDir;
-
-        private DirectoryInfo _fullDir;
-
         public long fileMaxSize = 100000000000;
         
         public SaveType TypeSave { get; protected set; }
-
         protected Dictionary<WorkProperties, object> propertiesWork;
-
         public object pause = new object();
         public string IdTypeSave { get; set; }
         public List<Observer> subscribers { get; set; } = new List<Observer>();
@@ -67,44 +45,34 @@ namespace CESI.BS.EasySave.BS
 
       
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary> design pattern "template method" </summary>
+        /// <summary> Making a method that will be overrided by other classes </summary>
         ///
         /// <remarks>   Leo , 24/11/2020. </remarks>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public bool SaveProcess(string sourceDirectory, string targetFolder)
+        public abstract bool SaveProcess(string sourceDirectory, 
+            string destinationDirectory
+            );
+
+        protected string[] GetFilesFromFolder(string path)
         {
-            SrcPath = sourceDirectory;
-
-            CheckSrcFile();
-
-            _srcDir = new DirectoryInfo(SrcPath);
-
-            BackupPath = SetSavePath(targetFolder);
-
-            _fullDir = new DirectoryInfo(FullBackupPath);
-
-            FolderBuilder.CreateFolder(BackupPath);
-
-
-            ICollection<FileInfo> listFileLowPrio = SelectFilesToCopy(_srcDir, _fullDir);
-
-            propertiesWork[WorkProperties.EligibleFiles] = listFileLowPrio.Count();
-            propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileLowPrio);
-
-            IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
-        
-            propertiesWork[WorkProperties.Source] = SrcPath;
-            propertiesWork[WorkProperties.Target] = BackupPath;
-            handler.Init(propertiesWork);
-            if (LoopThroughFiles(listFileHighPrio)){
-                return LoopThroughFiles(listFileLowPrio);
-            }
-            else
+            string[] files = Directory.GetFiles(
+                path,
+                "*.*",
+                SearchOption.AllDirectories
+                );
+            return files;
+        }
+        protected long GetFolderSize(string path)
+        {
+            long size = 0;
+            string[] files = GetFilesFromFolder(path);
+            foreach(string f in files)
             {
-                throw new DirectoryNotFoundException("[-] High priority file save went wrong.");
+                FileInfo info = new FileInfo(f);
+                size += info.Length;
             }
-
+            return size;
         }
 
         public void RunProcess(string processName, string arguments)
@@ -133,7 +101,7 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public void CheckFileSize(long size)
+        public void checkFileSize(long size)
         {
             if (size > fileMaxSize && !Monitor.IsEntered(ThreadMutex.bigFile))
             {
@@ -156,7 +124,7 @@ namespace CESI.BS.EasySave.BS
             subscribersFileSize.Remove(obs);
         }
 
-        public void NotifyFileSize()
+        public void notifyFileSize()
         {
             foreach(ObserverFileSize obs in subscribersFileSize)
             {
@@ -180,167 +148,13 @@ namespace CESI.BS.EasySave.BS
             RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
         }
 
-        public string ReplaceLastOccurrence(string Find, string Replace)
+        public string ReplaceLastOccurrence(string Source, string Find, string Replace)
         {
-            int place = SrcPath.LastIndexOf(Find);
+            int place = Source.LastIndexOf(Find);
             if (place == -1)
-                return SrcPath;
-            string result = SrcPath.Remove(place, Find.Length).Insert(place, Replace);
+                return Source;
+            string result = Source.Remove(place, Find.Length).Insert(place, Replace);
             return result;
-        }
-
-        public void ScanSourceFolder()
-        {
-            //to be done
-        }
-
-        protected IEnumerable<FileInfo> GetFilesFromFolder(DirectoryInfo dir)
-        {
-            IEnumerable<FileInfo> files = dir.GetFiles(
-                "*.*",
-                SearchOption.AllDirectories
-                );
-            return files;
-        }
-
-        private long GetFilesSize(IEnumerable<FileInfo> fileList)
-        {
-            long size = 0;
-            foreach (FileInfo file in fileList)
-            {
-                size += file.Length;
-            }
-            return size;
-        }
-
-        public void CheckSrcFile()
-        {
-            if (!Directory.Exists(SrcPath))
-            {
-                throw new DirectoryNotFoundException("[-] Source directory has not been found: " + SrcPath);
-            }
-        }
-
-        public string SetSavePath(string path)
-        {
-            return path + @"\" + _srcDir.Name + CheckSaveFile(path + @"\" + _srcDir.Name);
-        }
-
-        public virtual string CheckSaveFile(string dir)
-        {
-            if (!Directory.Exists(dir))
-            {
-                Console.WriteLine("[+] Warning, Full Save not created, Full Save being created");
-                return @"\Full";
-            }
-            else
-            {
-                return @"\Diff" + DateTime.Now.ToString("dd_MM_yyyy");
-                //toModify
-            }
-        }
-
-        public virtual ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir, DirectoryInfo fullDir)
-        {
-            return (ICollection<FileInfo>)GetFilesFromFolder(srcDir);
-        }
-
-        public bool LoopThroughFiles(IEnumerable<FileInfo> fileList)
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            DirectoryInfo directorySave;
-            long Duration = 0;
-            long EncryptTime = 0;
-            try
-            {
-                foreach (FileInfo file in fileList)
-                {
-                    directorySave = new DirectoryInfo(file.DirectoryName.Replace(SrcPath, Path.GetFullPath(BackupPath, propertiesWork[WorkProperties.Source].ToString())));
-                    try
-                    {
-                        if (!Directory.Exists(directorySave.FullName))
-                        {
-                            FolderBuilder.CreateFolder(directorySave.FullName);
-                        }
-
-                        stopwatch.Start();
-
-                        EncryptTime += EncryptAndCopyFiles(file, _srcDir);
-
-                        stopwatch.Stop();
-
-                        Duration += stopwatch.ElapsedMilliseconds;
-
-                        Console.WriteLine("[+] Copying {0}", file.FullName);
-                    }
-                    //gestion des erreurs
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("[-] An Error has occured while trying to copy Files : {0}", e);
-                    }
-                    //assignation de valeur du dictionnaire
-                    propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - 1;
-                    FolderSize -= file.Length;
-                    propertiesWork[WorkProperties.RemainingSize] = FolderSize;
-                    propertiesWork[WorkProperties.EncryptDuration] = EncryptTime;
-                    handler.OnNext(propertiesWork);
-                }
-                handler.OnStop(true);
-                return true;
-            }
-            catch (Exception e)
-            {
-                //gestion des erreurs
-                Console.WriteLine("[-] An error occured while trying to save : {0}", e);
-                handler.OnStop(false);
-                return false;
-            }
-        }
-
-        public long EncryptAndCopyFiles(FileInfo file, DirectoryInfo dir)
-        {
-            Stopwatch stopwatch2 = new Stopwatch();
-            Parallel.ForEach(_cryptoExtension, element =>
-            {
-
-                if (file.Extension == element)
-                {
-                    stopwatch2.Start();
-                    CryptoSoft(_key, file.FullName, file.FullName.Replace(dir.FullName, _fullDir.FullName));
-                    stopwatch2.Stop();
-                    return;
-                }
-
-                file.CopyTo(file.FullName.Replace(dir.FullName, _fullDir.FullName), true);
-
-
-            });
-            return stopwatch2.ElapsedMilliseconds;
-        }
-
-        protected IEnumerable<FileInfo> FilterHighPriorityFiles(ref ICollection<FileInfo> fileList)
-        {
-            IEnumerable<FileInfo> priorityFileList = null;
-            bool isPrioritary = false;
-            foreach (FileInfo file in fileList) {
-                
-                Parallel.ForEach(_priorityExtension, element =>
-                {
-
-                    if (file.Extension == element)
-                    {
-                        priorityFileList.Append<FileInfo>(file);
-                        isPrioritary = true;
-                        return;
-                    }
-
-                });
-                if (isPrioritary)
-                {
-                    fileList.Remove(file);
-                }
-            }
-            return priorityFileList;
         }
     }
 }

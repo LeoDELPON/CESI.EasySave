@@ -5622,19 +5622,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\remin\\.nuget\\packages\\": {}
+    "C:\\Users\\Marcus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
+      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
       "projectName": "CESI.CesiEasySave.IntegrationTest",
-      "projectPath": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
-      "packagesPath": "C:\\Users\\remin\\.nuget\\packages\\",
-      "outputPath": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\obj\\",
+      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
+      "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
+      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\remin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5691,12 +5691,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

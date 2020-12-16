@@ -9,6 +9,6 @@ namespace CESI.BS.EasySave.BS
         public List<ObserverFileSize> subscribersFileSize { get; set; }
         public void SubscribeFileSize(ObserverFileSize obs);
         public void UnsubscribeFileSize(ObserverFileSize obs);
-        public void NotifyFileSize();
+        public void notifyFileSize();
     }
 }

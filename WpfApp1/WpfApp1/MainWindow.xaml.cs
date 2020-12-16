@@ -23,6 +23,7 @@ using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.DAL;
 using CESI.Server.EasySave.Networking;
+using CESI.Server.EasySave.Services;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
 using static CESI.BS.EasySave.BS.ThreadLifeManager;
 
@@ -59,6 +60,9 @@ namespace WpfApp1
             {
                 Application.Current.Shutdown();
             }
+            PacketHandler.OnAbortSent +=threadLifeManager.Abort;
+            PacketHandler.OnResumeSent += threadLifeManager.Resume;
+            PacketHandler.OnPauseSent += threadLifeManager.Pause;
             InitializeComponent();
             modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;

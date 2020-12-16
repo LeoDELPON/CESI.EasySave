@@ -7,10 +7,12 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal class Full : Save
+    internal class FullParallel : Save
     {
         /// <summary>
         /// Taille du dossier.
@@ -23,12 +25,15 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Liste des fichiers prioritaires.
         /// </summary>
-      //  public List<string> _priorityExtension;
-        
+        ///  public List<string> _priorityExtension;
+
         /// <summary>
         /// Clé.
         /// </summary>
         public string _key;
+
+        public Mutex mutex;
+
         /// <summary>
         /// Sauvegarde complète.
         /// </summary>
@@ -36,14 +41,16 @@ namespace CESI.BS.EasySave.BS
         /// <param name="cryptoExtensions">Liste des extensions des fichiers</param>
         /// <param name="priorityExtensions">Extensions de fichiers prioritaires</param>
         /// <param name="key"></param>
-        public Full(string props, List<string> cryptoExtensions, string key) : base()
+        public FullParallel(string props, List<string> cryptoExtensions, string key) : base()
         {
-            IdTypeSave ="ful";
+            IdTypeSave = "ful";
             TypeSave = SaveType.FULL;
+            propertiesWork[WorkProperties.TypeSave] = "Full";
             propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
-         //   _priorityExtension = priorityExtensions;
+            //   _priorityExtension = priorityExtensions;
             _key = key;
+            mutex = new Mutex();
         }
 
         /// <summary>
@@ -54,13 +61,13 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public override bool SaveProcess(string sourceFolder, string targetFolder)
         {
-            handler = DataHandler.Instance;
+            handler.GetStopwatch.Start();
             if (!Directory.Exists(sourceFolder))
             {
                 throw new DirectoryNotFoundException(
                     "[-] Source directory has not been found: " + sourceFolder);
             }
-          
+
             propertiesWork[WorkProperties.Source] = sourceFolder;
             propertiesWork[WorkProperties.Target] = targetFolder;
             propertiesWork[WorkProperties.EligibleFiles] = GetFilesFromFolder(sourceFolder).Length;
@@ -91,9 +98,8 @@ namespace CESI.BS.EasySave.BS
         /// <returns></returns>
         public bool CopyAll(DirectoryInfo source, DirectoryInfo target, bool isRecursive)
         {
-           
-            DirectoryInfo fullSaveDirectory;
 
+            DirectoryInfo fullSaveDirectory;
             //Vérifie le dossier cible
             string path = target.ToString() + @"\" + propertiesWork[WorkProperties.Name] + "_" + source.Name.ToString() + @"\FullSaves" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             if (!Directory.Exists(path) && !isRecursive)
@@ -104,56 +110,65 @@ namespace CESI.BS.EasySave.BS
             else
             {
                 fullSaveDirectory = new DirectoryInfo(target.ToString());
-            }  
+            }
             try
             {
                 double temp = -1;
-                
-                //Pour tous les fichier dans la source
-               
-                foreach (FileInfo file in source.GetFiles())
-                {
+                string[] files = GetFilesFromFolder(source.FullName);
+                Parallel.For(0, files.Length, (i) =>
+                {                  
                     WaitForUnpause();
-                    Console.WriteLine(@"[+] Copying {0}", file.Name);
-                    
-                    //Pour chaques extensions dans la source
-                    foreach (string ext in _cryptoExtension)
+                    FileInfo fileObject = new FileInfo(files[i]);
+                    checkFileSize(fileObject.Length);
+                    string dir = ReplaceLastOccurrence(files[i].Replace(source.FullName, fullSaveDirectory.FullName), fileObject.Name, "");
+                    if (!Directory.Exists(dir))
                     {
-                        byte[] tmpByte = File.ReadAllBytes(file.FullName);
+                        Directory.CreateDirectory(dir);
+                    }
 
-                        //Vérifie les extensions
-                        if (ext == file.Extension)
+                    Parallel.ForEach(_cryptoExtension, element =>
+                    {
+                        if (fileObject.Extension == element)
                         {
-                            string arguments = _key + " " + file.FullName + " " + Path.Combine(fullSaveDirectory.FullName, file.Name);
                             Stopwatch stopW2 = new Stopwatch();
-                            stopW2.Start();
-                            RunProcess(Environment.CurrentDirectory + @"\Cryptosoft\CESI.Cryptosoft.EasySave.Project.exe", arguments);
+                            CryptoSoft(_key, fileObject.FullName, files[i].Replace(source.FullName, fullSaveDirectory.FullName));
                             stopW2.Stop();
                             temp = stopW2.ElapsedMilliseconds;
-                        } else
+                        }
+                        else
                         {
-                            file.CopyTo(Path.Combine(fullSaveDirectory.FullName, file.Name), true);
+                            try
+                            {
+                                mutex.WaitOne();
+                                fileObject.CopyTo(files[i].Replace(source.FullName, fullSaveDirectory.FullName), true);
+                                mutex.ReleaseMutex();
+                            }
+                            catch (ThreadInterruptedException)
+                            {
+                                Thread.CurrentThread.Interrupt();
+                            }
                         }
 
-                    }
+
+
+                    });
+
+
                     propertiesWork[WorkProperties.RemainingFiles] = Convert.ToInt32(propertiesWork[WorkProperties.EligibleFiles]) - 1;
-                    FolderSize -= file.Length;
+                    FolderSize -= fileObject.Length;
                     propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = temp;
                     NotifyAll(handler.OnNext(propertiesWork));
-                    
-                }
+                    EndReact();
 
-                //Pour tous les répertoire source dans "source"
-                foreach (DirectoryInfo directorySourceSubDir in source.GetDirectories())
-                {
-                    DirectoryInfo nextTargetSubDir =
-                        fullSaveDirectory.CreateSubdirectory(directorySourceSubDir.Name);
-                    Console.WriteLine("nextTarget = " + nextTargetSubDir +" \nnextDirectory = " + directorySourceSubDir);
-                    CopyAll(directorySourceSubDir, nextTargetSubDir, true);
-                }
+                });
+
+
+
+
                 return true;
-            } catch(SecurityException e)
+            }
+            catch (SecurityException e)
             {
                 Console.WriteLine("[-] While tryin to copy a file from source to destination," +
                     "an error occured because of the right access : {0}", e);

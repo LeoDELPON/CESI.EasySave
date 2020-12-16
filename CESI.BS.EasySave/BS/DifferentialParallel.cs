@@ -10,7 +10,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace CESI.BS.EasySave.BS
 {
-    internal class DifferentialParallel : Save
+    internal class DifferentialParallel : Save, IDisposable
     {
         /// <summary>
         /// Chemins pour sauvegarde complète.
@@ -190,6 +190,11 @@ namespace CESI.BS.EasySave.BS
                 size += file.Length;
             }
             return size;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
