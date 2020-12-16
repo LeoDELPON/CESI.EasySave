@@ -18,6 +18,7 @@ namespace WpfApp1
     /// </summary>
     public partial class HighPriorityExtention : Window
     {
+        public List<TextBox> listExtensionPriority = new List<TextBox>();
   
         public HighPriorityExtention()
         {
@@ -39,18 +40,20 @@ namespace WpfApp1
             TextBox tb = new TextBox();
             tb.Width = 165;
             ListTB.Items.Add(tb);
+            listExtensionPriority.Add(tb);
         }
         public void RemoveTB()
         {
             if (ListTB.Items.Count > 0)
             {
                 ListTB.Items.Remove(ListTB.Items.GetItemAt(ListTB.Items.Count - 1));
+                listExtensionPriority.Remove((TextBox)ListTB.Items.GetItemAt(ListTB.Items.Count - 1));
             }
         }
-        public List<string> getExtentions()
+        public List<string> GetExtentions()
         {
             List<string> listString = new List<string>();
-            foreach (TextBox tb in ListTB.Items)
+            foreach (TextBox tb in listExtensionPriority)
             {
                 if (tb.Text.Length > 0)
                 {

@@ -334,29 +334,6 @@ namespace WpfApp1
                 int count = weList.Count;
                 if (WorkListLbl.Items.Contains(we.inWrkList))
                 {
-                    /* Task test = Task.Factory.StartNew(() =>
-                     {
-                         try
-                         {
-                             using (ThreadMutex.Canceller.Token.Register(Thread.CurrentThread.Abort)) ;
-                             while (true)
-                             {
-                                 Application.Current.Dispatcher.Invoke(() =>
-                                 {
-                                     WorkListLbl.Items.Add("en cours");
-                                 });
-                             }
-                         }
-                         catch (ThreadAbortException)
-                         {
-                             Application.Current.Dispatcher.Invoke(() =>
-                             {
-                                 WorkListLbl.Items.Add("fini");
-                             });
-                         }
-                     }, ThreadMutex.Canceller.Token);
-                     Thread.Sleep(5000);
-                     ThreadMutex.Canceller.Cancel();*/
                     Thread saveThread = new Thread(launchWork =>
                     {
                         using (ThreadMutex.Canceller.Token.Register(Thread.CurrentThread.Abort)) { }
@@ -369,6 +346,11 @@ namespace WpfApp1
                             });
                             threadLifeManager.SubscribeToSaves(bs.works[weList.IndexOf(we)]);
                             bs.works[weList.IndexOf(we)].SaveType.Subscribe(we.inWrkList);
+                            //
+                            //
+                            // ICI ON VA INJECTER LES EXTENSIONS DE NOTRE GUI VERS UNE VARIABLE DE LA SAVE
+                            //
+                            //
                             bs.works[weList.IndexOf(we)].Perform();
                             bs.works[weList.IndexOf(we)].SaveType.Unsubscribe(we.inWrkList);//can be deleted
                             terminatedThreads++;

@@ -32,11 +32,6 @@ namespace WpfApp1
             Closing += Cipher_Window_Closing;
             AddExtentionBoxButton.Click += AddExtentionBoxButton_Click;
             AddExtention();
-
-
-
-
-
         }
 
         private void AddExtentionBoxButton_Click(object sender, RoutedEventArgs e)
