@@ -56,7 +56,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
             Assert.AreEqual(_data.Dictionary[WorkProperties.State], "Not Running");
             Assert.IsTrue(_data.OnStop(false));
             Assert.IsTrue(_data.OnStop(true));
-        } 
+        }
 
         [TestMethod]
         public void OnNextTest()
@@ -104,7 +104,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
             {
                 return serverSubscriberMock[0].ReactDataLogServMock(dto, socket);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }

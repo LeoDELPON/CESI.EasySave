@@ -17,7 +17,6 @@ namespace CESI.Server.EasySave.Services
         {
             Message msg = new Message(packet);
             ActionResultMessage(msg.Text);
-
         }
         public static bool DefaultOnResumeSent() {
             return true;

@@ -1,0 +1,21 @@
+<? xml version = "1.0" encoding = "UTF-8" ?>
+<name>
+marave
+</name>
+<source>
+C:\Users\delpo\OneDrive\Bureau\test
+</source>
+<target>
+C:\Users\delpo\OneDrive\Bureau\yolo
+</target>
+<typeSave>
+1
+</typeSave>
+<key>
+salamelf
+</key>
+<extentions>
+<ext>
+.js
+</ext>
+</extentions>
