@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z14NI6pHetk5Q/2TTPhxOq7KHzeExBuFvUoGkkjjkdHTOIjU2sNqv1TVMqRH7FQVIXMW8oD8ypGOMaA3xVFcdQ==",
+  "dgSpecHash": "xKRikCO7NaN7H+z0cNF7s7XsbvWNvcFULFJ0mJ2Io2NrCJ03xq7B0Y8pqhR/sHC64v2PaoZhrIoseNbGg9NMqg==",
   "success": true,
-  "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CesiEasySave\\CesiEasySave.csproj",
+  "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CesiEasySave\\CesiEasySave.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marcus\\.nuget\\packages\\extended.wpf.toolkit\\4.0.1\\extended.wpf.toolkit.4.0.1.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",

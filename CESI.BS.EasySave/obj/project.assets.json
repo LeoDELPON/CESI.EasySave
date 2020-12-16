@@ -408,11 +408,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
       "projectName": "CESI.BS.EasySave",
-      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
+      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj",
       "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\obj\\",
+      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",

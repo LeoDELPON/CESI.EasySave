@@ -426,11 +426,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
       "projectName": "CESI.Server.EasySave",
-      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
+      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj",
       "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.Server.EasySave\\obj\\",
+      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.Server.EasySave\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -447,8 +447,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave.Final\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             }
           }
         }
