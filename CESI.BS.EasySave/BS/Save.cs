@@ -87,15 +87,24 @@ namespace CESI.BS.EasySave.BS
             FolderBuilder.CreateFolder(BackupPath);
 
 
-            IEnumerable<FileInfo> listFileSource = SelectFilesToCopy(_srcDir, _fullDir);
+            ICollection<FileInfo> listFileLowPrio = SelectFilesToCopy(_srcDir, _fullDir);
 
-            propertiesWork[WorkProperties.EligibleFiles] = listFileSource.Count();
-            propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileSource);
+            propertiesWork[WorkProperties.EligibleFiles] = listFileLowPrio.Count();
+            propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileLowPrio);
+
+            IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
+        
             propertiesWork[WorkProperties.Source] = SrcPath;
             propertiesWork[WorkProperties.Target] = BackupPath;
             handler.Init(propertiesWork);
+            if (LoopThroughFiles(listFileHighPrio)){
+                return LoopThroughFiles(listFileLowPrio);
+            }
+            else
+            {
+                throw new DirectoryNotFoundException("[-] High priority file save went wrong.");
+            }
 
-            return LoopThroughFiles(listFileSource);
         }
 
         public void RunProcess(string processName, string arguments)
@@ -184,6 +193,7 @@ namespace CESI.BS.EasySave.BS
         {
             //to be done
         }
+
         protected IEnumerable<FileInfo> GetFilesFromFolder(DirectoryInfo dir)
         {
             IEnumerable<FileInfo> files = dir.GetFiles(
@@ -230,9 +240,9 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public virtual IEnumerable<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir, DirectoryInfo fullDir)
+        public virtual ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir, DirectoryInfo fullDir)
         {
-            return GetFilesFromFolder(srcDir);
+            return (ICollection<FileInfo>)GetFilesFromFolder(srcDir);
         }
 
         public bool LoopThroughFiles(IEnumerable<FileInfo> fileList)
@@ -289,9 +299,7 @@ namespace CESI.BS.EasySave.BS
 
         public long EncryptAndCopyFiles(FileInfo file, DirectoryInfo dir)
         {
-            bool isEncrypted = false;
             Stopwatch stopwatch2 = new Stopwatch();
-            long temp = 0;
             Parallel.ForEach(_cryptoExtension, element =>
             {
 
@@ -300,21 +308,39 @@ namespace CESI.BS.EasySave.BS
                     stopwatch2.Start();
                     CryptoSoft(_key, file.FullName, file.FullName.Replace(dir.FullName, _fullDir.FullName));
                     stopwatch2.Stop();
-                    temp = stopwatch2.ElapsedMilliseconds;
-                    isEncrypted = true;
+                    return;
                 }
 
-                if (!isEncrypted)
-                {
-                    file.CopyTo(file.FullName.Replace(dir.FullName, _fullDir.FullName), true);
-                }
+                file.CopyTo(file.FullName.Replace(dir.FullName, _fullDir.FullName), true);
+
+
             });
-            return temp;
+            return stopwatch2.ElapsedMilliseconds;
         }
 
-        protected void FilterHighPriorityFiles()
+        protected IEnumerable<FileInfo> FilterHighPriorityFiles(ref ICollection<FileInfo> fileList)
         {
+            IEnumerable<FileInfo> priorityFileList = null;
+            bool isPrioritary = false;
+            foreach (FileInfo file in fileList) {
+                
+                Parallel.ForEach(_priorityExtension, element =>
+                {
 
+                    if (file.Extension == element)
+                    {
+                        priorityFileList.Append<FileInfo>(file);
+                        isPrioritary = true;
+                        return;
+                    }
+
+                });
+                if (isPrioritary)
+                {
+                    fileList.Remove(file);
+                }
+            }
+            return priorityFileList;
         }
     }
 }

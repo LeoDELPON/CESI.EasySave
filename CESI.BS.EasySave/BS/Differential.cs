@@ -41,7 +41,7 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public override IEnumerable<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir,DirectoryInfo fullDir)
+        public override ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir,DirectoryInfo fullDir)
         {
             IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(srcDir);
             IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(fullDir);
