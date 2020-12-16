@@ -31,7 +31,7 @@ namespace CESI.BS.EasySave.BS
 
         public override string CheckSaveFile(string dir)
         {
-            if (!Directory.Exists(dir))
+            if (!Directory.Exists(dir + @"\Full"))
             {
                 return @"\Full";
             }
@@ -41,9 +41,9 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public override ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo dir, DirectoryInfo fullDir)
+        public override List<FileInfo> SelectFilesToCopy(DirectoryInfo dir, DirectoryInfo fullDir)
         {
-            return (ICollection<FileInfo>)GetFilesFromFolder(dir);
+            return GetFilesFromFolder(dir).ToList();
         }
     }
 }

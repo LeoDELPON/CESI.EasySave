@@ -30,7 +30,7 @@ namespace CESI.BS.EasySave.BS
 
         public override string CheckSaveFile(string dir)
         {
-            if (!Directory.Exists(dir))
+            if (!Directory.Exists(dir + @"\Full"))
             {
                 Console.WriteLine("[+] Warning, no existing save, a full save is being processed");
                 return @"\Full";
@@ -41,11 +41,11 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public override ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir,DirectoryInfo fullDir)
+        public override List<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir,DirectoryInfo fullDir)
         {
             IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(srcDir);
             IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(fullDir);
-            return (ICollection<FileInfo>)(from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
+            return (from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance).ToList();
         }
     }
 }

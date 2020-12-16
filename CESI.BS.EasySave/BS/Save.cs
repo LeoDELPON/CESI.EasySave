@@ -21,7 +21,7 @@ namespace CESI.BS.EasySave.BS
 
         public string _key;
 
-        private string FullBackupPath { get => BackupPath + @"\Full"; }
+        private string FullBackupPath { get; set; }
 
         private string BackupPath { get; set; }
 
@@ -30,6 +30,8 @@ namespace CESI.BS.EasySave.BS
         private DirectoryInfo _srcDir;
 
         private DirectoryInfo _fullDir;
+
+        private DirectoryInfo _backupDir;
 
         public long fileMaxSize = 100000000000;
 
@@ -92,7 +94,7 @@ namespace CESI.BS.EasySave.BS
             propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileLowPrio);
 
             IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
-        
+
             propertiesWork[WorkProperties.Source] = SrcPath;
             propertiesWork[WorkProperties.TypeSave] = TypeSave;
             propertiesWork[WorkProperties.Target] = BackupPath;
@@ -235,28 +237,18 @@ namespace CESI.BS.EasySave.BS
 
         public string SetSavePath(string path)
         {
-           
+            FullBackupPath = path + @"\" + _srcDir.Name + @"\Full";
             return path + @"\" + _srcDir.Name + CheckSaveFile(path + @"\" + _srcDir.Name);
         }
 
         public virtual string CheckSaveFile(string dir)
         {
-            if (!Directory.Exists(dir + @"\Full"))
-            {
-                Console.WriteLine("[+] Warning, Full Save not created, Full Save being created");
-                FolderBuilder.CreateFolder(dir + @"\Full");
-                return @"\Full";
-            }
-            else
-            {
-                return @"\Diff" + DateTime.Now.ToString("dd_MM_yyyy");
-                //toModify
-            }
+            return "";
         }
 
-        public virtual ICollection<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir, DirectoryInfo fullDir)
+        public virtual List<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir, DirectoryInfo fullDir)
         {
-            return (ICollection<FileInfo>)GetFilesFromFolder(srcDir);
+            return GetFilesFromFolder(srcDir).ToList();
         }
 
         public bool LoopThroughFiles(IEnumerable<FileInfo> fileList)
@@ -279,7 +271,7 @@ namespace CESI.BS.EasySave.BS
 
                         stopwatch.Start();
 
-                        EncryptTime += EncryptAndCopyFiles(file, _srcDir);
+                        EncryptTime += EncryptAndCopyFiles(file);
 
                         stopwatch.Stop();
 
@@ -311,29 +303,31 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public long EncryptAndCopyFiles(FileInfo file, DirectoryInfo dir)
+        public long EncryptAndCopyFiles(FileInfo file)
         {
             Stopwatch stopwatch2 = new Stopwatch();
-            bool isPrioritary = false;
+            bool isEncrypted = false;
             Parallel.ForEach(_cryptoExtension, element =>
             {
 
                 if (file.Extension == element)
                 {
                     stopwatch2.Start();
-                    CryptoSoft(_key, file.FullName, file.FullName.Replace(dir.FullName, _fullDir.FullName));
+                    CryptoSoft(_key, file.FullName, file.FullName.Replace(_srcDir.FullName, _fullDir.FullName));
                     stopwatch2.Stop();
-                    isPrioritary = true;
+                    isEncrypted = true;
                     return;
                 }
-                if (isPrioritary)
-                {
-                    file.CopyTo(file.FullName.Replace(dir.FullName, _fullDir.FullName), true);
-                }
+                
                 
 
 
             });
+            if (!isEncrypted)
+            {
+                file.CopyTo(file.FullName.Replace(_srcDir.FullName, BackupPath), true);
+                
+            }
             return stopwatch2.ElapsedMilliseconds;
         }
 
