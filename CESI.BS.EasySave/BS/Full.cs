@@ -40,6 +40,7 @@ namespace CESI.BS.EasySave.BS
         {
             IdTypeSave ="ful";
             TypeSave = SaveType.FULL;
+            propertiesWork[WorkProperties.TypeSave] = IdTypeSave;
             propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
          //   _priorityExtension = priorityExtensions;

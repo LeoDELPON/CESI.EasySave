@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\WpfApp1\WpfApp1\App.xaml
-102084005917
+1279763953
 
-12600056075
-194-851177862
-AddWorkWindow.xaml;CipherWindow.xaml;LanguageSelectionWindow.xaml;Language\en-US.xaml;Language\fr-FR.xaml;MainWindow.xaml;ModifyWorkWindow.xaml;ProcessusChoosing.xaml;WrkElementInSvdList.xaml;WrkElementInWrkList.xaml;
+13-1989204107
+200-2055783716
+AddWorkWindow.xaml;AlertWindow.xaml;CipherWindow.xaml;HighPriorityExtention.xaml;LanguageSelectionWindow.xaml;Language\en-US.xaml;Language\fr-FR.xaml;MainWindow.xaml;ModifyWorkWindow.xaml;ProcessusChoosing.xaml;WrkElementInSvdList.xaml;WrkElementInWrkList.xaml;
 
 True
 

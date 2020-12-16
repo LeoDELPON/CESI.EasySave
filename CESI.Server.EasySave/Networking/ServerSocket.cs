@@ -116,10 +116,10 @@ namespace CESI.Server.EasySave.Networking
         {
             string data = _dataSent;
             Message msg = new Message(data);
-            SocketAsyncEventArgs e = new SocketAsyncEventArgs();
-            e.RemoteEndPoint = s.RemoteEndPoint;
-            e.SetBuffer(msg.finalBuffer, 0, data.Length);
-            s.SendToAsync(e);
+            //SocketAsyncEventArgs e = new SocketAsyncEventArgs();
+            //e.RemoteEndPoint = s.RemoteEndPoint;
+            //e.SetBuffer(msg.finalBuffer, 0, data.Length);
+            s.SendTo(msg.finalBuffer, 0, msg.finalBuffer.Length, SocketFlags.None, s.RemoteEndPoint);
         }
 
         public bool ReactDataLogServ(DTODataServer dto)
