@@ -7,6 +7,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
+using System.Threading;
 
 namespace CESI.Server.EasySave.Networking
 {
@@ -119,6 +120,7 @@ namespace CESI.Server.EasySave.Networking
             //SocketAsyncEventArgs e = new SocketAsyncEventArgs();
             //e.RemoteEndPoint = s.RemoteEndPoint;
             //e.SetBuffer(msg.finalBuffer, 0, data.Length);
+            Thread.Sleep(15);
             s.SendTo(msg.finalBuffer, 0, msg.finalBuffer.Length, SocketFlags.None, s.RemoteEndPoint);
         }
 
