@@ -17,24 +17,25 @@ namespace CESI.BS.EasySave.BS.Factory
                 properties[WorkProperties.Target].ToString(),
                 CreateSaveObject(properties[WorkProperties.TypeSave].ToString(), 
                     properties[WorkProperties.Name].ToString(), 
-                    (List<string>)properties[WorkProperties.Extensions],
+                    (List<string>)properties[WorkProperties.CryptoExtensions],
+                    (List<string>)properties[WorkProperties.PriorityExtensions],
                     properties[WorkProperties.Key].ToString())
             );
         }
 
-        public override Save CreateSaveObject(string _saveType, string prop, List<string> extensions, string key)
+        public override Save CreateSaveObject(string _saveType, string prop, List<string> cryptoExtensions, List<string> priorityExtensions, string key)
         {
             Save _save;
             switch(_saveType.GetSaveTypeFromString())
             {
                 case SaveType.DIFFERENTIAL:
-                    _save = new Differential(prop, extensions, key);
+                    _save = new Differential(prop, cryptoExtensions, priorityExtensions, key);
                     break;
                 case SaveType.FULL:
-                    _save = new Full(prop, extensions, key);
+                    _save = new Full(prop, cryptoExtensions, priorityExtensions, key);
                     break;
                 default:
-                    _save = new Differential(prop, extensions, key);
+                    _save = new Full(prop, cryptoExtensions, priorityExtensions, key);
                     break;
             }
             return _save;

@@ -102,7 +102,7 @@ namespace WpfApp1
                 extLV.Items.RemoveAt(i);
             }
 
-            foreach (string ext in we.wv.extension)
+            foreach (string ext in we.wv.cryptoExtensions)
             {
                 TextBox tb = new TextBox();
                 tb.Width = 180;

@@ -14,7 +14,7 @@ namespace WpfApp1
         public bool chiffrage { get; set; }
         public WrkElements(ConfSaver.WorkVar workVar,  BSEasySave BS)
         {
-            if (workVar.extension.Count > 0 && workVar.key.Length > 0)
+            if (workVar.cryptoExtensions.Count > 0 && workVar.key.Length > 0)
             {
                 chiffrage = true;
             }else

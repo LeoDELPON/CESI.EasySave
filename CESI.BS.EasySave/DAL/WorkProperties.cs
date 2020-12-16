@@ -19,7 +19,8 @@ namespace CESI.BS.EasySave.DAL
         RemainingFiles,
         Size,
         RemainingSize,
-        Extensions,
+        CryptoExtensions,
+        PriorityExtensions,
         Key,
         EncryptDuration
     }

@@ -45,7 +45,7 @@ namespace CESI.BS.EasySave.BS
         {
             IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(srcDir);
             IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(fullDir);
-            return (from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
+            return (ICollection<FileInfo>)(from file in listFileSource select file).Except(listFileFullSave, FileCompare.Instance);
         }
     }
 }
