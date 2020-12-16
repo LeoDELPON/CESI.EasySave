@@ -12,6 +12,7 @@ namespace CESI.BS.EasySave.DTO
         public string Target { get; set; }
         public string Size { get; set; }
         public string Duration { get; set; }
+        public string TypeSave { get; set; }
         public string EncryptDuration { get; set; }
         public string State { get; set; }
         public string EligibleFiles { get; set; }

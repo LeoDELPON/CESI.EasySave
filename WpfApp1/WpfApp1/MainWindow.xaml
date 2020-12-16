@@ -35,6 +35,7 @@
 
         <Button Content="+" Name="AddWorkBtn"  HorizontalAlignment="Left" Margin="14,12,0,0" Grid.Row="2" VerticalAlignment="Top" Height="40" Width="40" Click="AddWorkBtn_Click"/>
         <Button Content="{DynamicResource Process}" Grid.Column="2"  HorizontalAlignment="Left" Margin="600,0,0,0" VerticalAlignment="Center" Height="30" Padding="5, 5, 5, 5" Click="CriticalProcessesBtn_Click" Width="120"/>
+        <Button Content="{DynamicResource Priority}" Grid.Column="2"  HorizontalAlignment="Left" Margin="450,0,0,0" VerticalAlignment="Center" Height="30" Padding="5, 5, 5, 5" Click="HPriorityBtn_Click" Width="140"/>
 
 
 

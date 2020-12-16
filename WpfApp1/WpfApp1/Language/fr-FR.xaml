@@ -19,6 +19,7 @@
     <system:String x:Key="dif">Differentielle</system:String>
     <system:String x:Key="ful">Complete</system:String>
     <system:String x:Key="Process">Processus métiers</system:String>
+    <system:String x:Key="Priority">Extensions prioritaires</system:String>    
     <!--workCreationWindow-->
     <system:String x:Key="CreateWork">Créer un travail</system:String>
     <system:String x:Key="WorkName">Nom</system:String>

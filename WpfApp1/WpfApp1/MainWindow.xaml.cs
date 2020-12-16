@@ -37,8 +37,9 @@ namespace WpfApp1
     {
         public int terminatedThreads = 0;
         AlertWindow alertWindow = new AlertWindow();
-
+        HighPriorityExtention highPriorityExtention = new HighPriorityExtention();
         ProcessusChoosing processusChoosing = new ProcessusChoosing();
+
         LanguageSelectionWindow languageSelectionWindow = new LanguageSelectionWindow();
 
         AddWorkWindow addWorkWindow = new AddWorkWindow();
@@ -530,8 +531,11 @@ namespace WpfApp1
         {
             alertWindow.showMessage(message, true);
         }
-       
 
+        private void HPriorityBtn_Click(object sender, RoutedEventArgs e)
+        {
+            highPriorityExtention.Show();
+        }
     }
 }
 

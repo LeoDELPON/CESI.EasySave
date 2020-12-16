@@ -21,6 +21,7 @@
     <system:String x:Key="dif">Differential</system:String>
     <system:String x:Key="ful">Full</system:String>
     <system:String x:Key="Process">Critical processes</system:String>
+    <system:String x:Key="Priority">High priority extensions</system:String>
     <!--workCreationWindow-->
     <system:String x:Key="CreateWork">Create a Work</system:String>
     <system:String x:Key="WorkName">Name</system:String>

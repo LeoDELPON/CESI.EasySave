@@ -74,6 +74,7 @@ namespace CESI.BS.EasySave.BS.Factory
             dataServer.Date = propertiesServer[WorkProperties.Date].ToString();
             dataServer.Name = propertiesServer[WorkProperties.Name].ToString();
             dataServer.Source = propertiesServer[WorkProperties.Source].ToString();
+            dataServer.TypeSave = propertiesServer[WorkProperties.TypeSave].ToString();
             dataServer.Target = propertiesServer[WorkProperties.Target].ToString();
             dataServer.Size = propertiesServer[WorkProperties.Size].ToString();
             dataServer.Duration = propertiesServer[WorkProperties.Duration].ToString();
