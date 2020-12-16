@@ -300,6 +300,7 @@ namespace CESI.BS.EasySave.BS
         public long EncryptAndCopyFiles(FileInfo file, DirectoryInfo dir)
         {
             Stopwatch stopwatch2 = new Stopwatch();
+            bool isPrioritary = false;
             Parallel.ForEach(_cryptoExtension, element =>
             {
 
@@ -308,10 +309,14 @@ namespace CESI.BS.EasySave.BS
                     stopwatch2.Start();
                     CryptoSoft(_key, file.FullName, file.FullName.Replace(dir.FullName, _fullDir.FullName));
                     stopwatch2.Stop();
+                    isPrioritary = true;
                     return;
                 }
-
-                file.CopyTo(file.FullName.Replace(dir.FullName, _fullDir.FullName), true);
+                if (isPrioritary)
+                {
+                    file.CopyTo(file.FullName.Replace(dir.FullName, _fullDir.FullName), true);
+                }
+                
 
 
             });
