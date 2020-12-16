@@ -33,7 +33,6 @@ namespace CESI.BS.EasySave.BS
         {
             if (!Directory.Exists(dir))
             {
-                Console.WriteLine("[+] Warning, no existing save, a full save is being processed");
                 return @"\Full";
             }
             else
