@@ -60,9 +60,7 @@ namespace WpfApp1
             {
                 Application.Current.Shutdown();
             }
-            PacketHandler.OnAbortSent +=threadLifeManager.Abort;
-            PacketHandler.OnResumeSent += threadLifeManager.Resume;
-            PacketHandler.OnPauseSent += threadLifeManager.Pause;
+            
             InitializeComponent();
             modifyWorkWindow = new ModifyWorkWindow();
             modifyWorkWindow.OkBtn.Click += ModifyOkBtn_Click;
@@ -77,6 +75,9 @@ namespace WpfApp1
             threadLifeManager = new ThreadLifeManager(bs, forbProc);
             threadLifeManager.OnNotAdmin += ThreadAlertMsg;
             threadLifeManager.StartObservingProcesses();
+            PacketHandler.OnAbortSent += threadLifeManager.Abort;
+            PacketHandler.OnResumeSent += threadLifeManager.Resume;
+            PacketHandler.OnPauseSent += threadLifeManager.Pause;
             myServer = ServerSocket.Instance;
             myServer.StartConnection(1);
         }
