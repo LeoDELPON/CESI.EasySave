@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\CESI.BS.EasySave",
-    "\\CESI.BS.EasySave\\BS",
-    "\\CESI.BS.EasySave\\DAL"
+    "\\CesiEasySave"
   ],
   "SelectedNode": "\\CesiEasySave.sln",
   "PreviewInSolutionExplorer": false

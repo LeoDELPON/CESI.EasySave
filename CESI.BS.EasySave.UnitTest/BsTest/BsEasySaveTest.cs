@@ -10,6 +10,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
     {
         internal BSEasySave _bsTest;
         internal List<string> _listMock;
+        internal List<string> _listPriority;
 
         [TestInitialize()]
         public void Init()
@@ -19,6 +20,11 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
             {
                 ".htmlTest",
                 ".jsText"
+            };
+            _listPriority = new List<string>
+            {
+                ".txt",
+                ".test"
             };
         }
 
@@ -37,6 +43,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
                 "pathDest",
                 "ful",
                 _listMock,
+                _listPriority,
                 "keyMock");
             Assert.AreEqual(_bsTest.works.LastOrDefault().Name, "work-test");
             Assert.AreEqual(_bsTest.works.LastOrDefault().Source, "path");
@@ -54,6 +61,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
                 "pathDest2",
                 "ful",
                 _listMock,
+                _listPriority,
                 "keyMock2",
                 indexer);
             Assert.AreEqual(_bsTest.works[0].Name, "work-test2");
@@ -71,6 +79,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
                "pathDest",
                "ful",
                _listMock,
+               _listPriority,
                "keyMock");
             Assert.AreEqual(_bsTest.works.LastOrDefault().Name, "work-test");
             Assert.AreEqual(_bsTest.works.LastOrDefault().Source, "path");
@@ -82,6 +91,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
                 "newTarget",
                 "dif",
                 _listMock,
+                _listPriority,
                 "newKey"
                 );
             Assert.AreEqual(_bsTest.works.LastOrDefault().Name, "newName");
@@ -100,6 +110,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
                 "pathDest2",
                 "ful",
                 _listMock,
+                _listPriority,
                 "keyMock2",
                 indexer);
             Assert.AreEqual(_bsTest.works[0].Name, "work-test2");

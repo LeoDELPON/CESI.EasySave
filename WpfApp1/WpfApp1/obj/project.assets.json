@@ -441,19 +441,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\remin\\.nuget\\packages\\": {}
+    "C:\\Users\\delpo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\remin\\.nuget\\packages\\",
-      "outputPath": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
+      "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\remin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -467,11 +467,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             },
-            "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
-              "projectPath": "F:\\Development\\Visual Studio Workspace\\LeoDELPON\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
+            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
+              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
             }
           }
         }

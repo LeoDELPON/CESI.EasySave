@@ -1,10 +1,7 @@
 ﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.DAL;
-using CESI.BS.EasySave.UnitTest.BsTest.Mock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Net.Sockets;
 
 namespace CESI.BS.EasySave.UnitTest.BsTest
 {
@@ -14,12 +11,10 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
     {
         internal DataHandler _data;
         internal Dictionary<WorkProperties, object> _dict;
-        internal List<IObserverMock> serverSubscriberMock;
 
         [TestInitialize()]
         public void Init()
         {
-            serverSubscriberMock = new List<IObserverMock>();
             _data = DataHandler.Instance;
             _dict = new Dictionary<WorkProperties, object>();
             _dict[WorkProperties.Name] = "TestName";
@@ -59,52 +54,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
         public void OnNextTest()
         {
             Dictionary<WorkProperties, object> nonInstanceObj = null;
-            Assert.IsTrue(_data.OnNext(nonInstanceObj) == -1);
-        }
-
-        [TestMethod]
-        public void SubscribeServerTest()
-        {
-            ServerSocketObserverMock obs = new ServerSocketObserverMock();
-            SubscribeServerMock(obs);
-            Assert.IsTrue(serverSubscriberMock.Count == 1);
-        }
-
-        [TestMethod]
-        public void NotifyServerTest()
-        {
-            Socket badSock = null;
-            ServerSocketObserverMock obs = new ServerSocketObserverMock();
-            SubscribeServerMock(obs);
-            Assert.IsTrue(NotifyServerMock(_dict, new Socket(
-                AddressFamily.InterNetwork,
-                SocketType.Stream,
-                ProtocolType.Tcp)));
-            Assert.IsFalse(NotifyServerMock(_dict, badSock));
-        }
-
-        [TestMethod]
-        public void UnSubscribeServerTest()
-        {
-
-        }
-
-        public void SubscribeServerMock(IObserverMock obs)
-        {
-            serverSubscriberMock.Add(obs);
-        }
-
-        public bool NotifyServerMock(Dictionary<WorkProperties, object> dict, Socket socket)
-        {
-            DTODataServer dto = new DTODataServer();
-            try
-            {
-                return serverSubscriberMock[0].ReactDataLogServMock(dto, socket);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            Assert.IsTrue(_data.OnNext(nonInstanceObj) == null);
         }
     }
 }
