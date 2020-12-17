@@ -166,10 +166,7 @@ namespace CESI.BS.EasySave.BS
         }
         public void EndReact()
         {
-/*            foreach (ObserverFileSize obs in subscribersFileSize)
-            {
-                obs.EndReaction(this);
-            }*/
+
             if (Monitor.IsEntered(ThreadMutex.bigFile)){
                 Monitor.Exit(ThreadMutex.bigFile);
             }
