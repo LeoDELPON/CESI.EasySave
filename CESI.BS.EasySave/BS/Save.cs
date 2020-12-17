@@ -31,8 +31,6 @@ namespace CESI.BS.EasySave.BS
 
         private DirectoryInfo _fullDir;
 
-        private DirectoryInfo _backupDir;
-
         public long fileMaxSize = 100000000000;
 
         public SaveType TypeSave { get; protected set; }
@@ -89,12 +87,19 @@ namespace CESI.BS.EasySave.BS
 
 
             ICollection<FileInfo> listFileLowPrio = SelectFilesToCopy(_srcDir, _fullDir);
-
+            using (StreamWriter sw = new StreamWriter(@"F:\Development\Visual Studio Workspace\data.txt"))
+            {              
+                sw.WriteLine("lp1 :" + listFileLowPrio.Count());
+            }
             propertiesWork[WorkProperties.EligibleFiles] = listFileLowPrio.Count();
             propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileLowPrio);
 
             IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
-
+            using (StreamWriter sw = new StreamWriter(@"F:\Development\Visual Studio Workspace\dat.txt"))
+            {
+                sw.WriteLine("hp :" + listFileHighPrio.Count());
+                sw.WriteLine("lp2 :" + listFileLowPrio.Count());
+            }
             propertiesWork[WorkProperties.Source] = SrcPath;
             propertiesWork[WorkProperties.TypeSave] = TypeSave;
             propertiesWork[WorkProperties.Target] = BackupPath;
@@ -333,16 +338,15 @@ namespace CESI.BS.EasySave.BS
 
         protected IEnumerable<FileInfo> FilterHighPriorityFiles(ref ICollection<FileInfo> fileList)
         {
-            IEnumerable<FileInfo> priorityFileList = new List<FileInfo>();
+            List<FileInfo> priorityFileList = new List<FileInfo>();
+            List<FileInfo> tempFileList = new List<FileInfo>();
             bool isPrioritary = false;
             foreach (FileInfo file in fileList) {
-                
                 Parallel.ForEach(_priorityExtension, element =>
                 {
-
                     if (file.Extension == element)
                     {
-                        priorityFileList.Append<FileInfo>(file);
+                        priorityFileList.Add(file);
                         isPrioritary = true;
                         return;
                     }
@@ -350,8 +354,17 @@ namespace CESI.BS.EasySave.BS
                 });
                 if (isPrioritary)
                 {
-                    fileList.Remove(file);
+                    tempFileList.Add(file);
+                    isPrioritary = false;
                 }
+            }
+            List<FileInfo> aTempfileList = fileList.Except(tempFileList).ToList();
+            fileList = aTempfileList;
+
+            using (StreamWriter sw = new StreamWriter(@"F:\Development\Visual Studio Workspace\datx.txt"))
+            {
+                sw.WriteLine("hp :" + tempFileList.Count());
+                sw.WriteLine("lp2 :" + fileList.Count());
             }
             return priorityFileList;
         }

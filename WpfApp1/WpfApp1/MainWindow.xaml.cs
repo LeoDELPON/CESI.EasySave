@@ -350,11 +350,7 @@ namespace WpfApp1
                             });
                             threadLifeManager.SubscribeToSaves(bs.works[weList.IndexOf(we)]);
                             bs.works[weList.IndexOf(we)].SaveType.Subscribe(we.inWrkList);
-                            //
-                            //
-                            // ICI ON VA INJECTER LES EXTENSIONS DE NOTRE GUI VERS UNE VARIABLE DE LA SAVE
-                            //
-                            //
+                            bs.works[weList.IndexOf(we)].SaveType._priorityExtension = highPriorityExtention.GetExtentions();
                             bs.works[weList.IndexOf(we)].Perform();
                             bs.works[weList.IndexOf(we)].SaveType.Unsubscribe(we.inWrkList);//can be deleted
                             terminatedThreads++;

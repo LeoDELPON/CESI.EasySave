@@ -53,13 +53,16 @@ namespace WpfApp1
         public List<string> GetExtentions()
         {
             List<string> listString = new List<string>();
-            foreach (TextBox tb in listExtensionPriority)
+            Dispatcher.Invoke(() =>
             {
-                if (tb.Text.Length > 0)
+                foreach (TextBox tb in listExtensionPriority)
                 {
-                    listString.Add(tb.Text);
+                    if (tb.Text.Length > 0)
+                    {
+                        listString.Add(tb.Text);
+                    }
                 }
-            }
+            });
             return listString;
         }
 
