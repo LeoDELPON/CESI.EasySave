@@ -9,14 +9,13 @@ using CESI.BS.EasySave.BS.Observers;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class DataHandler : IObservable
+    public class DataHandler
     {
         private Dictionary<WorkProperties, object> dictionary = new Dictionary<WorkProperties, object>();
         private readonly Stopwatch stopwatch = new Stopwatch();
         public Stopwatch GetStopwatch { get { return stopwatch; } }
         public DataHandler() : base()
         {
-            serverSubscriber = new List<IObserver>();
         }
 
         public void Init(Dictionary<WorkProperties, object> newDictionary)
@@ -55,8 +54,6 @@ namespace CESI.BS.EasySave.BS
         public static DataHandler Instance { get { return lazy.Value; } }
 
         public Dictionary<WorkProperties, object> Dictionary { get => dictionary; set => dictionary = value; }
-        public List<IObserver> subscribers { get; set; } = new List<IObserver>();
-        public List<IObserver> serverSubscriber { get; set; }
 
         public bool OnStop(bool noError)
         {
@@ -85,7 +82,7 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public long OnNext(Dictionary<WorkProperties, object> newDictionary)
+        public Dictionary<WorkProperties, object> OnNext(Dictionary<WorkProperties, object> newDictionary)
         {
             if(newDictionary != null)
             {
@@ -93,42 +90,15 @@ namespace CESI.BS.EasySave.BS
                 dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
                 dictionary[WorkProperties.Duration] = stopwatch.ElapsedMilliseconds;
                 dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
-                long progress = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
-
-                NotifyServer(Dictionary);
+                dictionary[WorkProperties.Progress]= ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
                 Logger.GenerateLog(Dictionary);
                 StatusLogger.GenerateStatusLog(Dictionary);
-                return progress;
+                return dictionary;
             } else
             {
-                return -1;
+                return null;
             }
             
-        }
-
-        public void SubscribeServer(IObserver obs)
-        {
-            serverSubscriber.Add(obs);
-        }
-
-        public void NotifyServer(Dictionary<WorkProperties, object> dict)
-        {
-            DTODataServer dto = new WorkFactory().CreateDtoDataServer(dict);
-            try
-            {
-                foreach (IObserver obs in serverSubscriber)
-                {
-                    obs.ReactDataLogServ(dto);
-                }
-            }catch(Exception e)
-            {
-                Console.WriteLine("[-] An error occured while trying to notify the server : {0}", e);
-            }
-        }
-
-        public void UnSubscribeServer(IObserver obs)
-        {
-            serverSubscriber.Remove(obs);
         }
     }
 }

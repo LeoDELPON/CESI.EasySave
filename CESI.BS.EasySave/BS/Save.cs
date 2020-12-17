@@ -87,19 +87,12 @@ namespace CESI.BS.EasySave.BS
 
 
             ICollection<FileInfo> listFileLowPrio = SelectFilesToCopy(_srcDir, _fullDir);
-            using (StreamWriter sw = new StreamWriter(@"F:\Development\Visual Studio Workspace\data.txt"))
-            {              
-                sw.WriteLine("lp1 :" + listFileLowPrio.Count());
-            }
+            
             propertiesWork[WorkProperties.EligibleFiles] = listFileLowPrio.Count();
             propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileLowPrio);
 
             IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
-            using (StreamWriter sw = new StreamWriter(@"F:\Development\Visual Studio Workspace\dat.txt"))
-            {
-                sw.WriteLine("hp :" + listFileHighPrio.Count());
-                sw.WriteLine("lp2 :" + listFileLowPrio.Count());
-            }
+            
             propertiesWork[WorkProperties.Source] = SrcPath;
             propertiesWork[WorkProperties.TypeSave] = TypeSave;
             propertiesWork[WorkProperties.Target] = BackupPath;
@@ -133,11 +126,11 @@ namespace CESI.BS.EasySave.BS
             subscribers.Add(obs);
         }
 
-        public void NotifyAll(long progress)
+        public void NotifyAll(Dictionary<WorkProperties, object> dict)
         {
             foreach (Observer obs in subscribers)
             {
-                obs.ReactProgression(progress);
+                obs.ReactDataUpdate(dict);
             }
         }
 
@@ -262,10 +255,12 @@ namespace CESI.BS.EasySave.BS
             DirectoryInfo directorySave;
             long Duration = 0;
             long EncryptTime = 0;
+            handler.GetStopwatch.Start();
             try
             {
                 foreach (FileInfo file in fileList)
                 {
+                    WaitForUnpause();
                     directorySave = new DirectoryInfo(file.DirectoryName.Replace(SrcPath, Path.GetFullPath(BackupPath, propertiesWork[WorkProperties.Source].ToString())));
                     try
                     {
@@ -281,7 +276,6 @@ namespace CESI.BS.EasySave.BS
                         stopwatch.Stop();
 
                         Duration += stopwatch.ElapsedMilliseconds;
-
                         Console.WriteLine("[+] Copying {0}", file.FullName);
                     }
                     //gestion des erreurs
@@ -294,7 +288,7 @@ namespace CESI.BS.EasySave.BS
                     FolderSize -= file.Length;
                     propertiesWork[WorkProperties.RemainingSize] = FolderSize;
                     propertiesWork[WorkProperties.EncryptDuration] = EncryptTime;
-                    handler.OnNext(propertiesWork);
+                    NotifyAll(handler.OnNext(propertiesWork));
                 }
                 handler.OnStop(true);
                 return true;
@@ -323,15 +317,10 @@ namespace CESI.BS.EasySave.BS
                     isEncrypted = true;
                     return;
                 }
-                
-                
-
-
             });
             if (!isEncrypted)
             {
-                file.CopyTo(file.FullName.Replace(_srcDir.FullName, BackupPath), true);
-                
+                file.CopyTo(file.FullName.Replace(_srcDir.FullName, BackupPath), true); 
             }
             return stopwatch2.ElapsedMilliseconds;
         }
@@ -360,12 +349,6 @@ namespace CESI.BS.EasySave.BS
             }
             List<FileInfo> aTempfileList = fileList.Except(tempFileList).ToList();
             fileList = aTempfileList;
-
-            using (StreamWriter sw = new StreamWriter(@"F:\Development\Visual Studio Workspace\datx.txt"))
-            {
-                sw.WriteLine("hp :" + tempFileList.Count());
-                sw.WriteLine("lp2 :" + fileList.Count());
-            }
             return priorityFileList;
         }
 

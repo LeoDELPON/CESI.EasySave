@@ -70,9 +70,7 @@ namespace CESI.BS.EasySave.BS
       
           
             }   
-                
-              
-
+             
          }
 
         void processStopEvent_EventArrived(object sender, EventArrivedEventArgs e)

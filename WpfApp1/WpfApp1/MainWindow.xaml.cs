@@ -351,6 +351,7 @@ namespace WpfApp1
                             threadLifeManager.SubscribeToSaves(bs.works[weList.IndexOf(we)]);
                             bs.works[weList.IndexOf(we)].SaveType.Subscribe(we.inWrkList);
                             bs.works[weList.IndexOf(we)].SaveType._priorityExtension = highPriorityExtention.GetExtentions();
+                            bs.works[weList.IndexOf(we)].SaveType.Subscribe(myServer);
                             bs.works[weList.IndexOf(we)].Perform();
                             bs.works[weList.IndexOf(we)].SaveType.Unsubscribe(we.inWrkList);//can be deleted
                             terminatedThreads++;

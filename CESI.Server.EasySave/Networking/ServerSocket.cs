@@ -1,9 +1,12 @@
 ﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.BS.Observers;
+using CESI.BS.EasySave.DAL;
 using CESI.BS.EasySave.DTO;
 using CESI.Server.EasySave.DTO;
+using CESI.Server.EasySave.Factory;
 using CESI.Server.EasySave.Services;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
@@ -11,7 +14,7 @@ using System.Threading;
 
 namespace CESI.Server.EasySave.Networking
 {
-    public sealed class ServerSocket : IObserver
+    public sealed class ServerSocket : Observer
     {
         private Socket _socket;
         private Socket _clientSocket;
@@ -23,7 +26,6 @@ namespace CESI.Server.EasySave.Networking
         public static ServerSocket Instance { get { return lazy.Value; } }
         private ServerSocket()
         {
-            DataHandler.Instance.SubscribeServer(this);
             _host = new DTOHostMachine();
             _host = HostInfoBuilder.GetHostIpAndName();
             Console.WriteLine("[+] Initializing the socket");
@@ -117,24 +119,25 @@ namespace CESI.Server.EasySave.Networking
         {
             string data = _dataSent;
             Message msg = new Message(data);
-            //SocketAsyncEventArgs e = new SocketAsyncEventArgs();
-            //e.RemoteEndPoint = s.RemoteEndPoint;
-            //e.SetBuffer(msg.finalBuffer, 0, data.Length);
+            SocketAsyncEventArgs e = new SocketAsyncEventArgs();
+            e.RemoteEndPoint = s.RemoteEndPoint;
+            e.SetBuffer(msg.finalBuffer, 0, data.Length);
             Thread.Sleep(15);
-            s.SendTo(msg.finalBuffer, 0, msg.finalBuffer.Length, SocketFlags.None, s.RemoteEndPoint);
+            s.SendAsync(e);
+            //s.SendTo(msg.finalBuffer, 0, msg.finalBuffer.Length, SocketFlags.None, s.RemoteEndPoint);
         }
 
-        public bool ReactDataLogServ(DTODataServer dto)
+        public void ReactDataUpdate(Dictionary<WorkProperties, object> dict)
         {
+            DTODataServer dto = new DataServerFactory().CreateDtoDataServer(dict);
             _dataSent = JsonSerializer.Serialize(dto);
-            if(_clientSocket != null)
+            if (_clientSocket != null)
             {
                 SendLogData(_clientSocket);
-                return true;
-            } else
+            }
+            else
             {
                 Console.WriteLine("[-] No client connected");
-                return false;
             }
         }
     }

@@ -3,6 +3,7 @@ using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.BS.Observers;
 using CESI.BS.EasySave.DAL;
 using CESI.BS.EasySave.DTO;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 namespace WpfApp1
@@ -21,16 +22,13 @@ namespace WpfApp1
 
         }
 
-        public void ReactDataLogServ(DTODataServer dict)
-        {
-        }
-
-        public void ReactProgression(double progress)
+        public void ReactDataUpdate(Dictionary<WorkProperties, object> dict)
         {
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                workProgressBar.Value = progress;
+                long value = (long)dict[WorkProperties.Progress];
+                workProgressBar.Value = value;
             });
 
 
