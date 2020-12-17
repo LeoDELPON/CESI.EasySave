@@ -1,18 +1,6 @@
-﻿using CESI.BS.EasySave.BS;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
 
 namespace WpfApp1
 {
@@ -22,7 +10,7 @@ namespace WpfApp1
     public partial class ModifyWorkWindow : Window
     {
         public WrkElements we { get; set; } = new WrkElements();
-        public string errorText { get; set; } = "";        
+        public string errorText { get; set; } = "";
         public ModifyWorkWindow()
         {
             InitializeComponent();
@@ -37,7 +25,7 @@ namespace WpfApp1
         {
             HideCypher();
 
-          
+
 
         }
         void HideCypher()
@@ -64,15 +52,15 @@ namespace WpfApp1
         {
             e.Cancel = true;
             Hide();
-            
+
         }
 
-        internal void DoubleClickOnWorkElement(object sender, MouseButtonEventArgs e,   WrkElements we)
+        internal void DoubleClickOnWorkElement(object sender, MouseButtonEventArgs e, WrkElements we)
         {
             if (!IsVisible)
             {
                 this.we = we;
-                
+
                 Show();
                 UpdateWv();
 
@@ -83,12 +71,12 @@ namespace WpfApp1
 
         private void UpdateWv()
         {
-            WorkNameTB.Text = we.wv.name;
-            WorkSourceTB.Text = we.wv.source;
-            WorkTargetTB.Text = we.wv.target;
-            SaveTypeCB.SelectedIndex = we.wv.typeSave;
-            KeyTB.Text = we.wv.key;
-            CypherOptionsCHB.IsChecked = we.chiffrage;
+            WorkNameTB.Text = we.WV.name;
+            WorkSourceTB.Text = we.WV.source;
+            WorkTargetTB.Text = we.WV.target;
+            SaveTypeCB.SelectedIndex = we.WV.typeSave;
+            KeyTB.Text = we.WV.key;
+            CypherOptionsCHB.IsChecked = we.Chiffrage;
             /* if (we.chiffrage)
              {
                  ShowCypherOptions();
@@ -97,19 +85,19 @@ namespace WpfApp1
              {
                  HideCypher();
              }*/
-            for (int i = extLV.Items.Count -1; i>=1; i--)
+            for (int i = extLV.Items.Count - 1; i >= 1; i--)
             {
                 extLV.Items.RemoveAt(i);
             }
 
-            foreach (string ext in we.wv.cryptoExtensions)
+            foreach (string ext in we.WV.cryptoExtensions)
             {
                 TextBox tb = new TextBox();
                 tb.Width = 180;
                 tb.Text = ext;
                 extLV.Items.Add(tb);
             }
-           
+
 
         }
 
@@ -127,11 +115,11 @@ namespace WpfApp1
         {
             if (extLV.Items.Count > 1)
             {
-               ((TextBox) extLV.Items[extLV.Items.Count - 1]).Text = "";
+                ((TextBox)extLV.Items[extLV.Items.Count - 1]).Text = "";
                 extLV.Items.RemoveAt(extLV.Items.Count - 1);
             }
         }
-       
-       
+
+
     }
 }

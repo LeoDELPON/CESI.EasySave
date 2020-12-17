@@ -1,11 +1,10 @@
-﻿using System;
+﻿using CESI.BS.EasySave.BS;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
-using CESI.BS.EasySave.BS;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CESI.BS.EasySave.UnitTest.BsTest
 {
@@ -14,7 +13,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
     public class LanguageTest
     {
         internal List<string> _languageTest;
-        
+
         [TestInitialize()]
         public void Init()
         {
@@ -28,7 +27,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
         [TestMethod]
         public void SetChosenLanguageTest()
         {
-            for(int i = 0; i < _languageTest.Count(); ++i )
+            for (int i = 0; i < _languageTest.Count(); ++i)
             {
                 Assert.AreEqual(_languageTest[i], Language.languages[i]);
             }

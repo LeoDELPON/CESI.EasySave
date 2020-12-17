@@ -1,7 +1,5 @@
 ﻿using CESI.BS.EasySave.DAL;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CESI.Server.EasySave.Factory
 {
@@ -9,19 +7,21 @@ namespace CESI.Server.EasySave.Factory
     {
         public override DTODataServer CreateDtoDataServer(Dictionary<WorkProperties, object> propertiesServer)
         {
-            DTODataServer dataServer = new DTODataServer();
-            dataServer.Date = propertiesServer[WorkProperties.Date].ToString();
-            dataServer.Name = propertiesServer[WorkProperties.Name].ToString();
-            dataServer.Source = propertiesServer[WorkProperties.Source].ToString();
-            dataServer.TypeSave = propertiesServer[WorkProperties.TypeSave].ToString();
-            dataServer.Target = propertiesServer[WorkProperties.Target].ToString();
-            dataServer.Size = propertiesServer[WorkProperties.Size].ToString();
-            dataServer.Duration = propertiesServer[WorkProperties.Duration].ToString();
-            dataServer.EncryptDuration = propertiesServer[WorkProperties.EncryptDuration].ToString();
-            dataServer.State = propertiesServer[WorkProperties.State].ToString();
-            dataServer.EligibleFiles = propertiesServer[WorkProperties.EligibleFiles].ToString();
-            dataServer.Progress = propertiesServer[WorkProperties.Progress].ToString();
-            dataServer.RemainingSize = propertiesServer[WorkProperties.RemainingSize].ToString();
+            DTODataServer dataServer = new DTODataServer
+            {
+                Date = propertiesServer[WorkProperties.Date].ToString(),
+                Name = propertiesServer[WorkProperties.Name].ToString(),
+                Source = propertiesServer[WorkProperties.Source].ToString(),
+                TypeSave = propertiesServer[WorkProperties.TypeSave].ToString(),
+                Target = propertiesServer[WorkProperties.Target].ToString(),
+                Size = propertiesServer[WorkProperties.Size].ToString(),
+                Duration = propertiesServer[WorkProperties.Duration].ToString(),
+                EncryptDuration = propertiesServer[WorkProperties.EncryptDuration].ToString(),
+                State = propertiesServer[WorkProperties.State].ToString(),
+                EligibleFiles = propertiesServer[WorkProperties.EligibleFiles].ToString(),
+                Progress = propertiesServer[WorkProperties.Progress].ToString(),
+                RemainingSize = propertiesServer[WorkProperties.RemainingSize].ToString()
+            };
             return dataServer;
         }
     }

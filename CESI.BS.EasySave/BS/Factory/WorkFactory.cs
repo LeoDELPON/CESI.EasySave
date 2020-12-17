@@ -1,8 +1,6 @@
 ﻿using CESI.BS.EasySave.DAL;
 using CESI.BS.EasySave.DTO;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CESI.BS.EasySave.BS.Factory
 {
@@ -15,8 +13,8 @@ namespace CESI.BS.EasySave.BS.Factory
                 properties[WorkProperties.Name].ToString(),
                 properties[WorkProperties.Source].ToString(),
                 properties[WorkProperties.Target].ToString(),
-                CreateSaveObject(properties[WorkProperties.TypeSave].ToString(), 
-                    properties[WorkProperties.Name].ToString(), 
+                CreateSaveObject(properties[WorkProperties.TypeSave].ToString(),
+                    properties[WorkProperties.Name].ToString(),
                     (List<string>)properties[WorkProperties.CryptoExtensions],
                     (List<string>)properties[WorkProperties.PriorityExtensions],
                     properties[WorkProperties.Key].ToString())
@@ -25,47 +23,44 @@ namespace CESI.BS.EasySave.BS.Factory
 
         public override Save CreateSaveObject(string _saveType, string prop, List<string> cryptoExtensions, List<string> priorityExtensions, string key)
         {
-            Save _save;
-            switch(_saveType.GetSaveTypeFromString())
+            Save _save = (_saveType.GetSaveTypeFromString()) switch
             {
-                case SaveType.DIFFERENTIAL:
-                    _save = new Differential(prop, cryptoExtensions, priorityExtensions, key);
-                    break;
-                case SaveType.FULL:
-                    _save = new Full(prop, cryptoExtensions, priorityExtensions, key);
-                    break;
-                default:
-                    _save = new Full(prop, cryptoExtensions, priorityExtensions, key);
-                    break;
-            }
+                SaveType.DIFFERENTIAL => new Differential(prop, cryptoExtensions, priorityExtensions, key),
+                SaveType.FULL => new Full(prop, cryptoExtensions, priorityExtensions, key),
+                _ => new Full(prop, cryptoExtensions, priorityExtensions, key),
+            };
             return _save;
         }
 
         public override DTOLogger CreateDtoLogger(Dictionary<WorkProperties, object> propertiesLogs)
         {
-            DTOLogger logger = new DTOLogger();
-            logger.Date = propertiesLogs[WorkProperties.Date].ToString();
-            logger.Name = propertiesLogs[WorkProperties.Name].ToString();
-            logger.Source = propertiesLogs[WorkProperties.Source].ToString();
-            logger.Target = propertiesLogs[WorkProperties.Target].ToString();
-            logger.Size = propertiesLogs[WorkProperties.Size].ToString();
-            logger.Duration = propertiesLogs[WorkProperties.Duration].ToString();
-            logger.EncryptDuration = propertiesLogs[WorkProperties.EncryptDuration].ToString();
+            DTOLogger logger = new DTOLogger
+            {
+                Date = propertiesLogs[WorkProperties.Date].ToString(),
+                Name = propertiesLogs[WorkProperties.Name].ToString(),
+                Source = propertiesLogs[WorkProperties.Source].ToString(),
+                Target = propertiesLogs[WorkProperties.Target].ToString(),
+                Size = propertiesLogs[WorkProperties.Size].ToString(),
+                Duration = propertiesLogs[WorkProperties.Duration].ToString(),
+                EncryptDuration = propertiesLogs[WorkProperties.EncryptDuration].ToString()
+            };
             return logger;
         }
 
         public override DTOStatusLogger CreateDtoStatusLogger(Dictionary<WorkProperties, object> propertiesStatus)
         {
-            DTOStatusLogger statusLogger = new DTOStatusLogger();
-            statusLogger.Name = propertiesStatus[WorkProperties.Name].ToString();
-            statusLogger.State = propertiesStatus[WorkProperties.State].ToString();
-            statusLogger.EligibleFiles = propertiesStatus[WorkProperties.EligibleFiles].ToString();
-            statusLogger.Size = propertiesStatus[WorkProperties.Size].ToString();
-            statusLogger.Progress = propertiesStatus[WorkProperties.Progress].ToString();
-            statusLogger.RemainingSize = propertiesStatus[WorkProperties.RemainingSize].ToString();
-            statusLogger.Source = propertiesStatus[WorkProperties.Source].ToString();
-            statusLogger.Target = propertiesStatus[WorkProperties.Target].ToString();
-            statusLogger.Date = propertiesStatus[WorkProperties.Date].ToString();
+            DTOStatusLogger statusLogger = new DTOStatusLogger
+            {
+                Name = propertiesStatus[WorkProperties.Name].ToString(),
+                State = propertiesStatus[WorkProperties.State].ToString(),
+                EligibleFiles = propertiesStatus[WorkProperties.EligibleFiles].ToString(),
+                Size = propertiesStatus[WorkProperties.Size].ToString(),
+                Progress = propertiesStatus[WorkProperties.Progress].ToString(),
+                RemainingSize = propertiesStatus[WorkProperties.RemainingSize].ToString(),
+                Source = propertiesStatus[WorkProperties.Source].ToString(),
+                Target = propertiesStatus[WorkProperties.Target].ToString(),
+                Date = propertiesStatus[WorkProperties.Date].ToString()
+            };
             return statusLogger;
         }
     }

@@ -1,12 +1,7 @@
 ﻿using CESI.BS.EasySave.DAL;
-using CESI.BS.EasySave.BS;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security;
-using System.Text;
-using System.Diagnostics;
 
 namespace CESI.BS.EasySave.BS
 {

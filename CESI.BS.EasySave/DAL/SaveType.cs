@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CESI.BS.EasySave.DAL
 {
@@ -51,7 +49,7 @@ namespace CESI.BS.EasySave.DAL
         }
         public static string GetSaveTypeFromInt(int i)
         {
-            return GetString((SaveType) i);
+            return GetString((SaveType)i);
         }
     }
 }

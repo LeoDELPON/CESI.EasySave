@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -20,14 +13,14 @@ namespace WpfApp1
     /// </summary>
     public partial class LanguageSelectionWindow : Window
     {
-        List<InfoLanguage> listLanguage = new List<InfoLanguage>();
+        readonly List<InfoLanguage> listLanguage = new List<InfoLanguage>();
         struct InfoLanguage
         {
             public string name;
             public Uri path;
-       
+
         }
-        private ResourceDictionary obj;
+        private readonly ResourceDictionary obj;
         public LanguageSelectionWindow()
         {
             InitializeComponent();
@@ -40,25 +33,25 @@ namespace WpfApp1
             }
             LanguageCB.SelectedIndex = 1;
             LanguageCB.SelectionChanged += LanguageCB_SelectionChanged;
-            
-            
+
+
         }
-     
+
         private void LanguageCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            ChangeLangage(getLanguagePath());
+
+            ChangeLangage(GetLanguagePath());
         }
 
         private void LanguageSelectionWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-           
-                e.Cancel = true;
-                Hide();
-            
+
+            e.Cancel = true;
+            Hide();
+
         }
 
-        public Uri getLanguagePath()
+        public Uri GetLanguagePath()
         {
             return listLanguage[LanguageCB.SelectedIndex].path;
         }

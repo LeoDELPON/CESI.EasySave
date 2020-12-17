@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CESI.BS.EasySave.DTO
+﻿namespace CESI.BS.EasySave.DTO
 {
     public class DTOStatusLogger
     {

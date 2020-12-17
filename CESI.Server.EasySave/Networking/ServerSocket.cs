@@ -1,7 +1,5 @@
-﻿using CESI.BS.EasySave.BS;
-using CESI.BS.EasySave.BS.Observers;
+﻿using CESI.BS.EasySave.BS.Observers;
 using CESI.BS.EasySave.DAL;
-using CESI.BS.EasySave.DTO;
 using CESI.Server.EasySave.DTO;
 using CESI.Server.EasySave.Factory;
 using CESI.Server.EasySave.Services;
@@ -14,11 +12,11 @@ using System.Threading;
 
 namespace CESI.Server.EasySave.Networking
 {
-    public sealed class ServerSocket : Observer
+    public sealed class ServerSocket : IObserver
     {
-        private Socket _socket;
+        private readonly Socket _socket;
         private Socket _clientSocket;
-        private DTOHostMachine _host;
+        private readonly DTOHostMachine _host;
         private const int PORT = 9999;
         private byte[] _buffer = new byte[1024];
         private string _dataSent = "SB";
@@ -30,7 +28,7 @@ namespace CESI.Server.EasySave.Networking
             _host = HostInfoBuilder.GetHostIpAndName();
             Console.WriteLine("[+] Initializing the socket");
             _socket = new Socket(
-                _host.ipAddress.AddressFamily,
+                _host.IPAddress.AddressFamily,
                 SocketType.Stream,
                 ProtocolType.Tcp);
         }
@@ -47,8 +45,8 @@ namespace CESI.Server.EasySave.Networking
             try
             {
                 Console.WriteLine("[+] Binding the IP to the port {0}", PORT);
-                Console.WriteLine("[+] Server adress {0}", _host.ipAddress);
-                _socket.Bind(new IPEndPoint(_host.ipAddress, PORT));
+                Console.WriteLine("[+] Server adress {0}", _host.IPAddress);
+                _socket.Bind(new IPEndPoint(_host.IPAddress, PORT));
             }
             catch (Exception e)
             {
@@ -62,7 +60,8 @@ namespace CESI.Server.EasySave.Networking
             try
             {
                 _socket.Listen(backlog);
-            } catch(ObjectDisposedException e)
+            }
+            catch (ObjectDisposedException e)
             {
                 Console.WriteLine("[-] The connection has been closed : {0}", e);
             }
@@ -87,7 +86,7 @@ namespace CESI.Server.EasySave.Networking
                 ReceiveCallBack,
                 clientSocket);
             AcceptConnection();
-            
+
         }
 
         private void ReceiveCallBack(IAsyncResult _clientSocketResult)
@@ -119,8 +118,10 @@ namespace CESI.Server.EasySave.Networking
         {
             string data = _dataSent;
             Message msg = new Message(data);
-            SocketAsyncEventArgs e = new SocketAsyncEventArgs();
-            e.RemoteEndPoint = s.RemoteEndPoint;
+            SocketAsyncEventArgs e = new SocketAsyncEventArgs
+            {
+                RemoteEndPoint = s.RemoteEndPoint
+            };
             e.SetBuffer(msg.finalBuffer, 0, data.Length);
             Thread.Sleep(15);
             s.SendAsync(e);

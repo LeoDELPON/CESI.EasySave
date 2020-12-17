@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -18,7 +16,7 @@ namespace CESI.BS.EasySave.BS
             {
                 Console.WriteLine("[-] The file may have been tried to be moved in another disk : {0}", error); ;
             }
-        }     
+        }
 
         public static void DeleteFile(string path)
         {
@@ -30,7 +28,7 @@ namespace CESI.BS.EasySave.BS
             {
                 Console.WriteLine("[-] there is no file with this name : {0}", error); ;
             }
-            
+
         }
 
         public static bool CheckFile(string requestedPath)

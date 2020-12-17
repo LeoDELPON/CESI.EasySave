@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -24,12 +15,12 @@ namespace WpfApp1
             InitializeComponent();
             Closing += ProcessusChoosing_Closing;
             listeProcess = Process.GetProcesses();
-            AddNewCB();   
-          
-            
+            AddNewCB();
+
+
         }
-        public 
-        
+        public
+
 
         void ProcessusChoosing_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

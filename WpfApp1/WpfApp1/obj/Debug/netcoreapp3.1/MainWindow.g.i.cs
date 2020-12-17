@@ -164,7 +164,7 @@ namespace WpfApp1 {
             this.launchWorkBtn = ((System.Windows.Controls.Button)(target));
             
             #line 28 "..\..\..\MainWindow.xaml"
-            this.launchWorkBtn.Click += new System.Windows.RoutedEventHandler(this.launchWorksButton);
+            this.launchWorkBtn.Click += new System.Windows.RoutedEventHandler(this.LaunchWorksButton);
             
             #line default
             #line hidden
@@ -199,7 +199,7 @@ namespace WpfApp1 {
             case 10:
             
             #line 34 "..\..\..\MainWindow.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.languageBtn_Click);
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.LanguageBtn_Click);
             
             #line default
             #line hidden

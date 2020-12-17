@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -21,9 +20,9 @@ namespace CESI.BS.EasySave.BS
         //Can be called to choose and change language
         public static bool SetChosenLanguage(string newLanguage)
         {
-            foreach(string lang in languages)
+            foreach (string lang in languages)
             {
-                if(newLanguage == lang)
+                if (newLanguage == lang)
                 {
                     chosenLanguage = newLanguage;
                     return true;
@@ -32,7 +31,7 @@ namespace CESI.BS.EasySave.BS
             return false;
         }
         public static List<string> languages = new List<string>() { "fr", "en" };
-        public static List<string> GetAllLanguages() 
+        public static List<string> GetAllLanguages()
         {
             return languages;
         }
@@ -46,7 +45,7 @@ namespace CESI.BS.EasySave.BS
         //Core function for "GetRequestedString to work, it apply regex to whole file and return wanted value
         private static string ExtractStringByID(int stringID)
         {
-            regex = new Regex(@"(?s)" + stringID + @"<.+?" + chosenLanguage + @">(.*?)<\/.{2}>");
+            regex = new Regex(@"(?s)" + stringID + @"<.+?" + ChosenLanguage + @">(.*?)<\/.{2}>");
             Match match = regex.Match(File.ReadAllText(DataFilePath + DataFileName));
             return match.Groups[1].Value;
         }

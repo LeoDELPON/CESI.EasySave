@@ -1,11 +1,8 @@
-﻿using System;
+﻿using CESI.BS.EasySave.DAL;
+using System;
 using System.Collections.Generic;
-using CESI.BS.EasySave.DAL;
 using System.Diagnostics;
-using CESI.BS.EasySave.DTO;
-using CESI.BS.EasySave.BS.Factory;
 using System.Threading;
-using CESI.BS.EasySave.BS.Observers;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -41,7 +38,7 @@ namespace CESI.BS.EasySave.BS
             {
                 progress = (sizeProperty - (long)remainingSize) * 100 / sizeProperty;
                 Dictionary[WorkProperties.Progress] = progress;
-              
+
             }
             else
             {
@@ -50,14 +47,14 @@ namespace CESI.BS.EasySave.BS
             return progress;
         }
 
-        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() =>new DataHandler());
+        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() => new DataHandler());
         public static DataHandler Instance { get { return lazy.Value; } }
 
         public Dictionary<WorkProperties, object> Dictionary { get => dictionary; set => dictionary = value; }
 
         public bool OnStop(bool noError)
         {
-            stopwatch.Stop();           
+            stopwatch.Stop();
             if (noError)
             {
                 dictionary[WorkProperties.Duration] = Convert.ToString(stopwatch.ElapsedMilliseconds);
@@ -75,7 +72,8 @@ namespace CESI.BS.EasySave.BS
                 Logger.GenerateLog(Dictionary);
                 StatusLogger.GenerateStatusLog(Dictionary);
                 return true;
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("[-] An error occured : {0}", e);
                 return false;
@@ -84,21 +82,22 @@ namespace CESI.BS.EasySave.BS
 
         public Dictionary<WorkProperties, object> OnNext(Dictionary<WorkProperties, object> newDictionary)
         {
-            if(newDictionary != null)
+            if (newDictionary != null)
             {
                 dictionary[WorkProperties.RemainingSize] = newDictionary[WorkProperties.RemainingSize];
                 dictionary[WorkProperties.RemainingFiles] = newDictionary[WorkProperties.RemainingFiles];
                 dictionary[WorkProperties.Duration] = stopwatch.ElapsedMilliseconds;
                 dictionary[WorkProperties.EncryptDuration] = newDictionary[WorkProperties.EncryptDuration];
-                dictionary[WorkProperties.Progress]= ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
+                dictionary[WorkProperties.Progress] = ComputeProgress((Int64)newDictionary[WorkProperties.RemainingSize]);
                 Logger.GenerateLog(Dictionary);
                 StatusLogger.GenerateStatusLog(Dictionary);
                 return dictionary;
-            } else
+            }
+            else
             {
                 return null;
             }
-            
+
         }
     }
 }

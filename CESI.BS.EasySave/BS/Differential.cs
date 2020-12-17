@@ -1,12 +1,8 @@
 ﻿using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CESI.BS.EasySave.BS
 {
@@ -20,7 +16,7 @@ namespace CESI.BS.EasySave.BS
         /// <param name="key"></param>
         public Differential(string props, List<string> cryptoExtensions, List<string> priorityExtensions, string key)
         {
-            IdTypeSave  = "dif";
+            IdTypeSave = "dif";
             TypeSave = SaveType.DIFFERENTIAL;
             propertiesWork[WorkProperties.Name] = props;
             _cryptoExtension = cryptoExtensions;
@@ -41,7 +37,7 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public override List<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir,DirectoryInfo fullDir)
+        public override List<FileInfo> SelectFilesToCopy(DirectoryInfo srcDir, DirectoryInfo fullDir)
         {
             IEnumerable<FileInfo> listFileSource = GetFilesFromFolder(srcDir);
             IEnumerable<FileInfo> listFileFullSave = GetFilesFromFolder(fullDir);

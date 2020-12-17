@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,10 +9,9 @@ namespace WpfApp1
 {
     public partial class CipherWindow : Window
     {
-
-        List<InfoLanguage> listLanguage = new List<InfoLanguage>();
+        readonly List<InfoLanguage> listLanguage = new List<InfoLanguage>();
         public List<TextBox> extentionList = new List<TextBox>();
-        
+
 
         struct InfoLanguage
         {
@@ -53,11 +48,11 @@ namespace WpfApp1
             keyTextBox.Text = "";
             extentionList.Clear();
             SPExtention.Items.Clear();
-          //  if ((keyTextBox.Text.Length==0 && extentionList.Count ==0) || (keyTextBox.Text.Length > 0 && extentionList.Count > 0))
+            //  if ((keyTextBox.Text.Length==0 && extentionList.Count ==0) || (keyTextBox.Text.Length > 0 && extentionList.Count > 0))
             //{
-                Hide();
+            Hide();
             //}
-            
+
         }
 
         private void RemoveExtentionButon_Click(object sender, RoutedEventArgs e)

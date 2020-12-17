@@ -1,9 +1,4 @@
-﻿using CESI.BS.EasySave;
-using System;
-using System.Diagnostics;
-using System.Threading;
-
-namespace CesiEasySave
+﻿namespace CesiEasySave
 {
     class Program
     {
@@ -15,5 +10,5 @@ namespace CesiEasySave
 
         }
     }
-    
+
 }

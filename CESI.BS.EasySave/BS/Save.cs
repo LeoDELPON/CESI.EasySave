@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CESI.BS.EasySave.BS
 {
 
-    public abstract class Save : Observable, ObservableFileSize
+    public abstract class Save : IObservable, IObservableFileSize
     {
         protected long FolderSize { get; set; }
 
@@ -39,8 +39,8 @@ namespace CESI.BS.EasySave.BS
 
         public object pause = new object();
         public string IdTypeSave { get; set; }
-        public List<Observer> subscribers { get; set; } = new List<Observer>();
-        public List<ObserverFileSize> subscribersFileSize { get; set; } = new List<ObserverFileSize>();
+        public List<IObserver> Subscribers { get; set; } = new List<IObserver>();
+        public List<IObserverFileSize> SubscribersFileSize { get; set; } = new List<IObserverFileSize>();
 
         public DataHandler handler = DataHandler.Instance;
         public static int SUCCESS_OPERATION = 0;
@@ -50,7 +50,7 @@ namespace CESI.BS.EasySave.BS
         public static int NO_FULL_SAVE = 4;
         public Save()
         {
-  
+
             propertiesWork = new Dictionary<WorkProperties, object>
             {
                 { WorkProperties.Duration, 0 },
@@ -64,7 +64,7 @@ namespace CESI.BS.EasySave.BS
             };
         }
 
-      
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary> design pattern "template method" </summary>
         ///
@@ -87,18 +87,19 @@ namespace CESI.BS.EasySave.BS
 
 
             ICollection<FileInfo> listFileLowPrio = SelectFilesToCopy(_srcDir, _fullDir);
-            
+
             propertiesWork[WorkProperties.EligibleFiles] = listFileLowPrio.Count();
             propertiesWork[WorkProperties.Size] = FolderSize = GetFilesSize(listFileLowPrio);
 
             IEnumerable<FileInfo> listFileHighPrio = FilterHighPriorityFiles(ref listFileLowPrio);
-            
+
             propertiesWork[WorkProperties.Source] = SrcPath;
             propertiesWork[WorkProperties.TypeSave] = TypeSave;
             propertiesWork[WorkProperties.Target] = BackupPath;
             handler.Init(propertiesWork);
 
-            if (LoopThroughFiles(listFileHighPrio)){
+            if (LoopThroughFiles(listFileHighPrio))
+            {
                 return LoopThroughFiles(listFileLowPrio);
             }
             else
@@ -121,14 +122,14 @@ namespace CESI.BS.EasySave.BS
             Monitor.Enter(pause);
             Monitor.Exit(pause);
         }
-        public void Subscribe(Observer obs)
+        public void Subscribe(IObserver obs)
         {
-            subscribers.Add(obs);
+            Subscribers.Add(obs);
         }
 
         public void NotifyAll(Dictionary<WorkProperties, object> dict)
         {
-            foreach (Observer obs in subscribers)
+            foreach (IObserver obs in Subscribers)
             {
                 obs.ReactDataUpdate(dict);
             }
@@ -142,24 +143,24 @@ namespace CESI.BS.EasySave.BS
                 Monitor.Enter(ThreadMutex.bigFile);
             }
         }
-        public void Unsubscribe(Observer obs)
+        public void Unsubscribe(IObserver obs)
         {
-            subscribers.Remove(obs);
+            Subscribers.Remove(obs);
         }
 
-        public void SubscribeFileSize(ObserverFileSize obs)
+        public void SubscribeFileSize(IObserverFileSize obs)
         {
-            subscribersFileSize.Add(obs);
+            SubscribersFileSize.Add(obs);
         }
 
-        public void UnsubscribeFileSize(ObserverFileSize obs)
+        public void UnsubscribeFileSize(IObserverFileSize obs)
         {
-            subscribersFileSize.Remove(obs);
+            SubscribersFileSize.Remove(obs);
         }
 
         public void NotifyFileSize()
         {
-            foreach(ObserverFileSize obs in subscribersFileSize)
+            foreach (IObserverFileSize obs in SubscribersFileSize)
             {
                 obs.React(this);
             }
@@ -167,11 +168,12 @@ namespace CESI.BS.EasySave.BS
         public void EndReact()
         {
 
-            if (Monitor.IsEntered(ThreadMutex.bigFile)){
+            if (Monitor.IsEntered(ThreadMutex.bigFile))
+            {
                 Monitor.Exit(ThreadMutex.bigFile);
             }
         }
-       
+
         public void CryptoSoft(string _key, string sourcePath, string destPath)
         {
             string arguments = _key + " " + sourcePath + " " + destPath;
@@ -182,7 +184,10 @@ namespace CESI.BS.EasySave.BS
         {
             int place = SrcPath.LastIndexOf(Find);
             if (place == -1)
+            {
                 return SrcPath;
+            }
+
             string result = SrcPath.Remove(place, Find.Length).Insert(place, Replace);
             return result;
         }
@@ -190,15 +195,16 @@ namespace CESI.BS.EasySave.BS
         public List<string> ScanSourceFolder()
         {
             List<string> availableExtensions = new List<string>();
-            foreach(FileInfo file in GetFilesFromFolder(_srcDir)){
-                foreach(string ext in availableExtensions)
+            foreach (FileInfo file in GetFilesFromFolder(_srcDir))
+            {
+                foreach (string ext in availableExtensions)
                 {
                     if (file.Extension != ext)
                     {
                         availableExtensions.Add(file.Extension);
                     }
                 }
-                
+
             }
             return availableExtensions;
         }
@@ -317,7 +323,7 @@ namespace CESI.BS.EasySave.BS
             });
             if (!isEncrypted)
             {
-                file.CopyTo(file.FullName.Replace(_srcDir.FullName, BackupPath), true); 
+                file.CopyTo(file.FullName.Replace(_srcDir.FullName, BackupPath), true);
             }
             return stopwatch2.ElapsedMilliseconds;
         }
@@ -327,7 +333,8 @@ namespace CESI.BS.EasySave.BS
             List<FileInfo> priorityFileList = new List<FileInfo>();
             List<FileInfo> tempFileList = new List<FileInfo>();
             bool isPrioritary = false;
-            foreach (FileInfo file in fileList) {
+            foreach (FileInfo file in fileList)
+            {
                 Parallel.ForEach(_priorityExtension, element =>
                 {
                     if (file.Extension == element)
@@ -347,11 +354,6 @@ namespace CESI.BS.EasySave.BS
             List<FileInfo> aTempfileList = fileList.Except(tempFileList).ToList();
             fileList = aTempfileList;
             return priorityFileList;
-        }
-
-        public void notifyFileSize()
-        {
-            throw new NotImplementedException();
         }
     }
 }

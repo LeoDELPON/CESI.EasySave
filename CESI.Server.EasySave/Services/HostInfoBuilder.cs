@@ -8,15 +8,19 @@ namespace CESI.Server.EasySave.Services
     {
         public static DTOHostMachine GetHostIpAndName()
         {
-            DTOHostMachine _dtoHostMachine = new DTOHostMachine();
-            _dtoHostMachine.hostname = Dns.GetHostName();
-            IPHostEntry ipHost = Dns.GetHostEntry(_dtoHostMachine.hostname);
+            DTOHostMachine _dtoHostMachine = new DTOHostMachine
+            {
+                Hostname = Dns.GetHostName()
+            };
+            IPHostEntry ipHost = Dns.GetHostEntry(_dtoHostMachine.Hostname);
             IPAddress[] ipAddrList = ipHost.AddressList;
 
             foreach (IPAddress ip in ipAddrList)
             {
                 if (ValidateIpAddressV4(ip.ToString()))
-                    _dtoHostMachine.ipAddress = ip;
+                {
+                    _dtoHostMachine.IPAddress = ip;
+                }
             }
 
             return _dtoHostMachine;

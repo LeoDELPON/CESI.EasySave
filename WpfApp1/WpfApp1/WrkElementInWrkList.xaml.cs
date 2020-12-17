@@ -2,7 +2,6 @@
 using CESI.BS.EasySave.BS.ConfSaver;
 using CESI.BS.EasySave.BS.Observers;
 using CESI.BS.EasySave.DAL;
-using CESI.BS.EasySave.DTO;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,13 +10,11 @@ namespace WpfApp1
     /// <summary>
     /// Logique d'interaction pour WrkElementInWrkList.xaml
     /// </summary>
-    public partial class WrkElementInWrkList : UserControl, Observer
+    public partial class WrkElementInWrkList : UserControl, IObserver
     {
-        BSEasySave bs;
-        public WrkElementInWrkList(ConfSaver.WorkVar workVar, BSEasySave BS)
+        public WrkElementInWrkList(ConfSaver.WorkVar workVar)
         {
             InitializeComponent();
-            bs = BS;
             UpdateWv(workVar);
 
         }

@@ -1,43 +1,38 @@
-﻿using CESI.BS.EasySave.BS;
-using CESI.BS.EasySave.DAL;
-using System;
+﻿using CESI.BS.EasySave.DAL;
 using System.Collections.Generic;
 using System.Management;
-using System.Windows;
-using System.Text;
 using System.Threading;
-using Xceed.Wpf.Toolkit;
 
 namespace CESI.BS.EasySave.BS
 {
-    public class ThreadLifeManager : ObserverFileSize
+    public class ThreadLifeManager : IObserverFileSize
     {
-        ManagementEventWatcher processStartEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStartTrace");
-        ManagementEventWatcher processStopEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStopTrace");
-        List<Thread> listThreads = new List<Thread>();
-        List<string> processes = new List<string>();
-        BSEasySave bs;
+        readonly ManagementEventWatcher processStartEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStartTrace");
+        readonly ManagementEventWatcher processStopEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStopTrace");
+        readonly List<Thread> listThreads = new List<Thread>();
+        readonly List<string> processes = new List<string>();
+        readonly BSEasySave bs;
         public static string notAdminErrorMsg = "NotAdminMsg";
         public static string processIsOnMessage = "ProcessIsOn";
         Thread threadPause;
         public delegate void OnErrorRaisedDel(string message);
-        public OnErrorRaisedDel OnErrorRaised { get; set; } =(string message)=> {  };
-     
-        CancellationTokenSource cts = new CancellationTokenSource();
-     
-        
-    public ThreadLifeManager(BSEasySave bs, List<string> p)
+        public OnErrorRaisedDel OnErrorRaised { get; set; } = (string message) => { };
+
+        readonly CancellationTokenSource cts = new CancellationTokenSource();
+
+
+        public ThreadLifeManager(BSEasySave bs, List<string> p)
         {
-            
-      
+
+
             this.bs = bs;
             processes = p;
             processStartEvent.EventArrived += new EventArrivedEventHandler(processStartEvent_EventArrived);
             processStopEvent.EventArrived += new EventArrivedEventHandler(processStopEvent_EventArrived);
-        
-           
+
+
         }
-     
+
         public void StartObservingProcesses()
         {
             try
@@ -52,7 +47,7 @@ namespace CESI.BS.EasySave.BS
         }
         void processStartEvent_EventArrived(object sender, EventArrivedEventArgs e)
         {
-           
+
             string str = (e.NewEvent).Properties["ProcessName"].Value.ToString();
             if (processes.Contains(str.Substring(0, str.Length - 4)))
             {
@@ -67,11 +62,11 @@ namespace CESI.BS.EasySave.BS
 
                 });
                 threadPause.Start();
-      
-          
-            }   
-             
-         }
+
+
+            }
+
+        }
 
         void processStopEvent_EventArrived(object sender, EventArrivedEventArgs e)
         {
@@ -81,11 +76,11 @@ namespace CESI.BS.EasySave.BS
                 Monitor.Enter(ThreadMutex.threadPauseWhenProcess);
                 Monitor.PulseAll(ThreadMutex.threadPauseWhenProcess);
                 Monitor.Exit(ThreadMutex.threadPauseWhenProcess);
-          
+
 
             }
         }
-      
+
         public void AddThread(Thread th)
         {
             listThreads.Add(th);
@@ -100,8 +95,8 @@ namespace CESI.BS.EasySave.BS
         }
 
         public void React(Save savetype)
-        {           
-            foreach(Work w in bs.works)
+        {
+            foreach (Work w in bs.works)
             {
                 if (!(w.SaveType == savetype))
                 {
@@ -131,16 +126,16 @@ namespace CESI.BS.EasySave.BS
             }
         }
         public void SubscribeToSaves(Work w)
-        {          
-            w.SaveType.SubscribeFileSize(this);            
+        {
+            w.SaveType.SubscribeFileSize(this);
         }
         public void UnsubscribeToSaves(Work w)
-        {                    
-             w.SaveType.UnsubscribeFileSize(this);
+        {
+            w.SaveType.UnsubscribeFileSize(this);
         }
         public bool Resume()
         {
-            
+
             bool allclear = true;
             foreach (Work w in bs.works)
             {
@@ -149,7 +144,7 @@ namespace CESI.BS.EasySave.BS
                     Monitor.Exit(w.SaveType.pause);
                     allclear = allclear && !Monitor.IsEntered(w.SaveType.pause);
                 }
-               
+
             }
             return allclear;
         }
@@ -164,6 +159,6 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-      
+
     }
 }

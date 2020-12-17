@@ -1,8 +1,6 @@
 ﻿using CESI.BS.EasySave.DAL;
 using CESI.BS.EasySave.DTO;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CESI.BS.EasySave.BS.Factory
 {

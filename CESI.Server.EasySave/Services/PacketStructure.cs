@@ -5,7 +5,7 @@ namespace CESI.Server.EasySave.Services
 {
     public abstract class PacketStructure
     {
-        private byte[] _buffer;
+        private readonly byte[] _buffer;
         public byte[] finalBuffer { get { return _buffer; } }
         public PacketStructure(ushort length)
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CESI.Server.EasySave
+﻿namespace CESI.Server.EasySave
 {
     public class DTODataServer
     {

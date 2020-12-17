@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace CESI.BS.EasySave.BS.Observers
 {
-    interface Observable
+    interface IObservable
     {
-        public void Subscribe(Observer obs);
-        public void Unsubscribe(Observer obs);
+        public void Subscribe(IObserver obs);
+        public void Unsubscribe(IObserver obs);
         public void NotifyAll(Dictionary<WorkProperties, object> dict);
-        public List<Observer> subscribers { get; set; }
+        public List<IObserver> Subscribers { get; set; }
     }
 }

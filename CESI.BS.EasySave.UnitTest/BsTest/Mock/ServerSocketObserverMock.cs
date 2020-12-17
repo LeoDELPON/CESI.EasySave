@@ -1,5 +1,4 @@
-﻿using CESI.BS.EasySave.DTO;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Text.Json;
 
 namespace CESI.BS.EasySave.UnitTest.BsTest.Mock

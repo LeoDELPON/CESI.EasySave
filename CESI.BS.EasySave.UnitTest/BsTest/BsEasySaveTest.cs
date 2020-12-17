@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CESI.BS.EasySave.BS;
+﻿using CESI.BS.EasySave.BS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CESI.BS.EasySave.UnitTest.BsTest
 {
@@ -32,8 +32,8 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
         public void AddWorkTest()
         {
             _bsTest.AddWork(
-                "work-test", 
-                "path", 
+                "work-test",
+                "path",
                 "pathDest",
                 "ful",
                 _listMock,
@@ -41,7 +41,7 @@ namespace CESI.BS.EasySave.UnitTest.BsTest
             Assert.AreEqual(_bsTest.works.LastOrDefault().Name, "work-test");
             Assert.AreEqual(_bsTest.works.LastOrDefault().Source, "path");
             Assert.AreEqual(_bsTest.works.LastOrDefault().Target, "pathDest");
-            _bsTest.DeleteWork(_bsTest.works.Count-1);
+            _bsTest.DeleteWork(_bsTest.works.Count - 1);
         }
 
         [TestMethod]

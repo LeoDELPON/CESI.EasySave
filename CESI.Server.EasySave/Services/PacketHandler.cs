@@ -1,6 +1,4 @@
-﻿using CESI.BS.EasySave.BS;
-using System;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 
 namespace CESI.Server.EasySave.Services
 {
@@ -18,10 +16,12 @@ namespace CESI.Server.EasySave.Services
             Message msg = new Message(packet);
             ActionResultMessage(msg.Text);
         }
-        public static bool DefaultOnResumeSent() {
+        public static bool DefaultOnResumeSent()
+        {
             return true;
         }
-        public static bool DefaultOnPauseSent() {
+        public static bool DefaultOnPauseSent()
+        {
             return true;
         }
         public static void DefaultOnAbortSent() { }

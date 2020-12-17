@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 
 namespace CESI.BS.EasySave.BS
-{ 
+{
     public static class ThreadMutex
     {
         public static object writeLogger = new object();

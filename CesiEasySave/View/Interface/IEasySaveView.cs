@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CESI.BS.EasySave.BS;
 using CESI.BS.EasySave.DAL;
-using CESI.BS.EasySave.BS;
-
-using System.Text;
+using System.Collections.Generic;
 
 namespace CesiEasySave.View.Interface
 {
@@ -23,6 +20,5 @@ namespace CesiEasySave.View.Interface
         public void TooMuchWorks();
         void unreachablePath();
     }
-} 
+}
 
-        

@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
@@ -19,7 +10,7 @@ namespace WpfApp1
     public partial class HighPriorityExtention : Window
     {
         public List<TextBox> listExtensionPriority = new List<TextBox>();
-  
+
         public HighPriorityExtention()
         {
             InitializeComponent();
@@ -37,8 +28,10 @@ namespace WpfApp1
 
         public void AddNewTB()
         {
-            TextBox tb = new TextBox();
-            tb.Width = 165;
+            TextBox tb = new TextBox
+            {
+                Width = 165
+            };
             ListTB.Items.Add(tb);
             listExtensionPriority.Add(tb);
         }

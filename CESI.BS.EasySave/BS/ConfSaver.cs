@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic;
 
 namespace CESI.BS.EasySave.BS.ConfSaver
 {
@@ -22,7 +22,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         public FileStream file;
         public string savePath = Environment.CurrentDirectory + @"\saveConf\";
         public string extension = ".xml";
-        
+
         public void SaveWork(WorkVar workvar)
         {
             byte[] header = new UTF8Encoding(true).GetBytes("<? xml version = \"1.0\" encoding = \"UTF-8\" ?>" + Environment.NewLine);
@@ -40,7 +40,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             }
             if (!File.Exists(savePath + workvar.name + extension))
             {
-               FileStream sr =  File.Create(savePath + workvar.name + extension);
+                FileStream sr = File.Create(savePath + workvar.name + extension);
                 sr.Close();
             }
         }
@@ -51,7 +51,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 FolderBuilder.CreateFolder(savePath);
             }
         }
-        public void modifyEntireFile(string name, WorkVar wv)
+        public void ModifyEntireFile(string name, WorkVar wv)
         {
             ModifyFile(name, 2, wv.source);
             ModifyFile(name, 3, wv.target);
@@ -63,7 +63,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         }
         public void ModifyFile(string name, int fieldChosen, List<string> newExts)
         {
-            if (fieldChosen==6)
+            if (fieldChosen == 6)
             {
                 string nameExt = name + extension;
                 if (!File.Exists(savePath + nameExt))
@@ -72,19 +72,18 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                 }
                 string strFieldChoosen = @"<extentions>";
                 string strFieldChoosenEnd = @"</extentions>";
-                string text = File.ReadAllText(savePath + nameExt);              
+                string text = File.ReadAllText(savePath + nameExt);
                 Match mtch = Regex.Match(text, @"<extentions>(\s*(.*))*\s*<\/extentions>.*");
-                string value = mtch.Value;
                 if (mtch.Success)
                 {
                     string finaltext = "";
                     foreach (string str in newExts)
                     {
-                        finaltext += "<ext>" + Environment.NewLine + str + Environment.NewLine + "</ext>"+ Environment.NewLine;
+                        finaltext += "<ext>" + Environment.NewLine + str + Environment.NewLine + "</ext>" + Environment.NewLine;
                     }
                     text = text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + finaltext + strFieldChoosenEnd);
                     File.WriteAllText(savePath + nameExt, text);
-                  
+
                 }
             }
         }
@@ -95,7 +94,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             {
                 return;
             }
-            string strFieldChoosen ;
+            string strFieldChoosen;
             string strFieldChoosenEnd;
             switch (fieldChosen)
             {
@@ -129,15 +128,12 @@ namespace CESI.BS.EasySave.BS.ConfSaver
                     break;
             }
             string text = File.ReadAllText(savePath + nameExt);
-            string testMatch = strFieldChoosen + Environment.NewLine + "(.*)" + Environment.NewLine + strFieldChoosenEnd + ".*";
-            
 
-               Match mtch = Regex.Match(text, strFieldChoosen + Environment.NewLine + "(.*)" + Environment.NewLine + strFieldChoosenEnd + ".*");
-            string value = mtch.Value;
+            Match mtch = Regex.Match(text, strFieldChoosen + Environment.NewLine + "(.*)" + Environment.NewLine + strFieldChoosenEnd + ".*");
             if (mtch.Success)
             {
 
-                text=text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd);
+                text = text.Replace(mtch.Value, strFieldChoosen + Environment.NewLine + newString + Environment.NewLine + strFieldChoosenEnd);
                 File.WriteAllText(savePath + nameExt, text);
                 if (fieldChosen == 1)
                 {
@@ -154,35 +150,38 @@ namespace CESI.BS.EasySave.BS.ConfSaver
             StreamReader sr;
             foreach (string fileStr in files)
             {
-                WorkVar workvar = new WorkVar();
-                workvar.cryptoExtensions = new List<string>();
-                sr  = File.OpenText(fileStr);
+                WorkVar workvar = new WorkVar
+                {
+                    cryptoExtensions = new List<string>()
+                };
+                sr = File.OpenText(fileStr);
                 string strReturn;
-                while ((strReturn = sr.ReadLine()) != null){
-            
-                  
+                while ((strReturn = sr.ReadLine()) != null)
+                {
+
+
                     switch (strReturn.Trim())
                     {
-                        case "<name>":                             
-                            workvar.name = sr.ReadLine().Trim();                          
+                        case "<name>":
+                            workvar.name = sr.ReadLine().Trim();
                             break;
                         case "<source>":
                             workvar.source = sr.ReadLine().Trim();
                             break;
                         case "<target>":
-                            workvar.target = sr.ReadLine().Trim(); 
+                            workvar.target = sr.ReadLine().Trim();
                             break;
                         case "<typeSave>":
                             workvar.typeSave = int.Parse(sr.ReadLine().Trim());
                             break;
                         case "<key>":
-                            workvar.key = sr.ReadLine().Trim(); 
+                            workvar.key = sr.ReadLine().Trim();
                             break;
                         case "<ext>":
-                            workvar.cryptoExtensions.Add(sr.ReadLine().Trim()); 
+                            workvar.cryptoExtensions.Add(sr.ReadLine().Trim());
                             break;
                         default:
-                           
+
                             break;
                     }
 
