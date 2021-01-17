@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RvKj+UYZr9PlxJZaG1YDxGmLBJt1a71q/WUNrgPA47CjeX1gh+6z8Im2Ew6/QL4zMnsE7jL7vutunoSkna8SWw==",
+  "dgSpecHash": "Z1AJcZWru0LAS4KoEZ9507SI4onWIBB6dViVbujr5DPpNarPs1Gj8yJpAo2mvLwiIBQoqhwmYaZ2VUoPD596Sw==",
   "success": true,
   "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
@@ -10,9 +10,7 @@
     "C:\\Users\\Marcus\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\system.management\\5.0.0\\system.management.5.0.0.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
   ],
   "logs": [
     {

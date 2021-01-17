@@ -40,9 +40,15 @@
     <system:String x:Key="EXTENSION">Type of file</system:String>
     <system:String x:Key="ADDEXTENSION">Add Extension to XOR</system:String>
     <!--AlertMessages-->
-    <system:String x:Key="NotAdminMsg">Please run Easy Same in admin mode for the "pause on process detected" fonction to work.</system:String>
+    <system:String x:Key="NotAdminMsg">Please run Easy Save in admin mode for the "pause on process detected" fonction to work.</system:String>
     <system:String x:Key="DirectoryDoesNotExist">One of the specified directory does not exists...</system:String>
+    <system:String x:Key="ThisDirectoryDoesNotExist">The specified directory does not exists...</system:String>
     <system:String x:Key="IsXorCheckedButKeyOrExtentionsNull">The Cypher Options are enabled but some fields are empty.</system:String>
     <system:String x:Key="ProcessIsOn">An critical process has been started. Works have been paused.</system:String>
-    
+    <!--exclusive to Console view-->
+    <system:String x:Key="ExecuteWork">execute a work</system:String>
+    <system:String x:Key="DeleteAWork">Delete a work</system:String>
+    <system:String x:Key="ExitIndications">CTRL + X to cancel</system:String>
+    <system:String x:Key="IntAnswerOutOfRange">Please enter a correct answer</system:String>
+   
 </ResourceDictionary>

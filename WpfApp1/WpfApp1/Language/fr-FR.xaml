@@ -39,8 +39,13 @@
     <system:String x:Key="LimitSize">Taille minimum fichiers prioritaires</system:String>
     <!--AlertMessages-->
     <system:String x:Key="NotAdminMsg">Easy-Save n'est pas lancé en mode administrateur. La fonction "Arrêt l'orsque un processus métier est détecté" est désactivée.</system:String>
-    <system:String x:Key="DirectoryDoesNotExist">L'un des répertoires spécifiés n'existe pas.</system:String>
+    <system:String x:Key="DirectoryDoesNotExist">L'un des répertoires spécifiés n'existe pas...</system:String>
+    <system:String x:Key="ThisDirectoryDoesNotExist">Le répertoire spécifié n'existe pas...</system:String>
     <system:String x:Key="IsXorCheckedButKeyOrExtentionsNull">La case Cypher Options est cochée mais les paramètres ne sont pas tous renseignés.</system:String>
     <system:String x:Key="ProcessIsOn">Un Processus critique a démarré. Les travaux sont à présent en pause.</system:String>
-    
+    <!--exclusive to Console view-->
+    <system:String x:Key="ExecuteWork">Executer un travail</system:String>
+    <system:String x:Key="DeleteAWork">Supprimer un travail</system:String>
+    <system:String x:Key="ExitIndications">CTRL + X pour annuler</system:String>
+    <system:String x:Key="IntAnswerOutOfRange">S'il vous plait, entrez une réponse correcte.</system:String>
 </ResourceDictionary>

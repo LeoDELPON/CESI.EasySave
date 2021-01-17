@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FCFEHIPOoJV/PamoOxo++ypspz3ccz39q/oTzgdZvp8kseV9IUzH0nCKqOkjalN/qJstR3TcfJ8JPKkkcKsqdQ==",
+  "dgSpecHash": "Bx4eHpOMpKtjEZcZ3o2G/H6HrupMFNRt7b+MdSCAY+/JbmDCapDDVbsWhM6xYbtBUEPBmxoXFBiGLmi5O1uhag==",
   "success": true,
   "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.BS.EasySave.UnitTest\\CESI.BS.EasySave.UnitTest.csproj",
   "expectedPackageFiles": [
@@ -104,8 +104,7 @@
     "C:\\Users\\Marcus\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {

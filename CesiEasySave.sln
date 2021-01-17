@@ -16,7 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CESI.CesiEasySave.Integrati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "WpfApp1\WpfApp1\WpfApp1.csproj", "{5CC17B26-6E5A-4035-A754-BBED92B83C17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CESI.Server.EasySave", "CESI.Server.EasySave\CESI.Server.EasySave.csproj", "{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CESI.Server.EasySave", "CESI.Server.EasySave\CESI.Server.EasySave.csproj", "{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySave 1.2", "EasySave 1.2\EasySave 1.2.csproj", "{BADC3FAB-091F-4D20-8001-8A76A5C0E648}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEBDC94A-DD9E-446F-B403-66C493CEE7FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADC3FAB-091F-4D20-8001-8A76A5C0E648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADC3FAB-091F-4D20-8001-8A76A5C0E648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADC3FAB-091F-4D20-8001-8A76A5C0E648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADC3FAB-091F-4D20-8001-8A76A5C0E648}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

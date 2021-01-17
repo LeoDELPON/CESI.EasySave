@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DzVMo7qNXpeiAcMK2Ihj2EPdcdEGzLXZUz2UqWbFuDP89SyNhtGbtSgUa59CfpZiyFJaxE0dx4tEiknXMmcWfA==",
+  "dgSpecHash": "+NDv1X9p6Hj/rxHYrUgRQhlkJygs77GrRq3s+Oj89SUq1sMW1G8rvHrP1w48a1ZLwyCPt5WTcP76m6SbLyaHQw==",
   "success": true,
   "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
   "expectedPackageFiles": [
@@ -94,8 +94,7 @@
     "C:\\Users\\Marcus\\.nuget\\packages\\xunit.core\\2.4.1\\xunit.core.2.4.1.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\xunit.extensibility.core\\2.4.1\\xunit.extensibility.core.2.4.1.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512",
-    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+    "C:\\Users\\Marcus\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
   "logs": []
 }
