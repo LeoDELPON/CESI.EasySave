@@ -37,7 +37,7 @@ namespace EasySave_1._2
             {
                 menu = MainMenu();
                 Console.WriteLine("MainMenu = " + menu);
-            } while (menu != 0);
+            } while (menu != 7);
         
         }
 
@@ -51,18 +51,16 @@ namespace EasySave_1._2
             {
                 Console.Clear();
                 Console.WriteLine(pm.GetPrintable("Title"));
-                Console.WriteLine("1) " + pm.GetPrintable("CreateWork"));
-                Console.WriteLine("2) " + pm.GetPrintable("ExecuteWork"));
-                Console.WriteLine("3) " + pm.GetPrintable("ModifyWork"));
-                Console.WriteLine("4) " + pm.GetPrintable("DeleteAWork"));
-                Console.WriteLine("5) " + pm.GetPrintable("Priority"));
-                Console.WriteLine("6) " + pm.GetPrintable("Language"));
-                answer = getIntFromUser(1, 5);
-                if (!answer.correct)
-                {
-                    Console.WriteLine(pm.GetPrintable("IntAnswerOutOfRange"));
-                    Console.ReadKey();
-                }
+                string question =
+                    "1) " + pm.GetPrintable("CreateWork") + Environment.NewLine +
+                    "2) " + pm.GetPrintable("ExecuteWork") + Environment.NewLine +
+                    "3) " + pm.GetPrintable("ModifyWork") + Environment.NewLine +
+                    "4) " + pm.GetPrintable("DeleteAWork") + Environment.NewLine +
+                    "5) " + pm.GetPrintable("Priority") + Environment.NewLine +
+                    "6) " + pm.GetPrintable("Language") + Environment.NewLine + 
+                    "7) " + pm.GetPrintable("Quit") + Environment.NewLine;
+                answer = getIntFromUser(1, 5, question);
+             
             } while (!answer.correct);
             switch (answer.value)
             {
@@ -88,29 +86,6 @@ namespace EasySave_1._2
 
         }
        
-        public void WorkCreatorUI()
-        {
-
-
-        }
-
-
-
-        public void WorkExecutorUI()
-        {
-
-        }
-        public void WorkModifierUI()
-        {
-
-        }
-        public void WorkEraserUI()
-        {
-
-        }
-        public void LanguageChangerUI()
-        {
-
-        }
+       
     }
 }

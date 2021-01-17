@@ -47,5 +47,11 @@
     <system:String x:Key="ExecuteWork">Executer un travail</system:String>
     <system:String x:Key="DeleteAWork">Supprimer un travail</system:String>
     <system:String x:Key="ExitIndications">CTRL + X pour annuler</system:String>
-    <system:String x:Key="IntAnswerOutOfRange">S'il vous plait, entrez une réponse correcte.</system:String>
+    <system:String x:Key="WrongAnswer">S'il vous plait, entrez une réponse correcte.</system:String>
+    <system:String x:Key="AnotherOne">En rentrer un(e) autre ?</system:String>
+    <system:String x:Key="Quit">Quitter</system:String>
+    <system:String x:Key="YesUI">O</system:String>
+    <system:String x:Key="NoUI">N</system:String>
+    <!--Operations success-->
+    <system:String x:Key="WorkCreated">Un nouveau travail a été créé !</system:String>
 </ResourceDictionary>

@@ -49,6 +49,13 @@
     <system:String x:Key="ExecuteWork">execute a work</system:String>
     <system:String x:Key="DeleteAWork">Delete a work</system:String>
     <system:String x:Key="ExitIndications">CTRL + X to cancel</system:String>
-    <system:String x:Key="IntAnswerOutOfRange">Please enter a correct answer</system:String>
-   
+    <system:String x:Key="WrongAnswer">Please enter a correct answer</system:String>
+    <system:String x:Key="AnotherOne">Enter another one ?</system:String>
+    <system:String x:Key="Quit">Quit</system:String>
+    <system:String x:Key="YesUI">Y</system:String>
+    <system:String x:Key="NoUI">N</system:String>
+    <!--Operations success-->
+    <system:String x:Key="WorkCreated">A new work has been created !</system:String>
+    
+
 </ResourceDictionary>

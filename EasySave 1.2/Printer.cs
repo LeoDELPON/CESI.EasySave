@@ -1,6 +1,7 @@
 ﻿using CESI.BS.EasySave.BS;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave_1._2
@@ -11,6 +12,18 @@ namespace EasySave_1._2
         public struct intReturn
         {
             public int value;
+            public bool correct;
+            public bool returnVal;
+        }
+        public struct stringReturn
+        {
+            public string value;
+            public bool correct;
+            public bool returnVal;
+        }
+        public struct boolReturn
+        {
+            public bool value;
             public bool correct;
             public bool returnVal;
         }
@@ -26,37 +39,91 @@ namespace EasySave_1._2
            bs = new BSEasySave();
            pm = new PrintManager();
         }
-        public int getIntFromUser()
+        public intReturn getIntFromUser(string question)
         {
-
-            string userInput = Console.ReadLine();
-            if (int.TryParse(userInput, out int intUI))
+            string userInput;
+            intReturn intUI = new intReturn();
+            intUI.value = 0;
+            intUI.correct = false;
+            intUI.returnVal = false;
+            do
             {
-                return intUI;
-            }
-            return 0;
+                Console.WriteLine(question);
+                userInput = Console.ReadLine();
+                intUI.returnVal = userInput.Equals("\u0018");
+                if (!int.TryParse(userInput, out intUI.value) && !intUI.returnVal)
+                {
+                    Console.WriteLine(pm.GetPrintable("WrongAnswer"));
+                    Console.ReadKey();
+                }
+            } while (!int.TryParse(userInput, out intUI.value) && !intUI.returnVal);
+          
+            return intUI;
         }
-        public intReturn getIntFromUser(int min, int max)
+        public stringReturn getPathFromUser(string question)
+        {
+            stringReturn answer = new stringReturn();
+            do
+            {
+                Console.WriteLine(question);
+                answer.value = Console.ReadLine().ToString();               
+                answer.returnVal = answer.value.Equals("\u0018");                
+                if (!Directory.Exists(answer.value) && !answer.returnVal)
+                {
+                    Console.WriteLine(pm.GetPrintable("ThisDirectoryDoesNotExist"));
+                    Console.ReadKey();
+                }
+            } while (!Directory.Exists(answer.value) && !answer.returnVal);
+            return answer;
+        }
+        public intReturn getIntFromUser(int min, int max, string question)
         {
             intReturn ir;
             ir.value = 0;
             ir.correct = false;
             ir.returnVal = false;
-            string userInput = Console.ReadLine();
-            if (int.TryParse(userInput, out int intUI))
+            do
             {
-                if (intUI >= min && intUI <= max)
+                Console.WriteLine(question);
+                string userInput = Console.ReadLine();
+                ir.returnVal = userInput.Equals("\u0018");
+                if (int.TryParse(userInput, out int intUI) && !ir.returnVal)
                 {
-                    ir.value = intUI;
-                    ir.correct = true;
+                    if (intUI >= min && intUI <= max)
+                    {
+                        ir.value = intUI;
+                        ir.correct = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine(pm.GetPrintable("WrongAnswer"));
+                        Console.ReadKey();
+                    }
+                    
                 }
-                return ir;
-            }
-            if (userInput.Equals("\u0018"))
-            {
-                ir.returnVal = true;
-            }
+                ir.returnVal = userInput.Equals("\u0018");
+               
+            } while (!ir.correct && !ir.returnVal);
             return ir;
+        }
+        public boolReturn AskYesOrNo(string question)
+        {
+            boolReturn br = new boolReturn();
+            string ans;
+            do
+            {
+                Console.WriteLine(question + " (" + pm.GetPrintable("YesUI") + "/" + pm.GetPrintable("NoUI") + ") : ");
+
+                ans = Console.ReadLine();
+                br.value = ans.ToUpper().Equals(pm.GetPrintable("YesUI"));
+                br.returnVal = ans.Equals("\u0018");
+                if ((!ans.ToUpper().Equals(pm.GetPrintable("YesUI")) && !ans.ToUpper().Equals(pm.GetPrintable("NoUI"))) && !br.returnVal)
+                {
+                    Console.WriteLine(pm.GetPrintable("WrongAnswer"));
+                    Console.ReadKey();
+                }
+            } while ((!ans.ToUpper().Equals(pm.GetPrintable("YesUI")) && !ans.ToUpper().Equals(pm.GetPrintable("NoUI"))) && !br.returnVal);
+            return br;
         }
 
     }

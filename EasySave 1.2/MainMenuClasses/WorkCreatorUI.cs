@@ -1,4 +1,5 @@
 ﻿using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.DAL;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,7 @@ namespace EasySave_1._2.MainMenuClasses
         public void Perform()
         {
 
-            WorkVar wv;
+            WorkVar wv = new WorkVar();
             Console.Clear();
             Console.WriteLine("|" + pm.GetPrintable("ExitIndications") + "|");
             Console.WriteLine(pm.GetPrintable("WorkName") + " : ");
@@ -26,59 +27,71 @@ namespace EasySave_1._2.MainMenuClasses
                 return;
             }
 
-            do
+            stringReturn sr = getPathFromUser(pm.GetPrintable("WorkSource") + " : ");
+            if (sr.returnVal)
             {
-                Console.WriteLine(pm.GetPrintable("WorkSource") + " : ");
-                wv.source = Console.ReadLine().ToString();
-                if (wv.source.Equals("\u0018"))
-                {
-                    return;
-                }
-                if (!Directory.Exists(wv.source))
-                {
-                    Console.WriteLine(pm.GetPrintable("ThisDirectoryDoesNotExist"));
-                    Console.ReadKey();
-                }
-            } while (!Directory.Exists(wv.source));
-            do
+                return;
+            }
+            wv.source = sr.value;
+            sr = getPathFromUser(pm.GetPrintable("WorkTarget") + " : ");
+            if (sr.returnVal)
             {
-                Console.WriteLine(pm.GetPrintable("WorkSource") + " : ");
-                wv.target = Console.ReadLine().ToString();
-                if (wv.target.Equals("\u0018"))
-                {
-                    return;
-                }
-                if (!Directory.Exists(wv.target))
-                {
-                    Console.WriteLine(pm.GetPrintable("ThisDirectoryDoesNotExist"));
-                    Console.ReadKey();
-                }
-            } while (!Directory.Exists(wv.target));
+                return;
+            }
+            wv.target = sr.value;
+            
             intReturn ir;
             ir.correct = false;
             do
             {
-                Console.WriteLine(pm.GetPrintable("WorkSaveType"));
-                Console.WriteLine("1) " + pm.GetPrintable(""));
-                ir = getIntFromUser(1, 2);
+                string question = pm.GetPrintable("WorkSaveType") + " :" + Environment.NewLine;
+                for (int i = 0; i <= Enum.GetNames(typeof(SaveType)).Length-1; i++)
+                {
+                    question += (i + 1) + ") " + pm.GetPrintable(SaveTypeMethods.GetSaveTypeFromInt(i)) + Environment.NewLine;
+                }
+               
+                ir = getIntFromUser(1, Enum.GetNames(typeof(SaveType)).Length+1, question);
                 if (ir.returnVal)
                 {
                     return;
-                }
-                if (!ir.correct)
+                }                
+
+            } while (!ir.correct);          
+            wv.key = "null";
+            wv.extension = new List<string>();
+            wv.extension.Add("null");
+            boolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
+            if (br.returnVal) {
+                return;
+            }
+            if (br.value)
+            {
+                wv.extension.Clear();
+                boolReturn addMore = new boolReturn();
+                addMore.value = true;
+                do
                 {
-                    Console.WriteLine(pm.GetPrintable("IntAnswerOutOfRange"));
-                    Console.ReadKey();
+                    Console.WriteLine(pm.GetPrintable("EXTENSION") + " : ");
+                    wv.extension.Add(Console.ReadLine().ToString());
+                    addMore = AskYesOrNo(pm.GetPrintable("AnotherOne"));
+                    if (addMore.returnVal)
+                    {
+                        return;
+                    }
+                } while (addMore.value);
+                Console.WriteLine(pm.GetPrintable("KEY"));
+                wv.key = Console.ReadLine();
+                if (wv.key.Equals("\u0018"))
+                {
+                    return;
                 }
 
-            } while (!ir.correct);
-         /*   wv.typeSave = ir.value - 1;
-            bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave), new List<string> { "test" }, "test");// ajout du travail
-            WrkElements we = new WrkElements(wv, bs);
-            we.chiffrage = (bool)addWorkWindow.isXor.IsChecked;
-
-            PrepareWrkElement(we);
-            bs.confSaver.SaveWork(wv);*/
+            }
+            wv.typeSave = ir.value - 1;
+            bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave), new List<string> { "test" }, "test");// ajout du travail            
+            bs.confSaver.SaveWork(wv);
+            Console.WriteLine(pm.GetPrintable("WorkCreated"));
+            Console.ReadKey();
 
         }
     }
