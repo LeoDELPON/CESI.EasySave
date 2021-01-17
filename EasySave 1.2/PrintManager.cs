@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace EasySave_1._2
 {
-    class PrintManager
+    public class PrintManager
     {
         public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
         public string languagesDirectory;

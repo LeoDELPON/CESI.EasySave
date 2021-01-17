@@ -2,25 +2,35 @@
 using System.Collections.Generic;
 using System.IO;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
-using CESI.BS.EasySave.BS.ConfSaver;
+
+using CESI.BS.EasySave.BS;
+using CESI.BS.EasySave.DAL;
+using EasySave_1._2.MainMenuClasses;
+
 namespace EasySave_1._2
 {
-    public class ConsoleController
+    public class ConsoleController : Printer
     {
-        ConfSaver cf = new ConfSaver();
-        public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
-        PrintManager pm = new PrintManager();
-        List<WorkVar> listWV;
-        public struct intReturn
-        {
-            public int value;
-            public bool correct;
-            public bool returnVal;
-        }
 
-        public ConsoleController()
+
+        IMainMenuMethod languageChangerUI;
+        IMainMenuMethod workCreatorUI;
+        IMainMenuMethod workEraserUI;
+        IMainMenuMethod workExecutorUI;
+        IMainMenuMethod workModifierUI;
+        public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+      
+        List<WorkVar> listWV;
+      
+
+        public ConsoleController() :base()
         {
-            listWV = cf.GetSavedWorks();
+            languageChangerUI = new LanguageChangerUI(bs, pm);
+            workCreatorUI = new WorkCreatorUI(bs, pm);
+            workEraserUI = new WorkEraserUI(bs, pm);
+            workExecutorUI = new WorkExecutorUI(bs, pm);
+            workModifierUI = new WorkModifierUI(bs, pm);
+            listWV = bs.confSaver.GetSavedWorks();
             pm.LoadLanguage(0);
             int menu = 1;
             do
@@ -57,19 +67,19 @@ namespace EasySave_1._2
             switch (answer.value)
             {
                 case 1:
-                    WorkCreatorUI();
+                    workCreatorUI.Perform();
                     break;
                 case 2:
-                    WorkExecutorUI();
+                    workExecutorUI.Perform();
                     break;
                 case 3:
-                    WorkModifierUI();
+                    workModifierUI.Perform();
                     break;
                 case 4:
-                    WorkEraserUI();
+                    workEraserUI.Perform();
                     break;
                 case 5:
-                    LanguageChangerUI();
+                    languageChangerUI.Perform();
                     break;
                 default:
                     break;
@@ -77,99 +87,9 @@ namespace EasySave_1._2
             return answer.value;
 
         }
-        public int getIntFromUser() {
-      
-            string userInput = Console.ReadLine();
-            if (int.TryParse(userInput, out int intUI))
-            {
-                return intUI;
-            }
-            return 0;
-        }
-        public intReturn getIntFromUser(int min, int max)
-        {
-            intReturn ir;
-            ir.value = 0;
-            ir.correct = false;
-            ir.returnVal = false;
-            string userInput = Console.ReadLine();
-            if (int.TryParse(userInput, out int intUI))
-            {
-                if (intUI >= min && intUI <= max)
-                {
-                    ir.value = intUI;
-                    ir.correct = true;
-                }             
-                return ir;
-            }
-            if (userInput.Equals("\u0018"))
-            {
-                ir.returnVal = true;
-            }
-            return ir;
-        }
-
+       
         public void WorkCreatorUI()
         {
-            WorkVar wv;
-            Console.Clear();
-            Console.WriteLine("|" + pm.GetPrintable("ExitIndications") + "|");
-            Console.WriteLine(pm.GetPrintable("WorkName") + " : ");           
-            wv.name = Console.ReadLine().ToString();
-            if (wv.name.Equals("\u0018"))
-            {
-                return;
-            }
-          
-            do
-            {
-                Console.WriteLine(pm.GetPrintable("WorkSource") + " : ");
-                wv.source = Console.ReadLine().ToString();
-                if (wv.source.Equals("\u0018"))
-                {
-                    return;
-                }
-                if (!Directory.Exists(wv.source))
-                {
-                    Console.WriteLine(pm.GetPrintable("ThisDirectoryDoesNotExist"));
-                    Console.ReadKey();
-                }
-            } while (!Directory.Exists(wv.source));
-            do
-            {
-                Console.WriteLine(pm.GetPrintable("WorkSource") + " : ");
-                wv.target = Console.ReadLine().ToString();
-                if (wv.target.Equals("\u0018"))
-                {
-                    return;
-                }
-                if (!Directory.Exists(wv.target))
-                {
-                    Console.WriteLine(pm.GetPrintable("ThisDirectoryDoesNotExist"));
-                    Console.ReadKey();
-                }
-            } while (!Directory.Exists(wv.target));
-            intReturn ir;
-            ir.correct = false;
-            do
-            {
-                Console.WriteLine(pm.GetPrintable("WorkSaveType"));
-                Console.WriteLine("1) " + pm.GetPrintable(""));
-                ir = getIntFromUser(1, 2);
-                if (ir.returnVal)
-                {
-                    return;
-                }
-                if (!ir.correct)
-                {
-                    Console.WriteLine(pm.GetPrintable("IntAnswerOutOfRange"));
-                    Console.ReadKey();
-                }
-             
-            } while (!ir.correct);
-            wv.typeSave = ir.value - 1;
-
-
 
 
         }
