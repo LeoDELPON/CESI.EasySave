@@ -47,6 +47,8 @@
     <system:String x:Key="ProcessIsOn">An critical process has been started. Works have been paused.</system:String>
     <!--exclusive to Console view-->
     <system:String x:Key="ExecuteWork">execute a work</system:String>
+    <system:String x:Key="SelectAWork">Select one or several works : </system:String>
+    <system:String x:Key="NoExistingWork">You don't have any work saved. To create a work, select "Create a work" in the main menu.</system:String>
     <system:String x:Key="DeleteAWork">Delete a work</system:String>
     <system:String x:Key="ExitIndications">CTRL + X to cancel</system:String>
     <system:String x:Key="WrongAnswer">Please enter a correct answer</system:String>
