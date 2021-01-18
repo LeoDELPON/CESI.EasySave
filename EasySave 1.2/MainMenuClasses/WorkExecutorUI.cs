@@ -38,60 +38,60 @@ namespace EasySave_1._2.MainMenuClasses
             }
             string workList = valueReturned.value.ToString();
             int terminatedThreads = 0;
-            //    foreach (char work in workList)
-            //    {
-            //        //   Save.fileMaxSize = highPriorityExtention.getLimit();
-            //        int iw = int.Parse(work.ToString());
-            //        Thread saveThread = new Thread(launchWork =>
-            //        {
-            //            using (ThreadMutex.Canceller.Token.Register(Thread.CurrentThread.Abort)) { }
+            foreach (char work in workList)
+            {
+               /* //   Save.fileMaxSize = highPriorityExtention.getLimit();
+                int iw = int.Parse(work.ToString());
+                Thread saveThread = new Thread(launchWork =>
+                {
+                    using (ThreadMutex.Canceller.Token.Register(Thread.CurrentThread.Abort)) { }
 
-            //            try
-            //            {
+                    try
+                    {
+                       
+                        //we.inWrkList.workProgressBar.Value = 0;
+                        //setProgressBarToZero
+                        threadLifeManager.SubscribeToSaves(bs.works[iw]);
 
-            //                //we.inWrkList.workProgressBar.Value = 0;
-            //                //setProgressBarToZero
-            //                threadLifeManager.SubscribeToSaves(bs.works[iw]);
+                        //bs.works[iw].SaveType.Subscribe(we.inWrkList);
+                        //LoadingBar subscribe to progression
 
-            //                //bs.works[iw].SaveType.Subscribe(we.inWrkList);
-            //                //LoadingBar subscribe to progression
+                        //bs.works[iw].SaveType.Subscribe(myServer); 
+                        //connection with the server
+                        bs.works[iw].Perform();
+                       // bs.works[iw].SaveType.Unsubscribe(we.inWrkList);//unsubscribe from progression
+                        terminatedThreads++;
+                        threadLifeManager.UnsubscribeToSaves(bs.works[weList.IndexOf(we)]);
+                    }
+                    catch (ThreadInterruptedException)
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
 
-            //                //bs.works[iw].SaveType.Subscribe(myServer); 
-            //                //connection with the server
-            //                bs.works[iw].Perform();
-            //               // bs.works[iw].SaveType.Unsubscribe(we.inWrkList);//unsubscribe from progression
-            //                terminatedThreads++;
-            //                threadLifeManager.UnsubscribeToSaves(bs.works[weList.IndexOf(we)]);
-            //            }
-            //            catch (ThreadInterruptedException)
-            //            {
-            //                Application.Current.Dispatcher.Invoke(() =>
-            //                {
-
-            //                    we.inWrkList.workProgressBar.Value = 0;
-            //                    terminatedThreads++;
-            //                });
-            //            }
-            //            if (terminatedThreads == threadLifeManager.Count())
-            //            {
-            //                Application.Current.Dispatcher.Invoke(() =>
-            //                {
-            //                    resetButtons();
-            //                    EnableButtonsAccess(true);
-            //                    terminatedThreads = 0;
-            //                });
-            //            }
+                            we.inWrkList.workProgressBar.Value = 0;
+                            terminatedThreads++;
+                        });
+                    }
+                    if (terminatedThreads == threadLifeManager.Count())
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            resetButtons();
+                            EnableButtonsAccess(true);
+                            terminatedThreads = 0;
+                        });
+                    }
 
 
 
-            //        });
+                });
 
-            //        threadLifeManager.AddThread(saveThread);
-            //        saveThread.Priority = ThreadPriority.BelowNormal;
-            //        saveThread.Start();
-            //        i++;
-            //    }
-
+                threadLifeManager.AddThread(saveThread);
+                saveThread.Priority = ThreadPriority.BelowNormal;
+                saveThread.Start();
+                i++;*/
+            }
+    
         }
     }
 }

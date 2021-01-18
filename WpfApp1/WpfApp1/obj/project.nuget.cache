@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "sqYwswxP9Kq3HJKw6naS94I02D2RWkl/AbyXALcJQT3GYJ1J85/m7ruKsYSFc/NJKJqPogDSFKdS5yz7KvA+dw==",
+  "dgSpecHash": "Z1AJcZWru0LAS4KoEZ9507SI4onWIBB6dViVbujr5DPpNarPs1Gj8yJpAo2mvLwiIBQoqhwmYaZ2VUoPD596Sw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+  "projectFilePath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\delpo\\.nuget\\packages\\extended.wpf.toolkit\\4.0.1\\extended.wpf.toolkit.4.0.1.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\system.management\\5.0.0\\system.management.5.0.0.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
-    "C:\\Users\\delpo\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
+    "C:\\Users\\Marcus\\.nuget\\packages\\extended.wpf.toolkit\\4.0.1\\extended.wpf.toolkit.4.0.1.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.management\\5.0.0\\system.management.5.0.0.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
   ],
   "logs": [
     {
