@@ -147,6 +147,7 @@ namespace CESI.BS.EasySave.BS.ConfSaver
         public List<WorkVar> GetSavedWorks()
         {
             MakeSurePathExist();
+           // Console.WriteLine(savePath);
             string[] files = Directory.GetFiles(savePath);
             List<WorkVar> listWorkVar = new List<WorkVar>();
             StreamReader sr;

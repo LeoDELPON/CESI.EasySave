@@ -10,6 +10,7 @@
     <system:String x:Key="Title">EasySave par CESI</system:String>
     <system:String x:Key="DeleteWork">SUPPRIMER</system:String>
     <system:String x:Key="AddWorkToWorkList">AJOUTER LE TRAVAIL A LA LISTE</system:String>
+    
     <system:String x:Key="ExecuteWorkList">EXECUTER LA LISTE</system:String>
     <system:String x:Key="Language">Langue</system:String>
     <system:String x:Key="Abort">Stop</system:String>
@@ -46,6 +47,8 @@
     <!--exclusive to Console view-->
     <system:String x:Key="ExecuteWork">Executer un travail</system:String>
     <system:String x:Key="DeleteAWork">Supprimer un travail</system:String>
+    <system:String x:Key="SelectAWork">Selectionnez un ou plusieurs travaux : </system:String>
+    <system:String x:Key="NoExistingWork">Vous n'avez aucun travaux sauvegardé. Selectionnez "Créer un travail" sur le menu principal pour en créer un.</system:String>
     <system:String x:Key="ExitIndications">CTRL + X pour annuler</system:String>
     <system:String x:Key="WrongAnswer">S'il vous plait, entrez une réponse correcte.</system:String>
     <system:String x:Key="AnotherOne">En rentrer un(e) autre ?</system:String>
