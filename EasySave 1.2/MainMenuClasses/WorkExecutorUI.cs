@@ -40,7 +40,7 @@ namespace EasySave_1._2.MainMenuClasses
             int terminatedThreads = 0;
             foreach (char work in workList)
             {
-                //   Save.fileMaxSize = highPriorityExtention.getLimit();
+               /* //   Save.fileMaxSize = highPriorityExtention.getLimit();
                 int iw = int.Parse(work.ToString());
                 Thread saveThread = new Thread(launchWork =>
                 {
@@ -89,7 +89,7 @@ namespace EasySave_1._2.MainMenuClasses
                 threadLifeManager.AddThread(saveThread);
                 saveThread.Priority = ThreadPriority.BelowNormal;
                 saveThread.Start();
-                i++;
+                i++;*/
             }
     
         }
