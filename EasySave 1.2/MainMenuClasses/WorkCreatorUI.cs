@@ -56,11 +56,12 @@ namespace EasySave_1._2.MainMenuClasses
                     return;
                 }                
 
-            } while (!ir.correct);          
+            } while (!ir.correct);
+            wv.typeSave = ir.value - 1;
             wv.key = "null";
             wv.extension = new List<string>();
             wv.extension.Add("null");
-            boolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
+           /* boolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
             if (br.returnVal) {
                 return;
             }
@@ -86,9 +87,9 @@ namespace EasySave_1._2.MainMenuClasses
                     return;
                 }
 
-            }
-            wv.typeSave = ir.value - 1;
-            bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave), new List<string> { "test" }, "test");// ajout du travail            
+            }*/
+          
+            bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave), wv.extension, wv.key);// ajout du travail            
             bs.confSaver.SaveWork(wv);
             Console.WriteLine(pm.GetPrintable("WorkCreated"));
             Console.ReadKey();

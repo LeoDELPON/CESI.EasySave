@@ -1,15 +1,15 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-Marcus
+test 2
 </name>
 <source>
-D:\after fx projects
+G:\stage git
 </source>
 <target>
-D:\testsave\diff
+G:\testDeSauvegarde
 </target>
 <typeSave>
-1
+0
 </typeSave>
 <key>
 null

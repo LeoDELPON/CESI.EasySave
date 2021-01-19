@@ -73,7 +73,7 @@ namespace CESI.BS.EasySave.BS
             }
             else
             {
-                DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy");
+                DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
             }
 
             FolderBuilder.CreateFolder(DiffBackupPath);

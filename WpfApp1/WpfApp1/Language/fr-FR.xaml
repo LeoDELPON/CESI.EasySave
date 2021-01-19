@@ -55,6 +55,8 @@
     <system:String x:Key="Quit">Quitter</system:String>
     <system:String x:Key="YesUI">O</system:String>
     <system:String x:Key="NoUI">N</system:String>
+    <system:String x:Key="SavesRunning">Sauvegarde en cours...</system:String>
     <!--Operations success-->
     <system:String x:Key="WorkCreated">Un nouveau travail a été créé !</system:String>
+    <system:String x:Key="DataSaved">Données sauvegardées !</system:String>
 </ResourceDictionary>

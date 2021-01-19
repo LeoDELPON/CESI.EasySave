@@ -36,8 +36,7 @@ namespace EasySave_1._2
             do
             {
                 menu = MainMenu();
-                Console.WriteLine("MainMenu = " + menu);
-            } while (menu != 7);
+            } while (menu != 6);
 
         }
 
@@ -55,11 +54,10 @@ namespace EasySave_1._2
                     "1) " + pm.GetPrintable("CreateWork") + Environment.NewLine +
                     "2) " + pm.GetPrintable("ExecuteWork") + Environment.NewLine +
                     "3) " + pm.GetPrintable("ModifyWork") + Environment.NewLine +
-                    "4) " + pm.GetPrintable("DeleteAWork") + Environment.NewLine +
-                    "5) " + pm.GetPrintable("Priority") + Environment.NewLine +
-                    "6) " + pm.GetPrintable("Language") + Environment.NewLine +
-                    "7) " + pm.GetPrintable("Quit") + Environment.NewLine;
-                answer = getIntFromUser(1, 5, question);
+                    "4) " + pm.GetPrintable("DeleteAWork") + Environment.NewLine +                  
+                    "5) " + pm.GetPrintable("Language") + Environment.NewLine +
+                    "6) " + pm.GetPrintable("Quit") + Environment.NewLine;
+                answer = getIntFromUser(1, 6, question);
 
             } while (!answer.correct);
             switch (answer.value)

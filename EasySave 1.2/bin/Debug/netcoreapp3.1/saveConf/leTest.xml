@@ -1,12 +1,12 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-leo
+leTest
 </name>
 <source>
-C:\Users\delpo\Documents\DossierTest
+G:\installateurs
 </source>
 <target>
-C:\Users\delpo\Documents\DeuxiemeDossierTest
+G:\testDeSauvegarde
 </target>
 <typeSave>
 0
