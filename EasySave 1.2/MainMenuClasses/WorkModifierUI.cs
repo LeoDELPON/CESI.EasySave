@@ -15,19 +15,31 @@ namespace EasySave_1._2.MainMenuClasses
         {
 
         }
+
+
+        WorkVar getSpecifiedWorkVar(string name, WorkVar existingWV)
+        {
+            List<WorkVar> existingWVList = new List<WorkVar>();
+
+            existingWVList = bs.confSaver.GetSavedWorks();
+            foreach(WorkVar v in existingWVList)
+            {
+                if(v.name == name)
+                {
+                    existingWV = v;
+                    return existingWV;
+                }
+            }
+            return existingWV;
+        }
+
         public void Perform()
         {
             WorkVar wv = new WorkVar();
-            List<Tuple<string, List<string>>> propertyQuestionsChange = new List<Tuple<string, List<string>>>()
-            {
-                Tuple.Create(pm.GetPrintable("WorkName"), new List<string>(){ wv.name }),
-                Tuple.Create(pm.GetPrintable("WorkSource"), new List<string>() { wv.source}),
-                Tuple.Create(pm.GetPrintable("WorkTarget"), new List<string>() { wv.target}),
-                Tuple.Create(pm.GetPrintable("WorkSaveType"), new List<string>() { wv.typeSave.ToString()}),
-                Tuple.Create(pm.GetPrintable("EXTENSION"), wv.extension),
-                Tuple.Create(pm.GetPrintable("KEY"), new List<string>() { wv.key})
-            };
+            WorkVar existingWorkVar = new WorkVar();
+            wv.extension = new List<string>();
             Console.Clear();
+         
             Console.WriteLine("|" + pm.GetPrintable("ExitIndications") + "|");
             
             if(bs.works.Count == 0)
@@ -43,6 +55,16 @@ namespace EasySave_1._2.MainMenuClasses
                 question += i + 1 + ") " + bs.works[i].Name + Environment.NewLine;
             }
             intReturn valueReturned = getIntFromUser(question);
+            existingWorkVar = getSpecifiedWorkVar(bs.works[valueReturned.value-1].Name, existingWorkVar);
+            List<Tuple<string, List<string>, List<string>>> propertyQuestionsChange = new List<Tuple<string, List<string>, List<string>>>()
+            {
+                Tuple.Create(pm.GetPrintable("WorkName"), new List<string>(){ wv.name }, new List<string>(){ existingWorkVar.name }),
+                Tuple.Create(pm.GetPrintable("WorkSource"), new List<string>() { wv.source}, new List<string>(){ existingWorkVar.source }),
+                Tuple.Create(pm.GetPrintable("WorkTarget"), new List<string>() { wv.target}, new List<string>(){ existingWorkVar.target }),
+                Tuple.Create(pm.GetPrintable("WorkSaveType"), new List<string>() { wv.typeSave.ToString() }, new List<string>() { existingWorkVar.typeSave.ToString() }),
+                Tuple.Create(pm.GetPrintable("EXTENSION"), wv.extension, existingWorkVar.extension),
+                Tuple.Create(pm.GetPrintable("KEY"), new List<string>() { wv.key}, new List<string>() { existingWorkVar.key})
+            };
             bool extensionVerify = true;
             Console.Clear();
             do
@@ -74,21 +96,37 @@ namespace EasySave_1._2.MainMenuClasses
                     }
                 } else if ((response == "N"))
                 {
-                    counter++;
-                    continue;
+                    if(propertyQuestionsChange[counter].Item1 == pm.GetPrintable("EXTENSION"))
+                    {
+                        foreach (string ext in propertyQuestionsChange[counter].Item3)
+                        {
+                            propertyQuestionsChange[counter].Item2.Add(ext);
+                        }
+                    } else
+                    {
+                        propertyQuestionsChange[counter].Item2[0] = propertyQuestionsChange[counter].Item3[0];
+                    }
                 }
 
-                counter++;
-                if(propertyQuestionsChange.Count == counter)
+                if(counter == 5)
                 {
-                    break;
+                    isFinished = true;
                 }
+                counter++;
             } while (!isFinished);
 
             try
             {
-                bs.ModifyWork(bs.works[valueReturned.value -1], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(Int32.Parse(propertyQuestionsChange[3].Item2[0])), wv.extension, wv.key);
-                bs.confSaver.modifyEntireFile(bs.works[valueReturned.value-1].Name, wv);
+                bs.confSaver.modifyEntireFile(bs.works[valueReturned.value - 1].Name, wv);
+                bs.ModifyWork(
+                    bs.works[valueReturned.value -1], 
+                    propertyQuestionsChange[0].Item2[0], 
+                    propertyQuestionsChange[1].Item2[0], 
+                    propertyQuestionsChange[2].Item2[0], 
+                    SaveTypeMethods.GetSaveTypeFromInt(Int32.Parse(propertyQuestionsChange[3].Item2[0])), 
+                    propertyQuestionsChange[4].Item2, propertyQuestionsChange[5].Item2[0]
+                    );
+                Console.WriteLine("Work Modified with success !");
             }
             catch(Exception err)
             {
