@@ -86,6 +86,7 @@ namespace EasySave_1._2
             {
                 Console.WriteLine(question);
                 string userInput = Console.ReadLine();
+                
                 ir.returnVal = userInput.Equals("\u0018");
                 if (int.TryParse(userInput, out int intUI) && !ir.returnVal)
                 {

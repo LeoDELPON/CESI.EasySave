@@ -33,10 +33,30 @@ namespace EasySave_1._2.MainMenuClasses
             return existingWV;
         }
 
+
+        WorkVar transfertData(WorkVar v, List<Tuple<string, List<string>, List<string>>> list)
+        {
+            v.name = list[0].Item2[0];
+            v.source = list[1].Item2[0];
+            v.target = list[2].Item2[0];
+            v.typeSave = Int32.Parse(list[3].Item2[0]);
+            v.key = list[5].Item2[0];
+            if(list[4].Item2.Count != 0)
+            {
+                foreach (string ex in list[4].Item2)
+                {
+                    v.extension.Add(ex);
+                }
+            }
+            return v;
+        }
+
         public void Perform()
         {
             WorkVar wv = new WorkVar();
             WorkVar existingWorkVar = new WorkVar();
+            WorkVar final = new WorkVar();
+            final.extension = new List<string>();
             wv.extension = new List<string>();
             Console.Clear();
          
@@ -117,7 +137,9 @@ namespace EasySave_1._2.MainMenuClasses
 
             try
             {
-                bs.confSaver.modifyEntireFile(bs.works[valueReturned.value - 1].Name, wv);
+
+                final = transfertData(final, propertyQuestionsChange);
+                bs.confSaver.modifyEntireFile(bs.works[valueReturned.value-1].Name, final);
                 bs.ModifyWork(
                     bs.works[valueReturned.value -1], 
                     propertyQuestionsChange[0].Item2[0], 
