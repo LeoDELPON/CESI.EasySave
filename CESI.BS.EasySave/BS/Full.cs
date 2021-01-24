@@ -116,7 +116,7 @@ namespace CESI.BS.EasySave.BS
                 {
                     WaitForUnpause();
                     Console.WriteLine(@"[+] Copying {0}", file.Name);
-                    checkFileSize(file.Length);
+                    CheckFileSize(file.Length);
                     //Pour chaques extensions dans la source
                     foreach (string ext in _cryptoExtension)
                     {

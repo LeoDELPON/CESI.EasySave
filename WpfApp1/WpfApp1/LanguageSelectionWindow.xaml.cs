@@ -20,14 +20,14 @@ namespace WpfApp1
     /// </summary>
     public partial class LanguageSelectionWindow : Window
     {
-        List<InfoLanguage> listLanguage = new List<InfoLanguage>();
+        readonly List<InfoLanguage> listLanguage = new List<InfoLanguage>();
         struct InfoLanguage
         {
             public string name;
             public Uri path;
        
         }
-        private ResourceDictionary obj;
+        private readonly ResourceDictionary obj;
         public LanguageSelectionWindow()
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace WpfApp1
         private void LanguageCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-            ChangeLangage(getLanguagePath());
+            ChangeLangage(GetLanguagePath());
         }
 
         private void LanguageSelectionWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -58,7 +58,7 @@ namespace WpfApp1
             
         }
 
-        public Uri getLanguagePath()
+        public Uri GetLanguagePath()
         {
             return listLanguage[LanguageCB.SelectedIndex].path;
         }

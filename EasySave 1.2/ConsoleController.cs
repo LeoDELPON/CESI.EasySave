@@ -11,15 +11,15 @@ namespace EasySave_1._2
 {
     public class ConsoleController : Printer
     {
-
-
-        IMainMenuMethod languageChangerUI;
-        IMainMenuMethod workCreatorUI;
-        IMainMenuMethod workEraserUI;
-        IMainMenuMethod workExecutorUI;
-        IMainMenuMethod workModifierUI;
+        readonly IMainMenuMethod languageChangerUI;
+        readonly IMainMenuMethod workCreatorUI;
+        readonly IMainMenuMethod workEraserUI;
+        readonly IMainMenuMethodWithParam workExecutorUI;
+        readonly IMainMenuMethod workModifierUI;
+        readonly IMainMenuMethodNonVoid blckngPrcssModifierUI;
         public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
-
+        ThreadLifeManager tlf;
+        List<string> listString;
         List<WorkVar> listWV;
 
 
@@ -31,12 +31,16 @@ namespace EasySave_1._2
             workEraserUI = new WorkEraserUI(bs, pm);
             workExecutorUI = new WorkExecutorUI(bs, pm);
             workModifierUI = new WorkModifierUI(bs, pm);
-            getSavedWorks();          
-            int menu = 1;
+            blckngPrcssModifierUI = new BlckngPrcssModifierUI(bs, pm);
+            GetSavedWorks();          
+            int menu;
+            listString = new List<string>();
+            tlf = new ThreadLifeManager(bs, listString);
+            tlf.StartObservingProcesses();
             do
             {
                 menu = MainMenu();
-            } while (menu != 6);
+            } while (menu != 7);
 
         }
 
@@ -44,7 +48,7 @@ namespace EasySave_1._2
 
         public int MainMenu()
         {
-            intReturn answer;
+            IntReturn answer;
             answer.correct = false;
             do
             {
@@ -54,10 +58,11 @@ namespace EasySave_1._2
                     "1) " + pm.GetPrintable("CreateWork") + Environment.NewLine +
                     "2) " + pm.GetPrintable("ExecuteWork") + Environment.NewLine +
                     "3) " + pm.GetPrintable("ModifyWork") + Environment.NewLine +
-                    "4) " + pm.GetPrintable("DeleteAWork") + Environment.NewLine +                  
-                    "5) " + pm.GetPrintable("Language") + Environment.NewLine +
-                    "6) " + pm.GetPrintable("Quit") + Environment.NewLine;
-                answer = getIntFromUser(1, 6, question);
+                    "4) " + pm.GetPrintable("DeleteAWork") + Environment.NewLine +
+                    "5) " + pm.GetPrintable("SelectBlockingProcesses") + Environment.NewLine +
+                    "6) " + pm.GetPrintable("Language") + Environment.NewLine +
+                    "7) " + pm.GetPrintable("Quit") + Environment.NewLine;
+                answer = GetIntFromUser(1, 7, question);
 
             } while (!answer.correct);
             switch (answer.value)
@@ -66,7 +71,7 @@ namespace EasySave_1._2
                     workCreatorUI.Perform();
                     break;
                 case 2:
-                    workExecutorUI.Perform();
+                    workExecutorUI.Perform(listString);
                     break;
                 case 3:
                     workModifierUI.Perform();
@@ -75,6 +80,11 @@ namespace EasySave_1._2
                     workEraserUI.Perform();
                     break;
                 case 5:
+                    
+                    listString = blckngPrcssModifierUI.Perform();
+                    
+                    break;
+                case 6:
                     languageChangerUI.Perform();
                     break;
                 default:
@@ -83,7 +93,7 @@ namespace EasySave_1._2
             return answer.value;
 
         }
-        private void getSavedWorks()
+        private void GetSavedWorks()
         {           
             listWV = bs.confSaver.GetSavedWorks();
             foreach (WorkVar wv in listWV)

@@ -27,20 +27,20 @@ namespace EasySave_1._2.MainMenuClasses
                 return;
             }
 
-            stringReturn sr = getPathFromUser(pm.GetPrintable("WorkSource") + " : ");
+            StringReturn sr = GetPathFromUser(pm.GetPrintable("WorkSource") + " : ");
             if (sr.returnVal)
             {
                 return;
             }
             wv.source = sr.value;
-            sr = getPathFromUser(pm.GetPrintable("WorkTarget") + " : ");
+            sr = GetPathFromUser(pm.GetPrintable("WorkTarget") + " : ");
             if (sr.returnVal)
             {
                 return;
             }
             wv.target = sr.value;
             
-            intReturn ir;
+            IntReturn ir;
             ir.correct = false;
             do
             {
@@ -50,7 +50,7 @@ namespace EasySave_1._2.MainMenuClasses
                     question += (i + 1) + ") " + pm.GetPrintable(SaveTypeMethods.GetSaveTypeFromInt(i)) + Environment.NewLine;
                 }
                
-                ir = getIntFromUser(1, Enum.GetNames(typeof(SaveType)).Length+1, question);
+                ir = GetIntFromUser(1, Enum.GetNames(typeof(SaveType)).Length+1, question);
                 if (ir.returnVal)
                 {
                     return;
@@ -59,36 +59,38 @@ namespace EasySave_1._2.MainMenuClasses
             } while (!ir.correct);
             wv.typeSave = ir.value - 1;
             wv.key = "null";
-            wv.extension = new List<string>();
-            wv.extension.Add("null");
-           /* boolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
-            if (br.returnVal) {
-                return;
-            }
-            if (br.value)
+            wv.extension = new List<string>
             {
-                wv.extension.Clear();
-                boolReturn addMore = new boolReturn();
-                addMore.value = true;
-                do
-                {
-                    Console.WriteLine(pm.GetPrintable("EXTENSION") + " : ");
-                    wv.extension.Add(Console.ReadLine().ToString());
-                    addMore = AskYesOrNo(pm.GetPrintable("AnotherOne"));
-                    if (addMore.returnVal)
-                    {
-                        return;
-                    }
-                } while (addMore.value);
-                Console.WriteLine(pm.GetPrintable("KEY"));
-                wv.key = Console.ReadLine();
-                if (wv.key.Equals("\u0018"))
-                {
-                    return;
-                }
+                "null"
+            };
+            /* boolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
+             if (br.returnVal) {
+                 return;
+             }
+             if (br.value)
+             {
+                 wv.extension.Clear();
+                 boolReturn addMore = new boolReturn();
+                 addMore.value = true;
+                 do
+                 {
+                     Console.WriteLine(pm.GetPrintable("EXTENSION") + " : ");
+                     wv.extension.Add(Console.ReadLine().ToString());
+                     addMore = AskYesOrNo(pm.GetPrintable("AnotherOne"));
+                     if (addMore.returnVal)
+                     {
+                         return;
+                     }
+                 } while (addMore.value);
+                 Console.WriteLine(pm.GetPrintable("KEY"));
+                 wv.key = Console.ReadLine();
+                 if (wv.key.Equals("\u0018"))
+                 {
+                     return;
+                 }
 
-            }*/
-          
+             }*/
+
             bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave), wv.extension, wv.key);// ajout du travail            
             bs.confSaver.SaveWork(wv);
             Console.WriteLine(pm.GetPrintable("WorkCreated"));

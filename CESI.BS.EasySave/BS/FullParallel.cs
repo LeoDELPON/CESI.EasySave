@@ -119,7 +119,7 @@ namespace CESI.BS.EasySave.BS
                 {                  
                     WaitForUnpause();
                     FileInfo fileObject = new FileInfo(files[i]);
-                    checkFileSize(fileObject.Length);
+                    CheckFileSize(fileObject.Length);
                     string dir = ReplaceLastOccurrence(files[i].Replace(source.FullName, fullSaveDirectory.FullName), fileObject.Name, "");
                     if (!Directory.Exists(dir))
                     {

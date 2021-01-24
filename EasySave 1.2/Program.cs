@@ -4,7 +4,7 @@ namespace EasySave_1._2
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
           
             new ConsoleController();

@@ -12,7 +12,7 @@ namespace EasySave_1._2
         public string languagesDirectory;
         public string extention = ".xaml";
         public string[] LanguageFilesNames { get; set; } = { "fr-FR", "en-US" };
-        private Dictionary<string, string> Printable = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> Printable = new Dictionary<string, string>();
 
         public PrintManager()
         {
@@ -44,8 +44,8 @@ namespace EasySave_1._2
                             Match mtch1 = Regex.Match(strReturn.Trim(), "x:Key=\".*\">");
                             Match mtch2 = Regex.Match(strReturn.Trim(), ">.*<");
                             //string result1 = mtch1.Value.Substring(6, mtch1.Value.Length - 2);
-                            string result2 = mtch2.Value.Substring(1, mtch2.Value.Length - 2);
-                            string result1 = mtch1.Value.Substring(7, mtch1.Value.Length - 9);
+                            string result2 = mtch2.Value[1..^1];
+                            string result1 = mtch1.Value[7..^2];
                             Printable[result1] = result2;
                             // Console.WriteLine(Printable[result1]);
                         }

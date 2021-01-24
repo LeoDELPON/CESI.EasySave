@@ -99,7 +99,7 @@ namespace CESI.BS.EasySave.BS
             }
         }
 
-        public void checkFileSize(long size)
+        public void CheckFileSize(long size)
         {
             if (size > fileMaxSize)
             {

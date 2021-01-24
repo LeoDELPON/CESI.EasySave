@@ -42,9 +42,9 @@ namespace CESI.BS.EasySave.BS
         private string BackupPath { get; set; }
 
 
-        private readonly Dictionary<WorkProperties, object> propertiesWork;
         public string IdTypeSave { get; set; }
 
+        public Dictionary<WorkProperties, object> propertiesWork;
         public DataHandler handler;
 
         Stopwatch stopwatch;
@@ -56,6 +56,7 @@ namespace CESI.BS.EasySave.BS
                          List<string> priorityExtensions,
                          string key)
         {
+            propertiesWork = new Dictionary<WorkProperties, object>();
             switch (saveType)
             {
                 case 'F':

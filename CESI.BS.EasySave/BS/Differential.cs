@@ -98,7 +98,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     WaitForUnpause();
-                    checkFileSize(file.Length);
+                    CheckFileSize(file.Length);
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString());
                     string pathTest = file.DirectoryName;
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);
