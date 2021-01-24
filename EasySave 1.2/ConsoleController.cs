@@ -76,9 +76,10 @@ namespace EasySave_1._2
                 case 4:
                     workEraserUI.Perform();
                     break;
-                case 5:
-                    languageChangerUI.Perform();
+                case 6:
+                    
                     break;
+               
                 default:
                     break;
             }

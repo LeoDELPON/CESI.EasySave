@@ -5622,19 +5622,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marcus\\.nuget\\packages\\": {}
+    "C:\\Users\\Kylian\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
+      "projectUniqueName": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
       "projectName": "CESI.CesiEasySave.IntegrationTest",
-      "projectPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
-      "packagesPath": "C:\\Users\\Marcus\\.nuget\\packages\\",
-      "outputPath": "D:\\CESI\\stage\\projet\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\obj\\",
+      "projectPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\CESI.CesiEasySave.IntegrationTest.csproj",
+      "packagesPath": "C:\\Users\\Kylian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.CesiEasySave.IntegrationTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Marcus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kylian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5646,7 +5646,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -5658,7 +5657,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
@@ -5696,7 +5694,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -77,7 +77,6 @@ namespace WpfApp1
                 {
                     Resources.MergedDictionaries.Remove(obj);
                     Resources.MergedDictionaries.Add(objNewLanguageDictionary);
-
                     CultureInfo culture =
                        new CultureInfo((string)Application.Current.Resources["Culture"]);
                     Thread.CurrentThread.CurrentCulture = culture;
