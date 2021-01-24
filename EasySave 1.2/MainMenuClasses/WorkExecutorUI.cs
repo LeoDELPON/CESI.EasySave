@@ -8,16 +8,15 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace EasySave_1._2.MainMenuClasses
 {
-    class WorkExecutorUI : Printer, IMainMenuMethodWithParam
+    class WorkExecutorUI : Printer, IMainMenuMethod
     {
         public ThreadLifeManager threadLifeManager;
         public WorkExecutorUI(BSEasySave bs, PrintManager pm) : base(bs, pm)
         {
 
         }
-        public void Perform(List<string> listString)
-        {
-            threadLifeManager = new ThreadLifeManager(bs, listString);
+        public void Perform()
+        { 
             Console.Clear();
             Console.WriteLine("|" + pm.GetPrintable("ExitIndications") + "|");
             

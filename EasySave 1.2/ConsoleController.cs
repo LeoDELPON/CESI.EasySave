@@ -14,12 +14,11 @@ namespace EasySave_1._2
         readonly IMainMenuMethod languageChangerUI;
         readonly IMainMenuMethod workCreatorUI;
         readonly IMainMenuMethod workEraserUI;
-        readonly IMainMenuMethodWithParam workExecutorUI;
+        readonly IMainMenuMethod workExecutorUI;
         readonly IMainMenuMethod workModifierUI;
         readonly IMainMenuMethodNonVoid blckngPrcssModifierUI;
         public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
         ThreadLifeManager tlf;
-        List<string> listString;
         List<WorkVar> listWV;
 
 
@@ -34,8 +33,8 @@ namespace EasySave_1._2
             blckngPrcssModifierUI = new BlckngPrcssModifierUI(bs, pm);
             GetSavedWorks();          
             int menu;
-            listString = new List<string>();
-            tlf = new ThreadLifeManager(bs, listString);
+            List<string> ls = new List<string>{ "null" };
+            tlf = new ThreadLifeManager(bs,ls);
             tlf.StartObservingProcesses();
             do
             {
@@ -71,7 +70,7 @@ namespace EasySave_1._2
                     workCreatorUI.Perform();
                     break;
                 case 2:
-                    workExecutorUI.Perform(listString);
+                    workExecutorUI.Perform();
                     break;
                 case 3:
                     workModifierUI.Perform();
@@ -79,10 +78,8 @@ namespace EasySave_1._2
                 case 4:
                     workEraserUI.Perform();
                     break;
-                case 5:
-                    
-                    listString = blckngPrcssModifierUI.Perform();
-                    
+                case 5:                    
+                    tlf.processes= blckngPrcssModifierUI.Perform();                    
                     break;
                 case 6:
                     languageChangerUI.Perform();
