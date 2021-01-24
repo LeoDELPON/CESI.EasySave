@@ -1,19 +1,19 @@
 ﻿WpfApp1
-
+1.0.0.0
 
 winexe
 C#
 .cs
-C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\
 WpfApp1
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\Kylian\Source\Repos\CESI.EasySave\WpfApp1\WpfApp1\App.xaml
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
+C:\Users\delpo\Documents\Projets\C#\CESI.EasySave\CESI.EasySave\WpfApp1\WpfApp1\App.xaml
 1279763953
 
-14-208263550
-200-1548413629
+15-1899777795
+200623794702
 AddWorkWindow.xaml;AlertWindow.xaml;CipherWindow.xaml;HighPriorityExtention.xaml;LanguageSelectionWindow.xaml;Language\en-US.xaml;Language\fr-FR.xaml;MainWindow.xaml;ModifyWorkWindow.xaml;ProcessusChoosing.xaml;WrkElementInSvdList.xaml;WrkElementInWrkList.xaml;
 
 False

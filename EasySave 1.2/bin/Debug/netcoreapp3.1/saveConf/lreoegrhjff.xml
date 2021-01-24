@@ -1,6 +1,6 @@
 <? xml version = "1.0" encoding = "UTF-8" ?>
 <name>
-
+lreoegrhjff
 </name>
 <source>
 
@@ -16,6 +16,12 @@
 </key>
 <extentions>
 <ext>
-null
+.txt
+</ext>
+<ext>
+.js
+</ext>
+<ext>
+.leo
 </ext>
 </extentions>
