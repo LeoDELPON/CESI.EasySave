@@ -6,8 +6,8 @@
       "version": "3.1.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\delpo\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\delpo\\.nuget\\packages"
+      "C:\\Users\\Kylian\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Kylian\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

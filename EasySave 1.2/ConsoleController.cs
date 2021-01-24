@@ -59,7 +59,7 @@ namespace EasySave_1._2
                     "5) " + pm.GetPrintable("Priority") + Environment.NewLine +
                     "6) " + pm.GetPrintable("Language") + Environment.NewLine +
                     "7) " + pm.GetPrintable("Quit") + Environment.NewLine;
-                answer = getIntFromUser(1, 5, question);
+                answer = getIntFromUser(1, 8, question);
 
             } while (!answer.correct);
             switch (answer.value)
@@ -77,9 +77,9 @@ namespace EasySave_1._2
                     workEraserUI.Perform();
                     break;
                 case 6:
-                    
+                    languageChangerUI.Perform();
+                    MainMenu();
                     break;
-               
                 default:
                     break;
             }

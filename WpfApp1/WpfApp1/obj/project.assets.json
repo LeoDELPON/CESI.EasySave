@@ -441,19 +441,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\delpo\\.nuget\\packages\\": {}
+    "C:\\Users\\Kylian\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\delpo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
+      "projectPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+      "packagesPath": "C:\\Users\\Kylian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\WpfApp1\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\delpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kylian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -465,13 +465,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
-              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
+            "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj": {
+              "projectPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.BS.EasySave\\CESI.BS.EasySave.csproj"
             },
-            "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
-              "projectPath": "C:\\Users\\delpo\\Documents\\Projets\\C#\\CESI.EasySave\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
+            "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj": {
+              "projectPath": "C:\\Users\\Kylian\\Source\\Repos\\CESI.EasySave\\CESI.Server.EasySave\\CESI.Server.EasySave.csproj"
             }
           }
         }
@@ -484,7 +483,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "System.Management": {
             "target": "Package",
@@ -509,7 +507,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
