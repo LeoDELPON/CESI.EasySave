@@ -3,7 +3,9 @@
     "",
     "\\CESI.BS.EasySave",
     "\\CESI.BS.EasySave\\BS",
-    "\\CESI.BS.EasySave\\DAL"
+    "\\CESI.BS.EasySave\\DAL",
+    "\\EasySave 1.2",
+    "\\EasySave 1.2\\MainMenuClasses"
   ],
   "SelectedNode": "\\CesiEasySave.sln",
   "PreviewInSolutionExplorer": false
