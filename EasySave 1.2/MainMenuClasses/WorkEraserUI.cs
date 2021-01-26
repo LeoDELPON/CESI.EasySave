@@ -34,12 +34,13 @@ namespace EasySave_1._2.MainMenuClasses
             return existingWV;
         }
 
-        public void DeleteFile(string name)
+        public void DeleteFile(WorkVar workVar)
         {
-            Console.WriteLine(savePath + name + extension);
-            if (FileBuilder.CheckFile(savePath + name + extension))
+            Console.WriteLine(savePath + workVar.name + extension);
+            if (FileBuilder.CheckFile(savePath + workVar.name + extension))
             {
-                FileBuilder.DeleteFile(savePath + name + extension);
+                Console.WriteLine("[+] Supression du travail confirmé.");
+                FileBuilder.DeleteFile(savePath + workVar.name + extension);
             }
             else
             {
@@ -63,9 +64,18 @@ namespace EasySave_1._2.MainMenuClasses
             }
             else
             {
+                string question = pm.GetPrintable("SelectAWork") + Environment.NewLine;
+                for (int i = 0; i < bs.works.Count; i++)
+                {
+                    question += i + 1 + ") " + bs.works[i].Name + Environment.NewLine;
+                }
+                intReturn valueReturned = getIntFromUser(question);
+                existingWorkVar = getSpecifiedWorkVar(bs.works[valueReturned.value - 1].Name, existingWorkVar);
+
+
                 Console.WriteLine("Entrez le nom du travail à supprimer.");
-                string name = Console.ReadLine();
-                DeleteFile(name);
+
+                DeleteFile(existingWorkVar);
             }
         }
 
