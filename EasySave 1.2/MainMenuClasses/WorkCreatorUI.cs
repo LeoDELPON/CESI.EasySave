@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using static CESI.BS.EasySave.BS.ConfSaver.ConfSaver;
+using static EasySave_1._2.Printer;
 
 namespace EasySave_1._2.MainMenuClasses
 {
@@ -61,14 +62,14 @@ namespace EasySave_1._2.MainMenuClasses
             wv.key = "null";
             wv.extension = new List<string>();
             wv.extension.Add("null");
-            boolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
+            BoolReturn br = AskYesOrNo(pm.GetPrintable("XOR") + "?");
             if (br.returnVal) {
                 return;
             }
             if (br.value)
             {
                 wv.extension.Clear();
-                boolReturn addMore = new boolReturn();
+                BoolReturn addMore = new BoolReturn();
                 addMore.value = true;
                 do
                 {

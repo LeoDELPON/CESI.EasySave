@@ -27,7 +27,7 @@ namespace EasySave_1._2.MainMenuClasses
         {
             Console.Clear();
             Console.WriteLine(pm.GetPrintable("SelectLanguage"));
-            Console.WriteLine("1) Francais \n2)English");
+            Console.WriteLine("1) Francais \n2) English");
             choice = Console.ReadLine().ToString();
             if (choice == "1")
             {

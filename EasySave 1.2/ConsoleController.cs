@@ -61,7 +61,7 @@ namespace EasySave_1._2
                     "5) " + pm.GetPrintable("SelectBlockingProcesses") + Environment.NewLine +
                     "6) " + pm.GetPrintable("Language") + Environment.NewLine +
                     "7) " + pm.GetPrintable("Quit") + Environment.NewLine;
-                answer = GetIntFromUser(1, 7, question);
+                answer = GetIntFromUser(1, 6, question);
 
             } while (!answer.correct);
             switch (answer.value)
@@ -79,7 +79,7 @@ namespace EasySave_1._2
                     workEraserUI.Perform();
                     break;
                 case 5:                    
-                    tlf.processes= blckngPrcssModifierUI.Perform();                    
+                    tlf.processes = blckngPrcssModifierUI.Perform();                    
                     break;
                 case 6:
                     languageChangerUI.Perform();

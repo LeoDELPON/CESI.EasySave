@@ -15,7 +15,7 @@ namespace CESI.BS.EasySave.BS
         readonly ManagementEventWatcher processStartEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStartTrace");
         readonly ManagementEventWatcher processStopEvent = new ManagementEventWatcher("SELECT * FROM Win32_ProcessStopTrace");
         readonly List<Thread> listThreads = new List<Thread>();
-        public List<string> processes  = new List<string>();
+        public List<string> processes = new List<string>();
         readonly BSEasySave bs;
         public static string notAdminErrorMsg = "NotAdminMsg";
         public static string processIsOnMessage = "ProcessIsOn";

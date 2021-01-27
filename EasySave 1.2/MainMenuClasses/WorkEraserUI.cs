@@ -34,7 +34,7 @@ namespace EasySave_1._2.MainMenuClasses
             return existingWV;
         }
 
-        public void DeleteFile(WorkVar workVar, intReturn valueReturned)
+        public void DeleteFile(WorkVar workVar, IntReturn valueReturned)
         {
             Console.WriteLine(savePath + workVar.name + extension);
             if (FileBuilder.CheckFile(savePath + workVar.name + extension))
@@ -70,7 +70,7 @@ namespace EasySave_1._2.MainMenuClasses
                 {
                     question += i + 1 + ") " + bs.works[i].Name + Environment.NewLine;
                 }
-                intReturn valueReturned = getIntFromUser(question);
+                IntReturn valueReturned = GetIntFromUser(question);
                 if (valueReturned.returnVal)
                 {
                     return;
