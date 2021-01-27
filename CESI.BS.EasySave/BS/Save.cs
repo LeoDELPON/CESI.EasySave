@@ -12,6 +12,7 @@ namespace CESI.BS.EasySave.BS
     
     public abstract class Save : Observable, ObservableFileSize
     {
+        public string _key;
         public static long fileMaxSize = long.MaxValue;        
         public SaveType TypeSave { get; protected set; }
         protected Dictionary<WorkProperties, object> propertiesWork;

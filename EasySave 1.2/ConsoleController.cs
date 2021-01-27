@@ -96,7 +96,7 @@ namespace EasySave_1._2
             listWV = bs.confSaver.GetSavedWorks();
             foreach (WorkVar wv in listWV)
             {
-                bs.AddWork(wv.name, wv.source, wv.target, pm.GetPrintable(SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave)), wv.extension, wv.key);
+                bs.AddWork(wv.name, wv.source, wv.target, pm.GetPrintable(SaveTypeMethods.GetSaveTypeStrFromInt(wv.typeSave)), wv.extension, wv.key);
             }
 
         }

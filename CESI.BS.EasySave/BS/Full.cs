@@ -28,7 +28,7 @@ namespace CESI.BS.EasySave.BS
         /// <summary>
         /// Clé.
         /// </summary>
-        public string _key;
+        
         /// <summary>
         /// Sauvegarde complète.
         /// </summary>
