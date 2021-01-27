@@ -49,9 +49,27 @@ namespace CESI.BS.EasySave.DAL
             }
             return saveT;
         }
-        public static string GetSaveTypeFromInt(int i)
+        public static string GetSaveTypeStrFromInt(int i)
         {
             return GetString((SaveType) i);
+        }
+        public static SaveType GetSaveTypeFromint(int i)
+        {
+            SaveType saveT;
+            switch (i)
+            {
+                case 0:
+                    saveT = SaveType.DIFFERENTIAL;
+                    break;
+                case 1:
+                    saveT = SaveType.FULL;
+                    break;
+                default:
+                    Console.WriteLine("defaut");
+                    saveT = SaveType.DIFFERENTIAL;
+                    break;
+            }
+            return saveT;
         }
     }
 }

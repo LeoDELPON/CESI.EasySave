@@ -47,7 +47,7 @@ namespace EasySave_1._2.MainMenuClasses
                 string question = pm.GetPrintable("WorkSaveType") + " :" + Environment.NewLine;
                 for (int i = 0; i <= Enum.GetNames(typeof(SaveType)).Length-1; i++)
                 {
-                    question += (i + 1) + ") " + pm.GetPrintable(SaveTypeMethods.GetSaveTypeFromInt(i)) + Environment.NewLine;
+                    question += (i + 1) + ") " + pm.GetPrintable(SaveTypeMethods.GetSaveTypeStrFromInt(i)) + Environment.NewLine;
                 }
                
                 ir = getIntFromUser(1, Enum.GetNames(typeof(SaveType)).Length+1, question);
@@ -88,7 +88,7 @@ namespace EasySave_1._2.MainMenuClasses
 
             }
             wv.typeSave = ir.value - 1;
-            bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(wv.typeSave), new List<string> { "test" }, "test");// ajout du travail            
+            bs.AddWork(wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeStrFromInt(wv.typeSave), new List<string> { "test" }, "test");// ajout du travail            
             bs.confSaver.SaveWork(wv);
             Console.WriteLine(pm.GetPrintable("WorkCreated"));
             Console.ReadKey();

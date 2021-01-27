@@ -71,6 +71,10 @@ namespace EasySave_1._2.MainMenuClasses
                     question += i + 1 + ") " + bs.works[i].Name + Environment.NewLine;
                 }
                 intReturn valueReturned = getIntFromUser(question);
+                if (valueReturned.returnVal)
+                {
+                    return;
+                }
                 existingWorkVar = getSpecifiedWorkVar(bs.works[valueReturned.value - 1].Name, existingWorkVar);
 
 

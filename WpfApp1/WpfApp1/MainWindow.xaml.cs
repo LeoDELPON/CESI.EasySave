@@ -145,7 +145,7 @@ namespace WpfApp1
                 weList[index].inWrkList.UpdateWv(weList[index].wv);
                 weList[index].chiffrage = (bool)modifyWorkWindow.CypherOptionsCHB.IsChecked;
                 bs.confSaver.modifyEntireFile(bs.works[index].Name, weList[index].wv);
-                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeFromInt(modifyWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
+                bs.ModifyWork(bs.works[index], wv.name, wv.source, wv.target, SaveTypeMethods.GetSaveTypeStrFromInt(modifyWorkWindow.SaveTypeCB.SelectedIndex), wv.extension, wv.key);// modification du travail
             }
             else
             {
@@ -267,7 +267,7 @@ namespace WpfApp1
             we.inSvdList.MouseDoubleClick += (sender, e) => modifyWorkWindow.DoubleClickOnWorkElement(sender, e, weList[weList.IndexOf(we)]);
             SaveListLbl.Items.Add(we.inSvdList);
 
-            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeFromInt(we.wv.typeSave), we.wv.extension, we.wv.key);
+            bs.AddWork(we.wv.name, we.wv.source, we.wv.target, SaveTypeMethods.GetSaveTypeStrFromInt(we.wv.typeSave), we.wv.extension, we.wv.key);
         }
 
 

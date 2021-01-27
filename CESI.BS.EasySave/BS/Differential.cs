@@ -29,7 +29,7 @@ namespace CESI.BS.EasySave.BS
         /// Nom du travail.
         /// </summary>
         private readonly IList<string> _extensions;
-        public string _key;
+  
 
 
         /// <summary>
