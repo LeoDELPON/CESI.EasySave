@@ -49,12 +49,16 @@
     <system:String x:Key="DeleteAWork">Supprimer un travail</system:String>
     <system:String x:Key="SelectAWork">Selectionnez un ou plusieurs travaux : </system:String>
     <system:String x:Key="NoExistingWork">Vous n'avez aucun travaux sauvegardé. Selectionnez "Créer un travail" sur le menu principal pour en créer un.</system:String>
+    <system:String x:Key="SelectBlockingProcesses">Selectionner les processus bloquant.</system:String>
+    <system:String x:Key="BlockingProcessesMenu">Ecrivez les numéros correspondant au processus métier voulus. Ecrivez 0 quand vous avez fini de selectionner.</system:String>
     <system:String x:Key="ExitIndications">CTRL + X pour annuler</system:String>
     <system:String x:Key="WrongAnswer">S'il vous plait, entrez une réponse correcte.</system:String>
     <system:String x:Key="AnotherOne">En rentrer un(e) autre ?</system:String>
     <system:String x:Key="Quit">Quitter</system:String>
     <system:String x:Key="YesUI">O</system:String>
     <system:String x:Key="NoUI">N</system:String>
+    <system:String x:Key="SavesRunning">Sauvegarde en cours...</system:String>
     <!--Operations success-->
     <system:String x:Key="WorkCreated">Un nouveau travail a été créé !</system:String>
+    <system:String x:Key="DataSaved">Données sauvegardées !</system:String>
 </ResourceDictionary>

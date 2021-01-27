@@ -9,19 +9,19 @@ namespace EasySave_1._2
     public class Printer
     {
         public PrintManager pm;
-        public struct intReturn
+        public struct IntReturn
         {
             public int value;
             public bool correct;
             public bool returnVal;
         }
-        public struct stringReturn
+        public struct StringReturn
         {
             public string value;
             public bool correct;
             public bool returnVal;
         }
-        public struct boolReturn
+        public struct BoolReturn
         {
             public bool value;
             public bool correct;
@@ -39,13 +39,15 @@ namespace EasySave_1._2
            bs = new BSEasySave();
            pm = new PrintManager();
         }
-        public intReturn getIntFromUser(string question)
+        public IntReturn GetIntFromUser(string question)
         {
             string userInput;
-            intReturn intUI = new intReturn();
-            intUI.value = 0;
-            intUI.correct = false;
-            intUI.returnVal = false;
+            IntReturn intUI = new IntReturn
+            {
+                value = 0,
+                correct = false,
+                returnVal = false
+            };
             do
             {
                 Console.WriteLine(question);
@@ -60,9 +62,9 @@ namespace EasySave_1._2
           
             return intUI;
         }
-        public stringReturn getPathFromUser(string question)
+        public StringReturn GetPathFromUser(string question)
         {
-            stringReturn answer = new stringReturn();
+            StringReturn answer = new StringReturn();
             do
             {
                 Console.WriteLine(question);
@@ -76,9 +78,9 @@ namespace EasySave_1._2
             } while (!Directory.Exists(answer.value) && !answer.returnVal);
             return answer;
         }
-        public intReturn getIntFromUser(int min, int max, string question)
+        public IntReturn GetIntFromUser(int min, int max, string question)
         {
-            intReturn ir;
+            IntReturn ir;
             ir.value = 0;
             ir.correct = false;
             ir.returnVal = false;
@@ -107,9 +109,9 @@ namespace EasySave_1._2
             } while (!ir.correct && !ir.returnVal);
             return ir;
         }
-        public boolReturn AskYesOrNo(string question)
+        public BoolReturn AskYesOrNo(string question)
         {
-            boolReturn br = new boolReturn();
+            BoolReturn br = new BoolReturn();
             string ans;
             do
             {

@@ -73,7 +73,7 @@ namespace CESI.BS.EasySave.BS
             }
             else
             {
-                DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy");
+                DiffBackupPath += @"\" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
             }
 
             FolderBuilder.CreateFolder(DiffBackupPath);
@@ -98,7 +98,7 @@ namespace CESI.BS.EasySave.BS
                 foreach (FileInfo file in queryGetDifferenceFile)
                 {
                     WaitForUnpause();
-                    checkFileSize(file.Length);
+                    CheckFileSize(file.Length);
                     string backupFolderWithRelativePath = Path.GetFullPath(DiffBackupPath, propertiesWork[WorkProperties.Source].ToString());
                     string pathTest = file.DirectoryName;
                     pathTest = pathTest.Replace(sourceFolder, backupFolderWithRelativePath);

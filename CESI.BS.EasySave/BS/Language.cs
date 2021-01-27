@@ -53,7 +53,6 @@ namespace CESI.BS.EasySave.BS
 
 
         //Property of all class variables
-        private static string ChosenLanguage => chosenLanguage;
         private static string DataFilePath => dataFilePath;
         private static string DataFileName => dataFileName;
     }

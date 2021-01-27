@@ -50,14 +50,18 @@
     <system:String x:Key="SelectAWork">Select one or several works : </system:String>
     <system:String x:Key="NoExistingWork">You don't have any work saved. To create a work, select "Create a work" in the main menu.</system:String>
     <system:String x:Key="DeleteAWork">Delete a work</system:String>
+    <system:String x:Key="SelectBlockingProcesses">Select the blocking processes.</system:String>
+    <system:String x:Key="BlockingProcessesMenu">Write corresponding number to select a blocking processes, Write 0 when you are done choosing.</system:String>
     <system:String x:Key="ExitIndications">CTRL + X to cancel</system:String>
     <system:String x:Key="WrongAnswer">Please enter a correct answer</system:String>
     <system:String x:Key="AnotherOne">Enter another one ?</system:String>
     <system:String x:Key="Quit">Quit</system:String>
     <system:String x:Key="YesUI">Y</system:String>
     <system:String x:Key="NoUI">N</system:String>
+    <system:String x:Key="SavesRunning">Saving...</system:String>
     <!--Operations success-->
     <system:String x:Key="WorkCreated">A new work has been created !</system:String>
-    
+    <system:String x:Key="DataSaved">Data saved !</system:String> 
+
 
 </ResourceDictionary>
